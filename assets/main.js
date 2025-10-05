@@ -1,6 +1,7 @@
 import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
-import cart from "./cart.js"; ز
-import product from "./product.js"; ز
+// import cart from "./cart.js";
+// import product from "./product.js";
+console.log("✅ main.js loaded");
 
 const app = createApp({
 	delimiters: ['[[', ']]'],
@@ -48,6 +49,7 @@ const app = createApp({
 			}).showToast();
 		},
 		toggleModal(type, open) {
+			console.log("modal", type, open);
 			this.modal.open = open !== undefined ? open : !this.modal.open;
 			this.modal.type = type;
 		},
@@ -60,6 +62,7 @@ const app = createApp({
 	},
 	mounted() {
 		this.spinnerVisible = false;
+	    console.log("Mounted ✅ binding methods to window");
 
 		window.updateCart = this.updateCart.bind(this);
 		window.updateCartItem = this.updateCartItem.bind(this);
@@ -69,9 +72,25 @@ const app = createApp({
 		window.showToast = this.showToast.bind(this);
 		window.toggleModal = this.toggleModal.bind(this);
 	}
+	// mounted() {
+	// 	this.spinnerVisible = false;
+	//     console.log("Mounted ✅ binding methods to window");
+
+	// 	Object.keys(this.$options.methods).forEach((key) => {
+	// 	  if (typeof this[key] === "function") {
+	// 		window[key] = this[key].bind(this);
+	// 		globalThis[key] = window[key];
+	// 	  }
+	// 	});
+
+	// 	window.globalLoading = this.globalLoading;
+	// 	window.globals = this.globals;
+	//   }
+
 });
 
-app.mixin(cart);
-app.mixin(product);
+// app.mixin(cart);
+// app.mixin(product);
 
 app.mount("#app");
+console.log("✅ App mounted executed");
