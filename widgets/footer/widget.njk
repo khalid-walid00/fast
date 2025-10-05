@@ -1,10 +1,13 @@
 <footer class="text-white bg-[#000000] mdpt-[41px] md:pb-[45px] py-4">
   <div class="container grid md:grid-cols-3 grid-cols-1 md:gap-[46px] gap-3">
     <div class="flex flex-col gap-5">
+      {% if globals.app.logo.fileUrl %}
       <img src="{{ globals.app.logo.fileUrl }}" class="md:w-[112px] w-[88px] md:h-[96px] h-[76px] " alt="">
-      <p class=" text-sm leading-[20px] max-md:text-xs">لوريم ايبسوم دولار سيت
-        أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا
-        أليكيوا . يوت إنيم أد مينيم فينايم,كيواس نوستريد
+      {% else %}
+      <span class=" text-white font-bold text-xl tracking-wider ">{{globals.app.name}}</span>
+      {% endif %}
+      <p class=" text-sm leading-[20px] max-md:text-xs">
+        {{ widget.data.company_description | default('وصف الشركة غير متوفر') }}
       </p>
     </div>
     <div class="flex flex-col gap-4">

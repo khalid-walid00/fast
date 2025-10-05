@@ -61,26 +61,27 @@
             </div>
         </div>
         <div class=" max-xl:flex hidden items-center gap-4">
-            <span class="material-symbols-outlined text-xl text-black  flex items-center justify-center w-5 h-5">
+            <button @click="toggleModal('search')"
+                class="material-symbols-outlined text-xl text-black  flex items-center justify-center w-5 h-5">
                 mystery
-            </span>
+            </button>
             <div class=" relative flex items-center">
                 <span
                     class=" rounded-full bg-mainColor absolute -top-1 -right-1 text-[10px] font-bold flex items-center justify-center w-3 h-3">0</span>
-                <span class="material-symbols-outlined text-xl text-black flex items-center justify-center w-5 h-5">
+                <button @click="toggleModal('cart')"
+                    class="material-symbols-outlined text-xl text-black flex items-center justify-center w-5 h-5">
                     shopping_cart
-                </span>
+                </button>
             </div>
-            <span class="material-symbols-outlined text-xl text-black flex items-center justify-center w-5 h-5">
+            <button @click="toggleModal('sidebar')"
+                class="material-symbols-outlined text-xl text-black flex items-center justify-center w-5 h-5">
                 menu
-            </span>
+            </button>
         </div>
     </header>
 </div>
 
 
-
-<!-- ############### END: PROFESSIONAL CART SIDE-PANEL ############### -->
-{# {%ui "sidebar.njk", menu=widget.data.header_menu %} #}
-{# {%ui "search.njk" %} #}
+{%ui "sidebar.njk", menu=widget.data.header_menu %}
+{%ui "search.njk" %}
 {%ui "cart.njk" %}

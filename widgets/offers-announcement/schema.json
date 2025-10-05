@@ -1,0 +1,73 @@
+
+{
+    "name": "شريط الإعلانات",
+    "description": "شريط الإعلانات للعروض والهدايا في الهيدر",
+    "settings": {
+      "announcement_link": {
+        "type": "string",
+        "label": "الرابط الافتراضي للإعلان",
+        "default": "#"
+      },
+      "announcement_alt": {
+        "type": "string",
+        "label": "النص البديل الافتراضي",
+        "default": "Offers Announcement"
+      },
+      "enable_marquee": {
+        "type": "boolean",
+        "label": "تفعيل الحركة التلقائية",
+        "default": true
+      },
+      "marquee_speed": {
+        "type": "number",
+        "label": "سرعة الحركة (ثوانٍ)",
+        "default": 30,
+        "min": 10,
+        "max": 60
+      },
+      "show_separator": {
+        "type": "boolean",
+        "label": "إظهار الفواصل بين الإعلانات",
+        "default": true
+      }
+    },
+    "blocks": {
+      "announcementItem": {
+        "name": "إعلان",
+        "settings": {
+          "text": {
+            "type": "string",
+            "label": "نص الإعلان",
+            "default": "عروض مستمرة وهدايا مفاجئة كل يوم"
+          },
+          "link": {
+            "type": "string",
+            "label": "رابط الإعلان",
+            "default": "#"
+          },
+          "alt": {
+            "type": "string",
+            "label": "النص البديل للإعلان",
+            "default": "Offers Announcement"
+          }
+        }
+      }
+    },
+    "presets": [
+      {
+        "category": "الهيدر",
+        "name": "📢 شريط الإعلانات",
+        "blocks": [
+          {
+            "block": "announcementItem",
+            "name": "الإعلان الأول",
+            "settings": {
+              "text": "عروض مستمرة وهدايا مفاجئة كل يوم",
+              "link": "#",
+              "alt": "Offers Announcement"
+            }
+          }
+        ]
+      }
+    ]
+  }
