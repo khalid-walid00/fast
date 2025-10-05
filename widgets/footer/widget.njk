@@ -1,0 +1,33 @@
+<footer class="text-white bg-[#000000] mdpt-[41px] md:pb-[45px] py-4">
+  <div class="container grid md:grid-cols-3 grid-cols-1 md:gap-[46px] gap-3">
+    <div class="flex flex-col gap-5">
+      <img src="{{ globals.app.logo.fileUrl }}" class="md:w-[112px] w-[88px] md:h-[96px] h-[76px] " alt="">
+      <p class=" text-sm leading-[20px] max-md:text-xs">لوريم ايبسوم دولار سيت
+        أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا
+        أليكيوا . يوت إنيم أد مينيم فينايم,كيواس نوستريد
+      </p>
+    </div>
+    <div class="flex flex-col gap-4">
+      <h3 class="font-semibold text-xl leading-6">روابط سريعة</h3>
+      <nav class="flex flex-col gap-2">
+        {% set items = widget.data.footer_menu or [] %}
+        {% for item in items %}
+        <a href="{{ item.url | default('#') }}" class="leading-5 max-md:text-xs hover:text-mainColor transition-colors duration-200">{{
+          item.title |
+          default('بدون عنوان') }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+    <div class="flex flex-col gap-4">
+      <h3 class="font-semibold text-xl leading-6">الأقسام</h3>
+      <nav class="grid grid-cols-2 gap-y-[10px] gap-x-3">
+        {% set items = widget.data.footer_menu or [] %}
+        {% for item in items %}
+        <a href="{{ item.url | default('#') }}" class="leading-5 max-md:text-xs hover:text-mainColor transition-colors duration-200">{{
+          item.title |
+          default('بدون عنوان') }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>{{ context.page.title | default("Store") }}</title>
+  {% seo %}
+  {% qumra_head %}
+  <style>
+    root {
+      --mainColor: #FB8C28;
+      --mainColor-rgb: 255, 107, 53;
+      
+
+      --swiper-navigation-size: 25px;
+    }
+  </style>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts - Cairo Only -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Changa:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <link rel="stylesheet" href="{{ 'style.global.css' | assets }}" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'changa': ['Changa', 'sans-serif'],
+          },
+          colors: {
+            mainColor: {
+              DEFAULT: '#FB8C28',
+              orange: '#FB8C28',
+              'orange-rgb': '255, 107, 53',
+            }
+            ,dark: {
+              DEFAULT: '#333333',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400&display=swap" />
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+
+
+</head>
+
+<body id="app">
+  {% template "header" %}
+  <main>
+    {% content %}
+  </main>
+  {% template "footer" %}
+  {% qumra_scripts %}
+
+  <script>
+    console.log("Global Data", __qumra__);
+  </script>
+  <!-- Swiper JS -->
+  <script type="module" src="{{ 'main.js' | assets }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</body>
+
+</html>
