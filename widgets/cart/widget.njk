@@ -1,275 +1,101 @@
-<main v-cloak  class="transition-all duration-300" :class="scrolled ? 'pt-24' : 'pt-36'">
-  <div class="container py-8">
-
-    <!-- مسار التنقل (breadcrumb) -->
-    <nav class="text-sm text-gray-500 font-cairo mb-6" aria-label="breadcrumb">
-      <ol class="flex items-center gap-1">
-        <li><a href="/" class="hover:text-[#003033]">الرئيسية</a></li>
-        <li class="mx-1">/</li>
-        <li class="text-[#003033] font-semibold">الكراسي</li>
-      </ol>
-    </nav>
-
-    <!-- عنوان الصفحة -->
-    <div class="mb-6">
-      <h1 class="text-2xl md:text-3xl font-bold text-gray-900 font-cairo">سلة المشتريات</h1>
-    </div>
+<main v-cloak  class="transition-all duration-300 pt-4">
+  <div class="container py-4">
 
     <!-- محتوى السلة -->
     <div v-show="globals?.cart?.items?.length > 0">
-      <!-- شريط التقدم نحو التوصيل المجاني -->
-      <div class="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-        <div class="flex items-center justify-between text-sm text-gray-700 mb-3">
-          <span>
+      <!-- شريط التقدم نحو التوصيل المجاني (مع أيقونة السيارة) -->
+      <div class="bg-white rounded-lg border border-gray-200 p-5 mb-6">
+        <div class="flex items-center justify-start w-full text-xs md:text-sm text-gray-700 mb-2 text-right">
+          <span class="font-bold">
             {% set thr = settings.free_shipping_threshold or 800 %}
-            أضف <span class="font-bold" v-text="Math.max(0, ({{ thr }} - (globals?.cart?.totalPrice ?? 0))).toFixed(0)"></span>
-            إلى مشترياتك لتحصل على شحن مجاني
+            أضف <span class="text-[#F59A57]">{{ thr }} ج.م</span> إلى مشترياتك لتحصل على الشحن مجانًا!
           </span>
-          <span class="font-bold text-[#F59A57]">ج.م {{ thr }}</span>
         </div>
-        <div class="relative w-full h-2 bg-gray-100 rounded-full overflow-hidden">
-          <div class="absolute inset-y-0 right-0 h-2 bg-[#F59A57] rounded-full"
-               v-bind:style="{ width: Math.min(100, ((globals?.cart?.totalPrice ?? 0)/{{ thr }})*100) + '%' }"></div>
+        <div class="relative w-full">
+          <!-- المسار -->
+          <div class="h-2 bg-gray-100 rounded-full w-full"></div>
+          <!-- التقدم من اليمين لليسار -->
+          <div class="absolute inset-y-0 right-0 h-2 bg-[#F59A57] rounded-full" style="width:50%"></div>
+          <!-- مقبض بأيقونة الشحن -->
+          <div class="absolute -top-3" style="right: calc(50% - 16px)">
+            <div class="rounded-full h-8 w-8 border border-[#F59A57] bg-white flex items-center justify-center">
+              <span class="material-symbols-outlined text-base transform -scale-x-100 text-[#F59A57]">local_shipping</span>
+            </div>
+          </div>
         </div>
       </div>
       
       <!-- ملخص الطلب -->
       <div class="lg:grid lg:grid-cols-3 lg:gap-8">
-        <!-- المنتجات - قسم أصغر -->
-        <div class="lg:col-span-2 mb-8 lg:mb-0">
-          <!-- جدول المنتجات - Desktop -->
-          <div class="hidden lg:block bg-white rounded-xl shadow-sm border border-gray-200">
-            <!-- رأس الجدول -->
-            <div class="grid grid-cols-12 gap-4 p-4 border-b border-gray-100 bg-gray-50 rounded-t-xl">
-              <div class="col-span-5">
-                <h3 class="text-base font-semibold text-gray-800 font-cairo">المنتج</h3>
+        <!-- المنتجات - نفس كروت التصميم -->
+        <div class="lg:col-span-2 mb-8 lg:mb-0 space-y-4">
+          <template v-for="item in globals?.cart?.items" :key="item._id">
+            <div class="bg-white p-4 rounded-lg shadow-sm flex items-center gap-4 border border-gray-200">
+              <img :src="item?.productData?.image?.fileUrl" :alt="item?.productData?.title" class="w-20 h-20 object-cover rounded-md">
+              <div class="flex-grow min-w-0">
+                <h3 class="font-semibold text-gray-800 truncate" v-text="item?.productData?.title"></h3>
+                <template v-if="item?.variantData?.options?.length">
+                  <div class="text-sm text-gray-500">
+                    <template v-for="opt in item?.variantData?.options" :key="opt?._id">
+                      <span class="inline-block mr-1"><span v-text="opt?.option?.name"></span>: <span v-text="opt?.label"></span></span>
+                    </template>
+                  </div>
+                </template>
               </div>
-              <div class="col-span-2 text-center">
-                <h3 class="text-base font-semibold text-gray-800 font-cairo">السعر</h3>
+              <p class="font-bold text-lg text-[#F59A57] w-24 text-center">
+                <span v-text="item?.price || item?.variantData?.price || 0"></span>
+                <span v-text="globals?.currency?.currencySymbol"></span>
+              </p>
+              <div class="flex items-center border border-gray-200 rounded-md">
+                <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded-r-md" @click="decreaseCartItem(item._id, item.quantity)">-</button>
+                <span class="px-4 py-1 text-gray-800 font-semibold" v-text="item.quantity"></span>
+                <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded-l-md" @click="increaseCartItem(item._id, item.quantity)">+</button>
               </div>
-              <div class="col-span-2 text-center">
-                <h3 class="text-base font-semibold text-gray-800 font-cairo">الكمية</h3>
-              </div>
-              <div class="col-span-3 text-center">
-                <h3 class="text-base font-semibold text-gray-800 font-cairo">الإجمالي</h3>
-              </div>
+              <button class="text-gray-400 hover:text-red-500" @click="clearCartItem(item._id)">
+                <span class="material-symbols-outlined">delete</span>
+              </button>
             </div>
-
-            <!-- المنتجات -->
-            <template v-for="item in globals?.cart?.items" :key="item._id">
-              <div class="grid grid-cols-12 gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                <!-- معلومات المنتج -->
-                <div class="col-span-5 flex items-center gap-3">
-                  <img :src="item?.productData?.image?.fileUrl"
-                       :alt="item?.productData?.title"
-                       class="w-16 h-16 rounded-lg object-cover border border-gray-200 flex-shrink-0">
-                  <div class="flex-1 min-w-0">
-                    <h4 class="font-semibold text-gray-900 text-sm leading-tight font-cairo mb-1" v-text="item?.productData?.title"></h4>
-                    <template v-if="item?.variantData?.options?.length">
-                      <div class="text-xs text-gray-500 font-cairo">
-                        <template v-for="opt in item?.variantData?.options" :key="opt?._id">
-                          <span class="inline-block bg-gray-100 px-2 py-1 rounded text-xs mr-1 mb-1">
-                            <span v-text="opt?.option?.name"></span>: <span v-text="opt?.label"></span>
-                          </span>
-                        </template>
-                      </div>
-                    </template>
-                  </div>
-                </div>
-
-                <!-- السعر -->
-                <div class="col-span-2 flex items-center justify-center">
-                  <div class="text-center">
-                    <!-- السعر بعد الخصم -->
-                    <div class="text-sm font-semibold text-gray-900 font-cairo">
-                      <span v-text="item?.price || item?.variantData?.price || 0"></span>
-                      <span v-text="globals?.currency?.currencySymbol"></span>
-                    </div>
-                    <!-- السعر قبل الخصم (إذا كان هناك خصم) -->
-                    <template v-if="(item?.compareAtPrice || item?.variantData?.compareAtPrice) && (item?.compareAtPrice || item?.variantData?.compareAtPrice) > (item?.price || item?.variantData?.price)">
-                      <div class="text-xs text-gray-500 line-through mt-1">
-                        <span v-text="item?.compareAtPrice || item?.variantData?.compareAtPrice"></span>
-                        <span v-text="globals?.currency?.currencySymbol"></span>
-                      </div>
-                    </template>
-                  </div>
-                </div>
-
-                <!-- الكمية -->
-                <div class="col-span-2 flex items-center justify-center">
-                  <div class="flex items-center gap-1">
-                    <button class="w-8 h-8 border border-gray-300 rounded-lg font-bold text-gray-700 hover:bg-gray-100 transition-colors flex items-center justify-center text-sm"
-                            @click="decreaseCartItem(item._id, item.quantity)"
-                            aria-label="تقليل الكمية">−</button>
-                    
-                    <span class="w-12 h-8 grid place-items-center border border-gray-300 rounded-lg font-semibold text-gray-900 font-cairo bg-white text-sm"
-                          v-text="item.quantity"></span>
-                    
-                    <button class="w-8 h-8 border border-gray-300 rounded-lg font-bold text-gray-700 hover:bg-gray-100 transition-colors flex items-center justify-center text-sm"
-                            @click="increaseCartItem(item._id, item.quantity)"
-                            aria-label="زيادة الكمية">+</button>
-                  </div>
-                </div>
-
-                <!-- الإجمالي -->
-                <div class="col-span-3 flex items-center justify-center">
-                  <div class="text-center">
-                    <!-- السعر الإجمالي بعد الخصم -->
-                    <div class="text-lg font-bold text-[#003033] font-cairo">
-                      <span v-text="(item?.price || item?.variantData?.price || 0) * (item?.quantity || 0)"></span>
-                      <span v-text="globals?.currency?.currencySymbol"></span>
-                    </div>
-                    <!-- السعر الإجمالي قبل الخصم (إذا كان هناك خصم) -->
-                    <template v-if="(item?.compareAtPrice || item?.variantData?.compareAtPrice) && (item?.compareAtPrice || item?.variantData?.compareAtPrice) > (item?.price || item?.variantData?.price)">
-                      <div class="text-xs text-gray-500 line-through">
-                        <span v-text="(item?.compareAtPrice || item?.variantData?.compareAtPrice || 0) * (item?.quantity || 0)"></span>
-                        <span v-text="globals?.currency?.currencySymbol"></span>
-                      </div>
-                    </template>
-                    <button class="text-xs text-red-500 hover:text-red-700 hover:underline font-cairo mt-1"
-                            @click="clearCartItem(item._id)"
-                            aria-label="إزالة">إزالة</button>
-                  </div>
-                </div>
-              </div>
-            </template>
-          </div>
-
-          <!-- المنتجات - Mobile -->
-          <div class="lg:hidden space-y-4">
-            <template v-for="item in globals?.cart?.items" :key="item._id">
-              <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-                <div class="flex items-start gap-3 mb-3">
-                  <img :src="item?.productData?.image?.fileUrl" 
-                       :alt="item?.productData?.title"
-                       class="w-16 h-16 rounded-lg object-cover border border-gray-200 flex-shrink-0">
-                  <div class="flex-1 min-w-0">
-                    <h4 class="font-semibold text-gray-900 text-sm leading-tight font-cairo mb-1" v-text="item?.productData?.title"></h4>
-                    <template v-if="item?.variantData?.options?.length">
-                      <div class="text-xs text-gray-500 font-cairo mb-2">
-                        <template v-for="opt in item?.variantData?.options" :key="opt?._id">
-                          <span class="inline-block bg-gray-100 px-2 py-1 rounded text-xs mr-1 mb-1">
-                            <span v-text="opt?.option?.name"></span>: <span v-text="opt?.label"></span>
-                          </span>
-                        </template>
-                      </div>
-                    </template>
-                    <!-- السعر الإجمالي بعد الخصم -->
-                    <div class="text-lg font-bold text-[#003033] font-cairo">
-                      <span v-text="(item?.price || item?.variantData?.price || 0) * (item?.quantity || 0)"></span>
-                      <span v-text="globals?.currency?.currencySymbol"></span>
-                    </div>
-                    <!-- السعر الإجمالي قبل الخصم (إذا كان هناك خصم) -->
-                    <template v-if="(item?.compareAtPrice || item?.variantData?.compareAtPrice) && (item?.compareAtPrice || item?.variantData?.compareAtPrice) > (item?.price || item?.variantData?.price)">
-                      <div class="text-xs text-gray-500 line-through">
-                        <span v-text="(item?.compareAtPrice || item?.variantData?.compareAtPrice || 0) * (item?.quantity || 0)"></span>
-                        <span v-text="globals?.currency?.currencySymbol"></span>
-                      </div>
-                    </template>
-                  </div>
-                </div>
-                
-                <div class="flex items-center justify-between border-t border-gray-100 pt-3">
-                  <div class="flex items-center gap-1">
-                    <button class="w-8 h-8 border border-gray-300 rounded-lg font-bold text-gray-700 hover:bg-gray-100 transition-colors flex items-center justify-center text-sm"
-                            @click="decreaseCartItem(item._id, item.quantity)">−</button>
-                    <span class="w-12 h-8 grid place-items-center border border-gray-300 rounded-lg font-semibold text-gray-900 font-cairo bg-white text-sm"
-                          v-text="item.quantity"></span>
-                    <button class="w-8 h-8 border border-gray-300 rounded-lg font-bold text-gray-700 hover:bg-gray-100 transition-colors flex items-center justify-center text-sm"
-                            @click="increaseCartItem(item._id, item.quantity)">+</button>
-                  </div>
-                  <button class="text-xs text-red-500 hover:text-red-700 hover:underline font-cairo px-2 py-1 border border-red-200 rounded hover:bg-red-50"
-                          @click="clearCartItem(item._id)">إزالة</button>
-                </div>
-              </div>
-            </template>
-          </div>
+          </template>
         </div>
         
         <!-- ملخص السعر - قسم أكبر وأجمل -->
         <div class="lg:col-span-1">
-          <div class="bg-white rounded-xl border border-gray-200 p-5 sticky top-6">
-            <h3 class="text-xl font-bold font-cairo mb-5 text-gray-900">ملخص الطلب</h3>
-            
-            <div class="space-y-4 mb-8">
-              <!-- المجموع الفرعي -->
-              <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                <span class="text-gray-600 font-cairo">المجموع الفرعي</span>
-                <span class="text-lg font-semibold font-cairo text-gray-900">
+          <div class="bg-white p-6 rounded-lg shadow-sm sticky top-8 border-t-4 border-[#F59A57]">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">ملخص الطلب</h2>
+            <div class="space-y-4 text-gray-700">
+              <div class="flex justify-between">
+                <span>المجموع الفرعي:</span>
+                <span class="font-semibold">
                   <span v-text="globals?.cart?.items?.reduce((sum, item) => {
-                    const originalPrice = item?.compareAtPrice || item?.variantData?.compareAtPrice || item?.variantData?.price || 0;
-                    return sum + (originalPrice * (item?.quantity || 0));
+                    const p = item?.price || item?.variantData?.price || 0;
+                    return sum + (p * (item?.quantity || 0));
                   }, 0) || 0"></span>
                   <span v-text="globals?.currency?.currencySymbol"></span>
                 </span>
               </div>
-
-              <!-- السعر قبل الخصم -->
-              <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                <span class="text-gray-600 font-cairo">السعر قبل الخصم</span>
-                <span class="text-lg font-semibold font-cairo text-gray-900">
-                  <span v-text="globals?.cart?.items?.reduce((sum, item) => {
-                    const originalPrice = item?.compareAtPrice || item?.variantData?.compareAtPrice || 0;
-                    return sum + (originalPrice * (item?.quantity || 0));
-                  }, 0) || 0"></span>
-                  <span v-text="globals?.currency?.currencySymbol"></span>
-                </span>
-              </div>
-
-              <!-- السعر بعد الخصم -->
-              <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                <span class="text-gray-600 font-cairo">السعر بعد الخصم</span>
-                <span class="text-lg font-semibold font-cairo text-gray-900">
-                  <span v-text="globals?.cart?.items?.reduce((sum, item) => {
-                    const finalPrice = item?.price || item?.variantData?.price || 0;
-                    return sum + (finalPrice * (item?.quantity || 0));
-                  }, 0) || 0"></span>
-                  <span v-text="globals?.currency?.currencySymbol"></span>
-                </span>
-              </div>
-
-              <!-- الخصم -->
-              <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                <span class="text-green-600 font-cairo">الخصم</span>
-                <span class="text-green-600 font-semibold">
-                  -<span v-text="globals?.cart?.items?.reduce((sum, item) => {
-                    const originalPrice = item?.compareAtPrice || item?.variantData?.compareAtPrice || 0;
-                    const finalPrice = item?.price || item?.variantData?.price || 0;
-                    const discount = originalPrice > finalPrice ? (originalPrice - finalPrice) : 0;
-                    return sum + (discount * (item?.quantity || 0));
-                  }, 0) || 0"></span>
-                  <span v-text="globals?.currency?.currencySymbol"></span>
-                </span>
-              </div>
-
-              <!-- الإجمالي - في مكان بارز -->
-              <div class="bg-gray-50 rounded-xl p-4 mt-4">
-                <div class="text-center">
-                  <span class="text-gray-600 font-cairo text-base block mb-1">الإجمالي</span>
-                  <span class="text-2xl font-bold text-[#003033] font-cairo block">
-                    <span v-text="(globals?.cart?.totalPrice ?? 0)"></span>
-                    <span v-text="globals?.currency?.currencySymbol"></span>
-                  </span>
+              <div class="flex justify-between">
+                <div>
+                  <span>الشحن:</span>
+                  <a href="/collections" class="text-sm text-[#F59A57] hover:underline block">تغيير عنوان الشحن</a>
                 </div>
+                <span class="font-semibold">
+                  <span v-text="globals?.cart?.shippingPrice || 0"></span>
+                  <span v-text="globals?.currency?.currencySymbol"></span>
+                </span>
+              </div>
+              <div class="border-t border-gray-200 my-4"></div>
+              <div class="flex justify-between text-xl font-bold text-gray-900">
+                <span>الإجمالي</span>
+                <span>
+                  <span v-text="(globals?.cart?.totalPrice ?? 0)"></span>
+                  <span v-text="globals?.currency?.currencySymbol"></span>
+                </span>
               </div>
             </div>
-
-            <!-- زر إتمام الشراء -->
-            <button :disabled="globalLoading.checkout"
-                    class="w-full bg-[#003033] text-white rounded-lg py-3 text-base font-bold font-cairo hover:bg-[#002529] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mb-3"
-                    @click="checkout()"
-                    aria-label="إتمام الشراء">
-              <i class="fi fi-ts-cart-minus"></i>
-              <span v-show="!globalLoading.checkout">إتمام الشراء</span>
-              <span v-show="globalLoading.checkout">جاري المعالجة...</span>
+            <button class="w-full mt-6 bg-[#F59A57] text-white font-bold py-3 rounded-lg hover:bg-orange-500 transition-colors duration-300"
+                    :disabled="globalLoading.checkout" @click="checkout()">
+              اتمام الطلب
             </button>
-
-            <!-- زر متابعة التسوق -->
-            <div class="text-center">
-              <a href="/collections" class="inline-block border border-[#003033] text-[#003033] hover:bg-[#003033] hover:text-white font-medium py-2.5 px-5 rounded-lg transition-colors duration-200 font-cairo">
-                متابعة التسوق
-              </a>
-            </div>
           </div>
         </div>
       </div>
@@ -305,4 +131,34 @@
     </div>
   </div>
 </main>
+
+<!-- منتجات قد تهمك - بنفس تصميم الكروت -->
+<section class="container pb-12" v-show="(globals?.latest?.items && globals?.latest?.items.length) || (globals?.products?.items && globals?.products?.items.length)">
+  <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">منتجات قد تهمك</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <template v-for="p in ((globals?.latest?.items && globals?.latest?.items.length ? globals?.latest?.items : globals?.products?.items) || []).slice(0, 8)" :key="p?._id">
+      <div class="bg-white rounded-lg shadow-sm overflow-hidden text-center group border">
+        <div class="relative">
+          <a :href="'/product/' + (p?.slug || '')">
+            <img :src="p?.images?.[0]?.fileUrl || 'https://placehold.co/300x300/E2E8F0/A0AEC0?text=Chair'" :alt="p?.title" class="w-full h-56 object-cover">
+          </a>
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-lg text-gray-800 truncate" v-text="p?.title"></h3>
+          <p class="text-sm text-gray-500 mb-2" v-text="p?.category?.title || ''"></p>
+          <div class="flex justify-center items-baseline gap-2 mb-4">
+            <span class="text-xl font-bold text-[#F59A57]"><span v-text="p?.pricing?.price || 0"></span> <span v-text="globals?.currency?.currencySymbol"></span></span>
+            <template v-if="p?.pricing?.compareAtPrice && p?.pricing?.compareAtPrice > (p?.pricing?.price || 0)">
+              <span class="text-sm text-gray-400 line-through"><span v-text="p?.pricing?.compareAtPrice"></span> <span v-text="globals?.currency?.currencySymbol"></span></span>
+            </template>
+          </div>
+          <button class="w-full bg-[#F59A57] text-white font-bold py-2 rounded-lg hover:bg-orange-500 transition-colors duration-300"
+                  @click="addProductToCart(p?._id, 1, [])" :disabled="loading.addToCart">
+            إضافة للسلة
+          </button>
+        </div>
+      </div>
+    </template>
+  </div>
+</section>
   
