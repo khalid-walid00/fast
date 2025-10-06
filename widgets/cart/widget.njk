@@ -1,43 +1,72 @@
 <main v-cloak  class="transition-all duration-300 pt-4">
   <div class="container py-4">
+    <!-- Breadcrumbs -->
+    <nav class="text-base md:text-lg text-gray-600 mb-4" aria-label="Breadcrumb">
+      <ol class="list-none p-0 inline-flex">
+        <li class="flex items-center">
+          <a href="/" class="hover:text-gray-700">الرئيسية</a>
+          <span class="material-symbols-outlined mx-2 text-2xl">/</span>
+        </li>
+        <li class="flex items-center">
+          <span class="text-gray-800 font-semibold">السلة</span>
+        </li>
+      </ol>
+    </nav>
 
     <!-- محتوى السلة -->
     <div v-show="globals?.cart?.items?.length > 0">
-      <!-- شريط التقدم نحو التوصيل المجاني (مع أيقونة السيارة) -->
-      <div class="bg-white rounded-lg border border-gray-200 p-5 mb-6">
-        <div class="flex items-center justify-start w-full text-xs md:text-sm text-gray-700 mb-2 text-right">
-          <span class="font-bold">
-            {% set thr = settings.free_shipping_threshold or 800 %}
-            أضف <span class="text-[#F59A57]">{{ thr }} ج.م</span> إلى مشترياتك لتحصل على الشحن مجانًا!
-          </span>
-        </div>
-        <div class="relative w-full">
-          <!-- المسار -->
-          <div class="h-2 bg-gray-100 rounded-full w-full"></div>
-          <!-- التقدم من اليمين لليسار -->
-          <div class="absolute inset-y-0 right-0 h-2 bg-[#F59A57] rounded-full" style="width:50%"></div>
-          <!-- مقبض بأيقونة الشحن -->
-          <div class="absolute -top-3" style="right: calc(50% - 16px)">
-            <div class="rounded-full h-8 w-8 border border-[#F59A57] bg-white flex items-center justify-center">
-              <span class="material-symbols-outlined text-base transform -scale-x-100 text-[#F59A57]">local_shipping</span>
+      <!-- ملخص الطلب -->
+      <div class="lg:grid lg:grid-cols-3 lg:gap-0">
+        <!-- المنتجات - نفس كروت التصميم -->
+        <div class="lg:col-span-2 mb-8 lg:mb-0 space-y-4 lg:pl-4">
+          <!-- شريط التقدم نحو التوصيل المجاني (محصور بعرض عمود المنتجات) -->
+          <div class="bg-white rounded-lg border p-4" style="border-color:#D9D9D940">
+            <div class="flex items-center justify-start w-full text-xs md:text-sm text-gray-700 mb-2 text-right">
+              <span class="font-bold">
+                {% set thr = settings.free_shipping_threshold or 800 %}
+                أضف <span class="text-[#F59A57]">{{ thr }} ج.م</span> إلى مشترياتك لتحصل على الشحن مجانًا!
+              </span>
+            </div>
+            <div class="relative w-full mt-1">
+              <div class="rounded-full w-full" style="height:6px; background:#F4F4F4"></div>
+              <div class="absolute inset-y-0 right-0 rounded-full" style="height:6px; width:50%; background:#F59A57"></div>
+              <div class="absolute top-1/2 -translate-y-1/2" style="right: calc(50% - 10px)">
+                <div class="rounded-full bg-white flex items-center justify-center" style="width:20px; height:20px; border:1px solid #F59A57">
+                  <span style="display:block; width:8px; height:8px; border-radius:9999px; background:#F59A57"></span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      
-      <!-- ملخص الطلب -->
-      <div class="lg:grid lg:grid-cols-3 lg:gap-8">
-        <!-- المنتجات - نفس كروت التصميم -->
-        <div class="lg:col-span-2 mb-8 lg:mb-0 space-y-4">
-          <template v-for="item in globals?.cart?.items" :key="item._id">
-            <div class="bg-white p-4 rounded-lg shadow-sm flex items-center gap-4 border border-gray-200">
+          <div class="rounded-lg border bg-white" style="border-color:#D9D9D940">
+          <template v-for="(item, i) in globals?.cart?.items" :key="item._id">
+            <div class="p-4 flex items-center gap-4" :class="{'border-b': i !== (globals?.cart?.items?.length - 1)}" style="border-color:#D9D9D9">
               <img :src="item?.productData?.image?.fileUrl" :alt="item?.productData?.title" class="w-20 h-20 object-cover rounded-md">
               <div class="flex-grow min-w-0">
-                <h3 class="font-semibold text-gray-800 truncate" v-text="item?.productData?.title"></h3>
+                <h3 class="font-normal text-gray-800 truncate text-[14px]" v-text="item?.productData?.title"></h3>
+                <!-- سطر الحجم بعد اسم المنتج -->
+                <template v-if="item?.variantData?.options?.length">
+                  <template v-for="opt in item?.variantData?.options" :key="opt?._id + '-size'">
+                    <div
+                      v-if="
+                        ['الحجم','المقاس','القياس','حجم','size'].includes(((opt?.option?.name || '').toString().trim().toLowerCase())) ||
+                        ((opt?.option?.slug || '').toString().trim().toLowerCase() === 'size') ||
+                        ['كبير','صغير','متوسط','large','small','medium'].includes(((opt?.label || '').toString().trim().toLowerCase()))
+                      "
+                      class="text-sm text-gray-600 mt-0.5">
+                      <span>الحجم :</span>
+                      <span v-text="opt?.label"></span>
+                    </div>
+                  </template>
+                </template>
+                <!-- باقي الخيارات بدون تكرار الحجم -->
                 <template v-if="item?.variantData?.options?.length">
                   <div class="text-sm text-gray-500">
                     <template v-for="opt in item?.variantData?.options" :key="opt?._id">
-                      <span class="inline-block mr-1"><span v-text="opt?.option?.name"></span>: <span v-text="opt?.label"></span></span>
+                      <span v-if="!(
+                        ['الحجم','المقاس','القياس','حجم','size'].includes(((opt?.option?.name || '').toString().trim().toLowerCase())) ||
+                        ((opt?.option?.slug || '').toString().trim().toLowerCase() === 'size') ||
+                        ['كبير','صغير','متوسط','large','small','medium'].includes(((opt?.label || '').toString().trim().toLowerCase()))
+                      )" class="inline-block mr-1"><span v-text="opt?.option?.name"></span>: <span v-text="opt?.label"></span></span>
                     </template>
                   </div>
                 </template>
@@ -46,22 +75,24 @@
                 <span v-text="item?.price || item?.variantData?.price || 0"></span>
                 <span v-text="globals?.currency?.currencySymbol"></span>
               </p>
-              <div class="flex items-center border border-gray-200 rounded-md">
-                <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded-r-md" @click="decreaseCartItem(item._id, item.quantity)">-</button>
-                <span class="px-4 py-1 text-gray-800 font-semibold" v-text="item.quantity"></span>
-                <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded-l-md" @click="increaseCartItem(item._id, item.quantity)">+</button>
+              <div class="flex items-center gap-2">
+                <button class="w-8 h-8 md:w-9 md:h-9 text-gray-600 hover:bg-gray-50 border border-gray-300 rounded flex items-center justify-center"
+                        @click="decreaseCartItem(item._id, item.quantity)">-</button>
+                <span class="px-2 md:px-3 text-gray-800 font-semibold select-none" v-text="item.quantity"></span>
+                <button class="w-8 h-8 md:w-9 md:h-9 text-gray-600 hover:bg-gray-50 border border-gray-300 rounded flex items-center justify-center"
+                        @click="increaseCartItem(item._id, item.quantity)">+</button>
               </div>
               <button class="text-gray-400 hover:text-red-500" @click="clearCartItem(item._id)">
                 <span class="material-symbols-outlined">delete</span>
               </button>
             </div>
           </template>
+          </div>
         </div>
         
         <!-- ملخص السعر - قسم أكبر وأجمل -->
         <div class="lg:col-span-1">
-          <div class="bg-white p-6 rounded-lg shadow-sm sticky top-8 border-t-4 border-[#F59A57]">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">ملخص الطلب</h2>
+          <div class="bg-white p-6 lg:pl-8 rounded-lg shadow-sm sticky top-8 border" style="border-color:#F59A57">
             <div class="space-y-4 text-gray-700">
               <div class="flex justify-between">
                 <span>المجموع الفرعي:</span>
@@ -73,6 +104,7 @@
                   <span v-text="globals?.currency?.currencySymbol"></span>
                 </span>
               </div>
+              <div class="border-b" style="border-color:#D9D9D9"></div>
               <div class="flex justify-between">
                 <div>
                   <span>الشحن:</span>
@@ -83,7 +115,7 @@
                   <span v-text="globals?.currency?.currencySymbol"></span>
                 </span>
               </div>
-              <div class="border-t border-gray-200 my-4"></div>
+              <div class="border-b" style="border-color:#D9D9D9"></div>
               <div class="flex justify-between text-xl font-bold text-gray-900">
                 <span>الإجمالي</span>
                 <span>
@@ -134,7 +166,9 @@
 
 <!-- منتجات قد تهمك - بنفس تصميم الكروت -->
 <section class="container pb-12" v-show="(globals?.latest?.items && globals?.latest?.items.length) || (globals?.products?.items && globals?.products?.items.length)">
-  <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">منتجات قد تهمك</h2>
+  <div class="section-title-container">
+    <h2 class="section-title">منتجات قد تهمك</h2>
+  </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     <template v-for="p in ((globals?.latest?.items && globals?.latest?.items.length ? globals?.latest?.items : globals?.products?.items) || []).slice(0, 8)" :key="p?._id">
       <div class="bg-white rounded-lg shadow-sm overflow-hidden text-center group border">

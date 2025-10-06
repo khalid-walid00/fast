@@ -1,184 +1,180 @@
-<section id="{{ widget.id }}" x-data="xDataproduct({ product: context.product })" x-ref="productComponent"
-    class="min-h-screen bg-gray-50">
+<section id="{{ widget.id }}" class="antialiased text-gray-800">
+    <style>
+        body {
+            font-family: 'Changa', sans-serif;
+            background-color: #f9fafb;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24;
+        }
+        .rating-stars .material-symbols-outlined { color: #FBBF24; font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .color-swatch:focus, .size-button:focus, .thumb-image:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(245, 154, 87, 0.5);
+        }
+        .main-brand-color { background-color: #F59A57 !important; }
+        .main-brand-color-text { color: #F59A57 !important; }
+        .main-brand-color-border { border-color: #F59A57 !important; }
+        .size-active { background-color: #F4F4F4 !important; }
+    </style>
 
-    <div class="container py-8">
-        <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+    <div class="container py-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             
-            <!-- Product Gallery -->
-            <div x-data="{ imgSelected:0 }" class="product-gallery">
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-4">
-                    <img id="main-product-image" :src="context.product.images[imgSelected].fileUrl"
-                        alt="صورة المنتج الرئيسية" 
-                        class="w-full h-96 object-contain rounded-lg">
+            <!-- Product Image Section -->
+            <div class="flex flex-col">
+                <!-- Main Image -->
+                <div class="aspect-square w-full bg-gray-200 rounded-xl overflow-hidden shadow-sm">
+                    <img id="mainImage" src="https://placehold.co/800x800/f0e5d9/333333?text=Chair+1" alt="صورة كرسي استرخاء مودرن" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
                 </div>
-                
-                <!-- Thumbnail Images -->
-                <div class="flex gap-3 overflow-x-auto">
-                    <template x-for="(image, index) in context.product.images" :key="index">
-                        <img @click="imgSelected = index"
-                            class="w-16 h-16 rounded-lg border-2 object-cover cursor-pointer transition-all duration-200"
-                            :src="image.fileUrl"
-                            :class="imgSelected === index ? 'border-gray-900' : 'border-gray-200 hover:border-gray-300'">
-                    </template>
+                <!-- Thumbnail Gallery -->
+                <div class="grid grid-cols-4 gap-3 mt-4">
+                    <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden cursor-pointer border-2 main-brand-color-border" onclick="changeImage('https://placehold.co/800x800/f0e5d9/333333?text=Chair+1', this)">
+                        <img src="https://placehold.co/200x200/f0e5d9/333333?text=Chair+1" alt="صورة مصغرة للكرسي 1" class="w-full h-full object-cover thumb-image">
+                    </div>
+                    <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden cursor-pointer border-2 border-transparent" onclick="changeImage('https://placehold.co/800x800/d9e2f0/333333?text=Chair+2', this)">
+                        <img src="https://placehold.co/200x200/d9e2f0/333333?text=Chair+2" alt="صورة مصغرة للكرسي 2" class="w-full h-full object-cover thumb-image">
+                    </div>
+                    <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden cursor-pointer border-2 border-transparent" onclick="changeImage('https://placehold.co/800x800/e0d9f0/333333?text=Chair+3', this)">
+                        <img src="https://placehold.co/200x200/e0d9f0/333333?text=Chair+3" alt="صورة مصغرة للكرسي 3" class="w-full h-full object-cover thumb-image">
+                    </div>
+                    <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden cursor-pointer border-2 border-transparent" onclick="changeImage('https://placehold.co/800x800/d9f0e5/333333?text=Chair+4', this)">
+                        <img src="https://placehold.co/200x200/d9f0e5/333333?text=Chair+4" alt="صورة مصغرة للكرسي 4" class="w-full h-full object-cover thumb-image">
+                    </div>
                 </div>
             </div>
 
-            <!-- Product Details -->
-            <div class="product-details bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <!-- Product Details Section -->
+            <div class="flex flex-col justify-center space-y-5">
+                <!-- Rating -->
+                <div class="flex items-center space-x-1 space-x-reverse">
+                    <div class="flex text-yellow-400 rating-stars">
+                        <span class="material-symbols-outlined !text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined !text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined !text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined !text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined !text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+                    </div>
+                    <span class="text-gray-500 text-sm font-medium">6 تقييمات</span>
+                </div>
+
+                <!-- Title and Price -->
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-900">كرسي استرخاء مودرن</h1>
                 
-                <!-- Product Title -->
-                <h1 class="text-3xl font-bold text-gray-900 font-cairo mb-4" x-text="context.product.title"></h1>
+                <div class="flex items-baseline space-x-3 space-x-reverse">
+                    <span class="text-3xl font-bold main-brand-color-text">300,000 ج.م</span>
+                    <span class="text-lg text-gray-400 line-through">500,000 ج.م</span>
+                </div>
                 
-                <!-- Product Price -->
-                <div class="mb-6">
-                    <template x-if="context.product.pricing?.compareAtPrice && context.product.pricing?.compareAtPrice > context.product.pricing?.price">
-                        <div class="flex items-center gap-3">
-                            <span class="text-2xl font-bold text-gray-900" x-text="context.product.pricing.price"></span>
-                            <span class="text-gray-900" x-text="globals.app.generalSettings.currency.currencySymbol"></span>
-                            <span class="text-lg text-gray-500 line-through" x-text="context.product.pricing.compareAtPrice"></span>
+                <!-- Description -->
+                <p class="text-gray-600 leading-relaxed">
+                    الخامة خشب زان طبيعي، قماش قطني عالي الجودة.
+                    <br>
+                    الأبعاد: العرض 80سم - العمق 70سم - الإرتفاع 90سم.
+                </p>
+
+                <div class="border-t border-gray-200 pt-5 space-y-5">
+                    <!-- Size Selector -->
+                    <div>
+                        <h3 class="text-base font-semibold text-gray-800 mb-3">الحجم:</h3>
+                        <div id="sizeSelector" class="flex items-center space-x-3 space-x-reverse">
+                            <button class="size-button px-5 py-2 rounded-none border size-active text-gray-800 shadow-sm" data-size="كبير">كبير</button>
+                            <button class="size-button px-5 py-2 rounded-none border bg-white text-gray-700 hover:bg-[#F4F4F4]" data-size="متوسط">متوسط</button>
+                            <button class="size-button px-5 py-2 rounded-none border bg-white text-gray-700 hover:bg-[#F4F4F4]" data-size="صغير">صغير</button>
                         </div>
-                    </template>
+                    </div>
                     
-                    <template x-if="!context.product.pricing?.compareAtPrice || context.product.pricing?.compareAtPrice === context.product.pricing?.price">
-                        <div class="flex items-center gap-2">
-                            <span class="text-2xl font-bold text-gray-900" x-text="context.product.pricing?.price"></span>
-                            <span class="text-gray-900" x-text="globals.app.generalSettings.currency.currencySymbol"></span>
+                    <!-- Color Selector -->
+                    <div>
+                        <h3 class="text-base font-semibold text-gray-800 mb-3">الألوان:</h3>
+                        <div id="colorSelector" class="flex items-center space-x-3 space-x-reverse">
+                            <button class="color-swatch w-8 h-8 rounded-full bg-gray-800 ring-2 ring-offset-2 main-brand-color-ring" data-color="أسود" aria-label="أسود"></button>
+                            <button class="color-swatch w-8 h-8 rounded-full bg-gray-400" data-color="رمادي" aria-label="رمادي"></button>
+                            <button class="color-swatch w-8 h-8 rounded-full bg-yellow-500" data-color="أصفر" aria-label="أصفر"></button>
                         </div>
-                    </template>
-                </div>
-
-                <!-- Product Options -->
-                <div x-init="initOptions()" class="mb-6" x-show="context.product.options.length > 0">
-                    <template x-for="opt in context.product.options" :key="opt._id">
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700 font-cairo mb-2" x-text="opt.name"></label>
-                            <div class="flex flex-wrap gap-2">
-                                <template x-for="val in opt.values" :key="val._id">
-                                    <button type="button" 
-                                        :disabled="loading.optionsLoading"
-                                        class="px-4 py-2 rounded-lg border-2 transition-all duration-200 font-cairo text-sm flex items-center gap-2"
-                                        :class="selectedOptions[opt._id] === val._id
-                                            ? 'border-gray-900 bg-gray-900 text-white'
-                                            : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50'"
-                                        @click.prevent="selectOption(context.product,opt._id, val._id)">
-                                        <svg x-show="loading.optionsLoading && selectedOptions[opt._id] === val._id" class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
-                                        </svg>
-                                        <span x-text="val.label"></span>
-                                    </button>
-                                </template>
-                            </div>
-                        </div>
-                    </template>
-                </div>
-
-                <!-- Quantity Selector -->
-                <div class="mb-6">
-                    <label class="block text-sm font-medium text-gray-700 font-cairo mb-2">الكمية:</label>
-                    <div class="flex items-center border border-gray-300 rounded-lg w-fit">
-                        <button type="button"
-                            class="px-4 py-2 text-gray-600 hover:bg-gray-50 transition-colors"
-                            @click="decreaseCartItem()" aria-label="تقليل الكمية">−</button>
-                        <span class="px-4 py-2 border-x border-gray-300 text-center min-w-[3rem] font-medium"
-                            x-text="productQuantity"></span>
-                        <button type="button"
-                            class="px-4 py-2 text-gray-600 hover:bg-gray-50 transition-colors"
-                            @click="increaseCartItem()" aria-label="زيادة الكمية">+</button>
                     </div>
                 </div>
 
-                <!-- Action Buttons -->
-                <form id="productForm" @submit="submitForm" class="space-y-3">
-                    <input type="hidden" name="product" :value="context.product._id">
-                    <input type="hidden" name="quantity" :value="productQuantity">
-                    <template x-for="opt in context.product.options" :key="opt._id">
-                        <input type="hidden" name="options[]" :value="selectedOptions[opt._id]">
-                    </template>
-                    
-                    <button type="submit" name="addToCart" value="addToCart"
-                        :disabled="loading.addToCart || loading.optionsLoading || productQuantity === 0"
-                        class="w-full bg-[#003033] hover:bg-[#004d4d] text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 font-cairo flex items-center justify-center gap-2">
-                        <svg x-show="loading.optionsLoading" class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
-                        </svg>
-                        <span x-show="!loading.addToCart && !loading.optionsLoading">إضافة إلى السلة</span>
-                        <span x-show="loading.addToCart">جاري الإضافة...</span>
-                        <span x-show="loading.optionsLoading">جاري تحديث السعر...</span>
+                <!-- Actions -->
+                <div class="flex flex-col sm:flex-row items-center gap-4 pt-4">
+                    <!-- Add to Cart Button -->
+                    <button class="w-full flex-1 main-brand-color text-white font-bold py-3.5 px-6 rounded-lg flex items-center justify-center gap-2 shadow-md">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                        <span>إضافة للسلة</span>
                     </button>
 
-                    <button type="submit" name="buyNow" value="buyNow" 
-                        :disabled="loading.buyNow || loading.optionsLoading"
-                        class="w-full bg-white border-2 border-[#003033] text-[#003033] hover:bg-[#003033] hover:text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 font-cairo flex items-center justify-center gap-2">
-                        <svg x-show="loading.optionsLoading" class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
-                        </svg>
-                        <span x-show="!loading.buyNow && !loading.optionsLoading">اشترى الآن</span>
-                        <span x-show="loading.buyNow">جاري المعالجة...</span>
-                        <span x-show="loading.optionsLoading">جاري تحديث السعر...</span>
-                    </button>
-                </form>
-
-                <!-- Product Description -->
-                <div class="mt-8 pt-6 border-t border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-900 font-cairo mb-3">وصف المنتج</h3>
-                    <div x-html="context.product.description || 'لا يوجد وصف للمنتج'"
-                        class="text-gray-600 text-sm leading-relaxed font-cairo">
+                    <!-- Quantity Selector -->
+                    <div class="flex items-center border border-gray-300 rounded-lg">
+                        <button id="decrement" class="px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-r-md transition-colors duration-200" aria-label="تقليل الكمية">-</button>
+                        <input id="quantity" type="text" value="1" class="w-12 text-center border-none focus:ring-0 font-semibold" readonly>
+                        <button id="increment" class="px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-l-md transition-colors duration-200" aria-label="زيادة الكمية">+</button>
                     </div>
                 </div>
 
-                <!-- Shipping Policy Accordion -->
-                <div class="mt-8 pt-6 border-t border-gray-200">
-                    <div x-data="{ open: false }" class="accordion-item">
-                        <button @click="open = !open" 
-                                class="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors duration-200 cursor-pointer focus:outline-none">
-                            <span class="font-semibold text-gray-900 font-cairo">سياسة الشحن</span>
-                            <svg :class="{'rotate-180': open}" 
-                                 class="w-5 h-5 text-gray-500 transition-transform duration-200" 
-                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
+                <!-- Buy Now Button -->
+                <button class="w-full main-brand-color-border border-2 main-brand-color-text font-bold py-3.5 px-6 rounded-lg hover:bg-[#F59A57]/10 transition-colors">
+                    إشتري الآن
                         </button>
-                        <div x-show="open" 
-                             x-transition:enter="transition ease-out duration-200"
-                             x-transition:enter-start="opacity-0 transform -translate-y-2"
-                             x-transition:enter-end="opacity-100 transform translate-y-0"
-                             x-transition:leave="transition ease-in duration-200"
-                             x-transition:leave-start="opacity-100 transform translate-y-0"
-                             x-transition:leave-end="opacity-0 transform -translate-y-2"
-                             class="px-4 pb-4">
-                            <div class="text-gray-600 text-sm leading-relaxed font-cairo mt-3">
-                                <p class="mb-2">يتم التوصيل داخل مصر عن طريق مندوب توصيل - تصلك الشحنة خلال 3-5 أيام.</p>
-                                <p class="mb-2">الشحن مجاني للطلبات التي تزيد عن 500 ج.م</p>
-                                <p class="mb-2">يمكنك تتبع طلبك من خلال رقم التتبع الذي سيتم إرساله لك</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-
-        <!-- Related Products -->
-        {% if context.related_products | length > 0 %}
-        <section class="mt-16">
-            <h2 class="text-2xl font-bold text-center text-gray-900 font-cairo mb-8">منتجات مشابهة</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {% for item in context.related_products %}
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200">
-                    <a href="/product/{{ item.slug }}">
-                        <img src={{ item.images[0].fileUrl }} alt="{{ item.title }}"
-                            class="w-full h-32 object-cover">
-                    </a>
-                    <div class="p-4 text-center">
-                        <h3 class="font-semibold text-gray-900 font-cairo text-sm mb-2">{{ item.title }}</h3>
-                        <p class="text-gray-900 font-bold font-cairo">{{ item.pricing.price| money }}</p>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </section>
-        {% endif %}
     </div>
+
+    <script>
+        function changeImage(src, clickedElement) {
+            document.getElementById('mainImage').src = src;
+            const thumbnails = document.querySelectorAll('.thumb-image').forEach(thumb => {
+                thumb.parentElement.classList.remove('main-brand-color-border');
+                thumb.parentElement.classList.add('border-transparent');
+            });
+            clickedElement.classList.add('main-brand-color-border');
+            clickedElement.classList.remove('border-transparent');
+        }
+
+        const quantityInput = document.getElementById('quantity');
+        const incrementBtn = document.getElementById('increment');
+        const decrementBtn = document.getElementById('decrement');
+
+        if (incrementBtn && decrementBtn && quantityInput) {
+            incrementBtn.addEventListener('click', () => {
+                let currentValue = parseInt(quantityInput.value);
+                quantityInput.value = currentValue + 1;
+            });
+            decrementBtn.addEventListener('click', () => {
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                }
+            });
+        }
+
+        const sizeSelector = document.getElementById('sizeSelector');
+        if (sizeSelector) {
+            sizeSelector.addEventListener('click', (e) => {
+                if (e.target.classList.contains('size-button')) {
+                    sizeSelector.querySelectorAll('.size-button').forEach(btn => {
+                        btn.classList.remove('size-active', 'text-gray-800', 'shadow-sm');
+                        btn.classList.add('bg-white', 'text-gray-700', 'hover:bg-[#F4F4F4]');
+                    });
+                    e.target.classList.add('size-active', 'text-gray-800', 'shadow-sm');
+                    e.target.classList.remove('bg-white', 'text-gray-700', 'hover:bg-[#F4F4F4]');
+                }
+            });
+        }
+
+        const colorSelector = document.getElementById('colorSelector');
+        if (colorSelector) {
+            colorSelector.addEventListener('click', (e) => {
+                if (e.target.classList.contains('color-swatch')) {
+                    colorSelector.querySelectorAll('.color-swatch').forEach(swatch => {
+                        swatch.classList.remove('ring-2', 'ring-offset-2', 'main-brand-color-ring');
+                    });
+                    e.target.classList.add('ring-2', 'ring-offset-2', 'main-brand-color-ring');
+                }
+            });
+        }
+    </script>
 </section>
