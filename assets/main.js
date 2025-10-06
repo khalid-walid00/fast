@@ -1,6 +1,6 @@
 import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 import cart from "./cart.js";
-// import product from "./product.js";
+import product from "./product.js";
 console.log("✅ main.js loaded");
 
 const app = createApp({
@@ -97,7 +97,7 @@ const app = createApp({
 });
 
 app.mixin(cart);
-// app.mixin(product);
+app.mixin(product);
 
 app.mount("#app");
 console.log("✅ App mounted executed");
