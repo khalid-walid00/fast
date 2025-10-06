@@ -1,10 +1,10 @@
 <section class="py-16">
-  <div class="container mx-auto px-6">
-    <div class="section-title-container px-2 sm:px-4 lg:px-8">
+  <div class="container">
+    <div class="section-title-container">
       <h2 class="section-title">{{ widget.settings.section_title or 'لماذا تختارنا' }}</h2>
     </div>
     {% set features = (widget.blocks and widget.blocks.featureItem) or [] %}
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 px-2 sm:px-4 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
       {% for f in features %}
       <div class="reason-card border rounded-2xl p-10 text-center shadow-sm border-gray-300">
         <div class="flex justify-center mb-4">

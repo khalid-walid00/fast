@@ -1,5 +1,5 @@
 <!-- Header & Interactive Modals Controller -->
-<div class="sticky top-0 z-50 bg-white border-b border-[#E9E9E9]">
+<div class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#E9E9E9] w-full">
     <header class="container py-1.5 md:py-4 flex items-center gap-[42px] justify-between">
         <div class="flex items-center gap-9">
             <img src="{{ globals.app.logo.fileUrl }}" alt="logo" class="md:w-[50px] w-11  ">
@@ -95,6 +95,9 @@
         </div>
     </header>
 </div>
+
+<!-- Spacer to offset the fixed header height -->
+<div class="h-[56px] md:h-[80px]"></div>
 
 
 {%ui "sidebar.njk", menu=widget.data.header_menu %}
