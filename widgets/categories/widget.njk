@@ -1,10 +1,10 @@
 <section class="py-16">
-  <div class="container mx-auto px-6">
-    <div class="section-title-container px-2 sm:px-4 lg:px-8">
+  <div class="container">
+    <div class="section-title-container">
       <h2 class="section-title">أقسامنا</h2>
     </div>
     {% set cols = widget.data.collections or context.collections or [] %}
-    <div class="md:hidden swiper categories-swiper px-2 no-scrollbar touch-pan-x" style="overflow-x:auto;">
+    <div class="md:hidden swiper categories-swiper no-scrollbar touch-pan-x" style="overflow-x:auto;">
       <div class="swiper-wrapper">
         {% for collection in cols %}
         <div class="swiper-slide flex flex-col items-center">
@@ -37,4 +37,20 @@
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (!window.Swiper) return;
+    const root = document.currentScript && document.currentScript.closest('section');
+    if (!root) return;
+    const el = root.querySelector('.categories-swiper');
+    if (!el) return;
+    new window.Swiper(el, {
+      slidesPerView: 'auto',
+      spaceBetween: 12,
+      freeMode: { enabled: true, momentumRatio: 0.4 },
+      resistanceRatio: 0.8,
+    });
+  });
+  </script>
 

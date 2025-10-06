@@ -1,19 +1,24 @@
 <section class="py-16 bg-gray-50">
-  <div class="container mx-auto px-6">
-    <div class="section-title-container px-2 sm:px-4 lg:px-8">
+  <div class="container">
+    <style>
+      /* Ensure mobile tabs have spacing and correct width */
+      .best-tabs-swiper .swiper-slide { width: auto !important; padding-inline-start: 12px; }
+      .best-tabs-swiper .swiper-wrapper { align-items: center; }
+    </style>
+    <div class="section-title-container">
       <h2 class="section-title no-underline">الأفضل مبيعًا هذا الأسبوع</h2>
     </div>
-    <div class="mb-8 px-2 sm:px-4 lg:px-8">
+    <div class="mb-8">
       <!-- Mobile: tabs as swiper -->
       <div class="md:hidden swiper best-tabs-swiper tabs-underline">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" style="width:auto"><button class="tab-btn tab-active">الكل</button></div>
-          <div class="swiper-slide" style="width:auto"><button class="tab-btn">كتـب</button></div>
-          <div class="swiper-slide" style="width:auto"><button class="tab-btn">كراسي</button></div>
-          <div class="swiper-slide" style="width:auto"><button class="tab-btn">سراير</button></div>
-          <div class="swiper-slide" style="width:auto"><button class="tab-btn">طاولات</button></div>
-          <div class="swiper-slide" style="width:auto"><button class="tab-btn">أذرع كراسي</button></div>
-          <div class="swiper-slide" style="width:auto"><button class="tab-btn">ديكورات</button></div>
+          <div class="swiper-slide pr-3" style="width:auto"><button class="tab-btn tab-active">الكل</button></div>
+          <div class="swiper-slide pr-3" style="width:auto"><button class="tab-btn">كتـب</button></div>
+          <div class="swiper-slide pr-3" style="width:auto"><button class="tab-btn">كراسي</button></div>
+          <div class="swiper-slide pr-3" style="width:auto"><button class="tab-btn">سراير</button></div>
+          <div class="swiper-slide pr-3" style="width:auto"><button class="tab-btn">طاولات</button></div>
+          <div class="swiper-slide pr-3" style="width:auto"><button class="tab-btn">أذرع كراسي</button></div>
+          <div class="swiper-slide pr-3" style="width:auto"><button class="tab-btn">ديكورات</button></div>
         </div>
       </div>
       <!-- Desktop: simple flex row -->
@@ -27,7 +32,7 @@
         <button class="tab-btn">ديكورات</button>
       </div>
     </div>
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 px-2 sm:px-4 lg:px-8">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
       {% for product in widget.data.products_collection or [] %}
       {% set img = (product.image and product.image.fileUrl) or (product.featuredImage and product.featuredImage.fileUrl) or (product.images and product.images[0] and product.images[0].fileUrl) %}
       {% set cat = (product.collection and product.collection.title) or (product.category and product.category.title) or '' %}
@@ -64,4 +69,43 @@
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    let tries = 0;
+    const boot = () => {
+      if (!window.Swiper) { if (tries++ < 30) return; else { clearInterval(timer); return; } }
+      let root = document.currentScript && document.currentScript.closest('section');
+      if (!root) {
+        let node = document.currentScript.previousElementSibling;
+        while (node && node.tagName !== 'SECTION') node = node.previousElementSibling;
+        root = node || null;
+      }
+      if (!root) { clearInterval(timer); return; }
+      const bestSwiper = root.querySelector('.best-swiper');
+      if (bestSwiper && !bestSwiper._swp) {
+        bestSwiper._swp = new window.Swiper(bestSwiper, {
+          slidesPerView: 1.1,
+          spaceBetween: 12,
+          pagination: { el: bestSwiper.querySelector('.swiper-pagination'), clickable: true },
+          observer: true,
+          observeParents: true,
+        });
+      }
+      const tabsSwiper = root.querySelector('.best-tabs-swiper');
+      if (tabsSwiper && !tabsSwiper._swp) {
+        tabsSwiper._swp = new window.Swiper(tabsSwiper, {
+          slidesPerView: 'auto',
+          freeMode: { enabled: true },
+          spaceBetween: 12,
+          resistanceRatio: 0.8,
+          observer: true,
+          observeParents: true,
+        });
+      }
+      clearInterval(timer);
+    };
+    const timer = setInterval(boot, 150); boot();
+  });
+  </script>
 
