@@ -1,6 +1,12 @@
 {
   "name": "Cart",
   "description": "قسم السلة",
-  "settings": {}
+  "settings": {
+    "free_shipping_threshold": {
+      "type": "number",
+      "label": "حد التوصيل المجاني",
+      "default": 800
+    }
+  }
 }
 

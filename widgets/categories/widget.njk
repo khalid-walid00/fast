@@ -38,19 +38,3 @@
   </div>
 </section>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    if (!window.Swiper) return;
-    const root = document.currentScript && document.currentScript.closest('section');
-    if (!root) return;
-    const el = root.querySelector('.categories-swiper');
-    if (!el) return;
-    new window.Swiper(el, {
-      slidesPerView: 'auto',
-      spaceBetween: 12,
-      freeMode: { enabled: true, momentumRatio: 0.4 },
-      resistanceRatio: 0.8,
-    });
-  });
-  </script>
-

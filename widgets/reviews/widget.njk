@@ -47,31 +47,3 @@
   </div>
   </section>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    let tries = 0;
-    const boot = () => {
-      if (!window.Swiper) { if (tries++ < 30) return; else { clearInterval(timer); return; } }
-      let root = document.currentScript && document.currentScript.closest('section');
-      if (!root) {
-        let node = document.currentScript.previousElementSibling;
-        while (node && node.tagName !== 'SECTION') node = node.previousElementSibling;
-        root = node || null;
-      }
-      if (!root) { clearInterval(timer); return; }
-      const el = root.querySelector('.reviews-swiper');
-      if (!el || el._swp) { clearInterval(timer); return; }
-      el._swp = new window.Swiper(el, {
-        slidesPerView: 1,
-        spaceBetween: 12,
-        navigation: {
-          nextEl: root.querySelector('.nav-next'),
-          prevEl: root.querySelector('.nav-prev'),
-        },
-      });
-      clearInterval(timer);
-    };
-    const timer = setInterval(boot, 150); boot();
-  });
-  </script>
-

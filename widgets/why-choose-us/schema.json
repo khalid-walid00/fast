@@ -5,7 +5,7 @@
     "section_title": {
       "type": "string",
       "label": "عنوان القسم",
-      "default": "مميزاتنا"
+      "default": "لماذا تختارنا؟"
     }
   },
   "blocks": {
@@ -21,6 +21,11 @@
           "type": "string",
           "label": "وصف الميزة",
           "default": "نحن نغطي كافة المناطق في مصر مع حلول الشحن السريع."
+        },
+        "icon_name": {
+          "type": "string",
+          "label": "اسم أيقونة Material Symbols (اختياري)",
+          "default": ""
         },
         "icon": {
           "type": "media",
@@ -40,46 +45,9 @@
       "category": "الصفحة الرئيسية",
       "name": "⭐ قسم المميزات",
       "blocks": [
-        {
-          "block": "featureItem",
-          "name": "الشحن المجاني",
-          "settings": {
-            "title": "الشحن مجاناً",
-            "description": "نحن نغطي كافة المناطق في مصر مع حلول الشحن السريع.",
-            "icon": "",
-            "alt": "أيقونة الشحن"
-          }
-        },
-        {
-          "block": "featureItem",
-          "name": "دعم 24/7",
-          "settings": {
-            "title": "دعم 24/7",
-            "description": "اتصل بنا 24 ساعة في اليوم، 7 أيام في الأسبوع.",
-            "icon": "",
-            "alt": "أيقونة الدعم"
-          }
-        },
-        {
-          "block": "featureItem",
-          "name": "دفع آمن",
-          "settings": {
-            "title": "دفع آمن بنسبة 100%",
-            "description": "نحن نضمن دفعًا آمنًا للغاية مع خصوصيتك.",
-            "icon": "",
-            "alt": "أيقونة الدفع الآمن"
-          }
-        },
-        {
-          "block": "featureItem",
-          "name": "ضمان فعال",
-          "settings": {
-            "title": "ضمان فعال",
-            "description": "نحن نضمن منتجاتنا بشروط مرنة والضمان الحقيقي.",
-            "icon": "",
-            "alt": "أيقونة الضمان"
-          }
-        }
+        { "block": "featureItem", "name": "جودة مضمونة 1", "settings": { "title": "جودة مضمونة", "description": "نستخدم أفضل الخامات لضمان متانة تدوم لسنوات طويلة", "icon_name": "verified", "icon": "", "alt": "جودة" } },
+        { "block": "featureItem", "name": "جودة مضمونة 2", "settings": { "title": "جودة مضمونة", "description": "نستخدم أفضل الخامات لضمان متانة تدوم لسنوات طويلة", "icon_name": "local_shipping", "icon": "", "alt": "الشحن" } },
+        { "block": "featureItem", "name": "دعم عملاء",   "settings": { "title": "جودة مضمونة", "description": "نستخدم أفضل الخامات لضمان متانة تدوم لسنوات طويلة", "icon_name": "support_agent", "icon": "", "alt": "الدعم" } }
       ]
     }
   ]
