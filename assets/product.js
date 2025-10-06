@@ -152,7 +152,7 @@ export default {
         .finally(() => this.updateLoading("buyNow", false));
     },
 
-    decreaseCartItem() {
+    decreaseProductItem() {
       const minQuantity = this.product?.minQuantity || 1;
       if (this.productQuantity <= minQuantity) {
         // showToast(`الحد الأدنى ${minQuantity}`, "error");
@@ -161,7 +161,7 @@ export default {
       this.productQuantity -= 1;
     },
 
-    increaseCartItem() {
+    increaseProductItem() {
       if (this.isOutOfStock) {
         // showToast("لا توفر كمية في المخزون", "error");
         return;

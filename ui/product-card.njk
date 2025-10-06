@@ -1,5 +1,4 @@
-<div 
-    class="bg-gray-50 rounded-lg shadow-md overflow-hidden group border flex flex-col h-[420px]">
+{# <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden group border flex flex-col h-[420px]">
 
     <!-- Product Image -->
     <a href="/product/{{ data.product.slug }}" class="group block">
@@ -14,27 +13,50 @@
             <h3 class="font-semibold text-sm text-gray-800 leading-relaxed mb-2">{{ data.product.title }}</h3>
             <p class="text-black font-bold">{{ data.product.pricing.price | money }}</p>
         </div>
-        
+
         <!-- Add to Cart Button -->
         <div class="mt-auto pt-3">
-            <button 
-                @click="addProductToCart('{{ data.product._id }}', 1, [])"
-                :disabled="loading.addToCart"
+            <button @click="addProductToCart('{{ data.product._id }}', 1, [])" :disabled="loading.addToCart"
                 class="w-full bg-[#003033] hover:bg-[#004d4d] text-white py-3 px-4 rounded-lg text-sm font-bold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md font-cairo font-medium flex items-center justify-center gap-2">
-                
+
                 <!-- Icon + Text -->
                 <i x-show="!loading.addToCart" class="fi fi-rr-shopping-cart text-lg"></i>
                 <span x-show="!loading.addToCart">أضف للسلة</span>
 
                 <!-- Loading -->
                 <svg x-show="loading.addToCart" class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" 
-                        stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" 
-                        d="M4 12a8 8 0 018-8v8z"></path>
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
                 </svg>
                 <span x-show="loading.addToCart">جاري الإضافة...</span>
             </button>
         </div>
+    </div>
+</div> #}
+
+<div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 h-full flex flex-col">
+    <div class="relative">
+        <img alt="{{ data.product.title }}"
+            src="{{ data.product.images[0].fileUrl | default('https://placehold.co/600x400/orange/white') }}"
+            alt="{{ product.title }}" class="w-full h-48 md:h-56 object-cover">
+        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">{{ data.product.pricing.price - data.product.pricing.compareAtPrice | money }}</span>
+    </div>
+    <div class="p-3 flex flex-col flex-1">
+        <div class="flex items-center justify-between mb-1">
+            <h3 class="font-extrabold text-right text-[15px] min-h-[40px] leading-5">{{ data.product.title }}</h3>
+            <div class="flex items-center text-yellow-500 text-xs">
+                <span class="material-symbols-outlined text-sm">star</span>
+                <span class="ml-1 text-gray-600">5</span>
+            </div>
+        </div>
+        <p class="text-right text-gray-500 text-xs mb-3">{{ data.product.collection.title }}</p>
+        <div class="flex items-center justify-start gap-2 mb-2">
+            <p class="text-sm font-bold primary-orange-text">{{ data.product.pricing.price | money }}</p>
+            <p class="text-xs text-gray-400 line-through">{{ data.product.pricing.compareAtPrice | money }}</p>
+        </div>
+        <button @click="addProductToCart('{{ data.product._id }}', 1, [])" :disabled="loading.addToCart"
+            class="w-full primary-orange text-white py-2 rounded-[8px] text-sm font-semibold hover:opacity-95 mt-auto">إضافة
+            للسلة
+        </button>
     </div>
 </div>

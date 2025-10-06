@@ -6,7 +6,7 @@
 
   <transition name="slide-left">
     <div v-if="modal.open && modal.type==='cart'"
-      class="fixed top-0 left-0 h-screen w-full md:max-w-md max-w-xs bg-white shadow-lg z-[51] flex flex-col">
+      class="fixed top-0 left-0 h-screen w-full md:max-w-md max-w-[300px] bg-white shadow-lg z-[51] flex flex-col">
       <!-- Header -->
       <div class="flex justify-between py-[10px] px-5 border-b">
         <span class="font-medium text-dark">السلة</span>
@@ -34,7 +34,11 @@
                       <span class=" text-[#7C7C7C] text-xs" v-text="item?.label"></span>
                     </div>
                   </template>
-                  <span class="text-mainColor text-sm font-semibold">[[ item.totalPrice ]] ج.م</span>
+                  <div class="flex items-center gap-1">
+                    <span class="text-mainColor text-sm font-semibold">[[ item.totalPrice ]] [[ globals?.currency?.currencySymbol ]]</span>
+                    <span  v-show="item.totalSavings > 0" class="text-[#7C7C7C] text-xs font-semibold line-through ">[[ item.totalCompareAtPrice ]] [[ globals?.currency?.currencySymbol ]]</span>
+                  </div>
+
                 </div>
                 <div class="flex w-[90px] h-6 items-center gap-2">
                   <button
@@ -84,7 +88,7 @@
       <div class="flex flex-col gap-4 pt-4 shadow-[0px_0px_10px_0px_#E4E4E4]">
         <div class="flex justify-between pt-1.5 p-4 border-b border-[#D9D9D9]">
           <span class="text-sm">اجمالي الطلب</span>
-          <span class="text-mainColor font-semibold">[[ globals?.cart?.total ]] ج.م</span>
+          <span class="text-mainColor font-semibold">[[ globals?.cart?.totalPrice ]] [[ globals?.currency?.currencySymbol ]]</span>
         </div>
 
         <div class="flex flex-col md:gap-4 gap-2 px-[22px]">
