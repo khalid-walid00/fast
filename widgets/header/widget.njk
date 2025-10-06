@@ -36,13 +36,17 @@
                 </nav>
             </div>
         </div>
-        <div class=" items-center hidden xl:flex  bg-mainColor gap-[14px]  rounded-lg py-[5px] pr-4 pl-[6px]">
-            <span class="material-symbols-outlined text-xl text-white flex items-center justify-center w-5 h-5">
-                mystery
-            </span>
-            <input type="text" placeholder="ابحث عن منتج"
-                class=" placeholder-white px-5 py-[2px] border border-[#C5C5C7] focus:outline-none rounded-lg  bg-white text-mainColor ">
-        </div>
+        <div class="items-center hidden xl:flex bg-mainColor gap-[14px] rounded-lg py-[5px] pr-4 pl-[6px]">
+            <form @submit.prevent="setSearch(search)" class="w-7/12 md:flex hidden items-center gap-6">
+              <button type="submit"
+                class="bg-primary cursor-pointer rounded-full material-symbols-outlined text-xl text-white flex items-center justify-center w-5 h-5">
+                search
+              </button>
+              <input v-model="search" ref="search" type="text" placeholder="ابحث عن منتج"
+                class="placeholder-white px-5 py-[2px] border border-[#C5C5C7] focus:outline-none rounded-lg bg-white text-mainColor">
+            </form>
+          </div>
+          
         <div class=" items-center hidden xl:flex gap-5 ">
             <button @click="toggleModal('cart')" class="flex items-center rounded-full bg-black gap-2 py-[7px] px-2">
                 <span class="font-semibold text-nowrap text-white text-xs">1.00 ج.م</span>
@@ -53,17 +57,26 @@
                     </span>
                 </div>
             </button>
-            <div class="flex items-center rounded-full bg-[#CCCCCC] gap-2 py-[7px] px-2">
+            {% if globals.customer._id %}
+            <button @click="logout()" class="flex items-center rounded-full bg-[#CCCCCC] gap-2 py-[7px] px-2">
                 <span class="font-semibold text-dark text-nowrap text-xs">التسجيل/ تسجيل الدخول</span>
                 <span class="material-symbols-outlined text-xl text-dark flex items-center justify-center w-5 h-5">
                     person
                 </span>
-            </div>
+            </button>
+            {% else %}
+            <button @click="login()" class="flex items-center rounded-full bg-[#CCCCCC] gap-2 py-[7px] px-2">
+                <span class="font-semibold text-dark text-nowrap text-xs">التسجيل/ تسجيل الدخول</span>
+                <span class="material-symbols-outlined text-xl text-dark flex items-center justify-center w-5 h-5">
+                    person
+                </span>
+            </button>
+            {% endif %}
         </div>
         <div class=" max-xl:flex hidden items-center gap-4">
             <button @click="toggleModal('search')"
                 class="material-symbols-outlined text-xl text-black  flex items-center justify-center w-5 h-5">
-                mystery
+                search
             </button>
             <div class=" relative flex items-center">
                 <span
