@@ -1,0 +1,87 @@
+{
+  "name": "قسم المميزات",
+  "description": "قسم المميزات مع الأيقونات والنصوص",
+  "settings": {
+    "section_title": {
+      "type": "string",
+      "label": "عنوان القسم",
+      "default": "مميزاتنا"
+    }
+  },
+  "blocks": {
+    "featureItem": {
+      "name": "ميزة",
+      "settings": {
+        "title": {
+          "type": "string",
+          "label": "عنوان الميزة",
+          "default": "الشحن مجاناً"
+        },
+        "description": {
+          "type": "string",
+          "label": "وصف الميزة",
+          "default": "نحن نغطي كافة المناطق في مصر مع حلول الشحن السريع."
+        },
+        "icon": {
+          "type": "media",
+          "label": "أيقونة الميزة",
+          "default": ""
+        },
+        "alt": {
+          "type": "string",
+          "label": "النص البديل للأيقونة",
+          "default": "أيقونة الميزة"
+        }
+      }
+    }
+  },
+  "presets": [
+    {
+      "category": "الصفحة الرئيسية",
+      "name": "⭐ قسم المميزات",
+      "blocks": [
+        {
+          "block": "featureItem",
+          "name": "الشحن المجاني",
+          "settings": {
+            "title": "الشحن مجاناً",
+            "description": "نحن نغطي كافة المناطق في مصر مع حلول الشحن السريع.",
+            "icon": "",
+            "alt": "أيقونة الشحن"
+          }
+        },
+        {
+          "block": "featureItem",
+          "name": "دعم 24/7",
+          "settings": {
+            "title": "دعم 24/7",
+            "description": "اتصل بنا 24 ساعة في اليوم، 7 أيام في الأسبوع.",
+            "icon": "",
+            "alt": "أيقونة الدعم"
+          }
+        },
+        {
+          "block": "featureItem",
+          "name": "دفع آمن",
+          "settings": {
+            "title": "دفع آمن بنسبة 100%",
+            "description": "نحن نضمن دفعًا آمنًا للغاية مع خصوصيتك.",
+            "icon": "",
+            "alt": "أيقونة الدفع الآمن"
+          }
+        },
+        {
+          "block": "featureItem",
+          "name": "ضمان فعال",
+          "settings": {
+            "title": "ضمان فعال",
+            "description": "نحن نضمن منتجاتنا بشروط مرنة والضمان الحقيقي.",
+            "icon": "",
+            "alt": "أيقونة الضمان"
+          }
+        }
+      ]
+    }
+  ]
+}
+

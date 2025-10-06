@@ -1,0 +1,92 @@
+{
+  "name": "قسم الهيرو",
+  "description": "قسم الهيرو الرئيسي (بنفس أسلوب البانر)",
+  "settings": {
+    "hero_link": {
+      "type": "string",
+      "label": "الرابط الافتراضي للهيرو",
+      "default": "#"
+    },
+    "hero_alt": {
+      "type": "string",
+      "label": "النص البديل الافتراضي",
+      "default": "Hero"
+    },
+    "enable_swiper": {
+      "type": "boolean",
+      "label": "تفعيل السلايدر",
+      "default": false
+    },
+    "autoplay_delay": {
+      "type": "number",
+      "label": "مدة الانتظار بين الشرائح (ثوانٍ)",
+      "default": 5,
+      "min": 1,
+      "max": 30
+    },
+    "show_navigation": {
+      "type": "boolean",
+      "label": "إظهار أزرار التنقل",
+      "default": true
+    },
+    "show_pagination": {
+      "type": "boolean",
+      "label": "إظهار نقاط التنقل",
+      "default": true
+    }
+  },
+  "blocks": {
+    "slideItem": {
+      "name": "شريحة الهيرو",
+      "settings": {
+        "image": {
+          "type": "media",
+          "label": "صورة الشريحة",
+          "default": "qumra://Hero.webp"
+        },
+        "link": {
+          "type": "string",
+          "label": "رابط الشريحة",
+          "default": "#"
+        },
+        "alt": {
+          "type": "string",
+          "label": "النص البديل للصورة",
+          "default": "Hero"
+        },
+        "title": {
+          "type": "string",
+          "label": "عنوان الشريحة (اختياري)",
+          "default": ""
+        },
+        "subtitle": {
+          "type": "string",
+          "label": "النص الفرعي (اختياري)",
+          "default": ""
+        },
+        "button_text": {
+          "type": "string",
+          "label": "نص الزر (اختياري)",
+          "default": ""
+        }
+      }
+    }
+  },
+  "presets": [
+    {
+      "category": "الصفحة الرئيسية",
+      "name": "🏠 قسم الهيرو الرئيسي",
+      "blocks": [
+        {
+          "block": "slideItem",
+          "name": "الشريحة الأولى",
+          "settings": {
+            "image": "qumra://Hero.webp",
+            "link": "#",
+            "alt": "Hero"
+          }
+        }
+      ]
+    }
+  ]
+}

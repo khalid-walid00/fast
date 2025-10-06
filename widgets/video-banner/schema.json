@@ -1,0 +1,8 @@
+{
+  "name": "لافتة الفيديو",
+  "settings": {
+    "bg_image": { "type": "image", "label": "صورة الخلفية" }
+  },
+  "presets": [ { "category": "الصفحة الرئيسية", "name": "⭐ لافتة فيديو" } ]
+}
+
