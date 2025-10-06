@@ -7,9 +7,11 @@ const app = createApp({
 	delimiters: ['[[', ']]'],
 	data() {
 		return {
+			...__qumra__,
 			spinnerVisible: true,
 			message: "مرحباً بك في متجرنا!",
 			globals: window.__qumra__ || {},
+			search: "",
 			globalLoading: {
 				page: false,
 				cart: false,
@@ -48,6 +50,11 @@ const app = createApp({
 				},
 			}).showToast();
 		},
+		setSearch(q) {
+			this.globalLoading.page = true;
+			this.context.search = q;
+			window.location.href = `/search?q=${encodeURIComponent(q)}`;
+		},
 		toggleModal(type, open) {
 			console.log("modal", type, open);
 			this.modal.open = open !== undefined ? open : !this.modal.open;
@@ -62,7 +69,7 @@ const app = createApp({
 	},
 	mounted() {
 		this.spinnerVisible = false;
-	    console.log("Mounted ✅ binding methods to window");
+		console.log("Mounted ✅ binding methods to window");
 
 		window.updateCart = this.updateCart.bind(this);
 		window.updateCartItem = this.updateCartItem.bind(this);
@@ -70,6 +77,7 @@ const app = createApp({
 		window.globalLoading = this.globalLoading;
 		window.globals = this.globals;
 		window.showToast = this.showToast.bind(this);
+		window.setSearch = this.setSearch.bind(this);
 		window.toggleModal = this.toggleModal.bind(this);
 	}
 	// mounted() {
