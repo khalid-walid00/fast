@@ -183,3 +183,21 @@ details[open] .faq-arrow { transform: rotate(45deg); }
   .offers-banner .count-num { font-size: 16px; }
   .offers-banner .count-row { column-gap: 8px; row-gap: 6px; }
 }
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px
+}
+
+::-webkit-scrollbar-track {
+  background: 0 0;
+  border-radius: 4px
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-orange);
+  border-radius: 4px
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-orange)
+}
