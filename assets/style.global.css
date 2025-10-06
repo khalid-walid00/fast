@@ -64,6 +64,7 @@
   color: #333333;
 }
 
+<<<<<<< HEAD
 /* --- Landing page custom styles extracted from index1.html --- */
 html, body { overflow-x: hidden; }
 .hero-bg { background-color: #B9C1B6; }
@@ -172,6 +173,8 @@ details[open] .faq-arrow { transform: rotate(45deg); }
   .offers-banner .count-row { column-gap: 8px; row-gap: 6px; }
 }
 
+=======
+>>>>>>> 2419b7535404be1c4336b269a267168614216242
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.3s ease;
 }
