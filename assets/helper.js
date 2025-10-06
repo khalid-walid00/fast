@@ -21,4 +21,5 @@ export function updateFrontendQuantity(id, quantity) {
     const item = window.globals?.cart?.items?.find((i) => i._id === id);
     if (item) item.quantity = quantity;
   }
+
   

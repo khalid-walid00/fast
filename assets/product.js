@@ -1,5 +1,5 @@
-import { productSchema } from "./product.schema";
-import { storeGateRequest } from "./helpers.js";
+import { storeGateRequest } from "./helper.js";
+import { productSchema } from "./product.schema.js";
 
 export default {
   data() {
@@ -83,7 +83,7 @@ export default {
 
     initOptions() {
       if (!this.product?.options?.length) return;
-      showToast("يرجى تحديد الخيارات", "success");
+    //   showToast("يرجى تحديد الخيارات", "success");
     },
 
     selectOption(prod, optionId, valueId) {
@@ -113,7 +113,7 @@ export default {
 
     addProductToCart(productId, quantity, options = []) {
       if (this.isOutOfStock) {
-        showToast("لا توفر كمية في المخزون", "error");
+        // showToast("لا توفر كمية في المخزون", "error");
         return;
       }
       this.updateLoading("addToCart", true);
@@ -123,13 +123,13 @@ export default {
           if (res?.addToCart?.success) {
             window.updateCart?.(res.addToCart.data); // لاحقًا ممكن نبدله بـ bus
             this.toggleProductModal?.("productDetails", false);
-            showToast("تمت إضافة المنتج للسلة", "success");
+            // showToast("تمت إضافة المنتج للسلة", "success");
           } else {
-            showToast(res?.addToCart?.message || "فشل الإضافة", "error");
+            // showToast(res?.addToCart?.message || "فشل الإضافة", "error");
           }
         })
-        .catch(() => showToast("حدث خطأ أثناء الإضافة", "error"))
-        .finally(() => this.updateLoading("addToCart", false));
+        // .catch(() => showToast("حدث خطأ أثناء الإضافة", "error"))
+        // .finally(() => this.updateLoading("addToCart", false));
     },
 
     buyNowProduct(payload) {
@@ -142,20 +142,20 @@ export default {
       storeGateRequest(productSchema.buyNow, payload)
         .then((res) => {
           if (res?.buyNow?.success && res?.buyNow?.url) {
-            showToast("جارٍ تحويلك لصفحة الدفع...", "success", 2000);
+            // showToast("جارٍ تحويلك لصفحة الدفع...", "success", 2000);
             window.location.href = res.buyNow.url;
           } else {
-            showToast(res?.buyNow?.message || "فشل عملية الشراء", "error");
+            // showToast(res?.buyNow?.message || "فشل عملية الشراء", "error");
           }
         })
-        .catch(() => showToast("حدث خطأ أثناء عملية الشراء", "error"))
+        // .catch(() => showToast("حدث خطأ أثناء عملية الشراء", "error"))
         .finally(() => this.updateLoading("buyNow", false));
     },
 
     decreaseCartItem() {
       const minQuantity = this.product?.minQuantity || 1;
       if (this.productQuantity <= minQuantity) {
-        showToast(`الحد الأدنى ${minQuantity}`, "error");
+        // showToast(`الحد الأدنى ${minQuantity}`, "error");
         return;
       }
       this.productQuantity -= 1;
@@ -163,7 +163,7 @@ export default {
 
     increaseCartItem() {
       if (this.isOutOfStock) {
-        showToast("لا توفر كمية في المخزون", "error");
+        // showToast("لا توفر كمية في المخزون", "error");
         return;
       }
 
@@ -185,7 +185,7 @@ export default {
       }
 
       if (this.productQuantity >= maxQuantity) {
-        showToast("لا تتوفر كمية أكثر", "error");
+        // showToast("لا تتوفر كمية أكثر", "error");
         return;
       }
 
@@ -198,13 +198,13 @@ export default {
         ?.checkout()
         .then((res) => {
           if (res?.url) {
-            showToast("جارٍ تحويلك لصفحة الدفع...", "success", 2000);
+            // showToast("جارٍ تحويلك لصفحة الدفع...", "success", 2000);
             window.location.href = res.url;
           } else {
-            showToast("تعذر بدء الدفع", "error");
+            // showToast("تعذر بدء الدفع", "error");
           }
         })
-        .catch(() => showToast("حدث خطأ أثناء الدفع", "error"))
+        // .catch(() => showToast("حدث خطأ أثناء الدفع", "error"))
         .finally(() => (this.loading.checkout = false));
     },
   },

@@ -10,7 +10,7 @@ const app = createApp({
 			...__qumra__,
 			spinnerVisible: true,
 			message: "مرحباً بك في متجرنا!",
-			search:  "" ,
+			search: __qumra__?.context?.query?.q ?? "" ,
               globalLoading: {
 				page: false,
 				cart: false,
