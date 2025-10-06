@@ -34,16 +34,19 @@
     </div>
 </div> #}
 
-<div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 h-full flex flex-col">
+<div class="bg-white rounded-xl shadow-[0px_0px_10px_0px_#E4E4E4] overflow-hidden h-full flex flex-col">
     <div class="relative">
         <img alt="{{ data.product.title }}"
             src="{{ data.product.images[0].fileUrl | default('https://placehold.co/600x400/orange/white') }}"
             alt="{{ product.title }}" class="w-full h-48 md:h-56 object-cover">
-        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">{{ data.product.pricing.price - data.product.pricing.compareAtPrice | money }}</span>
-    </div>
+            {% if data.product.pricing.compareAtPrice and data.product.pricing.compareAtPrice > data.product.pricing.price %}
+        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">{{ ((data.product.pricing.compareAtPrice - data.product.pricing.price) * 100 / data.product.pricing.compareAtPrice) | round(1) }}%
+        </span>
+        {% endif %}
+        </div>
     <div class="p-3 flex flex-col flex-1">
-        <div class="flex items-center justify-between mb-1">
-            <h3 class="font-extrabold text-right text-[15px] min-h-[40px] leading-5">{{ data.product.title }}</h3>
+        <div class="flex  justify-between mb-1">
+            <h3 class="font-semibold text-right text-xl ">{{ data.product.title }}</h3>
             <div class="flex items-center text-yellow-500 text-xs">
                 <span class="material-symbols-outlined text-sm">star</span>
                 <span class="ml-1 text-gray-600">5</span>
