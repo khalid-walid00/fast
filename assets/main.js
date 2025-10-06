@@ -102,10 +102,7 @@ const app = createApp({
 
 app.mount("#app");
 console.log("✅ App mounted executed");
-<<<<<<< HEAD
 
-// --- Page JS from index1.html ---
-// Countdown for the offers section
 (function(){
   const initCountdown = () => {
     const dEl = document.getElementById('dVal2');
@@ -187,5 +184,3 @@ console.log("✅ App mounted executed");
     }, 150);
   });
 })();
-=======
->>>>>>> 2419b7535404be1c4336b269a267168614216242
