@@ -1,0 +1,14 @@
+{
+  "layout": "layout",
+  "title": "الصفحة الرئيسية",
+  "widgets": [
+    { "name": "hero", "widget": "hero", "settings": {} },
+    { "name": "categories", "widget": "categories", "settings": {} },
+    { "name": "video-banner", "widget": "video-banner", "settings": {} },
+    { "name": "best-sellers", "widget": "best-sellers", "settings": {} },
+    { "name": "why-choose-us", "widget": "why-choose-us", "settings": {} },
+    { "name": "offers-banner", "widget": "offers-banner", "settings": {} },
+    { "name": "reviews", "widget": "reviews", "settings": {} },
+    { "name": "faq", "widget": "faq", "settings": {} }
+  ]
+}

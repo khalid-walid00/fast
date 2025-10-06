@@ -1,0 +1,67 @@
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <div class="section-title-container px-2 sm:px-4 lg:px-8">
+      <h2 class="section-title no-underline">الأفضل مبيعًا هذا الأسبوع</h2>
+    </div>
+    <div class="mb-8 px-2 sm:px-4 lg:px-8">
+      <!-- Mobile: tabs as swiper -->
+      <div class="md:hidden swiper best-tabs-swiper tabs-underline">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" style="width:auto"><button class="tab-btn tab-active">الكل</button></div>
+          <div class="swiper-slide" style="width:auto"><button class="tab-btn">كتـب</button></div>
+          <div class="swiper-slide" style="width:auto"><button class="tab-btn">كراسي</button></div>
+          <div class="swiper-slide" style="width:auto"><button class="tab-btn">سراير</button></div>
+          <div class="swiper-slide" style="width:auto"><button class="tab-btn">طاولات</button></div>
+          <div class="swiper-slide" style="width:auto"><button class="tab-btn">أذرع كراسي</button></div>
+          <div class="swiper-slide" style="width:auto"><button class="tab-btn">ديكورات</button></div>
+        </div>
+      </div>
+      <!-- Desktop: simple flex row -->
+      <div class="hidden md:flex md:flex-wrap overflow-x-auto no-scrollbar whitespace-nowrap md:whitespace-normal justify-start items-center gap-3 sm:gap-6 text-base sm:text-lg font-bold tabs-underline">
+        <button class="tab-btn tab-active">الكل</button>
+        <button class="tab-btn">كتـب</button>
+        <button class="tab-btn">كراسي</button>
+        <button class="tab-btn">سراير</button>
+        <button class="tab-btn">طاولات</button>
+        <button class="tab-btn">أذرع كراسي</button>
+        <button class="tab-btn">ديكورات</button>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 px-2 sm:px-4 lg:px-8">
+      {% for product in widget.data.products_collection or [] %}
+      {% set img = (product.image and product.image.fileUrl) or (product.featuredImage and product.featuredImage.fileUrl) or (product.images and product.images[0] and product.images[0].fileUrl) %}
+      {% set cat = (product.collection and product.collection.title) or (product.category and product.category.title) or '' %}
+      {% set price = product.price or (product.prices and product.prices.current) or '' %}
+      {% set compare = product.compareAtPrice or (product.prices and product.prices.old) or '' %}
+      <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 h-full flex flex-col">
+        <div class="relative">
+          {% if img %}
+          <img src="{{ img }}" alt="[{{ product.title }}]" class="w-full h-48 md:h-56 object-cover">
+          {% else %}
+          <div class="w-full h-48 md:h-56 bg-gray-100"></div>
+          {% endif %}
+          <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">-10%</span>
+        </div>
+        <div class="p-3 flex flex-col flex-1">
+          <div class="flex items-center justify-between mb-1">
+            <h3 class="font-extrabold text-right text-[15px] min-h-[40px] leading-5">{{ product.title }}</h3>
+            <div class="flex items-center text-yellow-500 text-xs">
+              <span class="material-symbols-outlined text-sm">star</span>
+              <span class="ml-1 text-gray-600">5</span>
+            </div>
+          </div>
+          <p class="text-right text-gray-500 text-xs mb-3">{{ cat }}</p>
+          {% if price or compare %}
+          <div class="flex items-center justify-start gap-2 mb-2">
+            {% if price %}<p class="text-sm font-bold primary-orange-text">{{ price }}</p>{% endif %}
+            {% if compare %}<p class="text-xs text-gray-400 line-through">{{ compare }}</p>{% endif %}
+          </div>
+          {% endif %}
+          <button class="w-full primary-orange text-white py-2 rounded-[8px] text-sm font-semibold hover:opacity-95 mt-auto">إضافة للسلة</button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+

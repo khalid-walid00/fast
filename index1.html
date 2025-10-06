@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر أثاث</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <!-- Google Fonts: Changa -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Changa', sans-serif;
+        }
+        html, body { overflow-x: hidden; }
+        .hero-bg {
+            background-color: #B9C1B6;
+        }
+        .hero-title {
+            /* closer to the mock: big, tight leading */
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: #424341; /* requested heading color */
+        }
+        .primary-orange {
+            background-color: #F59A57;
+        }
+        .primary-orange-text {
+            color: #F59A57;
+        }
+        .hero-subtext { color: #424341; }
+        .btn-hero-rect {
+            background-color: #ffffff;
+            color: #2d2d2d;
+            border-radius: 8px; /* 8px on all corners */
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        .btn-hero-rect:hover { opacity: .95; }
+        .dot-muted { background-color: rgba(0,0,0,.15); }
+        .dot-active { background-color: #2d2d2d; }
+        .banner-bg {
+            background-color: #B9C4CB;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        .section-title-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+        .section-title {
+            font-size: 2rem; /* 32px */
+            font-weight: 700;
+            color: #333;
+            text-align: right;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        /* two-tone underline: small orange segment followed by black line */
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            /* extend a bit beyond the orange segment */
+            width: 380px;
+            height: 1.5px;
+            background-color: #D9D9D9; /* requested remainder color */
+            opacity: 1;
+            z-index: 0;
+        }
+         .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 220px; /* extend orange segment further */
+            height: 1.5px;
+            background-color: #F59A57;
+            z-index: 1;
+        }
+        /* remove underline for specific titles */
+        .no-underline::before, .no-underline::after { display: none; }
+        /* tabs underline like title style */
+        .tabs-underline { position: relative; padding-bottom: .5rem; }
+        .tabs-underline::before { content:''; position:absolute; bottom:0; right:0; height:1.5px; width:100%; background:#D9D9D9; }
+        .tabs-underline::after { content:''; position:absolute; bottom:0; right:0; height:1.5px; width:90px; background:#F59A57; }
+        .tab-btn { color:#6B7280; font-weight:700; position: relative; padding-bottom: .35rem; }
+        .tab-btn:hover { color:#111827; }
+        .tab-active { color:#F59A57; }
+        .tab-active::after { content:''; position:absolute; right:0; left:0; bottom:0; height:2px; background:#F59A57; border-radius:2px; }
+        /* Swiper width auto for categories on mobile */
+        .categories-swiper .swiper-slide { width: auto; }
+        /* Hide scrollbars utility */
+        .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        /* Mobile nav arrows for reviews */
+        .reviews-swiper .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 9999px; box-shadow: 0 6px 16px rgba(0,0,0,.12); display: flex; align-items: center; justify-content: center; z-index: 10; border: 1px solid rgba(0,0,0,.06); }
+        .reviews-swiper .nav-prev { left: 12px; right: auto; background:#ffffff; color:#2D2D2D; }
+        .reviews-swiper .nav-next { right: 12px; left: auto; background:#F59A57; color:#ffffff; }
+        /* Better touch handling for categories scroll */
+        .touch-pan-x { touch-action: pan-x; }
+        /* Categories styles */
+        .cat-circle { position: relative; width: 8rem; height: 8rem; border-radius: 9999px; overflow: hidden; box-shadow: 0 10px 20px rgb(0 0 0 / 0.08); }
+        .cat-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; color: #424341; padding: .35rem .75rem; border-radius: 9999px; font-weight: 700; border: 2px solid #fff; box-shadow: 0 6px 16px rgb(0 0 0 / 0.12); }
+        .hero-image-container {
+            position: relative;
+            width: 400px;
+            height: 500px;
+        }
+        .hero-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 90%;
+            background: #a3aca1;
+            border-radius: 200px 200px 0 0;
+            z-index: 1;
+        }
+        .hero-image {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        /* FAQ custom styles */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details .faq-arrow {
+            transition: transform 0.2s;
+        }
+        details[open] .faq-arrow {
+            transform: rotate(45deg);
+        }
+
+        /* Offers (below لماذا تختارنا) */
+        .offer-blob {
+            position: relative;
+            width: 100%;
+            height: 360px;
+            overflow: hidden;
+            border-radius: 58% 42% 48% 52% / 55% 45% 55% 45%;
+            box-shadow: 0 10px 24px rgba(0,0,0,.08);
+        }
+        .offer-blob img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+        .count-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        .count-num { font-weight: 800; font-size: 24px; color:#F59A57; line-height: 1; }
+        .count-label { font-weight: 700; font-size: 12px; color:#6B7280; margin-top: 6px; }
+        .count-item { display: flex; flex-direction: column; align-items: center; }
+        .count-row { justify-content: flex-start; flex-wrap: nowrap; column-gap: 12px; row-gap: 8px; }
+        .cta-offer {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            color: #2D2D2D;
+            font-weight: 800;
+            font-size: 18px;
+            width: 520px;
+            height: 60px;
+            padding: 16px 44px;
+            border-radius: 8px;
+            box-shadow: 0 6px 18px rgba(0,0,0,.08);
+            opacity: 1;
+            white-space: nowrap; /* keep text in one line */
+        }
+        @media (max-width: 767px) {
+            .cta-offer { width: 100%; max-width: 380px; }
+        }
+        @media (max-width: 360px) {
+            .cta-offer { max-width: 320px; padding: 10px 24px; font-size: 16px; height: 48px; }
+        }
+        .offer-inline-pad { padding-right: 40px; padding-left: 40px; width: 100%; box-sizing: border-box; }
+
+        /* Reviews cards */
+        .review-card {
+            position: relative;
+            background: #fff;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            padding: 28px;
+            min-height: 170px;
+        }
+        .review-quote {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            font-size: 40px;
+            color: #D1D5DB;
+        }
+        .review-text {
+            text-align: center;
+            color: #4B5563;
+            line-height: 1.8;
+            margin: 22px 0 26px;
+        }
+        .review-footer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+        .review-avatar { width: 28px; height: 28px; border-radius: 9999px; }
+        .review-name { font-weight: 800; color: #111827; font-size: 14px; }
+
+        /* Mobile tweaks up to 360px */
+        @media (max-width: 360px) {
+            .section-title { font-size: 22px; }
+            .cat-circle { width: 6.5rem; height: 6.5rem; }
+            .offer-blob { height: 300px; }
+            .cta-offer { width: 100%; max-width: 442px; }
+        }
+
+        /* Mobile fixes up to 540px */
+        @media (max-width: 540px) {
+            .container { padding-left: 16px; padding-right: 16px; }
+            .hero-title { font-size: 24px !important; line-height: 1.25; margin-bottom: 10px !important; }
+            .hero-subtext { font-size: 16px !important; margin-bottom: 14px !important; }
+            .btn-hero-rect { font-size: 16px !important; padding: 10px 18px !important; }
+            .hero-image-container { width: 300px; height: 380px; }
+            .video-banner { border-radius: 16px; }
+            .video-banner .text-center { padding-top: 28px; padding-bottom: 28px; }
+            .video-banner h2 { font-size: 26px; }
+            .video-banner button { width: 68px; height: 68px; }
+            .offer-inline-pad { padding-right: 16px; padding-left: 16px; }
+            /* Prevent title underline overflow on small screens */
+            .section-title::before { width: 100%; }
+            .section-title::after { width: 120px; }
+        }
+
+        /* Mobile hero alignment: text right, image visible on the other side */
+        @media (max-width: 767px) {
+            .hero-bg .container { display: flex; flex-direction: row; align-items: center; gap: 12px; }
+            .hero-bg .hero-text-col { order: 1; text-align: right; width: 50%; }
+            .hero-bg .hero-text-col .hero-title { text-align: right; }
+            .hero-bg .hero-text-col .hero-subtext { text-align: right; }
+            .hero-bg .hero-image-col { order: 2; display: flex; width: 50%; justify-content: center; }
+            .hero-bg .hero-image-container { width: 220px; height: 300px; }
+        }
+
+        /* Offers banner responsive like hero */
+        @media (max-width: 767px) {
+            .offers-banner .container > .flex { flex-direction: row !important; align-items: center; gap: 12px; }
+            .offers-banner .offer-text { order: 1 !important; width: 50%; text-align: right; display: flex; flex-direction: column; }
+            .offers-banner .offer-image { order: 2 !important; width: 50%; display: flex; justify-content: center; }
+            .offers-banner h2 { font-size: 22px; line-height: 1.3; padding-right: 40px; }
+            .offers-banner p { font-size: 14px; }
+            .offers-banner .count-row { justify-content: flex-start; column-gap: 10px; row-gap: 6px; flex-wrap: nowrap; }
+            /* Bigger CTA on mobile */
+            .offers-banner .cta-offer { height: 56px; font-size: 20px; padding: 14px 40px; }
+            /* Bigger heading on mobile while keeping same inline padding */
+            .offers-banner h2 { font-size: 30px; line-height: 1.3; padding-right: 40px; }
+            .offers-banner .count-box { width: 54px; height: 54px; border-radius: 12px; flex: 0 0 54px; }
+            .offers-banner .count-num { font-size: 18px; }
+            .offers-banner .count-label { font-size: 11px; }
+            .offers-banner .cta-offer { width: 100%; max-width: none; }
+            .offers-banner .offer-blob { height: 220px; }
+        }
+
+        /* Very small phones */
+        @media (max-width: 360px) {
+            .offers-banner .count-box { width: 48px; height: 48px; flex: 0 0 48px; }
+            .offers-banner .count-num { font-size: 16px; }
+            .offers-banner .count-row { column-gap: 8px; row-gap: 6px; }
+        }
+
+        /* Container overrides: full-width with custom paddings per breakpoint */
+        .container {
+            width: 100%;
+            padding-left: 16px; /* mobile */
+            padding-right: 16px;
+            max-width: 100% !important; /* cancel centering limits */
+        }
+
+        /* sm */
+        @media (min-width: 640px) {
+            .container {
+                padding-left: 32px;
+                padding-right: 32px;
+                max-width: 100% !important;
+            }
+        }
+
+        /* md */
+        @media (min-width: 768px) {
+            .container {
+                padding-left: 48px;
+                padding-right: 48px;
+                max-width: 100% !important;
+            }
+        }
+
+        /* lg */
+        @media (min-width: 1024px) {
+            .container {
+                padding-left: 100px; /* requested */
+                padding-right: 100px;
+                max-width: 100% !important; /* keep full width */
+            }
+        }
+
+        /* xl */
+        @media (min-width: 1280px) {
+            .container {
+                padding-left: 100px;
+                padding-right: 100px;
+                max-width: 100% !important;
+            }
+        }
+
+        /* 2xl */
+        @media (min-width: 1440px) {
+            .container {
+                padding-left: 100px;
+                padding-right: 100px;
+                max-width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Hero Section -->
+    <section class="hero-bg overflow-hidden">
+        <div class="container mx-auto px-6 py-12 lg:py-20 flex flex-col lg:flex-row items-center justify-between">
+            <!-- Text Content -->
+            <div class="hero-text-col lg:w-1/2 text-center lg:text-right mb-10 lg:mb-0 lg:pl-16 pr-2 sm:pr-4 lg:pr-8">
+                <h1 class="hero-title font-bold mb-6 md:mb-8 lg:mb-10 text-[34px] md:text-[44px] lg:text-[64px]">
+                    أثاث أنيق لمنزلك<br>
+                    العصري
+                </h1>
+                <p class="hero-subtext text-[22px] md:text-[24px] mb-12 md:mb-14 lg:mb-16">
+                    اكتشف تشكيلتنا الواسعة من الأثاث<br>
+                    بتصاميم عصرية وجودة عالية
+                </p>
+                <a href="#" class="inline-block btn-hero-rect rounded-[8px] font-extrabold text-[18px] md:text-[20px] py-3 md:py-4 px-10 md:px-12 transition-opacity">
+                    تسوق الآن
+                </a>
+            </div>
+            <!-- Image Content -->
+            <div class="hero-image-col lg:w-1/2 flex justify-center items-center relative">
+                 <div class="hero-image-container">
+                    <div class="decorative-circle" style="width: 50px; height: 50px; top: 10%; left: 5%;"></div>
+                    <div class="decorative-circle" style="width: 20px; height: 20px; top: 25%; right: 10%;"></div>
+                    <div class="decorative-circle" style="width: 30px; height: 30px; bottom: 15%; left: 0%;"></div>
+                    <img src="https://i.ibb.co/6PqjXfG/chair-hero.png" alt="[كرسي أنيق باللونين الأزرق والأصفر]" class="hero-image h-full w-auto object-contain">
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center pb-8">
+            <span class="w-3 h-3 mx-1 rounded-full dot-muted"></span>
+            <span class="w-3 h-3 mx-1 rounded-full dot-muted"></span>
+            <span class="w-3 h-3 mx-1 rounded-full dot-active"></span>
+        </div>
+    </section>
+    <script>
+        // Countdown for the offers section (below لماذا تختارنا)
+        (function(){
+            const dEl = document.getElementById('dVal2');
+            const hEl = document.getElementById('hVal2');
+            const mEl = document.getElementById('mVal2');
+            const sEl = document.getElementById('sVal2');
+            if (!dEl || !hEl || !mEl || !sEl) return;
+            const targetDate = new Date(Date.now() + 48 * 60 * 60 * 1000).getTime();
+            function update() {
+                const now = Date.now();
+                let diff = Math.max(0, targetDate - now);
+                const days = Math.floor(diff / (24*60*60*1000));
+                diff %= 24*60*60*1000;
+                const hours = Math.floor(diff / (60*60*1000));
+                diff %= 60*60*1000;
+                const mins = Math.floor(diff / (60*1000));
+                diff %= 60*1000;
+                const secs = Math.floor(diff / 1000);
+                dEl.textContent = String(days).padStart(2,'0');
+                hEl.textContent = String(hours).padStart(2,'0');
+                mEl.textContent = String(mins).padStart(2,'0');
+                sEl.textContent = String(secs).padStart(2,'0');
+            }
+            update();
+            setInterval(update, 1000);
+        })();
+    </script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swipers for mobile only (<= 767px)
+        const initSwipers = () => {
+            const isMobile = window.matchMedia('(max-width: 767px)').matches;
+            if (!isMobile) return;
+            // Categories: show all as horizontal swipe/scroll
+            if (document.querySelector('.categories-swiper')) {
+                new Swiper('.categories-swiper', {
+                    slidesPerView: 'auto',
+                    spaceBetween: 12,
+                    freeMode: {
+                        enabled: true,
+                        momentumRatio: 0.4,
+                    },
+                    resistanceRatio: 0.8,
+                });
+            }
+            // Reviews: single-slide with arrows
+            if (document.querySelector('.reviews-swiper')) {
+                new Swiper('.reviews-swiper', {
+                    slidesPerView: 1,
+                    spaceBetween: 12,
+                    navigation: {
+                        nextEl: '.reviews-swiper .nav-next',
+                        prevEl: '.reviews-swiper .nav-prev',
+                    },
+                });
+            }
+        };
+        document.addEventListener('DOMContentLoaded', initSwipers);
+        window.addEventListener('resize', () => { /* init once; page reload handles changes */ });
+    </script>
+
+    <!-- Categories Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="section-title-container px-2 sm:px-4 lg:px-8">
+                 <h2 class="section-title">أقسامنا</h2>
+            </div>
+            <!-- Swiper for mobile: show all categories, overflow scroll/swipe -->
+            <div class="md:hidden swiper categories-swiper px-2 no-scrollbar touch-pan-x" style="overflow-x:auto;">
+                <div class="swiper-wrapper">
+                    <!-- Category Item -->
+                    <div class="swiper-slide flex flex-col items-center">
+                        <div class="cat-circle mb-2">
+                            <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-full h-full object-cover" alt="[غرفة نوم]">
+                            <span class="cat-badge">غرفة نوم</span>
+                        </div>
+                    </div>
+                    <div class="swiper-slide flex flex-col items-center">
+                        <div class="cat-circle mb-2">
+                            <img src="https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-full h-full object-cover" alt="[غرفة معيشة]">
+                            <span class="cat-badge">غرفة معيشة</span>
+                        </div>
+                    </div>
+                    <div class="swiper-slide flex flex-col items-center">
+                        <div class="cat-circle mb-2">
+                            <img src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-full h-full object-cover" alt="[غرفة طعام]">
+                            <span class="cat-badge">غرفة طعام</span>
+                        </div>
+                    </div>
+                    <div class="swiper-slide flex flex-col items-center">
+                        <div class="cat-circle mb-2">
+                            <img src="https://images.pexels.com/photos/3932930/pexels-photo-3932930.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-full h-full object-cover" alt="[مطبخ]">
+                            <span class="cat-badge">مطبخ</span>
+                        </div>
+                    </div>
+                    <div class="swiper-slide flex flex-col items-center">
+                        <div class="cat-circle mb-2">
+                            <img src="https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-full h-full object-cover" alt="[مكتب]">
+                            <span class="cat-badge">مكتب</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <!-- Grid for tablet/desktop -->
+            <div class="hidden md:grid grid-cols-3 md:grid-cols-5 gap-6 text-center">
+                <!-- Category Item -->
+                <div class="flex flex-col items-center">
+                    <div class="cat-circle mb-2">
+                        <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-full h-full object-cover" alt="[غرفة نوم]">
+                        <span class="cat-badge">غرفة نوم</span>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="cat-circle mb-2">
+                        <img src="https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-full h-full object-cover" alt="[غرفة معيشة]">
+                        <span class="cat-badge">غرفة معيشة</span>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="cat-circle mb-2">
+                        <img src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-full h-full object-cover" alt="[غرفة طعام]">
+                        <span class="cat-badge">غرفة طعام</span>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="cat-circle mb-2">
+                        <img src="https://images.pexels.com/photos/3932930/pexels-photo-3932930.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-full h-full object-cover" alt="[مطبخ]">
+                        <span class="cat-badge">مطبخ</span>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="cat-circle mb-2">
+                        <img src="https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-full h-full object-cover" alt="[مكتب]">
+                        <span class="cat-badge">مكتب</span>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="cat-circle mb-2">
+                        <img src="https://images.pexels.com/photos/1329711/pexels-photo-1329711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-full h-full object-cover" alt="[أطفال]">
+                        <span class="cat-badge">أطفال</span>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="cat-circle mb-2">
+                        <img src="https://images.pexels.com/photos/2251214/pexels-photo-2251214.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-full h-full object-cover" alt="[حمام]">
+                        <span class="cat-badge">حمام</span>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="cat-circle mb-2">
+                        <img src="https://images.pexels.com/photos/2106037/pexels-photo-2106037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-full h-full object-cover" alt="[خارجي]">
+                        <span class="cat-badge">خارجي</span>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="cat-circle mb-2">
+                        <img src="https://images.pexels.com/photos/37347/office-sitting-room-executive-sitting.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-full h-full object-cover" alt="[إضاءة]">
+                        <span class="cat-badge">إضاءة</span>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="cat-circle mb-2">
+                        <img src="https://images.pexels.com/photos/439227/pexels-photo-439227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-full h-full object-cover" alt="[ديكور]">
+                        <span class="cat-badge">ديكور</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Banner -->
+    <section class="video-banner py-16 sm:py-20 bg-cover bg-center rounded-2xl overflow-hidden" style="background-image: url('https://images.pexels.com/photos/276583/pexels-photo-276583.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
+        <div class="container mx-auto px-6">
+            <div class="text-center py-14 sm:py-20">
+                <h2 class="text-white font-extrabold leading-tight text-[28px] sm:text-[42px] md:text-[56px] mb-8">
+                    شاهد كيف يصنع الفرق<br>
+                    في منزلك
+                </h2>
+                <button class="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-full flex items-center justify-center mx-auto ring-4 ring-white/30 shadow-lg hover:scale-105 transition-transform">
+                    <span class="material-symbols-outlined text-5xl sm:text-6xl" style="color:#F59A57">play_arrow</span>
+            </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Sellers Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="section-title-container px-2 sm:px-4 lg:px-8">
+                 <h2 class="section-title no-underline">الأفضل مبيعًا هذا الأسبوع</h2>
+            </div>
+            <div class="mb-8 px-2 sm:px-4 lg:px-8">
+                <div class="flex md:flex-wrap overflow-x-auto no-scrollbar whitespace-nowrap md:whitespace-normal justify-start items-center gap-3 sm:gap-6 text-base sm:text-lg font-bold">
+                    <button class="tab-btn tab-active">الكل</button>
+                    <button class="tab-btn">كتـب</button>
+                    <button class="tab-btn">كراسي</button>
+                    <button class="tab-btn">سراير</button>
+                    <button class="tab-btn">طاولات</button>
+                    <button class="tab-btn">أذرع كراسي</button>
+                    <button class="tab-btn">ديكورات</button>
+                </div>
+            </div>
+            <div class="px-2 sm:px-4 lg:px-8"></div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 px-2 sm:px-4 lg:px-8">
+                <!-- Product Card -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/2082087/pexels-photo-2082087.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="[كرسي 1]" class="w-full h-40 object-cover">
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">-10%</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex items-center justify-between mb-1">
+                            <h3 class="font-extrabold text-right text-[15px]">كرسي 1</h3>
+                            <div class="flex items-center text-yellow-500 text-xs">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="ml-1 text-gray-600">5</span>
+                            </div>
+                        </div>
+                        <p class="text-right text-gray-500 text-xs mb-3">الكراسي</p>
+                        <div class="flex items-center justify-start gap-2 mb-2">
+                            <p class="text-sm font-bold primary-orange-text">ج.م 200</p>
+                            <p class="text-xs text-gray-400 line-through">ج.م 300</p>
+                        </div>
+                        <button class="w-full primary-orange text-white py-2 rounded-[8px] text-sm font-semibold hover:opacity-95">إضافة للسلة</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="[كرسي 2]" class="w-full h-40 object-cover">
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">-10%</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex items-center justify-between mb-1">
+                            <h3 class="font-extrabold text-right text-[15px]">كرسي 2</h3>
+                            <div class="flex items-center text-yellow-500 text-xs">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="ml-1 text-gray-600">5</span>
+                            </div>
+                        </div>
+                        <p class="text-right text-gray-500 text-xs mb-3">الكراسي</p>
+                        <div class="flex items-center justify-start gap-2 mb-2">
+                            <p class="text-sm font-bold primary-orange-text">ج.م 200</p>
+                            <p class="text-xs text-gray-400 line-through">ج.م 300</p>
+                        </div>
+                        <button class="w-full primary-orange text-white py-2 rounded-[8px] text-sm font-semibold hover:opacity-95">إضافة للسلة</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="[أريكة 3]" class="w-full h-40 object-cover">
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">-10%</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex items-center justify-between mb-1">
+                            <h3 class="font-extrabold text-right text-[15px]">أريكة 3</h3>
+                            <div class="flex items-center text-yellow-500 text-xs">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="ml-1 text-gray-600">5</span>
+                            </div>
+                        </div>
+                        <p class="text-right text-gray-500 text-xs mb-3">الكراسي</p>
+                        <div class="flex items-center justify-start gap-2 mb-2">
+                            <p class="text-sm font-bold primary-orange-text">ج.م 200</p>
+                            <p class="text-xs text-gray-400 line-through">ج.م 300</p>
+                        </div>
+                        <button class="w-full primary-orange text-white py-2 rounded-[8px] text-sm font-semibold hover:opacity-95">إضافة للسلة</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/2082090/pexels-photo-2082090.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="[كرسي 4]" class="w-full h-40 object-cover">
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">-10%</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex items-center justify-between mb-1">
+                            <h3 class="font-extrabold text-right text-[15px]">كرسي 4</h3>
+                            <div class="flex items-center text-yellow-500 text-xs">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="ml-1 text-gray-600">5</span>
+                            </div>
+                        </div>
+                        <p class="text-right text-gray-500 text-xs mb-3">الكراسي</p>
+                        <div class="flex items-center justify-start gap-2 mb-2">
+                            <p class="text-sm font-bold primary-orange-text">ج.م 200</p>
+                            <p class="text-xs text-gray-400 line-through">ج.م 300</p>
+                        </div>
+                        <button class="w-full primary-orange text-white py-2 rounded-[8px] text-sm font-semibold hover:opacity-95">إضافة للسلة</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="[مكتب 5]" class="w-full h-40 object-cover">
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">-10%</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex items-center justify-between mb-1">
+                            <h3 class="font-extrabold text-right text-[15px]">مكتب 5</h3>
+                            <div class="flex items-center text-yellow-500 text-xs">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="ml-1 text-gray-600">5</span>
+                            </div>
+                        </div>
+                        <p class="text-right text-gray-500 text-xs mb-3">المكاتب</p>
+                        <div class="flex items-center justify-start gap-2 mb-2">
+                            <p class="text-sm font-bold primary-orange-text">ج.م 200</p>
+                            <p class="text-xs text-gray-400 line-through">ج.م 300</p>
+                        </div>
+                        <button class="w-full primary-orange text-white py-2 rounded-[8px] text-sm font-semibold hover:opacity-95">إضافة للسلة</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/1148955/pexels-photo-1148955.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="[كرسي 6]" class="w-full h-40 object-cover">
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">-10%</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex items-center justify-between mb-1">
+                            <h3 class="font-extrabold text-right text-[15px]">كرسي 6</h3>
+                            <div class="flex items-center text-yellow-500 text-xs">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="ml-1 text-gray-600">5</span>
+                            </div>
+                        </div>
+                        <p class="text-right text-gray-500 text-xs mb-3">الكراسي</p>
+                        <div class="flex items-center justify-start gap-2 mb-2">
+                            <p class="text-sm font-bold primary-orange-text">ج.م 200</p>
+                            <p class="text-xs text-gray-400 line-through">ج.م 300</p>
+                        </div>
+                        <button class="w-full primary-orange text-white py-2 rounded-[8px] text-sm font-semibold hover:opacity-95">إضافة للسلة</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/220749/pexels-photo-220749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="[طاولة 7]" class="w-full h-40 object-cover">
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">-10%</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex items-center justify-between mb-1">
+                            <h3 class="font-extrabold text-right text-[15px]">طاولة 7</h3>
+                            <div class="flex items-center text-yellow-500 text-xs">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="ml-1 text-gray-600">5</span>
+                            </div>
+                        </div>
+                        <p class="text-right text-gray-500 text-xs mb-3">الطاولات</p>
+                        <div class="flex items-center justify-start gap-2 mb-2">
+                            <p class="text-sm font-bold primary-orange-text">ج.م 200</p>
+                            <p class="text-xs text-gray-400 line-through">ج.م 300</p>
+                        </div>
+                        <button class="w-full primary-orange text-white py-2 rounded-[8px] text-sm font-semibold hover:opacity-95">إضافة للسلة</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/1034584/pexels-photo-1034584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="[أريكة 8]" class="w-full h-40 object-cover">
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">-10%</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex items-center justify-between mb-1">
+                            <h3 class="font-extrabold text-right text-[15px]">أريكة 8</h3>
+                            <div class="flex items-center text-yellow-500 text-xs">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="ml-1 text-gray-600">5</span>
+                            </div>
+                        </div>
+                        <p class="text-right text-gray-500 text-xs mb-3">الكراسي</p>
+                        <div class="flex items-center justify-start gap-2 mb-2">
+                            <p class="text-sm font-bold primary-orange-text">ج.م 200</p>
+                            <p class="text-xs text-gray-400 line-through">ج.م 300</p>
+                        </div>
+                        <button class="w-full primary-orange text-white py-2 rounded-[8px] text-sm font-semibold hover:opacity-95">إضافة للسلة</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="section-title-container px-2 sm:px-4 lg:px-8">
+                 <h2 class="section-title">لماذا تختارنا؟</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 px-2 sm:px-4 lg:px-8">
+                <div class="reason-card border rounded-2xl p-10 text-center shadow-sm border-gray-300">
+                    <div class="flex justify-center mb-4"><span class="material-symbols-outlined text-5xl primary-orange-text">verified</span></div>
+                    <h3 class="text-2xl font-extrabold mb-3 text-gray-800">جودة مضمونة</h3>
+                    <p class="text-gray-600 leading-relaxed">نستخدم أفضل الخامات لضمان متانة تدوم<br>لسنوات طويلة</p>
+                </div>
+                <div class="reason-card border rounded-2xl p-10 text-center shadow-sm" style="border-color:#F59A57">
+                    <div class="flex justify-center mb-4"><span class="material-symbols-outlined text-5xl primary-orange-text">local_shipping</span></div>
+                    <h3 class="text-2xl font-extrabold mb-3 text-gray-800">جودة مضمونة</h3>
+                    <p class="text-gray-600 leading-relaxed">نستخدم أفضل الخامات لضمان متانة تدوم<br>لسنوات طويلة</p>
+                </div>
+                <div class="reason-card border rounded-2xl p-10 text-center shadow-sm border-gray-300">
+                    <div class="flex justify-center mb-4"><span class="material-symbols-outlined text-5xl primary-orange-text">support_agent</span></div>
+                    <h3 class="text-2xl font-extrabold mb-3 text-gray-800">جودة مضمونة</h3>
+                    <p class="text-gray-600 leading-relaxed">نستخدم أفضل الخامات لضمان متانة تدوم<br>لسنوات طويلة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exclusive Offers Banner (Promo Countdown) -->
+    <section class="offers-banner" style="background:#B9C4CB;">
+        <div class="container mx-auto px-6 py-12 lg:py-16">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-10">
+                <div class="offer-text w-full lg:w-1/2 order-2 lg:order-1">
+                    <h2 class="offer-inline-pad font-extrabold leading-tight text-[#2D2D2D] text-[34px] sm:text-[44px] md:text-[56px] mb-4">
+                        عروض حصرية لفترة
+                        <br>
+                        محدودة!
+                    </h2>
+                    <p class="offer-inline-pad text-[#424341] text-[18px] md:text-[20px] mb-8 leading-relaxed">
+                        لا تفوّت الفرصة! استمتع بخصومات تصل إلى<br>
+                        <span class="font-extrabold">40%</span> على منتجات مختارة قبل انتهاء الوقت
+                    </p>
+                    <div class="offer-inline-pad flex items-end count-row gap-4 sm:gap-5 mb-8">
+                        <div class="count-item"><div class="count-box"><span id="dVal2" class="count-num">01</span></div><span class="count-label">أيام</span></div>
+                        <div class="count-item"><div class="count-box"><span id="hVal2" class="count-num">50</span></div><span class="count-label">ساعات</span></div>
+                        <div class="count-item"><div class="count-box"><span id="mVal2" class="count-num">03</span></div><span class="count-label">دقائق</span></div>
+                        <div class="count-item"><div class="count-box"><span id="sVal2" class="count-num">56</span></div><span class="count-label">ثواني</span></div>
+                    </div>
+                    <div class="offer-inline-pad flex justify-start">
+                        <a href="#" class="cta-offer hover:opacity-95">
+                            الحق العرض الآن
+                        </a>
+                </div>
+                    </div>
+                <div class="offer-image w-full lg:w-1/2 order-1 lg:order-2">
+                    <div class="offer-blob">
+                        <img src="https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&dpr=1" alt="[غرفة معيشة]">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="section-title-container px-2 sm:px-4 lg:px-8">
+                 <h2 class="section-title">آراء عملائنا</h2>
+            </div>
+            <!-- Swiper on mobile with arrows -->
+            <div class="md:hidden swiper reviews-swiper px-2 relative">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="review-card">
+                            <span class="material-symbols-outlined review-quote">format_quote</span>
+                            <p class="review-text">تجربة تسوق سلسة وسهلة من البداية للنهاية. أعجبتني سرعة التوصيل والتغليف الآمن</p>
+                            <div class="review-footer">
+                                <img src="https://i.pravatar.cc/48?u=u1" alt="[صورة العميل]" class="review-avatar">
+                                <span class="review-name">عبدالرحمن محمد</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="review-card">
+                            <span class="material-symbols-outlined review-quote">format_quote</span>
+                            <p class="review-text">تجربة تسوق سلسة وسهلة من البداية للنهاية. أعجبتني سرعة التوصيل والتغليف الآمن</p>
+                            <div class="review-footer">
+                                <img src="https://i.pravatar.cc/48?u=u2" alt="[صورة العميل]" class="review-avatar">
+                                <span class="review-name">عبدالرحمن محمد</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="review-card">
+                            <span class="material-symbols-outlined review-quote">format_quote</span>
+                            <p class="review-text">تجربة تسوق سلسة وسهلة من البداية للنهاية. أعجبتني سرعة التوصيل والتغليف الآمن</p>
+                            <div class="review-footer">
+                                <img src="https://i.pravatar.cc/48?u=u3" alt="[صورة العميل]" class="review-avatar">
+                                <span class="review-name">عبدالرحمن محمد</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <button class="nav-btn nav-prev" aria-label="السابق">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                </button>
+                <button class="nav-btn nav-next" aria-label="التالي">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+                </button>
+            </div>
+
+            <!-- Grid on tablet/desktop -->
+            <div class="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 px-2 sm:px-4 lg:px-8">
+                <!-- Card 1 -->
+                <div class="review-card">
+                    <span class="material-symbols-outlined review-quote">format_quote</span>
+                    <p class="review-text">تجربة تسوق سلسة وسهلة من البداية للنهاية. أعجبتني سرعة التوصيل والتغليف الآمن</p>
+                    <div class="review-footer">
+                        <img src="https://i.pravatar.cc/48?u=u1" alt="[صورة العميل]" class="review-avatar">
+                        <span class="review-name">عبدالرحمن محمد</span>
+                        </div>
+                        </div>
+                <!-- Card 2 -->
+                <div class="review-card">
+                    <span class="material-symbols-outlined review-quote">format_quote</span>
+                    <p class="review-text">تجربة تسوق سلسة وسهلة من البداية للنهاية. أعجبتني سرعة التوصيل والتغليف الآمن</p>
+                    <div class="review-footer">
+                        <img src="https://i.pravatar.cc/48?u=u2" alt="[صورة العميل]" class="review-avatar">
+                        <span class="review-name">عبدالرحمن محمد</span>
+                        </div>
+                    </div>
+                <!-- Card 3 -->
+                <div class="review-card">
+                    <span class="material-symbols-outlined review-quote">format_quote</span>
+                    <p class="review-text">تجربة تسوق سلسة وسهلة من البداية للنهاية. أعجبتني سرعة التوصيل والتغليف الآمن</p>
+                    <div class="review-footer">
+                        <img src="https://i.pravatar.cc/48?u=u3" alt="[صورة العميل]" class="review-avatar">
+                        <span class="review-name">عبدالرحمن محمد</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="section-title-container px-2 sm:px-4 lg:px-8">
+                 <h2 class="section-title">الأسئلة الشائعة</h2>
+            </div>
+            <div class="space-y-4">
+                <!-- FAQ Item -->
+                <div class="border rounded-lg bg-white overflow-hidden">
+                    <details>
+                        <summary class="font-semibold text-lg cursor-pointer flex justify-between items-center p-4">
+                            ما هي مدة التوصيل المتوقعة؟
+                            <span class="material-symbols-outlined faq-arrow transform duration-200">add</span>
+                        </summary>
+                        <p class="p-4 pt-0 text-gray-600">
+                            مدة التوصيل تتراوح عادة بين 3 إلى 7 أيام عمل، حسب المنطقة والمنتجات المطلوبة.
+                        </p>
+                    </details>
+                </div>
+                <!-- FAQ Item -->
+                <div class="border rounded-lg bg-white overflow-hidden">
+                    <details>
+                        <summary class="font-semibold text-lg cursor-pointer flex justify-between items-center p-4">
+                            هل توفرون خدمة التركيب؟
+                            <span class="material-symbols-outlined faq-arrow transform duration-200">add</span>
+                        </summary>
+                        <p class="p-4 pt-0 text-gray-600">
+                           نعم، نوفر خدمة تركيب احترافية لمعظم المنتجات. يمكنك طلب الخدمة عند إتمام عملية الشراء.
+                        </p>
+                    </details>
+                </div>
+                <!-- FAQ Item -->
+                <div class="border rounded-lg bg-white overflow-hidden">
+                    <details>
+                        <summary class="font-semibold text-lg cursor-pointer flex justify-between items-center p-4">
+                            ما هي سياسة الإرجاع والاستبدال؟
+                            <span class="material-symbols-outlined faq-arrow transform duration-200">add</span>
+                        </summary>
+                        <p class="p-4 pt-0 text-gray-600">
+                           يمكنك إرجاع أو استبدال المنتجات خلال 14 يومًا من تاريخ الاستلام بشرط أن تكون في حالتها الأصلية.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

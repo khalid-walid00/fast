@@ -1,0 +1,8 @@
+{
+  "name": "لافتة العروض",
+  "settings": {
+    "image": { "type": "image", "label": "صورة" }
+  },
+  "presets": [ { "category": "الصفحة الرئيسية", "name": "⭐ لافتة العروض" } ]
+}
+

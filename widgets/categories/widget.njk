@@ -1,0 +1,40 @@
+<section class="py-16">
+  <div class="container mx-auto px-6">
+    <div class="section-title-container px-2 sm:px-4 lg:px-8">
+      <h2 class="section-title">أقسامنا</h2>
+    </div>
+    {% set cols = widget.data.collections or context.collections or [] %}
+    <div class="md:hidden swiper categories-swiper px-2 no-scrollbar touch-pan-x" style="overflow-x:auto;">
+      <div class="swiper-wrapper">
+        {% for collection in cols %}
+        <div class="swiper-slide flex flex-col items-center">
+          <div class="cat-circle mb-2">
+            {% if collection.image and collection.image.fileUrl %}
+            <img src="{{ collection.image.fileUrl }}" class="w-full h-full object-cover" alt="[{{ collection.title }}]">
+            {% else %}
+            <div class="w-full h-full bg-gray-100"></div>
+            {% endif %}
+            <span class="cat-badge">{{ collection.title }}</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+    <div class="hidden md:grid grid-cols-3 md:grid-cols-5 gap-6 text-center">
+      {% for collection in cols %}
+      <div class="flex flex-col items-center">
+        <div class="cat-circle mb-2">
+          {% if collection.image and collection.image.fileUrl %}
+          <img src="{{ collection.image.fileUrl }}" class="w-full h-full object-cover" alt="[{{ collection.title }}]">
+          {% else %}
+          <div class="w-full h-full bg-gray-100"></div>
+          {% endif %}
+          <span class="cat-badge">{{ collection.title }}</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+

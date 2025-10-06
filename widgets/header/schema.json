@@ -1,0 +1,36 @@
+{
+  "name": "رأس الصفحة",
+  "settings": {
+    "max": {
+      "type": "number",
+      "label": "Maximum Number of Metadata Entries",
+      "description": "Set the maximum number of metadata entries that can be added.",
+      "default": 100
+    },
+    "navbar_text": {
+      "type": "string",
+      "label": "Metadata Schema Name",
+      "default": "احصل على توصيل مجاني للمنزل (عند الطلب بأكثر من 1550 جنية مصرى)"
+    },
+    "email": {
+      "type": "string",
+      "label": "Email"
+    },
+    "header_menu": {
+      "type": "menu",
+      "label": "Menu Text",
+      "default": "header"
+    },
+    "test": {
+      "type": "text",
+      "label": "Test",
+      "default": "This is a test"
+    }
+  },
+    "presets": [
+        {
+        "category": "الصفحة الرئيسية",
+        "name": "⭐ رأس الصفحة"
+        }
+    ]
+}

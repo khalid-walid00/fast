@@ -1,0 +1,8 @@
+{
+  "name": "آراء العملاء",
+  "settings": {
+    "title": { "type": "string", "label": "العنوان", "default": "آراء عملائنا" }
+  },
+  "presets": [ { "category": "الصفحة الرئيسية", "name": "⭐ آراء العملاء" } ]
+}
+

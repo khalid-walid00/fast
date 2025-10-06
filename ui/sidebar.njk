@@ -1,0 +1,32 @@
+<div v-cloak>
+  <transition name="fade">
+    <div
+      v-if="modal.open && modal.type==='sidebar'"
+      class="fixed inset-0 bg-black bg-opacity-50 z-50"
+      @click="toggleModal('sidebar')"
+    ></div>
+  </transition>
+
+  <transition name="slide-left">
+    <div
+      v-if="modal.open && modal.type==='sidebar'"
+      class="fixed top-0 left-0 h-screen w-full md:max-w-md max-w-xs bg-white shadow-lg z-[51] flex flex-col"
+    >
+      <!-- Header -->
+      <div class="flex justify-between py-[10px] px-5 border-b">
+        <span class="font-medium text-dark">القائمة الرئيسية</span>
+        <button @click="toggleModal('sidebar')">
+          <span class="material-symbols-outlined"> close </span>
+        </button>
+      </div>
+      {# data.menu #}
+      <!-- Items (Scrollable) -->
+      <div class="flex-1 overflow-auto px-4 py-[23px] flex flex-col gap-1">
+        {% for item in data.menu %}
+       <a  href="" class="  font-medium text-xs py-2.5 border-b border-[#D9D9D980]">{{ item.title | default('بدون عنوان') }}</a>
+        {% endfor %}
+      </div>
+   
+    </div>
+  </transition>
+</div>
