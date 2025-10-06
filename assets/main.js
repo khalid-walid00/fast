@@ -11,8 +11,8 @@ const app = createApp({
 			spinnerVisible: true,
 			message: "مرحباً بك في متجرنا!",
 			globals: window.__qumra__ || {},
-			search: "",
-			globalLoading: {
+			search: __qumra__?.context?.query?.q ?? "" ,
+              globalLoading: {
 				page: false,
 				cart: false,
 				checkout: false,
@@ -52,7 +52,7 @@ const app = createApp({
 		},
 		setSearch(q) {
 			this.globalLoading.page = true;
-			this.context.search = q;
+			this.search = q;
 			window.location.href = `/search?q=${encodeURIComponent(q)}`;
 		},
 		toggleModal(type, open) {
