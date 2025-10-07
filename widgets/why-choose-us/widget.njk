@@ -1,25 +1,34 @@
-  <!-- Why Choose Us Section -->
-  <section class="py-16">
-    <div class="container mx-auto px-6">
-        <div class="section-title-container px-2 sm:px-4 lg:px-8">
-             <h2 class="section-title">لماذا تختارنا؟</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 px-2 sm:px-4 lg:px-8">
-            <div class="reason-card border rounded-2xl p-10 text-center shadow-sm border-gray-300">
-                <div class="flex justify-center mb-4"><span class="material-symbols-outlined text-5xl primary-orange-text">verified</span></div>
-                <h3 class="text-2xl font-extrabold mb-3 text-gray-800">جودة مضمونة</h3>
-                <p class="text-gray-600 leading-relaxed">نستخدم أفضل الخامات لضمان متانة تدوم<br>لسنوات طويلة</p>
-            </div>
-            <div class="reason-card border rounded-2xl p-10 text-center shadow-sm" style="border-color:#F59A57">
-                <div class="flex justify-center mb-4"><span class="material-symbols-outlined text-5xl primary-orange-text">local_shipping</span></div>
-                <h3 class="text-2xl font-extrabold mb-3 text-gray-800">جودة مضمونة</h3>
-                <p class="text-gray-600 leading-relaxed">نستخدم أفضل الخامات لضمان متانة تدوم<br>لسنوات طويلة</p>
-            </div>
-            <div class="reason-card border rounded-2xl p-10 text-center shadow-sm border-gray-300">
-                <div class="flex justify-center mb-4"><span class="material-symbols-outlined text-5xl primary-orange-text">support_agent</span></div>
-                <h3 class="text-2xl font-extrabold mb-3 text-gray-800">جودة مضمونة</h3>
-                <p class="text-gray-600 leading-relaxed">نستخدم أفضل الخامات لضمان متانة تدوم<br>لسنوات طويلة</p>
-            </div>
-        </div>
+<!-- Features Section -->
+<section class="py-16">
+  <div class="container">
+    <div class="section-title-container">
+      <h2 class="section-title">{{ widget.data.section_title | default('لماذا تختارنا') }}</h2>
     </div>
+    
+    {% if widget.blocks.length > 0 %}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {% for block in widget.blocks %}
+        <div class="reason-card border rounded-2xl p-10 text-center shadow-sm border-gray-300">
+          <div class="flex justify-center mb-4">
+            {% if block.data.icon and block.data.icon.fileUrl %}
+              <img 
+                src="{{ block.data.icon.fileUrl }}" 
+                alt="{{ block.data.alt | default(block.data.title) }}"
+                class="w-16 h-16 mx-auto object-contain"
+              />
+            {% elif block.data.icon_name %}
+              <span class="material-symbols-outlined text-5xl primary-orange-text">{{ block.data.icon_name }}</span>
+            {% else %}
+              <div class="w-16 h-16 mx-auto bg-gray-200 rounded-full flex items-center justify-center">
+                <span class="text-2xl text-gray-400">⭐</span>
+              </div>
+            {% endif %}
+          </div>
+          <h3 class="text-2xl font-extrabold mb-3 text-gray-800">{{ block.data.title }}</h3>
+          <p class="text-gray-600 leading-relaxed">{{ block.data.description }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
 </section>

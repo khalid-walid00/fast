@@ -1,8 +1,57 @@
 {
   "name": "لافتة العروض",
+  "description": "بانر قابل للتخصيص مع نص وصورة وزر",
   "settings": {
-    "image": { "type": "image", "label": "صورة" }
+    "title": {
+      "type": "string",
+      "label": "العنوان الرئيسي",
+      "default": "عروض حصرية لفترة محدودة!"
+    },
+    "subtitle": {
+      "type": "text",
+      "label": "النص الفرعي",
+      "default": "لا تفوّت الفرصة! استمتع بخصومات تصل إلى 40% على منتجات مختارة قبل انتهاء الوقت"
+    },
+    "button_text": {
+      "type": "string",
+      "label": "نص الزر",
+      "default": "الحق العرض الآن"
+    },
+    "button_link": {
+      "type": "string",
+      "label": "رابط الزر",
+      "default": "/collections"
+    },
+    "background_color": {
+      "type": "color",
+      "label": "لون الخلفية",
+      "default": "#B9C4CB"
+    },
+    "image": {
+      "type": "media",
+      "label": "صورة البانر",
+      "default": ""
+    },
+    "alt": {
+      "type": "string",
+      "label": "النص البديل للصورة",
+      "default": "صورة البانر"
+    }
   },
-  "presets": [ { "category": "الصفحة الرئيسية", "name": "⭐ لافتة العروض" } ]
+  "presets": [
+    {
+      "category": "الصفحة الرئيسية",
+      "name": "⭐ لافتة العروض",
+      "settings": {
+        "title": "عروض حصرية لفترة محدودة!",
+        "subtitle": "لا تفوّت الفرصة! استمتع بخصومات تصل إلى 40% على منتجات مختارة قبل انتهاء الوقت",
+        "button_text": "الحق العرض الآن",
+        "button_link": "/collections",
+        "background_color": "#B9C4CB",
+        "image": "",
+        "alt": "صورة البانر"
+      }
+    }
+  ]
 }
 

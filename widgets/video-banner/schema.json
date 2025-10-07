@@ -6,7 +6,7 @@
       "type": "media",
       "label": "ملف الفيديو",
       "default": "qumra://a608fda95ffd4e489765a194c7d84c14.HD-720p-2.1Mbps-31583796_v=0.mp4",
-      "accept": "video"
+      "accept": "media"
     },
     "default_title": {
       "type": "string",

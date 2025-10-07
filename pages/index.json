@@ -2,13 +2,211 @@
   "layout": "layout",
   "title": "الصفحة الرئيسية",
   "widgets": [
-    { "name": "hero", "widget": "hero", "settings": {} },
-    { "name": "categories", "widget": "categories", "settings": {} },
-    { "name": "video-banner", "widget": "video-banner", "settings": {} },
-    { "name": "best-sellers", "widget": "best-sellers", "settings": {} },
-    { "name": "why-choose-us", "widget": "why-choose-us", "settings": {} },
-    { "name": "offers-banner", "widget": "offers-banner", "settings": {} },
-    { "name": "reviews", "widget": "reviews", "settings": {} },
-    { "name": "faq", "widget": "faq", "settings": {} }
+    {
+      "name": "Hero Section",
+      "widget": "hero",
+      "settings": {
+        "enable_swiper": true,
+        "autoplay_delay": 5,
+        "show_navigation": false,
+        "show_pagination": true
+      },
+      "blocks": [
+        {
+          "block": "slideItem",
+          "name": "الهيرو الأول",
+          "settings": {
+            "image": "qumra://Hero.webp",
+            "link": "/collections",
+            "alt": "أثاث أنيق",
+            "title": "أثاث أنيق لمنزلك العصري",
+            "subtitle": "اكتشف تشكيلتنا الواسعة من الأثاث بتصاميم عصرية وجودة عالية",
+            "button_text": "تسوق الآن"
+          }
+        },
+        {
+          "block": "slideItem",
+          "name": "الهيرو الثاني",
+          "settings": {
+            "image": "qumra://Hero.webp",
+            "link": "/latest",
+            "alt": "عروض حصرية",
+            "title": "عروض حصرية لفترة محدودة",
+            "subtitle": "خصومات تصل إلى 50% على منتجات مختارة",
+            "button_text": "تسوق الآن"
+          }
+        },
+        {
+          "block": "slideItem",
+          "name": "الهيرو الثالث",
+          "settings": {
+            "image": "qumra://Hero.webp",
+            "link": "/collections",
+            "alt": "جودة مضمونة",
+            "title": "جودة مضمونة ومتانة تدوم",
+            "subtitle": "منتجات عالية الجودة مع ضمان شامل",
+            "button_text": "تسوق الآن"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categories Section",
+      "widget": "categories",
+      "settings": {}
+    },
+    {
+      "name": "Video Section",
+      "widget": "video-banner",
+      "settings": {
+        "default_title": "اكتشف افضل الخصومات",
+        "default_subtitle": "والعروض الحصريه",
+        "default_button_text": "تسوق الآن",
+        "default_button_link": "/collections"
+      }
+    },
+    {
+      "name": "products section",
+      "widget": "best-sellers",
+      "settings": {
+        "section_title": "منتجات مميزة ⭐",
+        "view_all_link": "#"
+      }
+    },
+    {
+      "name": "Features Section",
+      "widget": "why-choose-us",
+      "settings": {
+        "section_title": "مميزاتنا"
+      },
+      "blocks": [
+        {
+          "block": "featureItem",
+          "name": "سهولة الاستخدام",
+          "settings": {
+            "title": "سهولة الاستخدام",
+            "description": "تجربة شراء بسيطة وسريعة من أول دخول العميل لحد إتمام الطلب.",
+            "icon_name": "touch_app",
+            "icon": "",
+            "alt": "أيقونة واجهة سهلة"
+          }
+        },
+        {
+          "block": "featureItem",
+          "name": "الأمان والثقة",
+          "settings": {
+            "title": "الأمان والثقة",
+            "description": "حماية كاملة لبيانات العملاء والدفع الإلكتروني الموثوق.",
+            "icon_name": "security",
+            "icon": "",
+            "alt": "أيقونة الأمان"
+          }
+        },
+        {
+          "block": "featureItem",
+          "name": "السرعة والأداء",
+          "settings": {
+            "title": "السرعة والأداء",
+            "description": "صفحات سريعة التحميل ومتجر شغال 24/7 بدون أعطال.",
+            "icon_name": "speed",
+            "icon": "",
+            "alt": "أيقونة السرعة"
+          }
+        },
+        {
+          "block": "featureItem",
+          "name": "دعم مستمر",
+          "settings": {
+            "title": "دعم مستمر",
+            "description": "خدمة عملاء سريعة ومتاحة لحل أي مشكلة أو استفسار.",
+            "icon_name": "support_agent",
+            "icon": "",
+            "alt": "أيقونة الدعم"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Special Offers Section",
+      "widget": "offers-banner",
+      "settings": {
+        "image": "qumra://Hero.webp"
+      }
+    },
+    {
+      "name": "Customer Reviews Section",
+      "widget": "reviews",
+      "settings": {
+        "title": "آراء عملائنا"
+      },
+      "blocks": [
+        {
+          "block": "reviewItem",
+          "name": "الرأي الأول",
+          "settings": {
+            "name": "أحمد كرم",
+            "text": "تجربة ممتازة وخدمة عملاء محترمة. المنتجات وصلت في الوقت المحدد وبجودة عالية.",
+            "image": "",
+            "stars": 5,
+            "alt": "صورة العميل"
+          }
+        },
+        {
+          "block": "reviewItem",
+          "name": "الرأي الثاني",
+          "settings": {
+            "name": "سارة محمد",
+            "text": "الشحن سريع والجودة عالية. أنصح الجميع بالتعامل مع هذا المتجر.",
+            "image": "",
+            "stars": 4,
+            "alt": "صورة العميل"
+          }
+        },
+        {
+          "block": "reviewItem",
+          "name": "الرأي الثالث",
+          "settings": {
+            "name": "خالد عبدالله",
+            "text": "أسعار مناسبة وعروض مميزة. خدمة عملاء ممتازة وسريعة في الرد.",
+            "image": "",
+            "stars": 5,
+            "alt": "صورة العميل"
+          }
+        }
+      ]
+    },
+    {
+      "name": "FAQ Section",
+      "widget": "faq",
+      "settings": {
+        "title": "الأسئلة الشائعة"
+      },
+      "blocks": [
+        {
+          "block": "faqItem",
+          "name": "السؤال الأول",
+          "settings": {
+            "question": "كيف يمكنني إرجاع المنتج؟",
+            "answer": "يمكنك إرجاع المنتج خلال 14 يوم من تاريخ الشراء مع الحفاظ على حالة المنتج الأصلية."
+          }
+        },
+        {
+          "block": "faqItem",
+          "name": "السؤال الثاني",
+          "settings": {
+            "question": "ما هي مدة الشحن؟",
+            "answer": "مدة الشحن تتراوح بين 2-5 أيام عمل داخل القاهرة و 3-7 أيام للمحافظات الأخرى."
+          }
+        },
+        {
+          "block": "faqItem",
+          "name": "السؤال الثالث",
+          "settings": {
+            "question": "هل الشحن مجاني؟",
+            "answer": "نعم، الشحن مجاني للطلبات التي تزيد عن 500 جنيه داخل القاهرة و 800 جنيه للمحافظات."
+          }
+        }
+      ]
+    }
   ]
 }

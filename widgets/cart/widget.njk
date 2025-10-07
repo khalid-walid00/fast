@@ -139,36 +139,23 @@
 
     <!-- الحالة: السلة فاضية -->
     <div v-show="!globals?.cart || !globals?.cart?.items || globals?.cart?.items?.length === 0"
-      class="max-w-2xl mx-auto text-center">
-      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-        <div class="mx-auto h-20 w-20 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 mb-6">
-          <svg class="h-10 w-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M3 7h18M3 7l2 12a2 2 0 0 0 2 2h10a2 2 0 0 1 1.818 0Z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6M9 16h4" />
-          </svg>
-        </div>
-        <h1 class="text-2xl font-bold text-gray-900 font-cairo mb-3">سلة المشتريات فارغة</h1>
-        <p class="text-gray-600 font-cairo mb-8">ابدأ بإضافة منتجاتك الآن واستمتع بتجربة تسوق مميزة</p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/collections"
-            class="inline-flex items-center justify-center gap-3 bg-white text-gray-800 rounded-xl px-8 py-4 font-bold text-lg shadow-sm hover:shadow-md border border-gray-200 hover:border-gray-300 hover:bg-gray-50 font-cairo transition-all duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-            </svg>
-            تصفح المجموعات
+      class="mx-auto text-center">
+      <div class="flex items-center justify-center flex-col gap-10 py-16">
+        <div class="flex flex-col items-center gap-8">
+          <a aria-label="latestproduct" href="/collection/all">
+            <span style="font-size: 140px;" class="material-symbols-outlined text-gray-400">
+              shopping_cart_off
+            </span>
           </a>
-          <a href="/latest"
-            class="inline-flex items-center justify-center gap-3 bg-[#003033] hover:bg-[#004d4d] text-white rounded-xl px-8 py-4 font-bold text-lg shadow-md hover:shadow-lg font-cairo transition-all duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-            متابعة التسوق
-          </a>
+          <div class="flex flex-col items-center">
+            <h1 class="text-3xl font-bold text-gray-900">عربة التسوق فارغة</h1>
+            <p class="text-lg text-gray-500 mt-2">أضف بعض المنتجات إلى عربتك للحصول على تجربة تسوق مميزة معنا!</p>
+          </div>
         </div>
+        <a aria-label="showproduct" href="/collection/all"
+          class="hover:scale-[1.02] min-w-[260px] text-base md:text-lg font-bold transition-all duration-300 flex justify-center items-center py-4 px-8 bg-primary text-white rounded-lg shadow-md">
+          متابعة التسوق
+        </a>
       </div>
     </div>
   </div>

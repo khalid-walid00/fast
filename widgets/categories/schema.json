@@ -21,7 +21,40 @@
   "presets": [
     {
       "category": "الصفحة الرئيسية",
-      "name": "🧩 قسم التصنيفات"
+      "name": "🧩 قسم التصنيفات",
+      "settings": {
+        "section_title": "أقسامنا",
+        "collections": [
+          {
+            "title": "الكل",
+            "image": "qumra://category-all.webp"
+          },
+          {
+            "title": "كتب",
+            "image": "qumra://category-books.webp"
+          },
+          {
+            "title": "كراسي",
+            "image": "qumra://category-chairs.webp"
+          },
+          {
+            "title": "سراير",
+            "image": "qumra://category-beds.webp"
+          },
+          {
+            "title": "طاولات",
+            "image": "qumra://category-tables.webp"
+          },
+          {
+            "title": "أذرع كراسي",
+            "image": "qumra://category-armchairs.webp"
+          },
+          {
+            "title": "ديكورات",
+            "image": "qumra://category-decor.webp"
+          }
+        ]
+      }
     }
   ]
 }

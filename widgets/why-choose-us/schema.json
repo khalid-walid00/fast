@@ -43,11 +43,11 @@
   "presets": [
     {
       "category": "الصفحة الرئيسية",
-      "name": "⭐ قسم المميزات",
+      "name": "⭐ لماذا تختارنا",
       "blocks": [
-        { "block": "featureItem", "name": "جودة مضمونة 1", "settings": { "title": "جودة مضمونة", "description": "نستخدم أفضل الخامات لضمان متانة تدوم لسنوات طويلة", "icon_name": "verified", "icon": "", "alt": "جودة" } },
-        { "block": "featureItem", "name": "جودة مضمونة 2", "settings": { "title": "جودة مضمونة", "description": "نستخدم أفضل الخامات لضمان متانة تدوم لسنوات طويلة", "icon_name": "local_shipping", "icon": "", "alt": "الشحن" } },
-        { "block": "featureItem", "name": "دعم عملاء",   "settings": { "title": "جودة مضمونة", "description": "نستخدم أفضل الخامات لضمان متانة تدوم لسنوات طويلة", "icon_name": "support_agent", "icon": "", "alt": "الدعم" } }
+        { "block": "featureItem", "name": "جودة مضمونة", "settings": { "title": "جودة مضمونة", "description": "نستخدم أفضل الخامات لضمان متانة تدوم لسنوات طويلة", "icon_name": "verified", "icon": "", "alt": "جودة" } },
+        { "block": "featureItem", "name": "شحن مجاني", "settings": { "title": "شحن مجاني", "description": "نوفر خدمة الشحن المجاني لجميع الطلبات داخل مصر", "icon_name": "local_shipping", "icon": "", "alt": "الشحن" } },
+        { "block": "featureItem", "name": "دعم عملاء", "settings": { "title": "دعم عملاء مميز", "description": "فريق دعم عملاء متخصص لخدمتك على مدار الساعة", "icon_name": "support_agent", "icon": "", "alt": "الدعم" } }
       ]
     }
   ]

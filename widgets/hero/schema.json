@@ -33,6 +33,21 @@
       "type": "boolean",
       "label": "إظهار نقاط التنقل",
       "default": true
+    },
+    "slide1_background_color": {
+      "type": "color",
+      "label": "لون خلفية الشريحة الأولى",
+      "default": "#B9C1B6"
+    },
+    "slide2_background_color": {
+      "type": "color",
+      "label": "لون خلفية الشريحة الثانية",
+      "default": "#D9B297"
+    },
+    "slide3_background_color": {
+      "type": "color",
+      "label": "لون خلفية الشريحة الثالثة",
+      "default": "#B9C4CB"
     }
   },
   "blocks": {
@@ -68,6 +83,11 @@
           "type": "string",
           "label": "نص الزر (اختياري)",
           "default": ""
+        },
+        "background_color": {
+          "type": "color",
+          "label": "لون الخلفية",
+          "default": "#B9C4CB"
         }
       }
     }
@@ -76,6 +96,11 @@
     {
       "category": "الصفحة الرئيسية",
       "name": "🏠 قسم الهيرو الرئيسي",
+      "settings": {
+        "slide1_background_color": "#B9C1B6",
+        "slide2_background_color": "#D9B297",
+        "slide3_background_color": "#B9C4CB"
+      },
       "blocks": [
         {
           "block": "slideItem",
@@ -83,7 +108,37 @@
           "settings": {
             "image": "qumra://Hero.webp",
             "link": "#",
-            "alt": "Hero"
+            "alt": "Hero",
+            "title": "مرحباً بك في متجرنا",
+            "subtitle": "اكتشف أفضل المنتجات بأسعار مميزة",
+            "button_text": "تسوق الآن",
+            "background_color": "#B9C1B6"
+          }
+        },
+        {
+          "block": "slideItem",
+          "name": "الشريحة الثانية",
+          "settings": {
+            "image": "qumra://Hero.webp",
+            "link": "#",
+            "alt": "Hero 2",
+            "title": "عروض حصرية",
+            "subtitle": "خصومات تصل إلى 50%",
+            "button_text": "تسوق الآن",
+            "background_color": "#D9B297"
+          }
+        },
+        {
+          "block": "slideItem",
+          "name": "الشريحة الثالثة",
+          "settings": {
+            "image": "qumra://Hero.webp",
+            "link": "#",
+            "alt": "Hero 3",
+            "title": "جودة مضمونة",
+            "subtitle": "منتجات عالية الجودة مع ضمان شامل",
+            "button_text": "تسوق الآن",
+            "background_color": "#B9C4CB"
           }
         }
       ]

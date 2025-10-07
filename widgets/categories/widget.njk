@@ -1,10 +1,10 @@
 <section class="py-16">
   <div class="container">
     <div class="section-title-container">
-      <h2 class="section-title">أقسامنا</h2>
+      <h2 class="section-title">{{ widget.data.section_title | default('أقسامنا') }}</h2>
     </div>
     {% set cols = widget.data.collections or context.collections or [] %}
-    <div class="md:hidden swiper categories-swiper no-scrollbar touch-pan-x" style="overflow-x:auto;">
+    <div class="md:hidden swiper categories-swiper relative">
       <div class="swiper-wrapper">
         {% for collection in cols %}
         <div class="swiper-slide flex flex-col items-center">
@@ -21,6 +21,42 @@
       </div>
       <div class="swiper-pagination"></div>
     </div>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const categoriesSwiper = new Swiper('.categories-swiper', {
+          slidesPerView: 'auto',
+          spaceBetween: 16,
+          centeredSlides: false,
+          loop: false,
+          freeMode: true,
+          grabCursor: true,
+          pagination: {
+            el: '.categories-swiper .swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
+          },
+          breakpoints: {
+            320: {
+              slidesPerView: 2.2,
+              spaceBetween: 12,
+            },
+            375: {
+              slidesPerView: 2.5,
+              spaceBetween: 16,
+            },
+            425: {
+              slidesPerView: 3,
+              spaceBetween: 16,
+            },
+            768: {
+              slidesPerView: 4,
+              spaceBetween: 20,
+            },
+          },
+        });
+      });
+    </script>
     <div class="hidden md:grid grid-cols-3 md:grid-cols-5 gap-6 text-center">
       {% for collection in cols %}
       <div class="flex flex-col items-center">
