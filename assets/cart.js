@@ -82,17 +82,21 @@ function debounceUpdateCartItem(id) {
 }
 
 export default {
+  computed: {
+    isCartPage() {
+      return window.location.pathname === '/cart';
+    }
+  },
   methods: {
     inbusy(id) {
       return busy[id]?.isBusy || false;
     },
-
     clearCartItem(id) {
       busy[id] = { isBusy: true, lastUpdated: Date.now() };
       storeGateRequest(cartSchema.removeCartItem, { data: { itemId: id } })
         .then((res) => {
-          const data = res?.removeCartItem?.data;
-          if (data) {
+          const data = res?.removeCartItem?.data || {};
+          if (res.removeCartItem?.success) {
             window.updateCart?.(data);
             syncFromCartData(data);
           } else {

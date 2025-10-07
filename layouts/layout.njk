@@ -10,7 +10,7 @@
   {% qumra_head %}
   <style>
     root {
-      --primary: #FB8C28;
+      --primary: #F56800;
       --primary-rgb: 255, 107, 53;
 
 
@@ -85,6 +85,8 @@
 <body>
   <div id="app">
     <div class="">
+      {%ui "loading-screen.njk" %}
+      {% template "offers-announcement" %}
       {% template "header" %}
       <main>
         {% content %}

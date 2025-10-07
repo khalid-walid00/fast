@@ -2,6 +2,15 @@
     "title": "Header Group",
     "widgets": [
         {
+            "name": "شريط علوي متحرك",
+            "widget": "offers-announcement",
+            "settings": {
+                "announcement_text": "احصل على توصيل مجاني للمنزل (عند الطلب بأكثر من 1000 جنية مصرى)",
+                "background_color": "#ff0000",
+                "text_color": "#ffffff"
+            }
+        },
+        {
             "name": "header",
             "widget": "header",
             "settings": {

@@ -186,18 +186,19 @@ details[open] .faq-arrow { transform: rotate(45deg); }
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px
+   
 }
 
 ::-webkit-scrollbar-track {
-  background: 0 0;
+  background: 0 ;
   border-radius: 4px
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-orange);
+  background: var(--primary);
   border-radius: 4px
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-orange)
+  background: var(--primary)
 }

@@ -125,22 +125,24 @@ export default {
         showToast("لا توفر كمية في المخزون", "error");
         return;
       }
-
-      this.updateLoading("addToCart", true);
-
+    
+      this.loading = { ...this.loading, [productId]: true }; 
       storeGateRequest(productSchema.addToCart, { data: { productId, quantity, options } })
         .then((res) => {
           if (res?.addToCart?.success) {
-            window.updateCart?.(res.addToCart.data); // لاحقًا: event bus
-            this.toggleProductModal?.("productDetails", false);
+            window.updateCart?.(res.addToCart.data);
             showToast("تمت إضافة المنتج للسلة", "success");
           } else {
             showToast(res?.addToCart?.message || "فشل الإضافة", "error");
           }
         })
         .catch(() => showToast("حدث خطأ أثناء الإضافة", "error"))
-        .finally(() => this.updateLoading("addToCart", false));
-    },
+        .finally(() => {
+          this.loading = { ...this.loading, [productId]: false };
+        });
+    }
+    
+    ,    
 
     buyNowProduct(payload) {
       if (this.isOutOfStock) {

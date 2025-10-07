@@ -39,11 +39,11 @@
                 </div>
                 {% if data.product.collections %}
                 <div class="flex gap-1 items-center">
-                {% for  index, item in data.product.collections %}
-                <p class="text-right text-gray/80 text-xs mb-3">{{ item.title }}</p> 
-                
-                {% endfor %}
-            </div>
+                    {% for index, item in data.product.collections %}
+                    <p class="text-right text-gray/80 text-xs mb-3">{{ item.title }}</p>
+
+                    {% endfor %}
+                </div>
                 {% endif %}
             </div>
             {% if data.product.pricing.price %}
@@ -68,26 +68,26 @@
             <span class=" text-nowrap">عرض التفاصيل</span>
         </a>
         {% else %}
-        <button
-        @click="addProductToCart('{{ data.product._id }}', 1, [])"
-        :disabled="loading.addToCart"
-        class="w-full py-2 rounded-[8px] text-sm font-semibold flex items-center justify-center hover:opacity-95"
-        :class="loading.addToCart
+        <button @click="addProductToCart('{{ data.product._id }}', 1, [])" :disabled="loading['{{ data.product._id }}']"
+            class="w-full py-2 h-9 rounded-[8px] text-sm font-semibold flex items-center justify-center hover:opacity-95"
+            :class="loading['{{ data.product._id }}']
           ? 'bg-gray-100 border border-gray-200 text-gray-400 cursor-not-allowed'
-          : 'bg-primary text-white active:scale-105'"
-      >
-        <template v-if="loading.addToCart">
-          <div class="flex items-center justify-center gap-2">
-            {% ui "loading.njk" %}
-            <span>جارٍ الإضافة...</span>
-          </div>
-        </template>
-      
-        <template v-else>
-          إضافة للسلة
-        </template>
-      </button>
-      
+          : 'bg-primary text-white active:scale-105'">
+
+            <template v-if="loading['{{ data.product._id }}']">
+                <div class="flex items-center justify-center gap-2">
+                    {% ui "loading.njk" %}
+                </div>
+            </template>
+
+            <template v-else>
+                إضافة للسلة
+            </template>
+        </button>
+
+
+
+
         {% endif %}
     </div>
 </div>

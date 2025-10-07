@@ -80,7 +80,7 @@
                     class="w-6 h-6 text-gray-600 text-base hover:bg-gray-50 material-symbols-outlined border border-gray-300 rounded flex items-center justify-center"
                     @click="increaseCartItem(item._id, item.quantity)">add</button>
                 </div>
-                <button class="text-gray-400 hover:text-red-500 self-end" @click="clearCartItem(item._id)">
+                <button class="text-gray-400 hover:text-red-500 self-start" @click="clearCartItem(item._id)">
                   <span class="material-symbols-outlined">delete</span>
                 </button>
               </div>
@@ -123,9 +123,14 @@
               </div>
             </div>
             <button
-              class="w-full mt-6 bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary transition-colors duration-300"
+              class="w-full min-h-[52px] mt-6 bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary transition-colors duration-300"
               :disabled="globalLoading.checkout" @click="checkout()">
-              اتمام الطلب
+            <span v-show="!globalLoading.checkout" class=" text-base font-semibold">اتمام الطلب</span>
+              <template v-if="globalLoading.checkout">
+                <div class="flex justify-center">
+                  {%ui "loading.njk" %}
+                </div>
+              </template>
             </button>
           </div>
         </div>
