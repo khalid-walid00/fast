@@ -17,7 +17,7 @@ module.exports = {
         'changa': ['Changa', 'sans-serif'],
       },
       colors: {
-        mainColor:'var(--mainColor)',
+        primary:'var(--primary)',
         subColor: "var(--subColor)",
         footerColor: "var(--footerColor)",
         footerColorText: "var(--footerColorText)",

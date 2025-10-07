@@ -1,4 +1,4 @@
-<main v-cloak  class="transition-all duration-300 pt-4">
+<main v-cloak class="transition-all duration-300 pt-4">
   <div class="container py-4">
     <!-- Breadcrumbs -->
     <nav class="text-base md:text-lg text-gray-600 mb-4" aria-label="Breadcrumb">
@@ -20,76 +20,74 @@
         <!-- المنتجات - نفس كروت التصميم -->
         <div class="lg:col-span-2 mb-8 lg:mb-0 space-y-4 lg:pl-4">
           <!-- شريط التقدم نحو التوصيل المجاني (محصور بعرض عمود المنتجات) -->
-          <div class="bg-white rounded-lg border p-4" style="border-color:#D9D9D940">
+          <div class="bg-white rounded-lg border-strok border-[1.5px] p-4" style="border-color:#D9D9D940">
             <div class="flex items-center justify-start w-full text-xs md:text-sm text-gray-700 mb-2 text-right">
               <span class="font-bold">
                 {% set thr = settings.free_shipping_threshold or 800 %}
-                أضف <span class="text-[#F59A57]">{{ thr }} ج.م</span> إلى مشترياتك لتحصل على الشحن مجانًا!
+                أضف <span class="text-primary">{{ thr }} ج.م</span> إلى مشترياتك لتحصل على الشحن مجانًا!
               </span>
             </div>
             <div class="relative w-full mt-1">
               <div class="rounded-full w-full" style="height:6px; background:#F4F4F4"></div>
-              <div class="absolute inset-y-0 right-0 rounded-full" style="height:6px; width:50%; background:#F59A57"></div>
+              <div class="absolute inset-y-0 bg-primary right-0 rounded-full" style="height:6px; width:50%;"></div>
               <div class="absolute top-1/2 -translate-y-1/2" style="right: calc(50% - 10px)">
-                <div class="rounded-full bg-white flex items-center justify-center" style="width:20px; height:20px; border:1px solid #F59A57">
-                  <span style="display:block; width:8px; height:8px; border-radius:9999px; background:#F59A57"></span>
+                <div class="rounded-full bg-white border bordrer-primary flex items-center justify-center"
+                  style="width:20px; height:20px;">
+                  <span class="bg-primary" style="display:block; width:8px; height:8px; border-radius:9999px;"></span>
                 </div>
               </div>
             </div>
           </div>
-          <div class="rounded-lg border bg-white" style="border-color:#D9D9D940">
-          <template v-for="(item, i) in globals?.cart?.items" :key="item._id">
-            <div class="p-4 flex items-center gap-4" :class="{'border-b': i !== (globals?.cart?.items?.length - 1)}" style="border-color:#D9D9D9">
-              <img :src="item?.productData?.image?.fileUrl" :alt="item?.productData?.title" class="w-20 h-20 object-cover rounded-md">
-              <div class="flex-grow min-w-0">
-                <h3 class="font-normal text-gray-800 truncate text-[14px]" v-text="item?.productData?.title"></h3>
-                <!-- سطر الحجم بعد اسم المنتج -->
-                <template v-if="item?.variantData?.options?.length">
-                  <template v-for="opt in item?.variantData?.options" :key="opt?._id + '-size'">
-                    <div
-                      v-if="
-                        ['الحجم','المقاس','القياس','حجم','size'].includes(((opt?.option?.name || '').toString().trim().toLowerCase())) ||
-                        ((opt?.option?.slug || '').toString().trim().toLowerCase() === 'size') ||
-                        ['كبير','صغير','متوسط','large','small','medium'].includes(((opt?.label || '').toString().trim().toLowerCase()))
-                      "
-                      class="text-sm text-gray-600 mt-0.5">
-                      <span>الحجم :</span>
-                      <span v-text="opt?.label"></span>
+          <div class="rounded-lg  border-strok border-[1.5px] bg-white" style="border-color:#D9D9D940">
+            <template v-for="(item, i) in globals?.cart?.items" :key="item._id">
+              <div class="p-4 flex items-center gap-4"
+                :class="{'border-b-[1.5px]': i !== (globals?.cart?.items?.length - 1)}">
+                <img :src="item?.productData?.image?.fileUrl" :alt="item?.productData?.title"
+                  class="w-20 h-20 object-cover rounded-md">
+                <div class="flex-grow min-w-0">
+                  <h3 class="font-medium text-secondary truncate text-sm" v-text="item?.productData?.title"></h3>
+
+                  <template v-if="item?.variantData?.options?.length">
+                    <div class="flex flex-col gap-1">
+                      <template v-for="(option, idx) in item?.variantData?.options" :key="idx">
+                        <div class="flex items-center gap-2">
+                          <span class="text-[#7C7C7C] text-xs" v-text="option?.option?.name"></span>
+                          <span class="text-xl font-bold">:</span>
+                          <span class="text-[#7C7C7C] text-xs" v-text="option?.label"></span>
+                        </div>
+                      </template>
                     </div>
                   </template>
-                </template>
-                <!-- باقي الخيارات بدون تكرار الحجم -->
-                <template v-if="item?.variantData?.options?.length">
-                  <div class="text-sm text-gray-500">
-                    <template v-for="opt in item?.variantData?.options" :key="opt?._id">
-                      <span v-if="!(
-                        ['الحجم','المقاس','القياس','حجم','size'].includes(((opt?.option?.name || '').toString().trim().toLowerCase())) ||
-                        ((opt?.option?.slug || '').toString().trim().toLowerCase() === 'size') ||
-                        ['كبير','صغير','متوسط','large','small','medium'].includes(((opt?.label || '').toString().trim().toLowerCase()))
-                      )" class="inline-block mr-1"><span v-text="opt?.option?.name"></span>: <span v-text="opt?.label"></span></span>
-                    </template>
+
+                </div>
+                <div class="font-bold text-lg text-primary w-24 text-center flex items-center gap-2">
+                  <div  v-show="item.totalPrice > 0" class="flex items-center gap-1">
+                    <span v-text="item.totalPrice" class="text-primary text-sm font-semibold"></span>
+                    <span v-text="globals?.currency?.currencySymbol"></span>
                   </div>
-                </template>
+                <div  v-show="item.totalSavings > 0" class="flex items-center gap-1">
+                    <span class="text-[#7C7C7C] text-xs font-semibold line-through"
+                      v-text="item.totalCompareAtPrice"></span>
+                    <span  v-text="globals?.currency?.currencySymbol"></span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <button
+                    class="w-6 h-6 text-base text-gray-600 hover:bg-gray-50 material-symbols-outlined border border-gray-300 rounded flex items-center justify-center"
+                    @click="decreaseCartItem(item._id, item.quantity)">remove</button>
+                  <span class="px-2  text-secondary text-sm font-semibold select-none" v-text="item.quantity"></span>
+                  <button
+                    class="w-6 h-6 text-gray-600 text-base hover:bg-gray-50 material-symbols-outlined border border-gray-300 rounded flex items-center justify-center"
+                    @click="increaseCartItem(item._id, item.quantity)">add</button>
+                </div>
+                <button class="text-gray-400 hover:text-red-500 self-end" @click="clearCartItem(item._id)">
+                  <span class="material-symbols-outlined">delete</span>
+                </button>
               </div>
-              <p class="font-bold text-lg text-[#F59A57] w-24 text-center">
-                <span v-text="item?.price || item?.variantData?.price || 0"></span>
-                <span v-text="globals?.currency?.currencySymbol"></span>
-              </p>
-              <div class="flex items-center gap-2">
-                <button class="w-8 h-8 md:w-9 md:h-9 text-gray-600 hover:bg-gray-50 border border-gray-300 rounded flex items-center justify-center"
-                        @click="decreaseCartItem(item._id, item.quantity)">-</button>
-                <span class="px-2 md:px-3 text-gray-800 font-semibold select-none" v-text="item.quantity"></span>
-                <button class="w-8 h-8 md:w-9 md:h-9 text-gray-600 hover:bg-gray-50 border border-gray-300 rounded flex items-center justify-center"
-                        @click="increaseCartItem(item._id, item.quantity)">+</button>
-              </div>
-              <button class="text-gray-400 hover:text-red-500" @click="clearCartItem(item._id)">
-                <span class="material-symbols-outlined">delete</span>
-              </button>
-            </div>
-          </template>
+            </template>
           </div>
         </div>
-        
+
         <!-- ملخص السعر - قسم أكبر وأجمل -->
         <div class="lg:col-span-1">
           <div class="bg-white p-6 lg:pl-8 rounded-lg shadow-sm sticky top-8 border" style="border-color:#F59A57">
@@ -108,7 +106,7 @@
               <div class="flex justify-between">
                 <div>
                   <span>الشحن:</span>
-                  <a href="/collections" class="text-sm text-[#F59A57] hover:underline block">تغيير عنوان الشحن</a>
+                  <a href="/collections" class="text-sm text-primary hover:underline block">تغيير عنوان الشحن</a>
                 </div>
                 <span class="font-semibold">
                   <span v-text="globals?.cart?.shippingPrice || 0"></span>
@@ -124,8 +122,9 @@
                 </span>
               </div>
             </div>
-            <button class="w-full mt-6 bg-[#F59A57] text-white font-bold py-3 rounded-lg hover:bg-orange-500 transition-colors duration-300"
-                    :disabled="globalLoading.checkout" @click="checkout()">
+            <button
+              class="w-full mt-6 bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary transition-colors duration-300"
+              :disabled="globalLoading.checkout" @click="checkout()">
               اتمام الطلب
             </button>
           </div>
@@ -135,25 +134,31 @@
 
     <!-- الحالة: السلة فاضية -->
     <div v-show="!globals?.cart || !globals?.cart?.items || globals?.cart?.items?.length === 0"
-         class="max-w-2xl mx-auto text-center">
+      class="max-w-2xl mx-auto text-center">
       <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
         <div class="mx-auto h-20 w-20 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 mb-6">
           <svg class="h-10 w-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 7l2 12a2 2 0 0 0 2 2h10a2 2 0 0 1 1.818 0Z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6M9 16h4"/>
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 7h18M3 7l2 12a2 2 0 0 0 2 2h10a2 2 0 0 1 1.818 0Z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6M9 16h4" />
           </svg>
         </div>
         <h1 class="text-2xl font-bold text-gray-900 font-cairo mb-3">سلة المشتريات فارغة</h1>
         <p class="text-gray-600 font-cairo mb-8">ابدأ بإضافة منتجاتك الآن واستمتع بتجربة تسوق مميزة</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/collections" class="inline-flex items-center justify-center gap-3 bg-white text-gray-800 rounded-xl px-8 py-4 font-bold text-lg shadow-sm hover:shadow-md border border-gray-200 hover:border-gray-300 hover:bg-gray-50 font-cairo transition-all duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          <a href="/collections"
+            class="inline-flex items-center justify-center gap-3 bg-white text-gray-800 rounded-xl px-8 py-4 font-bold text-lg shadow-sm hover:shadow-md border border-gray-200 hover:border-gray-300 hover:bg-gray-50 font-cairo transition-all duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
             </svg>
             تصفح المجموعات
           </a>
-          <a href="/latest" class="inline-flex items-center justify-center gap-3 bg-[#003033] hover:bg-[#004d4d] text-white rounded-xl px-8 py-4 font-bold text-lg shadow-md hover:shadow-lg font-cairo transition-all duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <a href="/latest"
+            class="inline-flex items-center justify-center gap-3 bg-[#003033] hover:bg-[#004d4d] text-white rounded-xl px-8 py-4 font-bold text-lg shadow-md hover:shadow-lg font-cairo transition-all duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
             </svg>
             متابعة التسوق
@@ -165,29 +170,36 @@
 </main>
 
 <!-- منتجات قد تهمك - بنفس تصميم الكروت -->
-<section class="container pb-12" v-show="(globals?.latest?.items && globals?.latest?.items.length) || (globals?.products?.items && globals?.products?.items.length)">
+<section class="container pb-12"
+  v-show="(globals?.latest?.items && globals?.latest?.items.length) || (globals?.products?.items && globals?.products?.items.length)">
   <div class="section-title-container">
     <h2 class="section-title">منتجات قد تهمك</h2>
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    <template v-for="p in ((globals?.latest?.items && globals?.latest?.items.length ? globals?.latest?.items : globals?.products?.items) || []).slice(0, 8)" :key="p?._id">
+    <template
+      v-for="p in ((globals?.latest?.items && globals?.latest?.items.length ? globals?.latest?.items : globals?.products?.items) || []).slice(0, 8)"
+      :key="p?._id">
       <div class="bg-white rounded-lg shadow-sm overflow-hidden text-center group border">
         <div class="relative">
           <a :href="'/product/' + (p?.slug || '')">
-            <img :src="p?.images?.[0]?.fileUrl || 'https://placehold.co/300x300/E2E8F0/A0AEC0?text=Chair'" :alt="p?.title" class="w-full h-56 object-cover">
+            <img :src="p?.images?.[0]?.fileUrl || 'https://placehold.co/300x300/E2E8F0/A0AEC0?text=Chair'"
+              :alt="p?.title" class="w-full h-56 object-cover">
           </a>
         </div>
         <div class="p-4">
           <h3 class="font-semibold text-lg text-gray-800 truncate" v-text="p?.title"></h3>
           <p class="text-sm text-gray-500 mb-2" v-text="p?.category?.title || ''"></p>
           <div class="flex justify-center items-baseline gap-2 mb-4">
-            <span class="text-xl font-bold text-[#F59A57]"><span v-text="p?.pricing?.price || 0"></span> <span v-text="globals?.currency?.currencySymbol"></span></span>
+            <span class="text-xl font-bold text-primary"><span v-text="p?.pricing?.price || 0"></span> <span
+                v-text="globals?.currency?.currencySymbol"></span></span>
             <template v-if="p?.pricing?.compareAtPrice && p?.pricing?.compareAtPrice > (p?.pricing?.price || 0)">
-              <span class="text-sm text-gray-400 line-through"><span v-text="p?.pricing?.compareAtPrice"></span> <span v-text="globals?.currency?.currencySymbol"></span></span>
+              <span class="text-sm text-gray-400 line-through"><span v-text="p?.pricing?.compareAtPrice"></span> <span
+                  v-text="globals?.currency?.currencySymbol"></span></span>
             </template>
           </div>
-          <button class="w-full bg-[#F59A57] text-white font-bold py-2 rounded-lg hover:bg-orange-500 transition-colors duration-300"
-                  @click="addProductToCart(p?._id, 1, [])" :disabled="loading.addToCart">
+          <button
+            class="w-full bg-primary text-white font-bold py-2 rounded-lg hover:bg-primary transition-colors duration-300"
+            @click="addProductToCart(p?._id, 1, [])" :disabled="loading.addToCart">
             إضافة للسلة
           </button>
         </div>
@@ -195,4 +207,3 @@
     </template>
   </div>
 </section>
-  

@@ -1,11 +1,11 @@
 <div v-cloak>
-  <transition name="fade">
+  {# <transition name="fade"> #}
     <div
       v-if="modal.open && modal.type==='sidebar'"
-      class="fixed inset-0 bg-black bg-opacity-50 z-50"
+      class="fixed inset-0  bg-opacity-30 backdrop-blur-sm  bg-black z-50"
       @click="toggleModal('sidebar')"
     ></div>
-  </transition>
+  {# </transition> #}
 
   <transition name="slide-left">
     <div
@@ -14,7 +14,7 @@
     >
       <!-- Header -->
       <div class="flex justify-between py-[10px] px-5 border-b">
-        <span class="font-medium text-dark">القائمة الرئيسية</span>
+        <span class="font-medium text-secondary">القائمة الرئيسية</span>
         <button @click="toggleModal('sidebar')">
           <span class="material-symbols-outlined"> close </span>
         </button>

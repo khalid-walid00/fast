@@ -17,7 +17,7 @@
         "description": "النص الذي يظهر في شريط التنقل",
         "default": "احصل على توصيل مجاني للمنزل (عند الطلب بأكثر من 1000 جنية مصرى)"
       },
-      "mainColor": {
+      "primary": {
         "type": "color",
         "label": "Main Color",
         "default": "#ff0000"
@@ -87,7 +87,7 @@
         "label": "Metadata Schema Name",
         "default": "احصل على توصيل مجاني للمنزل (عند الطلب بأكثر من 1000 جنية مصرى)"
       },
-      "mainColor": {
+      "primary": {
         "type": "color",
         "label": "Main Color",
         "default": "#ff0000"

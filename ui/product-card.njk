@@ -1,69 +1,93 @@
-{# <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden group border flex flex-col h-[420px]">
-
-    <!-- Product Image -->
-    <a href="/product/{{ data.product.slug }}" class="group block">
-        <img src="{{ data.product.images[0].fileUrl | default('https://placehold.co/600x400/orange/white') }}"
-            alt="{{ data.product.title }}"
-            class="w-full h-64 object-cover transition-all duration-300 group-hover:scale-110 group-hover:opacity-90">
-    </a>
-
-    <!-- Product Details -->
-    <div class="p-4 text-center flex flex-col h-full">
-        <div class="flex-1">
-            <h3 class="font-semibold text-sm text-gray-800 leading-relaxed mb-2">{{ data.product.title }}</h3>
-            <p class="text-black font-bold">{{ data.product.pricing.price | money }}</p>
-        </div>
-
-        <!-- Add to Cart Button -->
-        <div class="mt-auto pt-3">
-            <button @click="addProductToCart('{{ data.product._id }}', 1, [])" :disabled="loading.addToCart"
-                class="w-full bg-[#003033] hover:bg-[#004d4d] text-white py-3 px-4 rounded-lg text-sm font-bold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md font-cairo font-medium flex items-center justify-center gap-2">
-
-                <!-- Icon + Text -->
-                <i x-show="!loading.addToCart" class="fi fi-rr-shopping-cart text-lg"></i>
-                <span x-show="!loading.addToCart">أضف للسلة</span>
-
-                <!-- Loading -->
-                <svg x-show="loading.addToCart" class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
-                </svg>
-                <span x-show="loading.addToCart">جاري الإضافة...</span>
-            </button>
-        </div>
-    </div>
-</div> #}
-
-<div class="bg-white rounded-xl shadow-[0px_0px_10px_0px_#E4E4E4] overflow-hidden h-full flex flex-col">
+<div class="bg-white rounded-xl border-[1.5px]  border-Strok overflow-hidden h-full flex flex-col">
     <div class="relative">
         <a href="/product/{{ data.product.slug }}" class="block">
             <img alt="{{ data.product.title }}"
                 src="{{ data.product.images[0].fileUrl | default('https://placehold.co/600x400/orange/white') }}"
                 alt="{{ product.title }}" class="w-full h-48 md:h-56 object-cover">
         </a>
-            {% if data.product.pricing.compareAtPrice and data.product.pricing.compareAtPrice > data.product.pricing.price %}
-        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">{{ ((data.product.pricing.compareAtPrice - data.product.pricing.price) * 100 / data.product.pricing.compareAtPrice) | round(1) }}%
+        {% if data.product.pricing.compareAtPrice and data.product.pricing.compareAtPrice > data.product.pricing.price
+        %}
+        <span class="absolute top-2 right-2 bg-secondary text-white text-xs px-2 py-1 rounded">{{
+            ((data.product.pricing.compareAtPrice - data.product.pricing.price) * 100 /
+            data.product.pricing.compareAtPrice) | round(1) }}%
         </span>
         {% endif %}
-        </div>
-    <div class="p-3 flex flex-col flex-1">
-        <div class="flex  justify-between mb-1">
-            <h3 class="font-semibold text-right text-xl leading-6 min-h-[48px]" style="display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; text-overflow:ellipsis;"><a href="/product/{{ data.product.slug }}">{{ data.product.title }}</a></h3>
-            <div class="flex items-center text-yellow-500 text-xs">
-                <span class="material-symbols-outlined text-sm">star</span>
-                <span class="ml-1 text-gray-600">5</span>
+    </div>
+    <div class="p-3 flex flex-col gap-4 flex-1">
+        <div class="flex flex-col gap-4 flex-1">
+            <div class="flex flex-col gap-2 ">
+                <a class="font-medium text-xl truncate" href="/product/{{ data.product.slug }}">{{ data.product.title
+                    }}</a>
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center gap-0.5  text-xs">
+                        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_287_3343)">
+                                <rect width="16" height="16" transform="translate(0.5 0.5)" fill="white" />
+                                <path
+                                    d="M8.88798 0.773247L10.9336 5.78776L16.125 6.27419C16.2069 6.28123 16.2851 6.31358 16.3496 6.36716C16.4141 6.42073 16.462 6.49314 16.4873 6.57525C16.5127 6.65736 16.5143 6.74551 16.492 6.82858C16.4697 6.91166 16.4244 6.98594 16.3619 7.04208L12.4323 10.6356L13.5911 15.9644C13.6032 16.0204 13.6047 16.0783 13.5954 16.1349C13.5861 16.1915 13.5662 16.2456 13.5369 16.2941C13.5076 16.3425 13.4695 16.3845 13.4247 16.4175C13.38 16.4505 13.3294 16.4739 13.276 16.4863C13.1655 16.5108 13.0503 16.4882 12.9557 16.4235L8.49605 13.6306L4.0247 16.4371C3.97799 16.4668 3.92613 16.4866 3.87212 16.4952C3.81811 16.5038 3.76301 16.5011 3.71 16.4872C3.65698 16.4734 3.6071 16.4487 3.56323 16.4145C3.51936 16.3804 3.48237 16.3374 3.45439 16.2882C3.42635 16.24 3.40767 16.1864 3.3994 16.1306C3.39113 16.0748 3.39345 16.0179 3.40621 15.963L4.56636 10.6342L0.641884 7.04208C0.559394 6.96527 0.508842 6.85763 0.501054 6.7422C0.493266 6.62676 0.528862 6.51272 0.600218 6.42449C0.67886 6.33993 0.785838 6.29091 0.898395 6.28785L6.07027 5.80143L8.11584 0.773247C8.14884 0.694658 8.2029 0.627837 8.27145 0.580924C8.34 0.534011 8.42007 0.509033 8.50191 0.509033C8.58375 0.509033 8.66382 0.534011 8.73237 0.580924C8.80092 0.627837 8.85498 0.694658 8.88798 0.773247Z"
+                                    fill="#FFC700" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_287_3343">
+                                    <rect width="16" height="16" fill="white" transform="translate(0.5 0.5)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <span class="text-secondary font-semibold">5</span>
+                    </div>
+                    <span class="font-semibold text-gray">6 تقييمات </span>
+                </div>
+                {% if data.product.collections %}
+                <div class="flex gap-1 items-center">
+                {% for  index, item in data.product.collections %}
+                <p class="text-right text-gray/80 text-xs mb-3">{{ item.title }}</p> 
+                
+                {% endfor %}
             </div>
-        </div>
-        <p class="text-right text-gray-500 text-xs mb-3">{{ data.product.collection.title }}</p>
-        <div class="flex items-center justify-start gap-2 mb-2">
-            <p class="text-sm font-bold primary-orange-text">{{ data.product.pricing.price | money }}</p>
-            {% if data.product.pricing.compareAtPrice and data.product.pricing.compareAtPrice > data.product.pricing.price %}
-            <p class="text-xs text-gray-400 line-through">{{ data.product.pricing.compareAtPrice | money }}</p>
+                {% endif %}
+            </div>
+            {% if data.product.pricing.price %}
+            <div class="flex items-center flex-wrap justify-start  ">
+                <p class="text-2xl font-bold text-secondary ml-2">
+                    {{ data.product.pricing.price | money }}
+                </p>
+                {% if data.product.pricing.compareAtPrice and data.product.pricing.compareAtPrice >
+                data.product.pricing.price %}
+                <p class=" text-gray line-through">
+                    {{ data.product.pricing.compareAtPrice | money }}
+                </p>
+                {% endif %}
+            </div>
             {% endif %}
         </div>
-        <button @click="addProductToCart('{{ data.product._id }}', 1, [])" :disabled="loading.addToCart"
-            class="w-full primary-orange text-white py-2 rounded-[8px] text-sm font-semibold hover:opacity-95 mt-auto">إضافة
-            للسلة
-        </button>
+
+
+        {% if data.product.variantsCount > 0 %}
+        <a href="/product/{{ data.product.slug }}"
+            class="w-full bg-primary text-white py-2 rounded-[8px] flex items-center justify-center text-sm font-semibold hover:opacity-95 ">
+            <span class=" text-nowrap">عرض التفاصيل</span>
+        </a>
+        {% else %}
+        <button
+        @click="addProductToCart('{{ data.product._id }}', 1, [])"
+        :disabled="loading.addToCart"
+        class="w-full py-2 rounded-[8px] text-sm font-semibold flex items-center justify-center hover:opacity-95"
+        :class="loading.addToCart
+          ? 'bg-gray-100 border border-gray-200 text-gray-400 cursor-not-allowed'
+          : 'bg-primary text-white active:scale-105'"
+      >
+        <template v-if="loading.addToCart">
+          <div class="flex items-center justify-center gap-2">
+            {% ui "loading.njk" %}
+            <span>جارٍ الإضافة...</span>
+          </div>
+        </template>
+      
+        <template v-else>
+          إضافة للسلة
+        </template>
+      </button>
+      
+        {% endif %}
     </div>
 </div>

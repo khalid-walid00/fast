@@ -1,32 +1,35 @@
 <!-- Header & Interactive Modals Controller -->
 <div class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#E9E9E9] w-full">
-    <header class="container py-1.5 md:py-4 flex items-center gap-[42px] justify-between">
-        <div class="flex items-center gap-9">
-            <img src="{{ globals.app.logo.fileUrl }}" alt="logo" class="md:w-[50px] w-11  ">
+    <header class="container py-1.5 md:py-4 flex items-center gap-8 justify-between">
+        <div class="flex items-center gap-8">
+            <img src="{{ globals.app.logo.fileUrl }}" alt="logo" class="md:w-[50px] md:h-[43px] w-11  ">
             <div class="relative hidden md:flex items-center w-full min-w-0">
-                <nav class="flex items-center justify-center gap-x-5 xl:gap-x-7">
+                <nav class="flex items-center justify-center gap-x-5  w-max">
                     {% set items = widget.data.header_menu or [] %}
                     {% for item in items %}
                     {% if loop.index0 < 6 %} <a href="{{ item.url | default('#') }}"
-                        class="text-dark hover:text-mainColor font-semibold whitespace-nowrap transition-colors duration-200">
+                        class="text-secondary hover:text-primary font-semibold whitespace-nowrap transition-colors duration-200">
                         {{ item.title | default('بدون عنوان') }}</a>
                         {% endif %}
                         {% endfor %}
                         {% if items | length > 6 %}
                         <div class="relative group flex items-center">
                             <button
-                                class="w-8 h-8 inline-flex items-center justify-center rounded-md hover:bg-gray-100 hover:text-mainColor text-gray-700 transition-colors duration-200"
+                                class="inline-flex items-center hover:text-primary justify-center rounded-md  "
                                 aria-label="المزيد">
-                                <span class="material-symbols-outlined">
-                                    more_horiz
+                                <span class="font-semibold">
+                                    المزيد
                                 </span>
+                                <span class="material-symbols-outlined">
+                                    arrow_drop_down
+                                    </span>
                             </button>
                             <div
                                 class="absolute top-full mt-2 right-0 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50 min-w-[12rem] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                                 {% for item in items %}
                                 {% if loop.index0 >= 6 %}
                                 <a href="{{ item.url | default('#') }}"
-                                    class="block font-semibold px-4 py-2  text-gray-600 hover:text-mainColor hover:bg-gray-50 whitespace-nowrap">{{
+                                    class="block font-semibold px-4 py-2  text-gray-600 hover:text-primary hover:bg-gray-50 whitespace-nowrap">{{
                                     item.title | default('بدون عنوان') }}</a>
                                 {% endif %}
                                 {% endfor %}
@@ -36,41 +39,45 @@
                 </nav>
             </div>
         </div>
-        <div class="items-center hidden xl:flex bg-mainColor gap-3.5 rounded-lg py-[5px] pr-4 pl-[6px]">
-            <form @submit.prevent="setSearch(search)" class="w-7/12 md:flex hidden items-center gap-3.5">
-              <button type="submit"
-                class="bg-primary cursor-pointer rounded-full material-symbols-outlined text-xl text-white flex items-center justify-center w-5 h-5">
-                search
-              </button>
-              <input v-model="search" ref="search" type="text" placeholder="ابحث عن منتج"
-                class="placeholder-white px-5 py-[2px] border border-[#C5C5C7] focus:outline-none rounded-lg bg-white text-mainColor">
+        <div class="items-center hidden xl:flex border border-strok flex-1 gap-3.5 rounded-lg py-[5px]  ">
+            <form @submit.prevent="setSearch(search)" class="w-7/12 md:flex flex-1 hidden items-center gap-5">
+                <button type="submit"
+                    class=" pl-[18px] cursor-pointer transform -scale-x-100 material-symbols-outlined text-xl text-strok flex items-center justify-center w-5 h-5">
+                    search
+                </button>
+                <input v-model="search" ref="search" type="text" placeholder="البحث هنا"
+                    class="placeholder-white py-[2px] flex-1 focus:outline-none rounded-lg bg-white text-primary">
             </form>
-          </div>
-          {# [[globals]] #}
-        <div class=" items-center hidden xl:flex gap-5 ">
-            <button @click="toggleModal('cart')" class="flex items-center rounded-full bg-black gap-2 py-[7px] px-2">
-                <span class="font-semibold text-nowrap text-white text-xs">1.00 ج.م</span>
+        </div>
+        <div class=" items-center hidden xl:flex gap-4 ">
+            <button @click="toggleModal('cart')" class="flex items-center rounded-lg bg-primary min-w-[106px] gap-1.5 py-2 px-4">
                 <div class="relative flex items-center">
-                    <span v-text="globals?.cart?.items?.length" class=" rounded-full text-white w-3 h-3 bg-mainColor absolute -top-1 -right-1 text-[10px] font-bold flex items-center justify-center">
+                    <span v-text="globals?.cart?.items?.length"
+                        class=" rounded-full text-white w-3 h-3 bg-primary absolute -top-1 -right-1 text-[10px] font-bold flex items-center justify-center">
                     </span>
                     <span class="material-symbols-outlined text-xl text-white flex items-center justify-center w-5 h-5">
                         shopping_cart
                     </span>
                 </div>
+                <div class="flex items-center">
+                    <span v-text="globals.cart.totalPrice" class="font-semibold text-nowrap text-white text-xs"></span>
+                    <span v-text="globals?.currency?.currencySymbol" class="font-semibold text-nowrap text-white text-xs mr-1"></span>
+                    
+                </div>
             </button>
             {% if globals.customer._id %}
-            <button @click="logout()" class="flex items-center rounded-full bg-[#CCCCCC] gap-2 py-[7px] px-2">
-                <span class="font-semibold text-dark text-nowrap text-xs">التسجيل/ تسجيل الدخول</span>
-                <span class="material-symbols-outlined text-xl text-dark flex items-center justify-center w-5 h-5">
+            <button @click="logout()" class="flex items-center rounded-lg bg-[#CCCCCC] gap-2 py-2 px-2">
+                <span class="material-symbols-outlined text-xl text-secondary flex items-center justify-center w-5 h-5">
                     person
                 </span>
+                <span class="font-semibold text-secondary text-nowrap text-xs">التسجيل/ تسجيل الدخول</span>
             </button>
             {% else %}
-            <button @click="login()" class="flex items-center rounded-full bg-[#CCCCCC] gap-2 py-[7px] px-2">
-                <span class="font-semibold text-dark text-nowrap text-xs">التسجيل/ تسجيل الدخول</span>
-                <span class="material-symbols-outlined text-xl text-dark flex items-center justify-center w-5 h-5">
+            <button @click="login()" class="flex items-center rounded-lg bg-[#CCCCCC] gap-2 py-2 px-2">
+                <span class="material-symbols-outlined text-xl text-secondary flex items-center justify-center w-5 h-5">
                     person
                 </span>
+                <span class="font-semibold text-secondary text-nowrap text-xs">التسجيل/ تسجيل الدخول</span>
             </button>
             {% endif %}
         </div>
@@ -81,7 +88,7 @@
             </button>
             <div class=" relative flex items-center">
                 <span v-text="globals?.cart?.items?.length"
-                    class=" rounded-full bg-mainColor absolute -top-1 text-white -right-1 text-[10px] font-bold flex items-center justify-center w-3 h-3">
+                    class=" rounded-full bg-primary absolute -top-1 text-white -right-1 text-[10px] font-bold flex items-center justify-center w-3 h-3">
                 </span>
                 <button @click="toggleModal('cart')"
                     class="material-symbols-outlined text-xl text-black flex items-center justify-center w-5 h-5">
