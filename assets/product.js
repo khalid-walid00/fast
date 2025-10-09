@@ -1,4 +1,4 @@
-import { storeGateRequest } from "./helper.js";
+import { storeGateRequest, showToast } from "./helper.js";
 import { productSchema } from "./product.schema.js";
 
 export default {
@@ -59,72 +59,12 @@ export default {
     updateLoading(key, val) {
       if (key in this.loading) this.loading[key] = val;
     },
-
-    variantByOptions(prod) {
-      if (!prod?.options?.length) return;
-
-      const allSelected = prod.options.every(
-        (opt) => Boolean(this.selectedOptions[opt._id])
-      );
-      if (!allSelected) return;
-
-      const selectedOptionValues = prod.options.map(
-        (opt) => this.selectedOptions[opt._id]
-      );
-
-      const input = { options: selectedOptionValues };
-
-      storeGateRequest(productSchema.variantByOptions, { input })
-        .then((res) => {
-          if (res?.variantByOptions?.success) {
-            this.loading.optionsLoading = false;
-            this.resolvedPrice = res.variantByOptions.data.pricing;
-            this.product.quantity = res.variantByOptions.data.quantity;
-            this.productQuantity = 1;
-            showToast("تم تحديث السعر بنجاح", "success");
-          }
-        })
-        .finally(() => {
-          this.loading.priceAtCall = false;
-        });
-    },
-
-    initOptions() {
-      if (!this.product?.options?.length) return;
-      showToast("يرجى تحديد الخيارات", "success");
-    },
-
-    selectOption(prod, optionId, valueId) {
-      this.selectedOptions[optionId] = valueId;
-      this.loading.optionsLoading = true;
-
-      setTimeout(() => {
-        if (this.loading.optionsLoading) this.loading.optionsLoading = false;
-      }, 10000);
-
-      if (prod?.options?.length > 0) {
-        const allSelected = prod.options.every(
-          (opt) => Boolean(this.selectedOptions[opt._id])
-        );
-        if (allSelected) {
-          if (prod.variants?.length > 0) {
-            this.variantByOptions(prod);
-          } else {
-            this.loading.optionsLoading = false;
-          }
-        } else {
-          this.loading.optionsLoading = false;
-        }
-      } else {
-        this.loading.optionsLoading = false;
-      }
-    },
-
     addProductToCart(productId, quantity, options = []) {
       if (this.isOutOfStock) {
         showToast("لا توفر كمية في المخزون", "error");
         return;
       }
+      this.updateLoading("addToCart", true);
     
       this.loading = { ...this.loading, [productId]: true }; 
       storeGateRequest(productSchema.addToCart, { data: { productId, quantity, options } })
@@ -139,6 +79,7 @@ export default {
         .catch(() => showToast("حدث خطأ أثناء الإضافة", "error"))
         .finally(() => {
           this.loading = { ...this.loading, [productId]: false };
+          this.updateLoading("addToCart", false);
         });
     }
     
@@ -222,5 +163,6 @@ export default {
         .catch(() => showToast("حدث خطأ أثناء الدفع", "error"))
         .finally(() => (this.loading.checkout = false));
     },
+   
   },
 };

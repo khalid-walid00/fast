@@ -4,170 +4,59 @@
             font-family: 'Changa', sans-serif;
             background-color: #f9fafb;
         }
+
         .material-symbols-outlined {
             font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 24;
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
         }
-        .rating-stars .material-symbols-outlined { color: #FBBF24; font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        .color-swatch:focus, .size-button:focus, .thumb-image:focus {
+
+        .rating-stars .material-symbols-outlined {
+            color: #FBBF24;
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .color-swatch:focus,
+        .size-button:focus,
+        .thumb-image:focus {
             outline: none;
             box-shadow: 0 0 0 3px rgba(245, 154, 87, 0.5);
         }
-        .main-brand-color { background-color: #F59A57 !important; }
-        .main-brand-color-text { color: #F59A57 !important; }
-        .main-brand-color-border { border-color: #F59A57 !important; }
-        .size-active { background-color: #F4F4F4 !important; }
+
+        .main-brand-color {
+            background-color: #F59A57 !important;
+        }
+
+        .main-brand-color-text {
+            color: #F59A57 !important;
+        }
+
+        .main-brand-color-border {
+            border-color: #F59A57 !important;
+        }
+
+        .size-active {
+            background-color: #F4F4F4 !important;
+        }
     </style>
 
     <div class="container py-10">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            
-            <!-- Product Image Section -->
-            <div class="flex flex-col">
-                <!-- Main Image -->
-                <div class="aspect-square w-full bg-gray-200 rounded-xl overflow-hidden shadow-sm">
-                    <img id="mainImage" src="https://placehold.co/800x800/f0e5d9/333333?text=Chair+1" alt="صورة كرسي استرخاء مودرن" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
-                </div>
-                <!-- Thumbnail Gallery -->
-                <div class="grid grid-cols-4 gap-3 mt-4">
-            <template v-for="(image, index) in context.product.images" :key="index">
-                    <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden cursor-pointer border-2 main-brand-color-border" onclick="changeImage('https://placehold.co/800x800/f0e5d9/333333?text=Chair+1', this)">
-                        <img :class="imgSelected === index ? 'border-primary' : ''" :src="image.fileUrl" alt="صورة مصغرة للكرسي 1" class="w-full h-full object-cover thumb-image">
-                    </div>
-            </template>
-                </div>
-            </div>
 
-            <!-- Product Details Section -->
-            <div class="flex flex-col justify-center space-y-5">
-                <!-- Rating -->
-                <div class="flex items-center space-x-1 space-x-reverse">
-                    <div class="flex text-yellow-400 rating-stars">
-                        <span class="material-symbols-outlined !text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
-                        <span class="material-symbols-outlined !text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
-                        <span class="material-symbols-outlined !text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
-                        <span class="material-symbols-outlined !text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
-                        <span class="material-symbols-outlined !text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
-                    </div>
-                    <span class="text-gray-500 text-sm font-medium">6 تقييمات</span>
-                </div>
-
-                <!-- Title and Price -->
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-900">كرسي استرخاء مودرن</h1>
-                
-                <div class="flex items-baseline space-x-3 space-x-reverse">
-                    <span class="text-3xl font-bold text-[#F59A57]">300,000 ج.م</span>
-                    <span class="text-lg text-gray-400 line-through">500,000 ج.م</span>
-                </div>
-                
-                <!-- Description -->
-                <p class="text-gray-600 leading-relaxed">
-                    الخامة خشب زان طبيعي، قماش قطني عالي الجودة.
-                    <br>
-                    الأبعاد: العرض 80سم - العمق 70سم - الإرتفاع 90سم.
-                </p>
-
-                <div class="border-t border-gray-200 pt-5 space-y-5">
-                    <!-- Size Selector -->
-                    <div>
-                        <h3 class="text-base font-semibold text-gray-800 mb-3">الحجم:</h3>
-                        <div id="sizeSelector" class="flex items-center space-x-3 space-x-reverse">
-                            <button class="size-button px-5 py-2 rounded-none border size-active text-gray-800 shadow-sm" data-size="كبير">كبير</button>
-                            <button class="size-button px-5 py-2 rounded-none border bg-white text-gray-700 hover:bg-[#F4F4F4]" data-size="متوسط">متوسط</button>
-                            <button class="size-button px-5 py-2 rounded-none border bg-white text-gray-700 hover:bg-[#F4F4F4]" data-size="صغير">صغير</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Color Selector -->
-                    <div>
-                        <h3 class="text-base font-semibold text-gray-800 mb-3">الألوان:</h3>
-                        <div id="colorSelector" class="flex items-center space-x-3 space-x-reverse">
-                            <button class="color-swatch w-8 h-8 rounded-full bg-gray-800 ring-2 ring-offset-2 main-brand-color-ring" data-color="أسود" aria-label="أسود"></button>
-                            <button class="color-swatch w-8 h-8 rounded-full bg-gray-400" data-color="رمادي" aria-label="رمادي"></button>
-                            <button class="color-swatch w-8 h-8 rounded-full bg-yellow-500" data-color="أصفر" aria-label="أصفر"></button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Actions -->
-                <div class="flex flex-col sm:flex-row items-center gap-4 pt-4">
-                    <!-- Add to Cart Button -->
-                    <button class="w-full flex-1 bg-[#F59A57] text-white font-bold py-3.5 px-6 rounded-lg flex items-center justify-center gap-2 shadow-md">
-                        <span class="material-symbols-outlined">shopping_cart</span>
-                        <span>إضافة للسلة</span>
-                    </button>
-
-                    <!-- Quantity Selector -->
-                    <div class="flex items-center border border-gray-300 rounded-lg">
-                        <button id="decrement" class="px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-r-md transition-colors duration-200" aria-label="تقليل الكمية">-</button>
-                        <input id="quantity" type="text" value="1" class="w-12 text-center border-none focus:ring-0 font-semibold" readonly>
-                        <button id="increment" class="px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-l-md transition-colors duration-200" aria-label="زيادة الكمية">+</button>
-                    </div>
-                </div>
-
-                <!-- Buy Now Button -->
-                <button class="w-full main-brand-color-border border-2 main-brand-color-text font-bold py-3.5 px-6 rounded-lg hover:bg-[#F59A57]/10 transition-colors">
-                    إشتري الآن
-                        </button>
-            </div>
+            <component-product-gallery :images="context.product.images"></component-product-gallery>
+            <component-product-details>
+                <template #title>
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-900">{{ context.product.title }}</h1>
+                </template>
+                <template #description>
+                    <p class="text-gray-600 leading-relaxed">
+                        {{ context.product.description | default('لا يوجد وصف للمنتج') | safe }}
+                    </p>
+                </template>
+            </component-product-details>
         </div>
     </div>
 
-    <script>
-        function changeImage(src, clickedElement) {
-            document.getElementById('mainImage').src = src;
-            const thumbnails = document.querySelectorAll('.thumb-image').forEach(thumb => {
-                thumb.parentElement.classList.remove('main-brand-color-border');
-                thumb.parentElement.classList.add('border-transparent');
-            });
-            clickedElement.classList.add('main-brand-color-border');
-            clickedElement.classList.remove('border-transparent');
-        }
-
-        const quantityInput = document.getElementById('quantity');
-        const incrementBtn = document.getElementById('increment');
-        const decrementBtn = document.getElementById('decrement');
-
-        if (incrementBtn && decrementBtn && quantityInput) {
-            incrementBtn.addEventListener('click', () => {
-                let currentValue = parseInt(quantityInput.value);
-                quantityInput.value = currentValue + 1;
-            });
-            decrementBtn.addEventListener('click', () => {
-                let currentValue = parseInt(quantityInput.value);
-                if (currentValue > 1) {
-                    quantityInput.value = currentValue - 1;
-                }
-            });
-        }
-
-        const sizeSelector = document.getElementById('sizeSelector');
-        if (sizeSelector) {
-            sizeSelector.addEventListener('click', (e) => {
-                if (e.target.classList.contains('size-button')) {
-                    sizeSelector.querySelectorAll('.size-button').forEach(btn => {
-                        btn.classList.remove('size-active', 'text-gray-800', 'shadow-sm');
-                        btn.classList.add('bg-white', 'text-gray-700', 'hover:bg-[#F4F4F4]');
-                    });
-                    e.target.classList.add('size-active', 'text-gray-800', 'shadow-sm');
-                    e.target.classList.remove('bg-white', 'text-gray-700', 'hover:bg-[#F4F4F4]');
-                }
-            });
-        }
-
-        const colorSelector = document.getElementById('colorSelector');
-        if (colorSelector) {
-            colorSelector.addEventListener('click', (e) => {
-                if (e.target.classList.contains('color-swatch')) {
-                    colorSelector.querySelectorAll('.color-swatch').forEach(swatch => {
-                        swatch.classList.remove('ring-2', 'ring-offset-2', 'main-brand-color-ring');
-                    });
-                    e.target.classList.add('ring-2', 'ring-offset-2', 'main-brand-color-ring');
-                }
-            });
-        }
-    </script>
 </section>

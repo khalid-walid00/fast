@@ -1,5 +1,5 @@
 import { cartSchema } from "./cart.schema.js";
-import { updateFrontendQuantity, storeGateRequest } from "./helper.js";
+import { updateFrontendQuantity, storeGateRequest, showToast } from "./helper.js";
 
 const updateTimers = {};
 const localQuantities = {};
