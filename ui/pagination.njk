@@ -1,39 +1,59 @@
 {% set current = context.pagination.currentPage|default(1) %}
 {% set total = context.pagination.totalPages|default(1) %}
+{% set maxPages = 4 %} 
 
 <div dir="rtl" class="py-8 flex justify-center">
-  <nav class="inline-flex items-center gap-6 md:gap-8 
-              rounded-full border-2 border-gray-200 bg-white shadow-sm">
-
+  <nav class="flex items-center gap-2">
+    {# Previous button #}
     {% if current > 1 %}
-    <a href="?page={{ current - 1 }}" rel="prev" aria-label="الصفحة السابقة" class="h-10 w-10 md:h-12 md:w-12 flex items-center justify-center rounded-full
-                transition transform hover:scale-105 material-symbols-outlined">
-      arrow_forward_ios
-    </a>
+      <a href="?page={{ current - 1 }}"
+         class="h-10 w-10 flex items-center justify-center border border-gray2 rounded-lg hover:bg-gray-100 transition">
+         <span class="material-symbols-outlined text-xl">arrow_right_alt</span>
+      </a>
     {% else %}
-    <span aria-disabled="true" class="h-10 w-10 md:h-12 md:w-12 flex items-center  material-symbols-outlined justify-center rounded-full
-           cursor-not-allowed">
-           arrow_forward_ios
-    </span>
+      <span class="h-10 w-10 flex items-center justify-center border border-gray-200 text-gray-400 rounded-lg cursor-not-allowed">
+        <span class="material-symbols-outlined text-xl">arrow_right_alt</span>
+      </span>
     {% endif %}
 
-    <span class="select-none text-xl md:text-2xl font-medium tracking-wide">
-      <span class="tabular-nums">{{ current }}</span>
-      <span class="mx-2 text-gray-400">/</span>
-      <span class="tabular-nums">{{ total }}</span>
-    </span>
-
-    {% if current < total %} <a href="?page={{ current + 1 }}" rel="next" aria-label="الصفحة التالية" class="h-10 w-10 md:h-12 md:w-12 flex items-center justify-center rounded-full
-                
-                transition transform hover:scale-105  material-symbols-outlined ">
-                arrow_back_ios
-      </a>
-      {% else %}
-      <span aria-disabled="true"
-        class="h-10 w-10 md:h-12 md:w-12 flex items-center justify-center  cursor-not-allowed material-symbols-outlined">
-        arrow_back_ios
-      </span>
+    {# Calculate page range #}
+    {% set startPage = current - 1 %}
+    {% if startPage < 1 %}
+      {% set startPage = 1 %}
+    {% endif %}
+    {% set endPage = startPage + maxPages - 1 %}
+    {% if endPage > total %}
+      {% set endPage = total %}
+      {% set startPage = total - maxPages + 1 %}
+      {% if startPage < 1 %}
+        {% set startPage = 1 %}
       {% endif %}
+    {% endif %}
 
+    {# Page numbers #}
+    {% for page in range(startPage, endPage + 1) %}
+      {% if page == current %}
+        <span class="h-10 w-10 text-xl flex items-center justify-center rounded-lg bg-primary text-white">
+          {{ page }}
+        </span>
+      {% else %}
+        <a href="?page={{ page }}"
+           class="h-10 w-10 text-xl flex items-center justify-center border border-gray2 rounded-lg hover:bg-gray-100">
+          {{ page }}
+        </a>
+      {% endif %}
+    {% endfor %}
+
+    {# Next button #}
+    {% if current < total %}
+      <a href="?page={{ current + 1 }}"
+         class="h-10 w-10 flex items-center justify-center border border-gray2 rounded-lg hover:bg-gray-100 transition">
+         <span class="material-symbols-outlined text-xl">arrow_left_alt</span>
+      </a>
+    {% else %}
+      <span class="h-10 w-10 flex items-center justify-center border border-gray-200 text-gray-400 rounded-lg cursor-not-allowed">
+        <span class="material-symbols-outlined text-xl">arrow_left_alt</span>
+      </span>
+    {% endif %}
   </nav>
 </div>

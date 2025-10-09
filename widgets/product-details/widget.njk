@@ -48,10 +48,10 @@
             <component-product-gallery :images="context.product.images"></component-product-gallery>
             <component-product-details>
                 <template #title>
-                    <h1 class="text-3xl md:text-4xl font-bold text-gray-900">{{ context.product.title }}</h1>
+                    <h1 class="text-2xl  font-medium text-[#212121]">{{ context.product.title }}</h1>
                 </template>
                 <template #description>
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class="text-[#212121B2] ">
                         {{ context.product.description | default('لا يوجد وصف للمنتج') | safe }}
                     </p>
                 </template>

@@ -3,23 +3,23 @@
         <a href="/product/{{ data.product.slug }}" class="block">
             <img alt="{{ data.product.title }}"
                 src="{{ data.product.images[0].fileUrl | default('https://placehold.co/600x400/orange/white') }}"
-                alt="{{ product.title }}" class="w-full h-48 md:h-56 object-cover">
+                alt="{{ product.title }}" class="w-full h-40 object-cover">
         </a>
         {% if data.product.pricing.compareAtPrice and data.product.pricing.compareAtPrice > data.product.pricing.price
         %}
-        <span class="absolute top-2 right-2 bg-secondary text-white text-xs px-2 py-1 rounded">{{
+        <span class="absolute top-2 right-2 bg-secondary text-white text-سة px-2 py-[1px] rounded">{{
             ((data.product.pricing.compareAtPrice - data.product.pricing.price) * 100 /
-            data.product.pricing.compareAtPrice) | round(1) }}%
+            data.product.pricing.compareAtPrice) | round(1) }}% -
         </span>
         {% endif %}
     </div>
-    <div class="p-3 flex flex-col gap-4 flex-1">
+    <div class="px-4 py-5 flex flex-col gap-4 flex-1">
         <div class="flex flex-col gap-4 flex-1">
             <div class="flex flex-col gap-2 ">
                 <a class="font-medium text-xl truncate" href="/product/{{ data.product.slug }}">{{ data.product.title
                     }}</a>
                 <div class="flex items-center gap-3">
-                    <div class="flex items-center gap-0.5  text-xs">
+                    <div class="flex items-center gap-0.5">
                         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_287_3343)">
                                 <rect width="16" height="16" transform="translate(0.5 0.5)" fill="white" />
@@ -37,7 +37,7 @@
                     </div>
                     <span class="font-semibold text-gray">6 تقييمات </span>
                 </div>
-                {% if data.product.collections %}
+                {% if data.product.collections | length > 0 %}
                 <div class="flex gap-1 items-center">
                     {% for index, item in data.product.collections %}
                     <p class="text-right text-gray/80 text-xs mb-3">{{ item.title }}</p>
@@ -64,12 +64,12 @@
 
         {% if data.product.variantsCount > 0 %}
         <a href="/product/{{ data.product.slug }}"
-            class="w-full bg-primary text-white py-2 rounded-[8px] flex items-center justify-center text-sm font-semibold hover:opacity-95 ">
-            <span class=" text-nowrap">عرض التفاصيل</span>
+            class="w-full bg-primary text-white py-3 h-[52px] rounded-lg flex items-center justify-center  hover:opacity-95 ">
+            <span class=" text-nowrap font-medium">عرض التفاصيل</span>
         </a>
         {% else %}
         <button @click="addProductToCart('{{ data.product._id }}', 1, [])" :disabled="loading['{{ data.product._id }}']"
-            class="w-full py-2 h-9 rounded-[8px] text-sm font-semibold flex items-center justify-center hover:opacity-95"
+            class="w-full py-3 h-[52px] rounded-lg font-medium flex items-center justify-center hover:opacity-95"
             :class="loading['{{ data.product._id }}']
           ? 'bg-gray-100 border border-gray-200 text-gray-400 cursor-not-allowed'
           : 'bg-primary text-white active:scale-105'">

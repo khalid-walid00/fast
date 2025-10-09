@@ -23,20 +23,16 @@ export default {
       </div>
 
       <!-- Thumbnail Gallery -->
-      <div class="grid grid-cols-4 gap-3 mt-4">
-        <div 
-          v-for="(image, index) in images" 
+      <div class="grid grid-cols-4 gap-4 min-h-[200px] mt-4">
+    
+          <img 
+              v-for="(image, index) in images" 
           :key="index"
           @click="selectedIndex = index"
-          class="aspect-square bg-gray-200 rounded-lg overflow-hidden cursor-pointer border-2"
-          :class="selectedIndex === index ? 'main-brand-color-border' : 'border-transparent'"
-        >
-          <img 
             :src="image.fileUrl" 
             alt="صورة مصغرة" 
-            class="w-full h-full object-cover thumb-image"
+            class="w-full h-full rounded-lg cursor-pointer object-cover thumb-image"
           />
-        </div>
       </div>
     </div>
   `
