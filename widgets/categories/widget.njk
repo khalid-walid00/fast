@@ -1,14 +1,15 @@
 <section class="py-16">
-  <div class="container">
-    <div class="section-title-container">
-      <h2 class="section-title">{{ widget.data.section_title | default('أقسامنا') }}</h2>
+  <div class="container flex flex-col gap-10">
+    <div class="section-title flex flex-col gap-0.5">
+      <h2 class="">{{ widget.data.section_title | default('أقسامنا') }}</h2>
+      <p class="text-secondary/50 text-base font-normal">قائمة من جميع أقسام متجرنا</p>
     </div>
     {% set cols = widget.data.collections or context.collections or [] %}
     <div class="md:hidden swiper categories-swiper relative">
       <div class="swiper-wrapper">
         {% for collection in cols %}
         <div class="swiper-slide flex flex-col items-center">
-          <div class="cat-circle mb-2">
+          <div class=" rounded-full md:w-[210px] md:h-[210px] w-[156px] h-[156px]  relative overflow-hidden">
             {% if collection.image and collection.image.fileUrl %}
             <img src="{{ collection.image.fileUrl }}" class="w-full h-full object-cover" alt="[{{ collection.title }}]">
             {% else %}
@@ -60,7 +61,7 @@
     <div class="hidden md:grid grid-cols-3 md:grid-cols-5 gap-6 text-center">
       {% for collection in cols %}
       <div class="flex flex-col items-center">
-        <div class="cat-circle mb-2">
+        <div class="rounded-full md:w-[210px] md:h-[210px] w-[156px] h-[156px] relative overflow-hidden">
           {% if collection.image and collection.image.fileUrl %}
           <img src="{{ collection.image.fileUrl }}" class="w-full h-full object-cover" alt="[{{ collection.title }}]">
           {% else %}

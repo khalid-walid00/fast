@@ -1,62 +1,76 @@
 <section id="{{ widget.id }}" class="antialiased text-gray-800">
-    <style>
-        body {
-            font-family: 'Changa', sans-serif;
-            background-color: #f9fafb;
-        }
-
-        .material-symbols-outlined {
-            font-variation-settings:
-                'FILL' 0,
-                'wght' 400,
-                'GRAD' 0,
-                'opsz' 24;
-        }
-
-        .rating-stars .material-symbols-outlined {
-            color: #FBBF24;
-            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-
-        .color-swatch:focus,
-        .size-button:focus,
-        .thumb-image:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(245, 154, 87, 0.5);
-        }
-
-        .main-brand-color {
-            background-color: #F59A57 !important;
-        }
-
-        .main-brand-color-text {
-            color: #F59A57 !important;
-        }
-
-        .main-brand-color-border {
-            border-color: #F59A57 !important;
-        }
-
-        .size-active {
-            background-color: #F4F4F4 !important;
-        }
-    </style>
-
-    <div class="container py-10">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-
+    <div class="container md:py-[88px] py-6">
+        <div class="grid relative grid-cols-1 lg:grid-cols-2 md:gap-[60px] gap-6">
             <component-product-gallery :images="context.product.images"></component-product-gallery>
+            <div class="flex flex-col gap-5">
             <component-product-details>
                 <template #title>
-                    <h1 class="text-2xl  font-medium text-[#212121]">{{ context.product.title }}</h1>
+                    <h1 class="text-2xl  font-medium text-secondary">{{ context.product.title }}</h1>
                 </template>
                 <template #description>
-                    <p class="text-[#212121B2] ">
+                    <p class="text-secondary ">
                         {{ context.product.description | default('لا يوجد وصف للمنتج') | safe }}
                     </p>
                 </template>
+                <template #shipping_settings>
+                    <p class="text-sm font-medium text-secondary">
+                    {{settings.shipping_settings | default('يتم التوصيل في فترة تتراوح بين 5 أيام لـ أسبوع') | safe}}
+                </p>
+            </template>
             </component-product-details>
+            <div class="divide-y divide-gray-200 border-t border-stok ">
+
+                <!-- بند 1 -->
+                <details class="group py-4" open>
+                  <summary class="flex justify-between items-center cursor-pointer text-lg font-medium text-secondary">
+                    <span>سياسة الاسترجاع والاستبدال</span>
+                    <span class="transition-transform group-open:rotate-180">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  </summary>
+                  
+                  <div class="mt-3 text-gray-600 leading-relaxed text-sm md:text-base">
+                    إذا تم إلغاء الطلب بعد 4 أيام، قد يتم خصم المبلغ المدفوع مسبقًا لتعويض الضرر الناتج عن البدء في تصنيع المنتج.
+                    <br />
+                    يتم فحص المنتج من قبل العميل قبل مغادرة مندوب التوصيل. استلام المنتج يعتبر إقرارًا ضمنيًا بالموافقة وخلوه من أي عيوب فنية دون استخدامه.
+                  </div>
+                </details>
+                <details class="group py-4">
+                  <summary class="flex justify-between items-center cursor-pointer text-lg font-medium text-secondary">
+                    <span>نظام الشحن والتركيب</span>
+                    <span class="transition-transform group-open:rotate-180">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <div class="mt-3 text-gray-600 leading-relaxed text-sm md:text-base">
+                    يُرجى العلم أنه يتم التوصيل إلى المدن والمناطق الصغيرة خلال فترة تتراوح من 4 إلى 7 أيام عمل.
+                    <br />
+                    بعد انتهاء المدة المحددة لكل منتج، تكون هناك مدة إضافية حسب جدول الشحن الخاص بالشركة.
+                  </div>
+                </details>
+              
+                <details class="group py-4">
+                  <summary class="flex justify-between items-center cursor-pointer text-lg font-medium text-secondary">
+                    <span>تفاصيل المنتج</span>
+                    <span class="transition-transform group-open:rotate-180">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <div class="mt-3 text-gray-600 leading-relaxed text-sm md:text-base">
+                    هذا المنتج له مواصفات خاصة من حيث الخامات والمقاسات المذكورة في وصف المنتج بالأعلى.
+                  </div>
+                </details>
+              
+              </div>
+        </div>
+
+   
         </div>
     </div>
-
 </section>

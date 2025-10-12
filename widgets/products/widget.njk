@@ -1,29 +1,18 @@
-<section class="product-listing">
-  <div class="container py-10">
-    <!-- Breadcrumbs -->
-    <nav class="text-base md:text-lg text-gray-600 mb-6" aria-label="Breadcrumb">
-      <ol class="list-none p-0 inline-flex">
-        <li class="flex items-center">
-          <a href="/" class="hover:text-gray-700">الرئيسية</a>
-          <span class="material-symbols-outlined mx-2 text-2xl">/</span>
-        </li>
-        <li class="flex items-center">
-          <span class="text-gray-800 font-semibold">المنتجات</span>
-        </li>
-      </ol>
-    </nav>
-    {% if context.products | length > 0 %}
-    <div class=" flex  flex-col gap-4">
-
-      <div class=" grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4  md:gap-x-6 md:gap-y-7 gap-2.5 ">
+<section class="product-listing sticky top-10">
+  {% if context.products | length > 0 %}
+  {%ui "header-page.njk",bg_color="bg-hero1", title=context.page.title %}
+  <div class="container flex  flex-col gap-10 md:py-[88px] py-6">
+    <div class="flex  flex-col md:gap-8 gap-4 ">
+      {%ui "filter.njk" %}
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4  md:gap-x-6 md:gap-y-7 gap-x-[9px] gap-y-2 ">
         {% for product in context.products %}
         {%ui "product-card.njk" ,product=product %}
         {% endfor %}
       </div>
-      {%ui "pagination.njk" %}
     </div>
-    {% else %}
-    {%ui "empty.njk" , BtnText="تصفح اقسام المنتجات",BtnUrl="/collections"%}
-    {% endif %}
+    {%ui "pagination.njk" %}
   </div>
+  {% else %}
+  {%ui "empty.njk" , BtnText="تصفح اقسام المنتجات",BtnUrl="/collections"%}
+  {% endif %}
 </section>

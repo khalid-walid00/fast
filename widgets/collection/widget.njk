@@ -1,21 +1,18 @@
-<section class="product-listing">
-    <div class="container flex flex-col gap-6 py-10">
-      {% if context.products | length > 0 %}
-      <div class=" flex flex-col items-center gap-2">
-      <h2 class=" text-xl font-bold">{{ context.collection.title }}</h2>
-      <p class=" text-lg ">{{ context.collection.description }}</p>
-    </div>
-      <div class=" flex  flex-col gap-4">
-        <div class=" grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4  md:gap-x-6 md:gap-y-7 gap-2.5 ">
-          {% for product in context.products %}
-          {%ui "product-card.njk" ,product=product %}
-          {% endfor %}
-        </div>
-        {%ui "pagination.njk" %}
+<section>
+  {% if context.products | length > 0 %}
+  {%ui "header-page.njk", title=context.collection.title %}
+  <div class="container  md:py-[88px] py-6  flex  flex-col md:gap-10 gap-6">
+    <div class="flex flex-col md:gap-8 gap-4">
+      {%ui "filter.njk" %}
+      <div class=" grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4  md:gap-x-6 md:gap-y-7 gap-x-[9px] gap-y-2 ">
+        {% for product in context.products %}
+        {%ui "product-card.njk" ,product=product %}
+        {% endfor %}
       </div>
-      {% else %}
-      {%ui "empty.njk", title="لا يوجد منتجات في هذه المجموعة" %}
-      {% endif %}
     </div>
-  </section>
-  
+    {%ui "pagination.njk" %}
+  </div>
+  {% else %}
+  {%ui "empty.njk", title="لا يوجد منتجات في هذه المجموعة" %}
+  {% endif %}
+</section>

@@ -9,6 +9,7 @@ export default {
   data() {
     return {
       currentProduct: __qumra__?.context?.product || {},
+      currencySymbol: __qumra__?.globals.currency?.currencySymbol || 'EGP',
       selectedOptions: {},
     };
   },
@@ -147,7 +148,7 @@ export default {
                           </defs>
                       </svg>
                   </div>
-                  <span class="text-[#212121]">6 تقييمات</span>
+                  <span class="text-secondary">6 تقييمات</span>
               </div>
 
               <!-- Title & Price -->
@@ -159,12 +160,12 @@ export default {
                   <div class="flex  items-center gap-0.5">
                       <span v-text="currentProduct?.pricing?.price"
                           class="text-[28px] font-bold text-secondary"></span>
-                      <span class="text-[28px] font-bold text-secondary">EGP</span>
+                      <span v-text="currencySymbol" class="text-[28px] font-bold text-secondary"></span>
                   </div>
                   <div v-show="currentProduct?.pricing?.compareAtPrice"
                       class="flex line-through  items-center gap-0.5">
-                      <span v-text="currentProduct?.pricing?.compareAtPrice" class="text-lg text-[#21212180]"></span>
-                      <span v-text="globals?.currency?.currencySymbol" class="text-lg text-[#21212180]"></span>
+                      <span v-text="currentProduct?.pricing?.compareAtPrice" class=" text-secondary/50"></span>
+                      <span v-text="currencySymbol" class="text-secondary/50"></span>
                   </div>
               </div>
           </template>
@@ -174,21 +175,25 @@ export default {
               <span class="text-lg text-orange-500 font-medium">يرجى اختيار جميع الخيارات</span>
           </div>
           <!-- Description -->
-          <slot v-if="currentProduct?.description" name="description"></slot>
+          <div v-if="currentProduct?.description">
+          <slot  name="description"></slot>
+      </div>
       </div>
 
       <template v-if="currentProduct?.options?.length > 0" v-for="opt in currentProduct?.options" :key="opt._id">
-          <div>
-              <h3 class="text-base font-semibold text-gray-800 mb-3">{{ opt.name }}</h3>
-              <div class="flex items-center space-x-3 space-x-reverse">
-                  <button v-for="val in opt.values" :key="val._id" @click.prevent="selectOption(val._id, opt._id)"
-                      :class="['size-button px-5 py-2 rounded-none border', isOptionSelected(val._id, opt._id) ? 'bg-gray-200' : 'bg-white']">
+          <div class="flex flex-col gap-3">
+              <h3 class="text-base font-semibold text-gray-800 ">{{ opt.name }}</h3>
+              <div class="flex items-center gap-3 flex-wrap">
+                  <button class="rounded-lg py-1.5 px-3 border border-stok" v-for="val in opt.values" :key="val._id" @click.prevent="selectOption(val._id, opt._id)"
+                      :class="['size-button ', isOptionSelected(val._id, opt._id) ? 'bg-gray3' : 'bg-white']">
                       {{ val.label }}
                   </button>
               </div>
           </div>
       </template>
-
+  
+          <slot name="shipping_settings"></slot>
+          
       <div class="flex items-baseline flex-col gap-6">
 
           <div class="flex flex-col sm:flex-row items-center gap-5 w-full ">
@@ -196,7 +201,7 @@ export default {
                   <button type="button"
                       @click="addProductToCart(currentProduct._id, productQuantity, Object.values(selectedOptions).filter(id => id))"
                       :disabled="!allOptionsSelected || productQuantity == 0 || loading.addToCart"
-                      class="w-full flex-1 bg-primary text-white font-bold py-3.5 px-6 rounded-lg shadow-md disabled:opacity-50 disabled:cursor-not-allowed">
+                      class="w-full flex-1 bg-primary text-white font-medium py-3.5 px-6 rounded-lg  disabled:opacity-50 disabled:cursor-not-allowed">
                       <component-loading v-if="loading.addToCart"></component-loading>
                       <div v-else class=" flex items-center justify-center gap-2 ">
                           <span class="material-symbols-outlined">shopping_cart</span>
@@ -205,20 +210,20 @@ export default {
                   </button>
               </component-tooltip>
 
-              <div class="flex items-center min-h-[52px] border border-gray-300 rounded-lg">
-                  <component-tooltip :content="quantityTooltip">
+              <div class="flex items-center justify-center gap-4 px-4 min-h-[52px] border border-gray-300 rounded-lg">
+                  <component-tooltip class="flex items-center justify-center" :content="quantityTooltip">
                       <button type="button" @click="decreaseProductItem" :disabled="!allOptionsSelected"
-                          class="px-4 py-3 min-h-[52px] material-symbols-outlined disabled:opacity-50 disabled:cursor-not-allowed">remove</button>
+                          class=" text-[22px] material-symbols-outlined disabled:opacity-50 disabled:cursor-not-allowed">remove</button>
                   </component-tooltip>
 
-                  <component-tooltip :content="quantityTooltip">
-                      <input type="text" id="quantity-inputs" :value="productQuantity" class="w-12 min-h-[52px] text-center"
+                  <component-tooltip class="flex items-center justify-center" :content="quantityTooltip">
+                      <input type="text" id="quantity-inputs" :value="productQuantity" class=" max-w-5  font-medium text-2xl text-center"
                           readonly>
                   </component-tooltip>
 
-                  <component-tooltip :content="quantityTooltip">
+                  <component-tooltip class="flex items-center justify-center" :content="quantityTooltip">
                       <button type="button" @click="increaseProductItem" :disabled="!allOptionsSelected"
-                          class="px-4 py-3 min-h-[52px] material-symbols-outlined disabled:opacity-50 disabled:cursor-not-allowed">add</button>
+                          class="text-[22px] material-symbols-outlined disabled:opacity-50 disabled:cursor-not-allowed">add</button>
                   </component-tooltip>
               </div>
           </div>

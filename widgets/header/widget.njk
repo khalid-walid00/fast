@@ -1,5 +1,5 @@
 <!-- Header & Interactive Modals Controller -->
-<div class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#E9E9E9] w-full">
+<div class="sticky top-0 left-0 right-0 z-50 bg-white border-b border-[#E9E9E9] w-full">
     <header class="container py-1.5 md:py-4 flex items-center gap-8 justify-between">
         <div class="flex items-center gap-8">
             <img src="{{ globals.app.logo.fileUrl }}" alt="logo" class="md:w-[50px] md:h-[43px] w-11  ">
@@ -15,7 +15,7 @@
                         {% if items | length > 6 %}
                         <div class="relative group flex items-center">
                             <button
-                                class="inline-flex items-center hover:text-primary justify-center rounded-md  "
+                                class=" hover:text-primary justify-center rounded-md flex items-center gap-2  "
                                 aria-label="المزيد">
                                 <span class="font-semibold">
                                     المزيد
@@ -102,8 +102,6 @@
     </header>
 </div>
 
-<!-- Spacer to offset the fixed header height -->
-<div class="h-[56px] md:h-[80px]"></div>
 
 
 {%ui "sidebar.njk", menu=widget.data.header_menu %}

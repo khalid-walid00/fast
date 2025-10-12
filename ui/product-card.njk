@@ -7,19 +7,19 @@
         </a>
         {% if data.product.pricing.compareAtPrice and data.product.pricing.compareAtPrice > data.product.pricing.price
         %}
-        <span class="absolute top-2 right-2 bg-secondary text-white text-سة px-2 py-[1px] rounded">{{
+        <span class="absolute top-2 right-2 bg-secondary text-white md:text-sm text-[10px] max-md:py-[3px] px-2 py-[1px] rounded">{{
             ((data.product.pricing.compareAtPrice - data.product.pricing.price) * 100 /
             data.product.pricing.compareAtPrice) | round(1) }}% -
         </span>
         {% endif %}
     </div>
-    <div class="px-4 py-5 flex flex-col gap-4 flex-1">
+    <div class="md:px-4 px-3 md:py-5 max-md:pt-3 max-md:pb-4 flex flex-col gap-4 flex-1">
         <div class="flex flex-col gap-4 flex-1">
-            <div class="flex flex-col gap-2 ">
-                <a class="font-medium text-xl truncate" href="/product/{{ data.product.slug }}">{{ data.product.title
-                    }}</a>
-                <div class="flex items-center gap-3">
-                    <div class="flex items-center gap-0.5">
+          <div class="flex flex-col md:gap-2 gap-1 flex-1">
+            <div class="flex flex-row md:flex-col justify-between gap-2 ">
+                <a class="font-medium md:text-xl text-sm max-h-[104px] overflow-y-hidden" href="/product/{{ data.product.slug }}">{{ data.product.title}}</a>
+                <div class="flex md:items-center items-start gap-3">
+                    <div class="flex md:items-center items-start gap-0.5">
                         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_287_3343)">
                                 <rect width="16" height="16" transform="translate(0.5 0.5)" fill="white" />
@@ -33,14 +33,15 @@
                                 </clipPath>
                             </defs>
                         </svg>
-                        <span class="text-secondary font-semibold">5</span>
+                        <span class="text-secondary max-md:text-xs font-semibold">5</span>
                     </div>
-                    <span class="font-semibold text-gray">6 تقييمات </span>
+                    <span class="font-semibold max-md:hidden text-gray">6 تقييمات </span>
                 </div>
-                {% if data.product.collections | length > 0 %}
+            </div>
+            {% if data.product.collections | length > 0 %}
                 <div class="flex gap-1 items-center">
                     {% for index, item in data.product.collections %}
-                    <p class="text-right text-gray/80 text-xs mb-3">{{ item.title }}</p>
+                    <p class="text-right text-gray/80 md:text-base text-xs font-semibold">{{ item.title }}</p>
 
                     {% endfor %}
                 </div>
@@ -48,12 +49,12 @@
             </div>
             {% if data.product.pricing.price %}
             <div class="flex items-center flex-wrap justify-start  ">
-                <p class="text-2xl font-bold text-secondary ml-2">
+                <p class="md:text-2xl text-base font-bold text-secondary ml-2">
                     {{ data.product.pricing.price | money }}
                 </p>
                 {% if data.product.pricing.compareAtPrice and data.product.pricing.compareAtPrice >
                 data.product.pricing.price %}
-                <p class=" text-gray line-through">
+                <p class=" text-gray text-xs line-through">
                     {{ data.product.pricing.compareAtPrice | money }}
                 </p>
                 {% endif %}
@@ -61,15 +62,14 @@
             {% endif %}
         </div>
 
-
         {% if data.product.variantsCount > 0 %}
         <a href="/product/{{ data.product.slug }}"
-            class="w-full bg-primary text-white py-3 h-[52px] rounded-lg flex items-center justify-center  hover:opacity-95 ">
+            class="w-full bg-primary text-white md:py-3 py-2 h-11 md:h-[52px]  rounded-lg flex items-center justify-center  hover:opacity-95 ">
             <span class=" text-nowrap font-medium">عرض التفاصيل</span>
         </a>
         {% else %}
         <button @click="addProductToCart('{{ data.product._id }}', 1, [])" :disabled="loading['{{ data.product._id }}']"
-            class="w-full py-3 h-[52px] rounded-lg font-medium flex items-center justify-center hover:opacity-95"
+            class="w-full md:py-3 py-2 h-11 md:h-[52px] rounded-lg font-medium flex items-center justify-center hover:opacity-95"
             :class="loading['{{ data.product._id }}']
           ? 'bg-gray-100 border border-gray-200 text-gray-400 cursor-not-allowed'
           : 'bg-primary text-white active:scale-105'">

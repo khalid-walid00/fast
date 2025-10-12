@@ -10,34 +10,35 @@
 
       <!-- Header -->
       <div class="flex justify-between items-center py-2 px-4 border-b">
-        <span class="font-medium text-secondary">السلة</span>
-        <button @click="toggleModal('cart')">
+        <span class="font-semibold text-secondary">السلة</span>
+        <button @click="toggleModal('cart')"
+          class="flex items-center justify-center  h-7 w-7 active:bg-gray/20 transition-all duration-200 p-2 rounded-lg hover:bg-gray/20">
           <span class="material-symbols-outlined text-xl text-secondary">close</span>
         </button>
       </div>
-      <div class="flex-1 overflow-auto  py-[27px]">
+      <div class="flex-1 overflow-auto  md:py-7 py-6">
         <div class="px-4" v-if="globals?.cart?.items && globals?.cart?.items.length > 0">
           <template v-for="(item, index) in globals.cart.items" :key="item._id">
-            <div class="flex flex-col gap-4">
-              <div class="py-3 px-4 flex justify-between gap-2">
+            <div>
+              <div class="py-3 md:px-4 px-3 flex justify-between gap-2">
                 <div class="flex gap-4 flex-1 min-w-0">
                   <img :src="item?.productData?.image?.fileUrl" class="w-[70px] h-[70px] rounded-lg" alt="fileUrl" />
                   <div class="flex flex-col gap-2 flex-1 min-w-0">
                     <div class="flex flex-col gap-1">
                       <p v-text="item.productData.title"
-                        class="font-medium text-secondary truncate w-full overflow-hidden whitespace-nowrap"></p>
+                        class="font-medium text-secondary max-md:text-sm truncate w-full overflow-hidden whitespace-nowrap"></p>
                       <template v-for="(option, idx) in item?.variantData?.options" :key="idx">
                         <div class="flex items-center gap-2">
-                          <span class="text-[#7C7C7C] text-xs" v-text="option?.option?.name"></span>
+                          <span class="text-gray text-xs" v-text="option?.option?.name"></span>
                           <span class="text-xs">:</span>
-                          <span class="text-[#7C7C7C] text-xs" v-text="option?.label"></span>
+                          <span class="text-gray text-xs" v-text="option?.label"></span>
                         </div>
                       </template>
                       <div class="flex items-center gap-1">
-                        <span class="text-secondary text-lg font-semibold">[[ item.totalPrice ]] [[
+                        <span class="text-secondary md:text-lg text-nowrap  font-semibold">[[ item.totalPrice ]] [[
                           globals?.currency?.currencySymbol ]]</span>
                         <span v-show="item.totalSavings > 0"
-                          class="text-[#7C7C7C] text-xs font-semibold line-through">[[ item.totalCompareAtPrice ]] [[
+                          class="text-[#7C7C7C] text-xs  text-nowrap font-semibold line-through">[[ item.totalCompareAtPrice ]] [[
                           globals?.currency?.currencySymbol ]]</span>
                       </div>
                     </div>
@@ -56,20 +57,22 @@
                     </div>
                   </div>
                 </div>
-                <button @click="clearCartItem(item._id)" class="material-symbols-outlined text-[22px] text-[#7C7C7C] self-start">
+                <button @click="clearCartItem(item._id)"
+                  class="material-symbols-outlined text-[22px] text-[#7C7C7C] self-start">
                   delete
                 </button>
               </div>
-              <hr :class="index === globals?.cart?.items.length - 1 ? 'hidden' : ''" />
+              <div :class="index !== globals?.cart?.items?.length - 1 ? 'border-b border-strok py-4' : 'hidden'"
+                class="w-full flex "></div>
             </div>
           </template>
         </div>
 
         <div v-if="!globals?.cart?.items || globals?.cart?.items.length === 0" class="h-full">
-          <div class="flex items-center h-full justify-center flex-col gap-11 px-[60px]">
+          <div class="flex items-center h-full justify-center flex-col gap-11 md:px-[60px] px-[22px]">
             <div class="flex flex-col items-center gap-8">
               <a aria-label="latestproduct" href="/collection/all">
-                <span style="font-size: 96px;" class="material-symbols-outlined text-gray">
+                <span  class="material-symbols-outlined text-gray text-[100px] md:text-[120px]">
                   shopping_cart_off
                 </span>
               </a>
@@ -89,15 +92,13 @@
 
       <div v-if="globals?.cart?.items && globals?.cart?.items.length > 0"
         class="flex-none flex flex-col gap-5 py-6 shadow-[0px_0px_10px_0px_#E4E4E4] bg-white">
-        <div class="px-[37.5px]">
-        <div class="flex justify-between pt-1.5 p-4  border-b border-stok ">
-          <span class="text-secondary">اجمالي الطلب</span>
-          <span class="text-secondary font-semibold text-lg"
-            v-text="(globals?.cart?.totalPrice || 0) + ' ' + (globals?.currency?.currencySymbol || '')">
-          </span>
-        </div>
-        </div>
-        <div class="flex flex-col md:gap-4 gap-2 px-[60px]">
+          <div class="flex justify-between pt-2 px-4 pb-[18px] border-b border-stok ">
+            <span class="text-secondary">اجمالي الطلب</span>
+            <span class="text-secondary font-semibold text-lg"
+              v-text="(globals?.cart?.totalPrice || 0) + ' ' + (globals?.currency?.currencySymbol || '')">
+            </span>
+          </div>
+        <div class="flex flex-col md:gap-3 gap-2 px-4">
           <span class="font-medium text-sm">أضف 150 ج.م إلى مشترياتك لتحصل على الشحن مجانًا!</span>
           <div class="relative w-full">
             <div class="bg-[#F4F4F4] rounded-full h-2 w-full"></div>
