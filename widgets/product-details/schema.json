@@ -1,0 +1,66 @@
+{
+  "name": "قسم تفاصيل المنتج",
+  "description": "قسم الهيرو الرئيسي (بنفس أسلوب البانر)",
+  "settings": {
+    "shipping_settings": {
+      "type": "text",
+      "label": "إعدادات الشحن",
+      "default": "يتم التوصيل في فترة تتراوح بين 5 أيام لـ أسبوع"
+    },
+    "return_policy_question": {
+      "type": "string",
+      "label": "سؤال سياسة الإرجاع",
+      "default": "ما هي سياسة الإرجاع الخاصة بكم؟"
+    },
+    "return_policy_answer": {
+      "type": "text",
+      "label": "إجابة سياسة الإرجاع",
+      "default": "يمكنك إرجاع المنتجات خلال 30 يومًا من الشراء."
+    },
+    "shipping_info_question": {
+      "type": "string",
+      "label": "سؤال معلومات الشحن",
+      "default": "كم من الوقت يستغرق الشحن؟"
+    },
+    "shipping_info_answer": {
+      "type": "text",
+      "label": "إجابة معلومات الشحن",
+      "default": "عادةً ما يستغرق الشحن من 5 إلى 7 أيام عمل."
+    },
+    "product_info_question": {
+      "type": "string",
+      "label": "سؤال معلومات المنتج",
+      "default": "هل يأتي المنتج مع ضمان؟"
+    },
+    "product_info_answer": {
+      "type": "text",
+      "label": "إجابة معلومات المنتج",
+      "default": "نعم، جميع منتجاتنا تأتي مع ضمان لمدة سنة واحدة."
+    },
+    "slides_per_view": {
+      "type": "number",
+      "label": "عدد الصور في السلايدر",
+      "default": 3
+    },
+    "loop": {
+      "type": "boolean",
+      "label": "تشغيل السلايدر في حلقة مستمرة (Loop)",
+      "default": true
+    },
+    "space_between": {
+      "type": "number",
+      "label": "المسافة بين الصور",
+      "default": 10
+    },
+    "autoplay_delay": {
+      "type": "number",
+      "label": "مدة التأخير في التشغيل التلقائي (بالمللي ثانية)",
+      "default": 0
+    },
+    "speed": {
+      "type": "number",
+      "label": "سرعة الانتقال بين الصور (بالمللي ثانية)",
+      "default": 400
+    }
+  }
+}

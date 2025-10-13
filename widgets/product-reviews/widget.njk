@@ -1,0 +1,47 @@
+<section class="py-16">
+  <div class="container flex flex-col md:gap-10 gap-4">
+    <div class="flex flex-col gap-8">
+      <div class="section-title-container">
+        <h2 class="section-title">{{ widget.data.title | default('آراء عملائنا') }}</h2>
+      </div>
+      <div class=" flex md:flex-row flex-col gap-8 justify-between w-full">
+        <div class="flex flex-col gap-4">
+        <div class="border w-max  h-[52px] rounded-lg border-gray2 py-3 px-4 flex items-center gap-[9px]">
+          <div class="flex gap-3 items-center">
+            <component-stars-rate :size="{ sm: 14, md: 15, lg: 16 }" v-model="2" :max="5"></component-stars-rate>
+            <span class="text-secondary">3 تقييمات</span>
+          </div>
+          <span class="material-symbols-outlined text-[22px]">stat_minus_1</span>
+        </div>
+        <div class="flex md:hidden flex-col items-center min-h-max">
+          <span class="text-[50px] leading-[1] font-bold text-secondary">4</span>
+          <component-stars-rate :size="22" v-model="2" :max="5"></component-stars-rate>
+            <span class=" text-secondary text-sm">3 تقييمات</span>
+          </div>
+        </div>
+        <div class="border min-w-[197px] h-[52px] rounded-lg border-gray2 py-3 px-4 flex items-center justify-center gap-[9px]">
+          <span>اضف تقييمك</span>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 divide-y divide-stok  md:gap-3">
+      {% for block in widget.blocks %}
+      <div class="py-2 px-3 flex gap-4">
+        <img class="w-[72px] h-[72px] rounded-lg" src="{{ block.data.image.fileUrl }}" alt="{{ block.data.alt | default('[صورة العميل]') }}"/>
+        <div class="flex w-full flex-col gap-2">
+          <div class="flex items-center w-full justify-between">
+            <div class="flex flex-col gap-1">
+              <p class=" md:text-sm text-xs font-semibold text-secondary">{{ block.data.name | default('اسم العميل') }}</p>
+                <span class=" text-gray md:text-sm text-xs">{{ block.data.date | default('01/01/2023') }}</span>
+            </div>
+            <component-stars-rate :size="{ sm: 14, md: 15, lg: 16 }" v-model="2" :max="5"></component-stars-rate>
+          </div>
+          <p class="text-gray  md:text-sm text-xs ">
+            {{ block.data.text | default('تجربة تسوق سلسة وسهلة من البداية للنهاية. أعجبتني سرعة التوصيل والتغليف الآمن') }}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

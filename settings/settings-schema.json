@@ -87,11 +87,7 @@
         "label": "Metadata Schema Name",
         "default": "احصل على توصيل مجاني للمنزل (عند الطلب بأكثر من 1000 جنية مصرى)"
       },
-      "shipping_settings": {
-        "type": "text",
-        "label": "Delivery Policy",
-        "default": "يتم التوصيل في فترة تتراوح بين 5 أيام لـ أسبوع"
-      },
+     
       "primary": {
         "type": "color",
         "label": "Main Color",

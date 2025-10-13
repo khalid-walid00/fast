@@ -23,17 +23,30 @@ export function updateFrontendQuantity(id, quantity) {
   }
 
 export function showToast(message, type = "success") {
+  const screenWidth = window.innerWidth;
+  const isLargeScreen = screenWidth >= 1024; 
+  
   window.Toastify({
     text: message,
     duration: 3000,
-    close: true,
+    // close: true,
     gravity: "top",
     position: "right",
+    // offset
+    offset: {
+      x:isLargeScreen ? 30 : 0,
+      y: isLargeScreen ? 110 : 25,
+    },
     style: {
-      background:
+      background: "#fff",
+      boxShadow: "none",
+      color:
         type === "success"
-          ? "linear-gradient(to right, #00b09b, #96c93d)"
-          : "linear-gradient(to right, #ff5f6d, #ffc371)",
+          ? "#01A84D"
+          : "#B3261E",
+      borderRadius: "8px",
+      border: "1px solid #C5C5C7",
+      padding: isLargeScreen ? "11px 110px" : "5px 20px",
     },
   }).showToast();
 }

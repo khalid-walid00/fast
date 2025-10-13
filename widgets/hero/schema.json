@@ -1,144 +1,70 @@
 {
-  "name": "قسم الهيرو",
+  "name": "قسم تفاصيل المنتج",
   "description": "قسم الهيرو الرئيسي (بنفس أسلوب البانر)",
-  "settings": {
-    "hero_link": {
-      "type": "string",
-      "label": "الرابط الافتراضي للهيرو",
-      "default": "#"
-    },
-    "hero_alt": {
-      "type": "string",
-      "label": "النص البديل الافتراضي",
-      "default": "Hero"
-    },
-    "enable_swiper": {
-      "type": "boolean",
-      "label": "تفعيل السلايدر",
-      "default": false
-    },
-    "autoplay_delay": {
-      "type": "number",
-      "label": "مدة الانتظار بين الشرائح (ثوانٍ)",
-      "default": 5,
-      "min": 1,
-      "max": 30
-    },
-    "show_navigation": {
-      "type": "boolean",
-      "label": "إظهار أزرار التنقل",
-      "default": true
-    },
-    "show_pagination": {
-      "type": "boolean",
-      "label": "إظهار نقاط التنقل",
-      "default": true
-    },
-    "slide1_background_color": {
-      "type": "color",
-      "label": "لون خلفية الشريحة الأولى",
-      "default": "#B9C1B6"
-    },
-    "slide2_background_color": {
-      "type": "color",
-      "label": "لون خلفية الشريحة الثانية",
-      "default": "#D9B297"
-    },
-    "slide3_background_color": {
-      "type": "color",
-      "label": "لون خلفية الشريحة الثالثة",
-      "default": "#B9C4CB"
-    }
-  },
+  "settings": {},
   "blocks": {
     "slideItem": {
       "name": "شريحة الهيرو",
       "settings": {
-        "image": {
-          "type": "media",
-          "label": "صورة الشريحة",
-          "default": "qumra://Hero.webp"
-        },
-        "link": {
+        "return_policy_question": {
           "type": "string",
-          "label": "رابط الشريحة",
-          "default": "#"
+          "label": "سؤال سياسة الإرجاع",
+          "default": "سياسة الاسترجاع والاستبدال"
         },
-        "alt": {
+        "return_policy_asnwer": {
           "type": "string",
-          "label": "النص البديل للصورة",
-          "default": "Hero"
+          "label": "إجابة سياسة الإرجاع",
+          "default": "يمكنك إرجاع المنتج خلال 30 يومًا من تاريخ الشراء."
         },
-        "title": {
+        "shipping_info_question": {
           "type": "string",
-          "label": "عنوان الشريحة (اختياري)",
-          "default": ""
+          "label": "سؤال معلومات الشحن",
+          "default": "متى سيتم شحن طلبي؟"
         },
-        "subtitle": {
+        "shipping_info_answer": {
           "type": "string",
-          "label": "النص الفرعي (اختياري)",
-          "default": ""
+          "label": "إجابة معلومات الشحن",
+          "default": "يتم شحن الطلبات خلال 2-3 أيام عمل."
         },
-        "button_text": {
+        "product_info_question": {
           "type": "string",
-          "label": "نص الزر (اختياري)",
-          "default": ""
+          "label": "سؤال معلومات الضمان",
+          "default": "هل يأتي المنتج مع ضمان؟"
         },
-        "background_color": {
-          "type": "color",
-          "label": "لون الخلفية",
-          "default": "#B9C4CB"
+        "product_info_answer": {
+          "type": "string",
+          "label": "إجابة معلومات الضمان",
+          "default": "نعم، يأتي المنتج مع ضمان لمدة سنة واحدة."
         }
       }
     }
   },
   "presets": [
     {
-      "category": "الصفحة الرئيسية",
-      "name": "🏠 قسم الهيرو الرئيسي",
-      "settings": {
-        "slide1_background_color": "#B9C1B6",
-        "slide2_background_color": "#D9B297",
-        "slide3_background_color": "#B9C4CB"
-      },
+      "name": "قسم تفاصيل المنتج",
       "blocks": [
         {
           "block": "slideItem",
-          "name": "الشريحة الأولى",
+          "name": "تفاصيل الإرجاع",
           "settings": {
-            "image": "qumra://Hero.webp",
-            "link": "#",
-            "alt": "Hero",
-            "title": "مرحباً بك في متجرنا",
-            "subtitle": "اكتشف أفضل المنتجات بأسعار مميزة",
-            "button_text": "تسوق الآن",
-            "background_color": "#B9C1B6"
+            "return_policy_question": "سياسة الاسترجاع والاستبدال",
+            "return_policy_asnwer": "يمكنك إرجاع المنتج خلال 30 يومًا من تاريخ الشراء."
           }
         },
         {
           "block": "slideItem",
-          "name": "الشريحة الثانية",
+          "name": "تفاصيل الشحن",
           "settings": {
-            "image": "qumra://Hero.webp",
-            "link": "#",
-            "alt": "Hero 2",
-            "title": "عروض حصرية",
-            "subtitle": "خصومات تصل إلى 50%",
-            "button_text": "تسوق الآن",
-            "background_color": "#D9B297"
+            "shipping_info_question": "متى سيتم شحن طلبي؟",
+            "shipping_info_answer": "يتم شحن الطلبات خلال 2-3 أيام عمل."
           }
         },
         {
           "block": "slideItem",
-          "name": "الشريحة الثالثة",
+          "name": "تفاصيل الضمان",
           "settings": {
-            "image": "qumra://Hero.webp",
-            "link": "#",
-            "alt": "Hero 3",
-            "title": "جودة مضمونة",
-            "subtitle": "منتجات عالية الجودة مع ضمان شامل",
-            "button_text": "تسوق الآن",
-            "background_color": "#B9C4CB"
+            "product_info_question": "هل يأتي المنتج مع ضمان؟",
+            "product_info_answer": "نعم، يأتي المنتج مع ضمان لمدة سنة واحدة."
           }
         }
       ]

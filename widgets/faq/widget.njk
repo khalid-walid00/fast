@@ -1,6 +1,6 @@
 <!-- FAQ Section -->
 <section class="py-16 bg-gray-50">
-  <div class="container">
+  <div class="container flex flex-col md:gap-10 gap-4">
     <div class="section-title-container">
       <h2 class="section-title">{{ widget.data.title | default('الأسئلة الشائعة') }}</h2>
     </div>
@@ -9,10 +9,11 @@
       <div class="space-y-4">
         {% for block in widget.blocks %}
         <div class="border rounded-lg bg-white overflow-hidden">
-          <details>
+          <details class="faq-item">
             <summary class="font-semibold text-lg cursor-pointer flex justify-between items-center p-4">
               {{ block.data.question }}
-              <span class="material-symbols-outlined faq-arrow transform duration-200">add</span>
+              <span  
+              class="material-symbols-outlined faq-arrow border border-gray-300 rounded-full transform duration-200"  >add</span>
             </summary>
             <p class="p-4 pt-0 text-gray-600">{{ block.data.answer }}</p>
           </details>

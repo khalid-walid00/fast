@@ -1,7 +1,14 @@
 <section id="{{ widget.id }}" class="antialiased text-gray-800">
     <div class="container md:py-[88px] py-6">
         <div class="grid relative grid-cols-1 lg:grid-cols-2 md:gap-[60px] gap-6">
-            <component-product-gallery :images="context.product.images"></component-product-gallery>
+          <component-product-gallery
+          :images="context.product.images"
+          :slides-per-view="{{ widget.data.slides_per_view | default(3) | dump | safe }}"
+          :loop="{{ widget.data.loop | default(true) | dump | safe }}"
+          :space-between="{{ widget.data.space_between | default(10) | dump | safe }}"
+          :autoplay-delay="{{ widget.data.autoplay_delay | default(0) | dump | safe }}"
+          :speed="{{ widget.data.speed | default(400) | dump | safe }}">
+        </component-product-gallery>
             <div class="flex flex-col gap-5">
             <component-product-details>
                 <template #title>
@@ -14,7 +21,7 @@
                 </template>
                 <template #shipping_settings>
                     <p class="text-sm font-medium text-secondary">
-                    {{settings.shipping_settings | default('يتم التوصيل في فترة تتراوح بين 5 أيام لـ أسبوع') | safe}}
+                    {{widget.data.shipping_settings | default('يتم التوصيل في فترة تتراوح بين 5 أيام لـ أسبوع') | safe}}
                 </p>
             </template>
             </component-product-details>
@@ -22,48 +29,43 @@
 
                 <!-- بند 1 -->
                 <details class="group py-4" open>
-                  <summary class="flex justify-between items-center cursor-pointer text-lg font-medium text-secondary">
-                    <span>سياسة الاسترجاع والاستبدال</span>
+                  <summary class="flex justify-between items-center cursor-pointer  text-secondary">
+                    <span class="font-semibold">{{widget.data.return_policy_question}}</span>
                     <span class="transition-transform group-open:rotate-180">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                       </svg>
                     </span>
                   </summary>
-                  
-                  <div class="mt-3 text-gray-600 leading-relaxed text-sm md:text-base">
-                    إذا تم إلغاء الطلب بعد 4 أيام، قد يتم خصم المبلغ المدفوع مسبقًا لتعويض الضرر الناتج عن البدء في تصنيع المنتج.
-                    <br />
-                    يتم فحص المنتج من قبل العميل قبل مغادرة مندوب التوصيل. استلام المنتج يعتبر إقرارًا ضمنيًا بالموافقة وخلوه من أي عيوب فنية دون استخدامه.
+                  <div class="mt-3 px-4 text-gray-600 leading-relaxed text-xs md:text-sm">
+                    {{widget.data.return_policy_asnwer | safe}}   
                   </div>
                 </details>
                 <details class="group py-4">
-                  <summary class="flex justify-between items-center cursor-pointer text-lg font-medium text-secondary">
-                    <span>نظام الشحن والتركيب</span>
+                  <summary class="flex justify-between items-center cursor-pointer text-secondary">
+                    <span class="font-semibold">{{widget.data.shipping_info_question}}</span>
                     <span class="transition-transform group-open:rotate-180">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                       </svg>
                     </span>
                   </summary>
-                  <div class="mt-3 text-gray-600 leading-relaxed text-sm md:text-base">
-                    يُرجى العلم أنه يتم التوصيل إلى المدن والمناطق الصغيرة خلال فترة تتراوح من 4 إلى 7 أيام عمل.
-                    <br />
-                    بعد انتهاء المدة المحددة لكل منتج، تكون هناك مدة إضافية حسب جدول الشحن الخاص بالشركة.
+                  <div class="mt-3 px-4 text-gray-600 leading-relaxed text-xs md:text-sm">
+                    {{widget.data.shipping_info_answer | safe}}
                   </div>
                 </details>
               
                 <details class="group py-4">
-                  <summary class="flex justify-between items-center cursor-pointer text-lg font-medium text-secondary">
-                    <span>تفاصيل المنتج</span>
+                  <summary class="flex justify-between items-center cursor-pointer   text-secondary">
+                    <span class="font-semibold">{{widget.data.product_info_question}}</span>
                     <span class="transition-transform group-open:rotate-180">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                       </svg>
                     </span>
                   </summary>
-                  <div class="mt-3 text-gray-600 leading-relaxed text-sm md:text-base">
-                    هذا المنتج له مواصفات خاصة من حيث الخامات والمقاسات المذكورة في وصف المنتج بالأعلى.
+                  <div class="mt-3 px-4 text-gray-600 leading-relaxed text-xs md:text-sm">
+                    {{widget.data.product_info_answer | safe}}
                   </div>
                 </details>
               

@@ -146,6 +146,9 @@ details > summary { list-style: none; }
 details > summary::-webkit-details-marker { display: none; }
 details .faq-arrow { transition: transform 0.2s; }
 details[open] .faq-arrow { transform: rotate(45deg); }
+.faq-item[open] .faq-arrow { border-color:#333333;color: #333333; }
+/* When the FAQ accordion is open, turn the card border black */
+div.border.rounded-lg:has(> details.faq-item[open]) { border-color: #000000; }
 .offer-blob { position: relative; width: 100%; height: 360px; overflow: hidden; border-radius: 58% 42% 48% 52% / 55% 45% 55% 45%; box-shadow: 0 10px 24px rgba(0,0,0,.08); }
 .offer-blob img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 .count-box { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 80px; height: 80px; background: #fff; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
