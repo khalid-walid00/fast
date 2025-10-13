@@ -1,70 +1,114 @@
 {
-  "name": "قسم تفاصيل المنتج",
-  "description": "قسم الهيرو الرئيسي (بنفس أسلوب البانر)",
-  "settings": {},
+  "name": "قسم الهيرو الرئيسي",
+  "description": "قسم الهيرو الرئيسي مع التخطيط المقسم (نص وصورة)",
+  "settings": {
+    "enable_swiper": {
+      "type": "checkbox",
+      "label": "تفعيل السلايدر",
+      "default": true
+    },
+    "autoplay_delay": {
+      "type": "number",
+      "label": "مدة الانتظار بين الشرائح (بالثواني)",
+      "default": 5
+    },
+    "show_navigation": {
+      "type": "checkbox",
+      "label": "إظهار أزرار التنقل",
+      "default": false
+    },
+    "show_pagination": {
+      "type": "checkbox",
+      "label": "إظهار نقاط التنقل",
+      "default": true
+    }
+  },
   "blocks": {
     "slideItem": {
       "name": "شريحة الهيرو",
       "settings": {
-        "return_policy_question": {
-          "type": "string",
-          "label": "سؤال سياسة الإرجاع",
-          "default": "سياسة الاسترجاع والاستبدال"
+        "image": {
+          "type": "media",
+          "label": "صورة الهيرو",
+          "info": "اختر صورة عالية الجودة للهيرو",
+          "default": ""
         },
-        "return_policy_asnwer": {
+        "alt": {
           "type": "string",
-          "label": "إجابة سياسة الإرجاع",
-          "default": "يمكنك إرجاع المنتج خلال 30 يومًا من تاريخ الشراء."
+          "label": "النص البديل للصورة",
+          "default": "صورة الهيرو"
         },
-        "shipping_info_question": {
-          "type": "string",
-          "label": "سؤال معلومات الشحن",
-          "default": "متى سيتم شحن طلبي؟"
+        "title": {
+          "type": "text",
+          "label": "العنوان الرئيسي",
+          "default": "عنوان الهيرو",
+          "info": "يمكن استخدام <br> لتقسيم النص على أسطر"
         },
-        "shipping_info_answer": {
-          "type": "string",
-          "label": "إجابة معلومات الشحن",
-          "default": "يتم شحن الطلبات خلال 2-3 أيام عمل."
+        "subtitle": {
+          "type": "text",
+          "label": "النص الفرعي",
+          "default": "وصف الهيرو",
+          "info": "يمكن استخدام <br> لتقسيم النص على أسطر"
         },
-        "product_info_question": {
+        "button_text": {
           "type": "string",
-          "label": "سؤال معلومات الضمان",
-          "default": "هل يأتي المنتج مع ضمان؟"
+          "label": "نص الزر",
+          "default": "تسوق الآن"
         },
-        "product_info_answer": {
-          "type": "string",
-          "label": "إجابة معلومات الضمان",
-          "default": "نعم، يأتي المنتج مع ضمان لمدة سنة واحدة."
+        "link": {
+          "type": "url",
+          "label": "رابط الزر",
+          "default": "/collections"
+        },
+        "text_section_background_color": {
+          "type": "color",
+          "label": "لون خلفية قسم النص",
+          "default": "#B9C1B6"
         }
       }
     }
   },
   "presets": [
     {
-      "name": "قسم تفاصيل المنتج",
+      "name": "الهيرو الأساسي",
+      "settings": {
+        "enable_swiper": true,
+        "autoplay_delay": 5,
+        "show_navigation": false,
+        "show_pagination": true
+      },
       "blocks": [
         {
           "block": "slideItem",
-          "name": "تفاصيل الإرجاع",
+          "name": "الهيرو الأول",
           "settings": {
-            "return_policy_question": "سياسة الاسترجاع والاستبدال",
-            "return_policy_asnwer": "يمكنك إرجاع المنتج خلال 30 يومًا من تاريخ الشراء."
+            "title": "أثاث أنيق لمنزلك<br>العصري",
+            "subtitle": "اكتشف تشكيلتنا الواسعة من الأثاث<br>بتصاميم عصرية وجودة عالية",
+            "button_text": "تسوق الآن",
+            "link": "/collections",
+            "text_section_background_color": "#B9C1B6"
           }
         },
         {
           "block": "slideItem",
-          "name": "تفاصيل الشحن",
+          "name": "الهيرو الثاني",
           "settings": {
-            "shipping_info_question": "متى سيتم شحن طلبي؟",
-            "shipping_info_answer": "يتم شحن الطلبات خلال 2-3 أيام عمل."
+            "title": "عروض حصرية<br>لفترة محدودة",
+            "subtitle": "خصومات تصل إلى 50%<br>على منتجات مختارة",
+            "button_text": "تسوق الآن",
+            "link": "/latest",
+            "text_section_background_color": "#D9B297"
           }
         },
         {
           "block": "slideItem",
-          "name": "تفاصيل الضمان",
+          "name": "الهيرو الثالث",
           "settings": {
-            "product_info_question": "هل يأتي المنتج مع ضمان؟",
-            "product_info_answer": "نعم، يأتي المنتج مع ضمان لمدة سنة واحدة."
+            "title": "جودة مضمونة<br>ومتانة تدوم",
+            "subtitle": "منتجات عالية الجودة<br>مع ضمان شامل",
+            "button_text": "تسوق الآن",
+            "link": "/collections",
+            "text_section_background_color": "#B9C4CB"
           }
         }
       ]

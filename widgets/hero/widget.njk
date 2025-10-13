@@ -5,35 +5,37 @@
       <div class="swiper-wrapper">
         {% for block in widget.blocks %}
         <div class="swiper-slide" data-slide-index="{{ loop.index }}">
-          <div class="container mx-auto px-6 py-12 lg:py-20 flex flex-col lg:flex-row items-center justify-between">
-            <div class="hero-text-col lg:w-1/2 text-center lg:text-right mb-10 lg:mb-0 lg:pl-16 pr-2 sm:pr-4 lg:pr-8">
-              {% if block.data.title %}
-                <h1 class="hero-title font-bold mb-6 md:mb-8 lg:mb-10 text-[34px] md:text-[44px] lg:text-[64px]">
-                  {{ block.data.title }}
-                </h1>
-              {% endif %}
-              {% if block.data.subtitle %}
-                <p class="hero-subtext text-[22px] md:text-[24px] mb-12 md:mb-14 lg:mb-16">
-                  {{ block.data.subtitle }}
-                </p>
-              {% endif %}
-              {% if block.data.button_text %}
-                <a href="{{ block.data.link | default('/collections') }}" class="inline-block btn-hero-rect rounded-[8px] font-extrabold text-[18px] md:text-[20px] py-3 md:py-4 px-10 md:px-12 transition-opacity hover:opacity-95">
-                  {{ block.data.button_text }}
-                </a>
-              {% endif %}
-            </div>
-            <div class="hero-image-col lg:w-1/2 flex justify-center items-center relative">
-              <div class="hero-image-container">
-                <div class="decorative-circle" style="width: 50px; height: 50px; top: 10%; left: 5%;"></div>
-                <div class="decorative-circle" style="width: 20px; height: 20px; top: 25%; right: 10%;"></div>
-                <div class="decorative-circle" style="width: 30px; height: 30px; bottom: 15%; left: 0%;"></div>
-                {% if block.data.image and block.data.image.fileUrl %}
-                  <img src="{{ block.data.image.fileUrl }}" alt="{{ block.data.alt | default('صورة الهيرو') }}" class="hero-image h-full w-auto object-contain">
-                {% else %}
-                  <img src="https://i.ibb.co/6PqjXfG/chair-hero.png" alt="[كرسي أنيق باللونين الأزرق والأصفر]" class="hero-image h-full w-auto object-contain">
+          <div class="hero-split-container" data-slide="{{ loop.index }}">
+            <!-- Left side - Text content section -->
+            <div class="hero-text-section" style="background-color: {{ block.data.text_section_background_color | default('#B9C1B6') }};">
+              <div class="hero-text-content">
+                {% if block.data.title %}
+                  <h1 class="hero-split-title">
+                    {{ block.data.title | safe }}
+                  </h1>
+                {% endif %}
+                {% if block.data.subtitle %}
+                  <p class="hero-split-subtitle">
+                    {{ block.data.subtitle | safe }}
+                  </p>
+                {% endif %}
+                {% if block.data.button_text %}
+                  <a href="{{ block.data.link | default('/collections') }}" class="hero-split-button">
+                    {{ block.data.button_text }}
+                  </a>
                 {% endif %}
               </div>
+            </div>
+            
+            <!-- Right side - Image section -->
+            <div class="hero-image-section">
+              {% if block.data.image and block.data.image.fileUrl %}
+                <img src="{{ block.data.image.fileUrl }}" alt="{{ block.data.alt | default('صورة الهيرو') }}" class="hero-split-image">
+              {% elif block.data.image and block.data.image %}
+                <img src="{{ block.data.image }}" alt="{{ block.data.alt | default('صورة الهيرو') }}" class="hero-split-image">
+              {% else %}
+                <img src="https://i.ibb.co/6PqjXfG/chair-hero.png" alt="[كرسي أنيق باللونين الأزرق والأصفر]" class="hero-split-image">
+              {% endif %}
             </div>
           </div>
         </div>
@@ -49,23 +51,36 @@
       .hero-swiper .swiper-pagination .swiper-pagination-bullet {
         width: 12px !important;
         height: 12px !important;
-        background: #1a1a1a !important;
-        opacity: 0.4 !important;
+        background: #000000 !important;
+        opacity: 0.3 !important;
         margin: 0 6px !important;
         border-radius: 50% !important;
+        border: 2px solid #000000 !important;
+        transition: all 0.3s ease !important;
       }
       .hero-swiper .swiper-pagination .swiper-pagination-bullet-active {
-        background: #1a1a1a !important;
+        background: #000000 !important;
         opacity: 1 !important;
+        transform: scale(1.2) !important;
+        border: 3px solid #000000 !important;
       }
       .hero-swiper .swiper-pagination {
         bottom: 20px !important;
+        right: 20px !important;
+        left: auto !important;
+        transform: none !important;
+        z-index: 10 !important;
+        width: auto !important;
       }
     </style>
     
     
     <script>
       document.addEventListener('DOMContentLoaded', function() {
+        // التأكد من وجود السلايدر قبل تهيئته
+        const swiperContainer = document.querySelector('.hero-swiper');
+        if (!swiperContainer) return;
+        
         const heroSwiper = new Swiper('.hero-swiper', {
           loop: true,
           autoplay: {
@@ -74,25 +89,49 @@
             pauseOnMouseEnter: true,
           },
           speed: 1000,
+          allowTouchMove: true,
+          grabCursor: true,
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
           },
           on: {
             init: function() {
+              console.log('Swiper initialized with', this.slides.length, 'slides');
               // تطبيق الألوان من الإعدادات عند التهيئة
               const slides = this.slides;
               
               slides.forEach((slide, index) => {
                 const slideIndex = slide.getAttribute('data-slide-index');
-                if (slideIndex == 1) {
-                  slide.style.backgroundColor = '{{ widget.data.slide1_background_color | default('#B9C1B6') }}';
-                } else if (slideIndex == 2) {
-                  slide.style.backgroundColor = '{{ widget.data.slide2_background_color | default('#D9B297') }}';
-                } else if (slideIndex == 3) {
-                  slide.style.backgroundColor = '{{ widget.data.slide3_background_color | default('#B9C4CB') }}';
+                const textSection = slide.querySelector('.hero-text-section');
+                
+                if (textSection) {
+                  if (slideIndex == 1) {
+                    textSection.style.backgroundColor = '#B9C1B6';
+                  } else if (slideIndex == 2) {
+                    textSection.style.backgroundColor = '#D9B297';
+                  } else if (slideIndex == 3) {
+                    textSection.style.backgroundColor = '#B9C4CB';
+                  }
                 }
               });
+            },
+            slideChange: function() {
+              console.log('Slide changed to:', this.activeIndex);
+              // تطبيق الألوان عند تغيير الشريحة
+              const activeSlide = this.slides[this.activeIndex];
+              const textSection = activeSlide.querySelector('.hero-text-section');
+              
+              if (textSection) {
+                const slideIndex = activeSlide.getAttribute('data-slide-index');
+                if (slideIndex == 1) {
+                  textSection.style.backgroundColor = '#B9C1B6';
+                } else if (slideIndex == 2) {
+                  textSection.style.backgroundColor = '#D9B297';
+                } else if (slideIndex == 3) {
+                  textSection.style.backgroundColor = '#B9C4CB';
+                }
+              }
             }
           }
         });
@@ -100,23 +139,23 @@
     </script>
   {% else %}
     <!-- Hero Default (Fallback) -->
-    <div class="container mx-auto px-6 py-12 lg:py-20 flex flex-col lg:flex-row items-center justify-between">
-      <div class="hero-text-col lg:w-1/2 text-center lg:text-right mb-10 lg:mb-0 lg:pl-16 pr-2 sm:pr-4 lg:pr-8">
-        <h1 class="hero-title font-bold mb-6 md:mb-8 lg:mb-10 text-[34px] md:text-[44px] lg:text-[64px]">
-          أثاث أنيق لمنزلك<br>العصري
-        </h1>
-        <p class="hero-subtext text-[22px] md:text-[24px] mb-12 md:mb-14 lg:mb-16">
-          اكتشف تشكيلتنا الواسعة من الأثاث<br>بتصاميم عصرية وجودة عالية
-        </p>
-        <a href="/collections" class="inline-block btn-hero-rect rounded-[8px] font-extrabold text-[18px] md:text-[20px] py-3 md:py-4 px-10 md:px-12 transition-opacity hover:opacity-95">تسوق الآن</a>
-      </div>
-      <div class="hero-image-col lg:w-1/2 flex justify-center items-center relative">
-        <div class="hero-image-container">
-          <div class="decorative-circle" style="width: 50px; height: 50px; top: 10%; left: 5%;"></div>
-          <div class="decorative-circle" style="width: 20px; height: 20px; top: 25%; right: 10%;"></div>
-          <div class="decorative-circle" style="width: 30px; height: 30px; bottom: 15%; left: 0%;"></div>
-          <img src="https://i.ibb.co/6PqjXfG/chair-hero.png" alt="[كرسي أنيق باللونين الأزرق والأصفر]" class="hero-image h-full w-auto object-contain">
+    <div class="hero-split-container" data-slide="1">
+      <!-- Left side - Text content section -->
+      <div class="hero-text-section" style="background-color: #B9C1B6;">
+        <div class="hero-text-content">
+          <h1 class="hero-split-title">
+            أثاث أنيق لمنزلك<br>العصري
+          </h1>
+          <p class="hero-split-subtitle">
+            اكتشف تشكيلتنا الواسعة من الأثاث<br>بتصاميم عصرية وجودة عالية
+          </p>
+          <a href="/collections" class="hero-split-button">تسوق الآن</a>
         </div>
+      </div>
+      
+      <!-- Right side - Image section -->
+      <div class="hero-image-section">
+        <img src="https://i.ibb.co/6PqjXfG/chair-hero.png" alt="[كرسي أنيق باللونين الأزرق والأصفر]" class="hero-split-image">
       </div>
     </div>
   {% endif %}

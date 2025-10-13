@@ -11,12 +11,7 @@
     "default_title": {
       "type": "string",
       "label": "العنوان الافتراضي",
-      "default": "شاهد كيف تصنع الفرق"
-    },
-    "default_subtitle": {
-      "type": "string",
-      "label": "العنوان الفرعي الافتراضي",
-      "default": "في منزلك"
+      "default": "اكتشف افضل الخصومات والعروض الحصريه"
     },
     "default_button_text": {
       "type": "string",

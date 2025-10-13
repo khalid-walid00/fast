@@ -1,20 +1,57 @@
-<section class="video-banner py-16 sm:py-20 rounded-2xl overflow-hidden relative">
-  <div class="absolute inset-0 z-0">
-    <video class="absolute top-0 left-0 w-full h-full object-cover" preload="auto" autoplay muted playsinline loop>
+<section class="video-banner-full">
+  <div class="video-container">
+    <!-- الفيديو كخلفية -->
+    <video class="video-background" preload="auto" autoplay muted playsinline loop>
       <source src="{{ widget.data.video_url.fileUrl }}" type="video/mp4">
     </video>
-  </div>
-  <div class="container mx-auto px-6">
-    <div class="text-center py-14 sm:py-20 relative z-10">
-      <h2 class="text-white font-extrabold leading-tight text-[28px] sm:text-[42px] md:text-[56px] mb-8">
-        {{ widget.data.default_title | default('شاهد كيف تصنع الفرق') }}<br>
-        {{ widget.data.default_subtitle| default('في منزلك') }}
+    
+    <!-- Overlay داكن -->
+    <div class="video-overlay"></div>
+    
+    <!-- النص في الزاوية العلوية اليمنى -->
+    <div class="video-text-banner">
+      <h2 class="video-title">
+        {{ widget.data.default_title | default('اكتشف افضل الخصومات والعروض الحصريه') }}
       </h2>
-      <button class="video-toggle w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-full flex items-center justify-center mx-auto ring-4 ring-white/30 shadow-lg hover:scale-105 transition-transform">
-        <span class="material-symbols-outlined text-5xl sm:text-6xl" style="color:#F59A57" data-icon>pause</span>
-      </button>
     </div>
     
+    <!-- زر التشغيل في المنتصف -->
+    <div class="video-play-container">
+      <button class="video-play-button">
+        <span class="play-icon"></span>
+      </button>
+    </div>
   </div>
-
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const video = document.querySelector('.video-background');
+  const playButton = document.querySelector('.video-play-button');
+  const playIcon = document.querySelector('.play-icon');
+  
+  if (video && playButton) {
+    let isPlaying = true;
+    
+    playButton.addEventListener('click', function() {
+      if (isPlaying) {
+        video.pause();
+        playIcon.style.borderLeft = '20px solid #F59A57';
+        playIcon.style.borderTop = '12px solid transparent';
+        playIcon.style.borderBottom = '12px solid transparent';
+        isPlaying = false;
+      } else {
+        video.play();
+        playIcon.style.borderLeft = '0';
+        playIcon.style.borderTop = '0';
+        playIcon.style.borderBottom = '0';
+        playIcon.style.border = '2px solid #F59A57';
+        playIcon.style.width = '20px';
+        playIcon.style.height = '20px';
+        playIcon.style.borderRadius = '2px';
+        isPlaying = true;
+      }
+    });
+  }
+});
+</script>

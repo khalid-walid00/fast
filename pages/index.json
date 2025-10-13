@@ -16,36 +16,48 @@
           "block": "slideItem",
           "name": "الهيرو الأول",
           "settings": {
-            "image": "qumra://Hero.webp",
-            "link": "/collections",
+            "image": {
+              "type": "media",
+              "fileUrl": "https://i.ibb.co/6PqjXfG/chair-hero.png"
+            },
             "alt": "أثاث أنيق",
-            "title": "أثاث أنيق لمنزلك العصري",
-            "subtitle": "اكتشف تشكيلتنا الواسعة من الأثاث بتصاميم عصرية وجودة عالية",
-            "button_text": "تسوق الآن"
+            "title": "أثاث أنيق لمنزلك<br>العصري",
+            "subtitle": "اكتشف تشكيلتنا الواسعة من الأثاث<br>بتصاميم عصرية وجودة عالية",
+            "button_text": "تسوق الآن",
+            "link": "/collections",
+            "text_section_background_color": "#B9C1B6"
           }
         },
         {
           "block": "slideItem",
           "name": "الهيرو الثاني",
           "settings": {
-            "image": "qumra://Hero.webp",
-            "link": "/latest",
+            "image": {
+              "type": "media",
+              "fileUrl": "https://i.ibb.co/8XQhJ2K/sofa-hero.png"
+            },
             "alt": "عروض حصرية",
-            "title": "عروض حصرية لفترة محدودة",
-            "subtitle": "خصومات تصل إلى 50% على منتجات مختارة",
-            "button_text": "تسوق الآن"
+            "title": "عروض حصرية<br>لفترة محدودة",
+            "subtitle": "خصومات تصل إلى 50%<br>على منتجات مختارة",
+            "button_text": "تسوق الآن",
+            "link": "/latest",
+            "text_section_background_color": "#D9B297"
           }
         },
         {
           "block": "slideItem",
           "name": "الهيرو الثالث",
           "settings": {
-            "image": "qumra://Hero.webp",
-            "link": "/collections",
+            "image": {
+              "type": "media",
+              "fileUrl": "https://i.ibb.co/9YhK3mL/table-hero.png"
+            },
             "alt": "جودة مضمونة",
-            "title": "جودة مضمونة ومتانة تدوم",
-            "subtitle": "منتجات عالية الجودة مع ضمان شامل",
-            "button_text": "تسوق الآن"
+            "title": "جودة مضمونة<br>ومتانة تدوم",
+            "subtitle": "منتجات عالية الجودة<br>مع ضمان شامل",
+            "button_text": "تسوق الآن",
+            "link": "/collections",
+            "text_section_background_color": "#B9C4CB"
           }
         }
       ]
