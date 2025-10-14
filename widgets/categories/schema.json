@@ -15,6 +15,11 @@
       "type": "string",
       "label": "رابط عرض الكل",
       "default": "#"
+    },
+    "swipper_view": {
+      "type": "boolean",
+      "label": "عرض كعارض شرائح (Swiper)",
+      "default": true
     }
   }
   ,

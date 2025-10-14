@@ -1,44 +1,40 @@
 <section class="md:py-16 py-6 bg-gray-50">
-  <div class="container">
-    <style>
-      /* Ensure mobile tabs have spacing and correct width */
-      .best-tabs-swiper .swiper-slide { width: auto !important; padding-inline-start: 12px; }
-      .best-tabs-swiper .swiper-wrapper { align-items: center; }
-    </style>
-    <div class="section-title-container">
-      <h2 class="section-title no-underline">{{ widget.data.title | default('الأفضل مبيعًا هذا الأسبوع') }}</h2>
-    </div>
-    <div class="mb-8">
-      <!-- Mobile: tabs as swiper -->
-      <div class="md:hidden swiper best-tabs-swiper tabs-underline">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide pr-3" style="width:auto"><button class="tab-btn tab-active">الكل</button></div>
-          <div class="swiper-slide pr-3" style="width:auto"><button class="tab-btn">كتـب</button></div>
-          <div class="swiper-slide pr-3" style="width:auto"><button class="tab-btn">كراسي</button></div>
-          <div class="swiper-slide pr-3" style="width:auto"><button class="tab-btn">سراير</button></div>
-          <div class="swiper-slide pr-3" style="width:auto"><button class="tab-btn">طاولات</button></div>
-          <div class="swiper-slide pr-3" style="width:auto"><button class="tab-btn">أذرع كراسي</button></div>
-          <div class="swiper-slide pr-3" style="width:auto"><button class="tab-btn">ديكورات</button></div>
-        </div>
+  <div class="container flex flex-col md:gap-9 gap-5">
+    
+    <div class="flex flex-col md:gap-5 gap-3">
+      <div class="section-title-container">
+        <h2 class="font-bold text-[32px] text-secondary">
+          {{ widget.data.title | default('الأفضل مبيعًا هذا الأسبوع') }}
+        </h2>
       </div>
-      <!-- Desktop: simple flex row -->
-      <div class="hidden md:flex md:flex-wrap overflow-x-auto no-scrollbar whitespace-nowrap md:whitespace-normal justify-start items-center gap-3 sm:gap-6 text-base sm:text-lg font-bold tabs-underline">
-        <button class="tab-btn tab-active">الكل</button>
-        <button class="tab-btn">كتـب</button>
-        <button class="tab-btn">كراسي</button>
-        <button class="tab-btn">سراير</button>
-        <button class="tab-btn">طاولات</button>
-        <button class="tab-btn">أذرع كراسي</button>
-        <button class="tab-btn">ديكورات</button>
+
+<div class="flex items-center md:gap-10 gap-3 overflow-x-auto scrollbar-hide">
+          <!-- Categories Buttons -->
+      {% for cat in ['طاولات','كراسي','سراير','مكاتب','ديكور','إضاءة','خزائن','أذرع','كراسي','سراير','مكاتب','ديكور','إضاءة','خزائن','أذرع'] %}
+          <div class=" py-1">
+            <button
+              class="py-1 px-1 md:text-xl text-sm font-semibold border-b border-primary  transition 
+                     min-w-[54px] text-secondary/50 max-w-[111px] truncate text-center">
+              {{ cat }}
+            </button>
+          </div>
+          {% endfor %}
       </div>
-    </div>
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4  md:gap-x-6 md:gap-y-7 gap-x-[9px] gap-y-2 ">
+    </div>   
+
+    <!-- Products Grid -->
+     <div class="flex flex-col gap-5 md:gap-12 items-center justify-center">
+    <div class="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 md:gap-x-6 md:gap-y-7 gap-x-[9px] gap-y-2">
       {% for product in widget.data.products_collection or [] %}
-      {%ui "product-card.njk" ,product=product %}
+        {% ui "product-card.njk", product=product %}
       {% endfor %}
     </div>
+    <a class=" flex items-center gap-3 bg-secondary text-white py-3 md:px-[76px] px-[29px] rounded-lg" href="/collections">
+      <span class=" text-xs font-semibold">عرض المزيد</span>
+      <span class="material-symbols-outlined text-xl">
+        arrow_left_alt
+        </span>
+    </a>
+  </div>
   </div>
 </section>
-
-
-
