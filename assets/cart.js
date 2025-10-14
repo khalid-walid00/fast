@@ -59,6 +59,7 @@ function debounceUpdateCartItem(id) {
             lastSuccessfulQuantities[id] = quantity;
             localQuantities[id] = quantity;
           }
+          showToast("تم تحديث الكمية بنجاح", "success");
         } else {
           const serverQty = payload?.data?.items?.find((i) => i._id === id)?.quantity;
           const rollbackQty = (serverQty ?? lastSuccessfulQuantities[id] ?? getQtyFromGlobals(id) ?? 1);
@@ -99,6 +100,7 @@ export default {
           if (res.removeCartItem?.success) {
             window.updateCart?.(data);
             syncFromCartData(data);
+            showToast("تم حذف المنتج من السلة. يمكنك إضافته مرة أخرى في أي وقت", "success");
           } else {
             delete lastSuccessfulQuantities[id];
             delete localQuantities[id];

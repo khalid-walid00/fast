@@ -1,26 +1,28 @@
 <section class="hero-bg overflow-hidden">
   {% if widget.blocks.length > 0 %}
-    <!-- Hero Slider -->
-    <div class="hero-swiper swiper relative">
+
+    <div class="hero-swiper swiper relative  max-md:min-h-[282px]" data-bg="{{ widget.blocks[0].data.text_section_background_color | default('#B9C1B6') }}">
       <div class="swiper-wrapper">
         {% for block in widget.blocks %}
-        <div class="swiper-slide" data-slide-index="{{ loop.index }}">
-          <div class="hero-split-container" data-slide="{{ loop.index }}">
+        <div class="swiper-slide" data-slide-index="{{ loop.index }}" data-bg="{{ block.data.text_section_background_color | default('#B9C1B6') }}">
+          <div class="hero-split-container flex  " data-slide="{{ loop.index }}">
             <!-- Left side - Text content section -->
-            <div class="hero-text-section" style="background-color: {{ block.data.text_section_background_color | default('#B9C1B6') }};">
-              <div class="hero-text-content">
+            <div class=" max-md:py-9 container md:flex-1 flex-[0.5] flex flex-col justify-center md:min-h-screen relative order-1 h-full ">
+              <div class="text-right max-w-[500px] w-full flex flex-col md:gap-12 gap-4">
+               <div class="flex flex-col md:gap-5 gap-3">
                 {% if block.data.title %}
-                  <h1 class="hero-split-title">
+                  <h1 class="md:text-[40px] text-[22px] font-bold md:font-extrabold text-secondary leading-[34px] md:leading-[60px] text-right block text-secondary">
                     {{ block.data.title | safe }}
                   </h1>
                 {% endif %}
                 {% if block.data.subtitle %}
-                  <p class="hero-split-subtitle">
+                  <p class="md:text-2xl text-xs md:leading-[36px] leading-[18px] text-secondary text-right">
                     {{ block.data.subtitle | safe }}
                   </p>
                 {% endif %}
+              </div>
                 {% if block.data.button_text %}
-                  <a href="{{ block.data.link | default('/collections') }}" class="hero-split-button">
+                  <a href="{{ block.data.link | default('/collections') }}" class=" flex items-center justify-center h-[52px] bg-white rounded-lg text-secondary md:max-w-[438px] max-w-[300px] w-full md:text-base  text-sm text-center md:font-bold font-semibold leading-[12px]">
                     {{ block.data.button_text }}
                   </a>
                 {% endif %}
@@ -28,7 +30,7 @@
             </div>
             
             <!-- Right side - Image section -->
-            <div class="hero-image-section">
+            <div class="hero-image-section z-10">
               {% if block.data.image and block.data.image.fileUrl %}
                 <img src="{{ block.data.image.fileUrl }}" alt="{{ block.data.alt | default('صورة الهيرو') }}" class="hero-split-image">
               {% elif block.data.image and block.data.image %}
@@ -43,7 +45,7 @@
       </div>
       
       {% if widget.data.show_pagination %}
-        <div class="swiper-pagination"></div>
+        <div class="swiper-pagination max-md:-right-[5.5rem]"></div>
       {% endif %}
     </div>
     
@@ -66,9 +68,8 @@
       }
       .hero-swiper .swiper-pagination {
         bottom: 20px !important;
-        right: 20px !important;
-        left: auto !important;
         transform: none !important;
+        position: absolute !important;
         z-index: 10 !important;
         width: auto !important;
       }
@@ -83,11 +84,11 @@
         
         const heroSwiper = new Swiper('.hero-swiper', {
           loop: true,
-          autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          },
+          // autoplay: {
+          //   delay: 5000,
+          //   disableOnInteraction: false,
+          //   pauseOnMouseEnter: true,
+          // },
           speed: 1000,
           allowTouchMove: true,
           grabCursor: true,
@@ -97,40 +98,19 @@
           },
           on: {
             init: function() {
-              console.log('Swiper initialized with', this.slides.length, 'slides');
-              // تطبيق الألوان من الإعدادات عند التهيئة
-              const slides = this.slides;
-              
-              slides.forEach((slide, index) => {
-                const slideIndex = slide.getAttribute('data-slide-index');
-                const textSection = slide.querySelector('.hero-text-section');
-                
-                if (textSection) {
-                  if (slideIndex == 1) {
-                    textSection.style.backgroundColor = '#B9C1B6';
-                  } else if (slideIndex == 2) {
-                    textSection.style.backgroundColor = '#D9B297';
-                  } else if (slideIndex == 3) {
-                    textSection.style.backgroundColor = '#B9C4CB';
-                  }
-                }
-              });
+              const container = this.el;
+              const initialSlide = this.slides[this.activeIndex];
+              const initialBg = (initialSlide && initialSlide.dataset && initialSlide.dataset.bg) || container.dataset.bg;
+              if (initialBg) {
+                container.style.backgroundColor = initialBg;
+              }
             },
             slideChange: function() {
-              console.log('Slide changed to:', this.activeIndex);
-              // تطبيق الألوان عند تغيير الشريحة
+              const container = this.el;
               const activeSlide = this.slides[this.activeIndex];
-              const textSection = activeSlide.querySelector('.hero-text-section');
-              
-              if (textSection) {
-                const slideIndex = activeSlide.getAttribute('data-slide-index');
-                if (slideIndex == 1) {
-                  textSection.style.backgroundColor = '#B9C1B6';
-                } else if (slideIndex == 2) {
-                  textSection.style.backgroundColor = '#D9B297';
-                } else if (slideIndex == 3) {
-                  textSection.style.backgroundColor = '#B9C4CB';
-                }
+              const bg = activeSlide && activeSlide.dataset ? activeSlide.dataset.bg : null;
+              if (bg) {
+                container.style.backgroundColor = bg;
               }
             }
           }
@@ -141,9 +121,9 @@
     <!-- Hero Default (Fallback) -->
     <div class="hero-split-container" data-slide="1">
       <!-- Left side - Text content section -->
-      <div class="hero-text-section" style="background-color: #B9C1B6;">
-        <div class="hero-text-content">
-          <h1 class="hero-split-title">
+      <div class="" style="background-color: #B9C1B6;">
+        <div class="text-right max-w-[500px] w-full">
+          <h1 class="md:text-[40px] text-[22px] font-bold md:font-extrabold text-secondary leading-[34px] md:leading-[60px] text-right block text-secondary">
             أثاث أنيق لمنزلك<br>العصري
           </h1>
           <p class="hero-split-subtitle">

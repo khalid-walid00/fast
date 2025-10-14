@@ -117,7 +117,7 @@ export default {
 
     increaseProductItem() {
       if (this.isOutOfStock) {
-        showToast("لا توفر كمية في المخزون", "error");
+        showToast("الكمية المطلوبة غير متاحة حاليًا. يُرجى تقليل العدد أو اختيار منتج مشابه", "error");
         return;
       }
 
@@ -141,7 +141,7 @@ export default {
       }
 
       if (this.productQuantity >= maxQuantity) {
-        showToast("لا تتوفر كمية أكثر", "error");
+        showToast("الكمية المطلوبة غير متاحة حاليًا. يُرجى تقليل العدد أو اختيار منتج مشابه", "error");
         return;
       }
 

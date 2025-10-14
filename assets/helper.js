@@ -35,7 +35,7 @@ export function showToast(message, type = "success") {
     // offset
     offset: {
       x:isLargeScreen ? 30 : 0,
-      y: isLargeScreen ? 110 : 25,
+      y: isLargeScreen ? 50 : 10,
     },
     style: {
       background: "#fff",
@@ -47,6 +47,11 @@ export function showToast(message, type = "success") {
       borderRadius: "8px",
       border: "1px solid #C5C5C7",
       padding: isLargeScreen ? "11px 110px" : "5px 20px",
+      right: isLargeScreen ? "65px" : "16px",
+      top: isLargeScreen ? "50px" : "16px",
+       marginLeft: 0,
+       marginRight: 0,
+
     },
   }).showToast();
 }
