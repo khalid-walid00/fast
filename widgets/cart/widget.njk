@@ -10,7 +10,7 @@
             <span class="material-symbols-outlined mx-1 text-xl ">/</span>
           </li>
           <li class="flex items-center">
-            <span class=" text-secondary font-medium text-xl ">السلة</span>
+            <span class=" text-secondary font-medium text-xl ">{{t('cart')}}</span>
           </li>
         </ol>
       </nav>
@@ -102,7 +102,7 @@
               class="bg-white md:py-6 py-5 md:px-4 px-[10px]  flex flex-col  sticky top-20 gap-6 rounded-lg  border-[1.5px] border-primary">
               <div class="flex flex-col gap-4 text-gray-700">
                 <div class="flex justify-between pb-4 border-b border-strok">
-                  <span class="font-semibold text-black">إجمالي الطلب</span>
+                  <span class="font-semibold text-black">{{t('order_total')}}</span>
                 </div>
                 <div class="flex justify-between">
                   <span>المجموع الفرعي:</span>
@@ -142,7 +142,7 @@
               <button
                 class="w-full min-h-[52px]  bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary transition-colors duration-300"
                 :disabled="globalLoading.checkout" @click="checkout()">
-                <span v-show="!globalLoading.checkout" class=" text-base font-semibold">اتمام الطلب</span>
+                <span v-show="!globalLoading.checkout" class=" text-base font-semibold">{{t('complete_order')}}</span>
                 <template v-if="globalLoading.checkout">
                   <div class="flex justify-center">
                     {%ui "loading.njk" %}
@@ -164,8 +164,8 @@
             </span>
           </a>
           <div class="flex flex-col items-center">
-            <h1 class="text-xl md:text-2xl font-semibold text-secondary">عربة التسوق فارغة</h1>
-            <p class="text-gray">أضف بعض المنتجات إلى عربتك للحصول على تجربة تسوق مميزة معنا!</p>
+            <h1 class="text-xl md:text-2xl font-semibold text-secondary">{{t('empty_cart')}}</h1>
+            <p class="text-gray">{{t('add_products_message')}}</p>
           </div>
         </div>
         <a aria-label="showproduct" href="/collection/all"

@@ -10,7 +10,7 @@
 
       <!-- Header -->
       <div class="flex justify-between items-center py-2 px-4 border-b">
-        <span class="font-semibold text-secondary">السلة</span>
+        <span class="font-semibold text-secondary">{{t('cart')}}</span>
         <button @click="toggleModal('cart')"
           class="flex items-center justify-center  h-7 w-7 active:bg-gray/20 transition-all duration-200 p-2 rounded-lg hover:bg-gray/20">
           <span class="material-symbols-outlined text-xl text-secondary">close</span>
@@ -77,8 +77,8 @@
                 </span>
               </a>
               <div class="flex flex-col items-center">
-                <h5 class="font-medium">عربة التسوق فارغة</h5>
-                <p class="text-sm text-gray text-center">أضف بعض المنتجات إلى عربتك للحصول على تجربة تسوق مميزة معنا!
+                <h5 class="font-medium">{{t('empty_cart')}}</h5>
+                <p class="text-sm text-gray text-center">{{t('add_products_message')}}
                 </p>
               </div>
             </div>
@@ -93,13 +93,13 @@
       <div v-if="globals?.cart?.items && globals?.cart?.items.length > 0"
         class="flex-none flex flex-col gap-5 py-6 shadow-[0px_0px_10px_0px_#E4E4E4] bg-white">
           <div class="flex justify-between pt-2 px-4 pb-[18px] border-b border-stok ">
-            <span class="text-secondary">اجمالي الطلب</span>
+            <span class="text-secondary">{{t('order_total')}}</span>
             <span class="text-secondary font-semibold text-lg"
               v-text="(globals?.cart?.totalPrice || 0) + ' ' + (globals?.currency?.currencySymbol || '')">
             </span>
           </div>
         <div class="flex flex-col md:gap-3 gap-2 px-4">
-          <span class="font-medium text-sm">أضف 150 ج.م إلى مشترياتك لتحصل على الشحن مجانًا!</span>
+          <span class="font-medium text-sm">{{t('add_150_for_free_shipping')}}</span>
           <div class="relative w-full">
             <div class="bg-[#F4F4F4] rounded-full h-2 w-full"></div>
             <div class="absolute top-0 right-0 h-2 bg-primary rounded-full" style="width:50%"></div>

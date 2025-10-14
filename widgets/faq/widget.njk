@@ -2,7 +2,7 @@
 <section class="py-16 bg-gray-50">
   <div class="container flex flex-col md:gap-10 gap-4">
     <div class="section-title-container">
-      <h2 class="section-title">{{ widget.data.title | default('الأسئلة الشائعة') }}</h2>
+      <h2 class="section-title">{{ widget.data.title | default(t('faq_title')) }}</h2>
     </div>
     
     {% if widget.blocks.length > 0 %}
@@ -11,7 +11,7 @@
         <div class="border rounded-lg bg-white overflow-hidden">
           <details class="faq-item">
             <summary class="font-semibold text-lg cursor-pointer flex justify-between items-center p-4">
-              {{ block.data.question }}
+             {{t(block.data.question) | default(t('question'))}}
               <span  
               class="material-symbols-outlined faq-arrow border border-gray-300 rounded-full transform duration-200"  >add</span>
             </summary>

@@ -7,28 +7,28 @@
       <span class=" text-white font-bold text-xl tracking-wider ">{{globals.app.name}}</span>
       {% endif %}
       <p class=" text-sm leading-[20px] max-md:text-xs">
-        {{ widget.data.company_description | default('وصف الشركة غير متوفر') }}
+        {{ widget.data.company_description | default(t('company_description_default')) }}
       </p>
     </div>
     <div class="flex flex-col gap-4">
-      <h3 class="font-semibold text-xl leading-6">روابط سريعة</h3>
+      <h3 class="font-semibold text-xl leading-6">{{t('quick_links')}}</h3>
       <nav class="flex flex-col gap-2">
         {% set items = widget.data.footer_menu or [] %}
         {% for item in items %}
         <a href="{{ item.url | default('#') }}" class="leading-5 max-md:text-xs hover:text-primary transition-colors duration-200">{{
           item.title |
-          default('بدون عنوان') }}</a>
+          default(t('no_title')) }}</a>
         {% endfor %}
       </nav>
     </div>
     <div class="flex flex-col gap-4">
-      <h3 class="font-semibold text-xl leading-6">الأقسام</h3>
+      <h3 class="font-semibold text-xl leading-6">{{t('categories')}}</h3>
       <nav class="grid grid-cols-2 gap-y-[10px] gap-x-3">
         {% set items = widget.data.footer_menu or [] %}
         {% for item in items %}
         <a href="{{ item.url | default('#') }}" class="leading-5 max-md:text-xs hover:text-primary transition-colors duration-200">{{
           item.title |
-          default('بدون عنوان') }}</a>
+          default(t('no_title')) }}</a>
         {% endfor %}
       </nav>
     </div>

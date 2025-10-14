@@ -21,7 +21,7 @@
                 </template>
                 <template #shipping_settings>
                     <p class="text-sm font-medium text-secondary">
-                    {{widget.data.shipping_settings | default('يتم التوصيل في فترة تتراوح بين 5 أيام لـ أسبوع') | safe}}
+                    {{widget.data.shipping_settings | default(t('shipping_settings_default')) | safe}}
                 </p>
             </template>
             </component-product-details>

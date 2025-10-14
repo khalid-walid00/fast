@@ -3,20 +3,20 @@
     <div class="flex flex-col lg:flex-row items-center justify-between gap-10">
       <div class="offer-text w-full lg:w-1/2 order-2 lg:order-1">
         <h2 class="offer-inline-pad font-extrabold leading-tight text-[#2D2D2D] text-[34px] sm:text-[44px] md:text-[56px] mb-4">
-          {{ widget.data.title | default('عروض حصرية لفترة محدودة!') }}
+          {{ widget.data.title | default(t('exclusive_offers')) }}
         </h2>
         <p class="offer-inline-pad text-[#424341] text-[18px] md:text-[20px] mb-8 leading-relaxed">
-          {{ widget.data.subtitle | default('لا تفوّت الفرصة! استمتع بخصومات تصل إلى 40% على منتجات مختارة قبل انتهاء الوقت') | striptags }}
+          {{ widget.data.subtitle | default(t('dont_miss_offer')) | striptags }}
         </p>
         <div class="offer-inline-pad flex items-end count-row gap-4 sm:gap-5 mb-8">
-          <div class="count-item"><div class="count-box"><span id="dVal2" class="count-num">01</span></div><span class="count-label">أيام</span></div>
-          <div class="count-item"><div class="count-box"><span id="hVal2" class="count-num">50</span></div><span class="count-label">ساعات</span></div>
-          <div class="count-item"><div class="count-box"><span id="mVal2" class="count-num">03</span></div><span class="count-label">دقائق</span></div>
-          <div class="count-item"><div class="count-box"><span id="sVal2" class="count-num">56</span></div><span class="count-label">ثواني</span></div>
+          <div class="count-item"><div class="count-box"><span id="dVal2" class="count-num">01</span></div><span class="count-label">{{t('days')}}</span></div>
+          <div class="count-item"><div class="count-box"><span id="hVal2" class="count-num">50</span></div><span class="count-label">{{t('hours')}}</span></div>
+          <div class="count-item"><div class="count-box"><span id="mVal2" class="count-num">03</span></div><span class="count-label">{{t('minutes')}}</span></div>
+          <div class="count-item"><div class="count-box"><span id="sVal2" class="count-num">56</span></div><span class="count-label">{{t('seconds')}}</span></div>
         </div>
         <div class="pr-2 sm:pr-4 lg:pr-8">
           <a href="{{ widget.data.button_link | default('/collections') }}" class="inline-block btn-hero-rect rounded-[8px] font-extrabold text-[18px] md:text-[20px] py-3 md:py-4 px-10 md:px-12 transition-opacity hover:opacity-95">
-            {{ widget.data.button_text | default('الحق العرض الآن') }}
+            {{ widget.data.button_text | default(t('get_offer_now')) }}
           </a>
         </div>
       </div>

@@ -85,7 +85,78 @@
 .btn-hero-rect:hover { opacity: .95; }
 
 /* Hero Split Layout Styles */
+.hero-split-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
 
+/* Override for mobile */
+@media (max-width: 767px) {
+  .hero-split-container {
+    min-height: 25vh !important;
+    padding-top: 0;
+    margin-top: 0;
+  }
+  
+  /* Mobile hero text styling */
+  .hero-split-container h1 {
+    font-family: Changa !important;
+    font-weight: 700 !important;
+    font-style: normal !important;
+    font-size: 22px !important;
+    line-height: 34px !important;
+    letter-spacing: 0px !important;
+    text-align: right !important;
+    white-space: pre-line !important;
+    color: #424341 !important;
+    margin-bottom: 0.8rem !important;
+    margin-top: -1.5rem !important;
+  }
+  
+  .hero-split-container p {
+    font-size: 0.8rem !important;
+    color: #424341 !important;
+    text-align: right !important;
+    line-height: 1.3 !important;
+    margin-bottom: 1rem !important;
+    white-space: pre-line !important;
+  }
+  
+  /* Mobile button styling - exact specifications */
+  .hero-split-container a {
+    background-color: white !important;
+    color: #424341 !important;
+    font-family: Changa !important;
+    font-weight: 600 !important;
+    font-style: normal !important;
+    font-size: 14px !important;
+    line-height: 12px !important;
+    letter-spacing: 0px !important;
+    text-align: center !important;
+    width: 98px !important;
+    height: 44px !important;
+    border-radius: 4px !important;
+    padding: 0 !important;
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1) !important;
+    margin-top: -1.5rem !important;
+    opacity: 1 !important;
+    transform: rotate(0deg) !important;
+  }
+}
+
+.hero-text-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  min-height: 50vh;
+}
 
 .hero-image-section {
   flex: 1;
@@ -95,10 +166,8 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  order: 2; /* الصورة في الجهة اليمنى */
+  min-height: 50vh;
 }
-
-
 
 .hero-split-image {
   width: 100%;
@@ -107,13 +176,91 @@
   object-position: center;
 }
 
-/* Mobile specific image adjustments */
+/* Mobile specific adjustments */
 @media (max-width: 767px) {
+  .hero-split-container {
+    flex-direction: row;
+    min-height: 25vh;
+  }
+  
+  .hero-text-section {
+    min-height: 25vh;
+    padding: 1rem 0;
+    order: 1;
+  }
+  
+  .hero-image-section {
+    min-height: 25vh;
+    height: 55vh;
+    order: 2;
+  }
+  
   .hero-split-image {
     width: 100%;
     height: 100%;
+    min-height: 55vh;
     object-fit: cover;
-    object-position: center top;
+    object-position: center;
+  }
+  
+  /* Ensure image section takes full space without gaps */
+  .hero-image-section {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+  
+  /* Remove any background colors or spacing from image container */
+  .hero-image-section * {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-split-container {
+    min-height: 80vh;
+  }
+  
+  .hero-text-section {
+    min-height: 80vh;
+  }
+  
+  .hero-image-section {
+    min-height: 80vh;
+  }
+  
+  /* Force image to take full height in mobile */
+  .hero-image-section {
+    height: 25vh !important;
+    min-height: 25vh !important;
+    max-height: 25vh !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  
+  .hero-split-image {
+    height: 25vh !important;
+    min-height: 25vh !important;
+    max-height: 25vh !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}
+
+/* Desktop adjustments */
+@media (min-width: 1024px) {
+  .hero-split-container {
+    min-height: 100vh;
+  }
+  
+  .hero-text-section {
+    min-height: 100vh;
+  }
+  
+  .hero-image-section {
+    min-height: 100vh;
   }
 }
 
@@ -405,23 +552,26 @@ div.border.rounded-lg:has(> details.faq-item[open]) { border-color: #000000; }
   .hero-bg .hero-image-container { width: 220px; height: 300px; }
   
   /* Mobile responsive styles for split layout */
-
-  .hero-image-section {
-    flex: 0.6;
-    height: 100%;
-    background: transparent;
-    order: 2;
-    display: flex;
-    align-items: stretch;
+  .hero-split-container {
+    flex-direction: row !important;
   }
   
+  .hero-text-section {
+    order: 1 !important;
+    min-height: 25vh !important;
+    padding: 1rem 0 !important;
+  }
+  
+  .hero-image-section {
+    order: 2 !important;
+    min-height: 25vh !important;
+    flex: 1 !important;
+  }
 
   .hero-split-subtitle {
     font-size: 1rem;
     margin-bottom: 1.5rem;
   }
-  
-
 }
 @media (max-width: 767px) {
   .offers-banner .container > .flex { flex-direction: row !important; align-items: center; gap: 12px; }

@@ -14,7 +14,7 @@
     >
       <!-- Header -->
       <div class="flex justify-between py-[10px] px-5 border-b">
-        <span class="font-medium text-secondary">القائمة الرئيسية</span>
+        <span class="font-medium text-secondary">{{t('main_menu')}}</span>
         <button @click="toggleModal('sidebar')">
           <span class="material-symbols-outlined"> close </span>
         </button>
@@ -23,7 +23,7 @@
       <!-- Items (Scrollable) -->
       <div class="flex-1 overflow-auto px-4 py-[23px] flex flex-col gap-1">
         {% for item in data.menu %}
-       <a  href="" class="  font-medium text-xs py-2.5 border-b border-[#D9D9D980]">{{ item.title | default('بدون عنوان') }}</a>
+       <a  href="" class="  font-medium text-xs py-2.5 border-b border-[#D9D9D980]">{{ item.title | default(t('no_title')) }}</a>
         {% endfor %}
       </div>
    

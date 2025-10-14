@@ -18,13 +18,13 @@
           "settings": {
             "image": {
               "type": "media",
-              "fileUrl": "https://i.ibb.co/6PqjXfG/chair-hero.png"
+              "fileUrl": "https://i.ibb.co/8XQhJ2K/sofa-hero.png"
             },
-            "alt": "أثاث أنيق",
-            "title": "أثاث أنيق لمنزلك<br>العصري",
-            "subtitle": "اكتشف تشكيلتنا الواسعة من الأثاث<br>بتصاميم عصرية وجودة عالية",
+            "alt": "راحة وأناقة",
+            "title": "راحة وأناقة في<br>كل تفصيلة",
+            "subtitle": "اختاري من تشكيلاتنا المميزة لتجدي الأثاث المثالي<br>الذي يجمع بين التصميم العصري والراحة اليومية",
             "button_text": "تسوق الآن",
-            "link": "/collections",
+            "link": "/latest",
             "text_section_background_color": "#B9C1B6"
           }
         },
@@ -36,12 +36,12 @@
               "type": "media",
               "fileUrl": "https://i.ibb.co/8XQhJ2K/sofa-hero.png"
             },
-            "alt": "عروض حصرية",
-            "title": "عروض حصرية<br>لفترة محدودة",
-            "subtitle": "خصومات تصل إلى 50%<br>على منتجات مختارة",
+            "alt": "راحة وأناقة",
+            "title": "راحة وأناقة في<br>كل تفصيلة",
+            "subtitle": "اختاري من تشكيلاتنا المميزة لتجدي الأثاث المثالي<br>الذي يجمع بين التصميم العصري والراحة اليومية",
             "button_text": "تسوق الآن",
             "link": "/latest",
-            "text_section_background_color": "#D9B297"
+            "text_section_background_color": "#E8B4A0"
           }
         },
         {
@@ -52,10 +52,10 @@
               "type": "media",
               "fileUrl": "https://i.ibb.co/9YhK3mL/table-hero.png"
             },
-            "alt": "جودة مضمونة",
-            "title": "جودة مضمونة<br>ومتانة تدوم",
-            "subtitle": "منتجات عالية الجودة<br>مع ضمان شامل",
-            "button_text": "تسوق الآن",
+            "alt": "خصومات حصرية",
+            "title": "خصومات تصل<br>40% إلى",
+            "subtitle": "تسوق الآن من مجموعتنا المختارة من الأثاث العصري<br>بأسعار لا تقاوم لفترة محدودة",
+            "button_text": "تسوق عروضنا",
             "link": "/collections",
             "text_section_background_color": "#B9C4CB"
           }

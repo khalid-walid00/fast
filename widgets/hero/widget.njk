@@ -5,38 +5,40 @@
       <div class="swiper-wrapper">
         {% for block in widget.blocks %}
         <div class="swiper-slide" data-slide-index="{{ loop.index }}" data-bg="{{ block.data.text_section_background_color | default('#B9C1B6') }}">
-          <div class="hero-split-container flex  " data-slide="{{ loop.index }}">
-            <!-- Left side - Text content section -->
-            <div class=" max-md:py-9 container md:flex-1 flex-[0.5] flex flex-col justify-center md:min-h-screen relative order-1 h-full ">
-              <div class="text-right max-w-[500px] w-full flex flex-col md:gap-12 gap-4">
-               <div class="flex flex-col md:gap-5 gap-3">
-                {% if block.data.title %}
-                  <h1 class="md:text-[40px] text-[22px] font-bold md:font-extrabold text-secondary leading-[34px] md:leading-[60px] text-right block text-secondary">
-                    {{ block.data.title | safe }}
-                  </h1>
-                {% endif %}
-                {% if block.data.subtitle %}
-                  <p class="md:text-2xl text-xs md:leading-[36px] leading-[18px] text-secondary text-right">
-                    {{ block.data.subtitle | safe }}
-                  </p>
-                {% endif %}
-              </div>
-                {% if block.data.button_text %}
-                  <a href="{{ block.data.link | default('/collections') }}" class=" flex items-center justify-center h-[52px] bg-white rounded-lg text-secondary md:max-w-[438px] max-w-[300px] w-full md:text-base  text-sm text-center md:font-bold font-semibold leading-[12px]">
-                    {{ block.data.button_text }}
-                  </a>
-                {% endif %}
+          <div class="hero-split-container flex" data-slide="{{ loop.index }}">
+            <!-- Left side - Text content section with colored background -->
+            <div class="hero-text-section flex-1 flex flex-col justify-center relative order-1 md:order-1" style="background-color: {{ block.data.text_section_background_color | default('#B9C1B6') }};">
+              <div class="container mx-auto px-4 md:px-8 lg:px-16">
+                <div class="text-right max-w-[500px] w-full flex flex-col md:gap-12 gap-6">
+                 <div class="flex flex-col md:gap-5 gap-3">
+                  {% if block.data.title %}
+                    <h1 class="md:text-[40px] text-[22px] font-bold md:font-extrabold text-secondary leading-[34px] md:leading-[60px] text-right block">
+                      {{ block.data.title | safe }}
+                    </h1>
+                  {% endif %}
+                  {% if block.data.subtitle %}
+                    <p class="md:text-2xl text-sm md:leading-[36px] leading-[20px] text-secondary text-right">
+                      {{ block.data.subtitle | safe }}
+                    </p>
+                  {% endif %}
+                </div>
+                  {% if block.data.button_text %}
+                    <a href="{{ block.data.link | default('/collections') }}" class="flex items-center justify-center h-[52px] bg-white rounded-lg text-secondary md:max-w-[438px] max-w-[300px] w-full md:text-base text-sm text-center md:font-bold font-semibold hover:bg-gray-50 transition-colors duration-200">
+                      {{ block.data.button_text }}
+                    </a>
+                  {% endif %}
+                </div>
               </div>
             </div>
             
             <!-- Right side - Image section -->
-            <div class="hero-image-section z-10">
+            <div class="hero-image-section flex-1 relative order-2 md:order-2" style="background: transparent; padding: 0; margin: 0;">
               {% if block.data.image and block.data.image.fileUrl %}
-                <img src="{{ block.data.image.fileUrl }}" alt="{{ block.data.alt | default('صورة الهيرو') }}" class="hero-split-image">
+                <img src="{{ block.data.image.fileUrl }}" alt="{{ block.data.alt | default('صورة الهيرو') }}" class="hero-split-image" style="width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; padding: 0;">
               {% elif block.data.image and block.data.image %}
-                <img src="{{ block.data.image }}" alt="{{ block.data.alt | default('صورة الهيرو') }}" class="hero-split-image">
+                <img src="{{ block.data.image }}" alt="{{ block.data.alt | default('صورة الهيرو') }}" class="hero-split-image" style="width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; padding: 0;">
               {% else %}
-                <img src="https://i.ibb.co/6PqjXfG/chair-hero.png" alt="[كرسي أنيق باللونين الأزرق والأصفر]" class="hero-split-image">
+                <img src="https://i.ibb.co/6PqjXfG/chair-hero.png" alt="[كرسي أنيق باللونين الأزرق والأصفر]" class="hero-split-image" style="width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; padding: 0;">
               {% endif %}
             </div>
           </div>
@@ -119,23 +121,29 @@
     </script>
   {% else %}
     <!-- Hero Default (Fallback) -->
-    <div class="hero-split-container" data-slide="1">
-      <!-- Left side - Text content section -->
-      <div class="" style="background-color: #B9C1B6;">
-        <div class="text-right max-w-[500px] w-full">
-          <h1 class="md:text-[40px] text-[22px] font-bold md:font-extrabold text-secondary leading-[34px] md:leading-[60px] text-right block text-secondary">
-            أثاث أنيق لمنزلك<br>العصري
-          </h1>
-          <p class="hero-split-subtitle">
-            اكتشف تشكيلتنا الواسعة من الأثاث<br>بتصاميم عصرية وجودة عالية
-          </p>
-          <a href="/collections" class="hero-split-button">تسوق الآن</a>
+    <div class="hero-split-container flex" data-slide="1">
+      <!-- Left side - Text content section with colored background -->
+      <div class="hero-text-section flex-1 flex flex-col justify-center relative" style="background-color: #B9C1B6;">
+        <div class="container mx-auto px-4 md:px-8 lg:px-16">
+          <div class="text-right max-w-[500px] w-full flex flex-col md:gap-12 gap-6">
+            <div class="flex flex-col md:gap-5 gap-3">
+              <h1 class="md:text-[40px] text-[22px] font-bold md:font-extrabold text-secondary leading-[34px] md:leading-[60px] text-right block">
+                اساس انيق لمنزلك<br>والعصري
+              </h1>
+              <p class="md:text-2xl text-sm md:leading-[36px] leading-[20px] text-secondary text-right">
+                اكتشف تشكيلتنا الواسعة من الأثاث<br>بتصاميم عصرية وجودة عالية
+              </p>
+            </div>
+            <a href="/collections" class="flex items-center justify-center h-[52px] bg-white rounded-lg text-secondary md:max-w-[438px] max-w-[300px] w-full md:text-base text-sm text-center md:font-bold font-semibold hover:bg-gray-50 transition-colors duration-200">
+              {{t('shop_now')}}
+            </a>
+          </div>
         </div>
       </div>
       
       <!-- Right side - Image section -->
-      <div class="hero-image-section">
-        <img src="https://i.ibb.co/6PqjXfG/chair-hero.png" alt="[كرسي أنيق باللونين الأزرق والأصفر]" class="hero-split-image">
+      <div class="hero-image-section flex-1 relative" style="background: transparent; padding: 0; margin: 0;">
+        <img src="https://i.ibb.co/6PqjXfG/chair-hero.png" alt="[كرسي أنيق باللونين الأزرق والأصفر]" class="hero-split-image" style="width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; padding: 0;">
       </div>
     </div>
   {% endif %}

@@ -9,7 +9,7 @@
         <div class="border w-max  h-[52px] rounded-lg border-gray2 py-3 px-4 flex items-center gap-[9px]">
           <div class="flex gap-3 items-center">
             <component-stars-rate :size="{ sm: 14, md: 15, lg: 16 }" v-model="2" :max="5"></component-stars-rate>
-            <span class="text-secondary">3 تقييمات</span>
+            <span class="text-secondary">{{t('reviews_count')}}</span>
           </div>
           <span class="material-symbols-outlined text-[22px]">stat_minus_1</span>
         </div>
@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="border min-w-[197px] h-[52px] rounded-lg border-gray2 py-3 px-4 flex items-center justify-center gap-[9px]">
-          <span>اضف تقييمك</span>
+          <span>{{t('add_review')}}</span>
         </div>
       </div>
     </div>

@@ -35,7 +35,7 @@
                         </svg>
                         <span class="text-secondary max-md:text-xs font-semibold">5</span>
                     </div>
-                    <span class="font-semibold max-md:hidden text-gray">6 تقييمات </span>
+                    <span class="font-semibold max-md:hidden text-gray">6 {{t('reviews')}} </span>
                 </div>
             </div>
             {% if data.product.collections | length > 0 %}
@@ -65,7 +65,7 @@
         {% if data.product.variantsCount > 0 %}
         <a href="/product/{{ data.product.slug }}"
             class="w-full bg-primary text-white md:py-3 py-2 h-11 md:h-[52px]  rounded-lg flex items-center justify-center  hover:opacity-95 ">
-            <span class=" text-nowrap font-medium">عرض التفاصيل</span>
+            <span class=" text-nowrap font-medium">{{t('view_details')}}</span>
         </a>
         {% else %}
         <button @click="addProductToCart('{{ data.product._id }}', 1, [])" :disabled="loading['{{ data.product._id }}']"
@@ -81,7 +81,7 @@
             </template>
 
             <template v-else>
-                إضافة للسلة
+                {{t('add_to_cart')}}
             </template>
         </button>
 

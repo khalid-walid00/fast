@@ -1,57 +1,57 @@
 {
-  "name": "الأسئلة الشائعة",
-  "description": "قسم الأسئلة الشائعة مع إمكانية إضافة أسئلة وأجوبة",
+  "name": "faq_title",
+  "description": "{{t(faq_title)}} section with ability to add questions and answers",
   "settings": {
     "title": { 
       "type": "string", 
-      "label": "العنوان", 
-      "default": "الأسئلة الشائعة" 
+      "label": "{{t(question)}}", 
+      "default": "{{t(faq_title)}}" 
     }
   },
   "blocks": {
     "faqItem": {
-      "name": "سؤال شائع",
+      "name": "{{t(faq_item)}}",
       "settings": {
         "question": {
           "type": "string",
-          "label": "السؤال",
-          "default": "كيف يمكنني إرجاع المنتج؟"
+          "label": "{{t(question)}}",
+          "default": "{{t(how_to_return_product)}}"
         },
         "answer": {
           "type": "text",
-          "label": "الإجابة",
-          "default": "يمكنك إرجاع المنتج خلال 14 يوم من تاريخ الشراء مع الحفاظ على حالة المنتج الأصلية."
+          "label": "{{t(answer)}}",
+          "default": "{{t(return_policy_answer)}}"
         }
       }
     }
   },
   "presets": [
     {
-      "category": "الصفحة الرئيسية",
-      "name": "⭐ الأسئلة الشائعة",
+      "category": "{{t(home)}}",
+      "name": "⭐ {{t(faq_title)}}",
       "blocks": [
         {
           "block": "faqItem",
-          "name": "السؤال الأول",
+          "name": "{{t(first_question)}}",
           "settings": {
-            "question": "كيف يمكنني إرجاع المنتج؟",
-            "answer": "يمكنك إرجاع المنتج خلال 14 يوم من تاريخ الشراء مع الحفاظ على حالة المنتج الأصلية."
+            "question": "{{t(how_to_return_product)}}",
+            "answer": "{{t(return_policy_answer)}}"
           }
         },
         {
           "block": "faqItem",
-          "name": "السؤال الثاني",
+          "name": "{{t(second_question)}}",
           "settings": {
-            "question": "ما هي مدة الشحن؟",
-            "answer": "مدة الشحن تتراوح بين 2-5 أيام عمل داخل القاهرة و 3-7 أيام للمحافظات الأخرى."
+            "question": "{{t(shipping_duration_question)}}",
+            "answer": "{{t(shipping_duration_answer)}}"
           }
         },
         {
           "block": "faqItem",
-          "name": "السؤال الثالث",
+          "name": "{{t(third_question)}}",
           "settings": {
-            "question": "هل الشحن مجاني؟",
-            "answer": "نعم، الشحن مجاني للطلبات التي تزيد عن 500 جنيه داخل القاهرة و 800 جنيه للمحافظات."
+            "question": "{{t(free_shipping_question)}}",
+            "answer": "{{t(free_shipping_answer)}}"
           }
         }
       ]

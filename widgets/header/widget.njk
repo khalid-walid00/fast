@@ -9,7 +9,7 @@
                     {% for item in items %}
                     {% if loop.index0 < 6 %} <a href="{{ item.url | default('#') }}"
                         class="text-secondary hover:text-primary font-semibold whitespace-nowrap transition-colors duration-200">
-                        {{ item.title | default('بدون عنوان') }}</a>
+                        {{ item.title | default(t('no_title')) }}</a>
                         {% endif %}
                         {% endfor %}
                         {% if items | length > 6 %}
@@ -18,7 +18,7 @@
                                 class=" hover:text-primary justify-center rounded-md flex items-center gap-2  "
                                 aria-label="المزيد">
                                 <span class="font-semibold">
-                                    المزيد
+                                    {{t('more')}}
                                 </span>
                                 <span class="material-symbols-outlined">
                                     arrow_drop_down
@@ -30,7 +30,7 @@
                                 {% if loop.index0 >= 6 %}
                                 <a href="{{ item.url | default('#') }}"
                                     class="block font-semibold px-4 py-2  text-gray-600 hover:text-primary hover:bg-gray-50 whitespace-nowrap">{{
-                                    item.title | default('بدون عنوان') }}</a>
+                                    item.title | default(t('no_title')) }}</a>
                                 {% endif %}
                                 {% endfor %}
                             </div>
@@ -45,7 +45,7 @@
                     class=" pl-[18px] cursor-pointer transform -scale-x-100 material-symbols-outlined text-xl text-strok flex items-center justify-center w-5 h-5">
                     search
                 </button>
-                <input v-model="search" ref="search" type="text" placeholder="البحث هنا"
+                <input v-model="search" ref="search" type="text" placeholder="{{t('search_here')}}"
                     class="placeholder-white py-[2px] flex-1 focus:outline-none rounded-lg bg-white text-primary">
             </form>
         </div>
@@ -70,14 +70,14 @@
                 <span class="material-symbols-outlined text-xl text-secondary flex items-center justify-center w-5 h-5">
                     person
                 </span>
-                <span class="font-semibold text-secondary text-nowrap text-xs">التسجيل/ تسجيل الدخول</span>
+                <span class="font-semibold text-secondary text-nowrap text-xs">{{t('login_register')}}</span>
             </button>
             {% else %}
             <button @click="login()" class="flex items-center rounded-lg bg-[#CCCCCC] gap-2 py-2 px-2">
                 <span class="material-symbols-outlined text-xl text-secondary flex items-center justify-center w-5 h-5">
                     person
                 </span>
-                <span class="font-semibold text-secondary text-nowrap text-xs">التسجيل/ تسجيل الدخول</span>
+                <span class="font-semibold text-secondary text-nowrap text-xs">{{t('login_register')}}</span>
             </button>
             {% endif %}
         </div>
