@@ -486,15 +486,7 @@ details[open] .faq-arrow { transform: rotate(45deg); }
 .faq-item[open] .faq-arrow { border-color:#333333;color: #333333; }
 /* When the FAQ accordion is open, turn the card border black */
 div.border.rounded-lg:has(> details.faq-item[open]) { border-color: #000000; }
-.offer-blob { position: relative; width: 100%; height: 360px; overflow: hidden; border-radius: 58% 42% 48% 52% / 55% 45% 55% 45%; box-shadow: 0 10px 24px rgba(0,0,0,.08); }
-.offer-blob img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-.count-box { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 80px; height: 80px; background: #fff; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
-.count-num { font-weight: 800; font-size: 24px; color:#F59A57; line-height: 1; }
-.count-label { font-weight: 700; font-size: 12px; color:#6B7280; margin-top: 6px; }
-.count-item { display: flex; flex-direction: column; align-items: center; }
-.count-row { justify-content: flex-start; flex-wrap: nowrap; column-gap: 12px; row-gap: 8px; }
 .cta-offer { display: inline-flex; align-items: center; justify-content: center; background: #fff; color: #2D2D2D; font-weight: 800; font-size: 18px; width: 520px; height: 60px; padding: 16px 44px; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,.08); opacity: 1; white-space: nowrap; }
-.offer-inline-pad { padding-right: 40px; padding-left: 40px; width: 100%; box-sizing: border-box; }
 .review-card { position: relative; background: #fff; border: 1px solid #E5E7EB; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 20px; min-height: 180px; display: flex; flex-direction: column; }
 .review-quote { position: absolute; top: 12px; right: 16px; font-size: 28px; color: #D1D5DB; }
 .review-text { text-align: center; color: #374151; line-height: 1.6; margin: 32px 0 20px; font-size: 14px; flex-grow: 1; }
@@ -505,7 +497,6 @@ div.border.rounded-lg:has(> details.faq-item[open]) { border-color: #000000; }
 /* Mobile tweaks */
 @media (max-width: 360px) {
   .section-title { font-size: 22px; }
-  .offer-blob { height: 300px; }
   .cta-offer { width: 100%; max-width: 442px; }
   
   /* Hero adjustments for very small screens */
@@ -539,7 +530,6 @@ div.border.rounded-lg:has(> details.faq-item[open]) { border-color: #000000; }
   .video-banner .text-center { padding-top: 28px; padding-bottom: 28px; }
   .video-banner h2 { font-size: 26px; }
   .video-banner button { width: 68px; height: 68px; }
-  .offer-inline-pad { padding-right: 16px; padding-left: 16px; }
   .section-title::before { width: 100%; }
   .section-title::after { width: 120px; }
 }
@@ -573,26 +563,8 @@ div.border.rounded-lg:has(> details.faq-item[open]) { border-color: #000000; }
     margin-bottom: 1.5rem;
   }
 }
-@media (max-width: 767px) {
-  .offers-banner .container > .flex { flex-direction: row !important; align-items: center; gap: 12px; }
-  .offers-banner .offer-text { order: 1 !important; width: 50%; text-align: right; display: flex; flex-direction: column; }
-  .offers-banner .offer-image { order: 2 !important; width: 50%; display: flex; justify-content: center; }
-  .offers-banner h2 { font-size: 22px; line-height: 1.3; padding-right: 40px; }
-  .offers-banner p { font-size: 14px; }
-  .offers-banner .count-row { justify-content: flex-start; column-gap: 10px; row-gap: 6px; flex-wrap: nowrap; }
-  .offers-banner .cta-offer { height: 56px; font-size: 20px; padding: 14px 40px; }
-  .offers-banner h2 { font-size: 30px; line-height: 1.3; padding-right: 40px; }
-  .offers-banner .count-box { width: 54px; height: 54px; border-radius: 12px; flex: 0 0 54px; }
-  .offers-banner .count-num { font-size: 18px; }
-  .offers-banner .count-label { font-size: 11px; }
-  .offers-banner .cta-offer { width: 100%; max-width: none; }
-  .offers-banner .offer-blob { height: 220px; }
-}
-@media (max-width: 360px) {
-  .offers-banner .count-box { width: 48px; height: 48px; flex: 0 0 48px; }
-  .offers-banner .count-num { font-size: 16px; }
-  .offers-banner .count-row { column-gap: 8px; row-gap: 6px; }
-}
+
+
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px
@@ -641,3 +613,4 @@ div.border.rounded-lg:has(> details.faq-item[open]) { border-color: #000000; }
   pointer-events: none;
   transition: background-position 0.05s linear;
 }
+
