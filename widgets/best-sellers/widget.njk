@@ -4,13 +4,13 @@
     <div class="flex flex-col md:gap-5 gap-3">
       <div class="section-title-container">
         <h2 class="font-bold text-[32px] text-secondary">
-          {{ widget.data.title | default('الأفضل مبيعًا هذا الأسبوع') }}
+          {{ t('best_sellers') }}
         </h2>
       </div>
 
 <div class="flex items-center md:gap-10 gap-3 overflow-x-auto scrollbar-hide">
           <!-- Categories Buttons -->
-      {% for cat in ['طاولات','كراسي','سراير','مكاتب','ديكور','إضاءة','خزائن','أذرع','كراسي','سراير','مكاتب','ديكور','إضاءة','خزائن','أذرع'] %}
+      {% for cat in [t('all'), t('books'), t('chairs'), t('beds'), t('tables'), t('armchairs'), t('decor')] %}
           <div class=" py-1">
             <button
               class="py-1 px-1 md:text-xl text-sm font-semibold border-b border-primary  transition 
