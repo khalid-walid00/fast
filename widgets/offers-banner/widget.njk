@@ -3,10 +3,10 @@
     <div class="flex flex-col lg:flex-row items-center justify-between gap-10">
       <div class="offer-text w-full lg:w-1/2 order-2 lg:order-1">
         <h2 class="offer-inline-pad font-extrabold leading-tight text-[#2D2D2D] text-[34px] sm:text-[44px] md:text-[56px] mb-4">
-          {{ widget.data.title | default(t('exclusive_offers')) }}
+          {{ t(widget.data.title | default('exclusive_offers')) }}
         </h2>
         <p class="offer-inline-pad text-[#424341] text-[18px] md:text-[20px] mb-8 leading-relaxed">
-          {{ widget.data.subtitle | default(t('dont_miss_offer')) | striptags }}
+          {{ t(widget.data.subtitle | default('dont_miss_offer')) | striptags }}
         </p>
         <div class="offer-inline-pad flex items-end count-row gap-4 sm:gap-5 mb-8">
           <div class="count-item"><div class="count-box"><span id="dVal2" class="count-num">01</span></div><span class="count-label">{{t('days')}}</span></div>
@@ -16,14 +16,14 @@
         </div>
         <div class="pr-2 sm:pr-4 lg:pr-8">
           <a href="{{ widget.data.button_link | default('/collections') }}" class="inline-block btn-hero-rect rounded-[8px] font-extrabold text-[18px] md:text-[20px] py-3 md:py-4 px-10 md:px-12 transition-opacity hover:opacity-95">
-            {{ widget.data.button_text | default(t('get_offer_now')) }}
+            {{ t(widget.data.button_text | default('get_offer_now')) }}
           </a>
         </div>
       </div>
       <div class="offer-image w-full lg:w-1/2 order-1 lg:order-2">
         <div class="offer-blob">
           {% if widget.data.image and widget.data.image.fileUrl %}
-            <img src="{{ widget.data.image.fileUrl }}" alt="{{ widget.data.alt | default('صورة البانر') }}">
+            <img src="{{ widget.data.image.fileUrl }}" alt="{{ t(widget.data.alt | default('banner_image_alt')) }}">
           {% else %}
             <img src="https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&dpr=1" alt="صورة افتراضية">
           {% endif %}

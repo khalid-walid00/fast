@@ -11,22 +11,16 @@
               <div class="container mx-auto px-4 md:px-8 lg:px-16">
                 <div class="text-right max-w-[500px] w-full flex flex-col md:gap-12 gap-6">
                  <div class="flex flex-col md:gap-5 gap-3">
-                  {% if block.data.title %}
-                    <h1 class="md:text-[40px] text-[22px] font-bold md:font-extrabold text-secondary leading-[34px] md:leading-[60px] text-right block">
-                      {{ block.data.title | safe }}
-                    </h1>
-                  {% endif %}
-                  {% if block.data.subtitle %}
-                    <p class="md:text-2xl text-sm md:leading-[36px] leading-[20px] text-secondary text-right">
-                      {{ block.data.subtitle | safe }}
-                    </p>
-                  {% endif %}
+                  <h1 class="md:text-[40px] text-[22px] font-bold md:font-extrabold text-secondary leading-[34px] md:leading-[60px] text-right block">
+                    {{ (block.data.title ? t(block.data.title) : t('hero_title_default')) | safe }}
+                  </h1>
+                  <p class="md:text-2xl text-sm md:leading-[36px] leading-[20px] text-secondary text-right">
+                    {{ (block.data.subtitle ? t(block.data.subtitle) : t('hero_subtitle_default')) | safe }}
+                  </p>
                 </div>
-                  {% if block.data.button_text %}
-                    <a href="{{ block.data.link | default('/collections') }}" class="flex items-center justify-center h-[52px] bg-white rounded-lg text-secondary md:max-w-[438px] max-w-[300px] w-full md:text-base text-sm text-center md:font-bold font-semibold hover:bg-gray-50 transition-colors duration-200">
-                      {{ block.data.button_text }}
-                    </a>
-                  {% endif %}
+                  <a href="{{ block.data.link | default('/collections') }}" class="flex items-center justify-center h-[52px] bg-white rounded-lg text-secondary md:max-w-[438px] max-w-[300px] w-full md:text-base text-sm text-center md:font-bold font-semibold hover:bg-gray-50 transition-colors duration-200">
+                    {{ block.data.button_text ? t(block.data.button_text) : t('hero_button_text_default') }}
+                  </a>
                 </div>
               </div>
             </div>
@@ -34,9 +28,9 @@
             <!-- Right side - Image section -->
             <div class="hero-image-section flex-1 relative order-2 md:order-2" style="background: transparent; padding: 0; margin: 0;">
               {% if block.data.image and block.data.image.fileUrl %}
-                <img src="{{ block.data.image.fileUrl }}" alt="{{ block.data.alt | default('صورة الهيرو') }}" class="hero-split-image" style="width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; padding: 0;">
+                <img src="{{ block.data.image.fileUrl }}" alt="{{ t(block.data.alt | default('hero_image_alt')) }}" class="hero-split-image" style="width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; padding: 0;">
               {% elif block.data.image and block.data.image %}
-                <img src="{{ block.data.image }}" alt="{{ block.data.alt | default('صورة الهيرو') }}" class="hero-split-image" style="width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; padding: 0;">
+                <img src="{{ block.data.image }}" alt="{{ t(block.data.alt | default('hero_image_alt')) }}" class="hero-split-image" style="width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; padding: 0;">
               {% else %}
                 <img src="https://i.ibb.co/6PqjXfG/chair-hero.png" alt="[كرسي أنيق باللونين الأزرق والأصفر]" class="hero-split-image" style="width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; padding: 0;">
               {% endif %}

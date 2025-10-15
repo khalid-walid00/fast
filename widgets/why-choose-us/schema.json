@@ -4,38 +4,30 @@
   "settings": {
     "section_title": {
       "type": "string",
-      "label": "عنوان القسم",
-      "default": "لماذا تختارنا؟"
+      "label": "",
+      "default": "why_choose_us"
     }
   },
   "blocks": {
     "featureItem": {
       "name": "ميزة",
       "settings": {
-        "title": {
-          "type": "string",
-          "label": "عنوان الميزة",
-          "default": "الشحن مجاناً"
-        },
-        "description": {
-          "type": "string",
-          "label": "وصف الميزة",
-          "default": "نحن نغطي كافة المناطق في مصر مع حلول الشحن السريع."
-        },
+        "title": { "type": "string", "label": "", "default": "feature_title" },
+        "description": { "type": "string", "label": "", "default": "feature_description" },
         "icon_name": {
           "type": "string",
-          "label": "اسم أيقونة Material Symbols (اختياري)",
+          "label": "",
           "default": ""
         },
         "icon": {
           "type": "media",
-          "label": "أيقونة الميزة",
+          "label": "",
           "default": ""
         },
         "alt": {
           "type": "string",
-          "label": "النص البديل للأيقونة",
-          "default": "أيقونة الميزة"
+          "label": "",
+          "default": "icon_alt_text"
         }
       }
     }
@@ -45,9 +37,9 @@
       "category": "الصفحة الرئيسية",
       "name": "⭐ لماذا تختارنا",
       "blocks": [
-        { "block": "featureItem", "name": "جودة مضمونة", "settings": { "title": "جودة مضمونة", "description": "نستخدم أفضل الخامات لضمان متانة تدوم لسنوات طويلة", "icon_name": "verified", "icon": "", "alt": "جودة" } },
-        { "block": "featureItem", "name": "شحن مجاني", "settings": { "title": "شحن مجاني", "description": "نوفر خدمة الشحن المجاني لجميع الطلبات داخل مصر", "icon_name": "local_shipping", "icon": "", "alt": "الشحن" } },
-        { "block": "featureItem", "name": "دعم عملاء", "settings": { "title": "دعم عملاء مميز", "description": "فريق دعم عملاء متخصص لخدمتك على مدار الساعة", "icon_name": "support_agent", "icon": "", "alt": "الدعم" } }
+        { "block": "featureItem", "name": "guaranteed_quality", "settings": { "title": "guaranteed_quality", "description": "guaranteed_quality_description", "icon_name": "verified", "icon": "", "alt": "quality_alt" } },
+        { "block": "featureItem", "name": "free_shipping_feature", "settings": { "title": "free_shipping_feature", "description": "free_shipping_feature_description", "icon_name": "local_shipping", "icon": "", "alt": "shipping_alt" } },
+        { "block": "featureItem", "name": "customer_support", "settings": { "title": "premium_customer_support", "description": "customer_support_description", "icon_name": "support_agent", "icon": "", "alt": "support_alt" } }
       ]
     }
   ]

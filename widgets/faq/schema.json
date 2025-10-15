@@ -1,59 +1,26 @@
 {
   "name": "faq_title",
-  "description": "{{t(faq_title)}} section with ability to add questions and answers",
+  "description": "faq_title",
   "settings": {
-    "title": { 
-      "type": "string", 
-      "label": "{{t(question)}}", 
-      "default": "{{t(faq_title)}}" 
-    }
+    "title": { "type": "string", "label": "", "default": "faq_title" }
   },
   "blocks": {
     "faqItem": {
-      "name": "{{t(faq_item)}}",
+      "name": "faq_item",
       "settings": {
-        "question": {
-          "type": "string",
-          "label": "{{t(question)}}",
-          "default": "{{t(how_to_return_product)}}"
-        },
-        "answer": {
-          "type": "text",
-          "label": "{{t(answer)}}",
-          "default": "{{t(return_policy_answer)}}"
-        }
+        "question": { "type": "string", "label": "", "default": "how_to_return_product" },
+        "answer": { "type": "text", "label": "", "default": "return_policy_answer" }
       }
     }
   },
   "presets": [
     {
-      "category": "{{t(home)}}",
-      "name": "⭐ {{t(faq_title)}}",
+      "category": "home",
+      "name": "faq_title",
       "blocks": [
-        {
-          "block": "faqItem",
-          "name": "{{t(first_question)}}",
-          "settings": {
-            "question": "{{t(how_to_return_product)}}",
-            "answer": "{{t(return_policy_answer)}}"
-          }
-        },
-        {
-          "block": "faqItem",
-          "name": "{{t(second_question)}}",
-          "settings": {
-            "question": "{{t(shipping_duration_question)}}",
-            "answer": "{{t(shipping_duration_answer)}}"
-          }
-        },
-        {
-          "block": "faqItem",
-          "name": "{{t(third_question)}}",
-          "settings": {
-            "question": "{{t(free_shipping_question)}}",
-            "answer": "{{t(free_shipping_answer)}}"
-          }
-        }
+        { "block": "faqItem", "name": "first_question", "settings": { "question": "how_to_return_product", "answer": "return_policy_answer" } },
+        { "block": "faqItem", "name": "second_question", "settings": { "question": "shipping_duration_question", "answer": "shipping_duration_answer" } },
+        { "block": "faqItem", "name": "third_question", "settings": { "question": "free_shipping_question", "answer": "free_shipping_answer" } }
       ]
     }
   ]
