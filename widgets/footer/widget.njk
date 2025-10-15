@@ -7,7 +7,7 @@
       <span class=" text-white font-bold text-xl tracking-wider ">{{globals.app.name}}</span>
       {% endif %}
       <p class=" text-sm leading-[20px] max-md:text-xs">
-        {{ widget.data.company_description | default(t('company_description_default')) }}
+        {{ t(widget.data.company_description) | default(t('company_description_default')) }}
       </p>
     </div>
     <div class="flex flex-col gap-4">
@@ -15,9 +15,7 @@
       <nav class="flex flex-col gap-2">
         {% set items = widget.data.footer_menu or [] %}
         {% for item in items %}
-        <a href="{{ item.url | default('#') }}" class="leading-5 max-md:text-xs hover:text-primary transition-colors duration-200">{{
-          item.title |
-          default(t('no_title')) }}</a>
+        <a href="{{ item.url | default('#') }}" class="leading-5 max-md:text-xs hover:text-primary transition-colors duration-200">{{ t(item.title | default('no_title')) }}</a>
         {% endfor %}
       </nav>
     </div>
@@ -26,9 +24,7 @@
       <nav class="grid grid-cols-2 gap-y-[10px] gap-x-3">
         {% set items = widget.data.footer_menu or [] %}
         {% for item in items %}
-        <a href="{{ item.url | default('#') }}" class="leading-5 max-md:text-xs hover:text-primary transition-colors duration-200">{{
-          item.title |
-          default(t('no_title')) }}</a>
+        <a href="{{ item.url | default('#') }}" class="leading-5 max-md:text-xs hover:text-primary transition-colors duration-200">{{ t(item.title | default('no_title')) }}</a>
         {% endfor %}
       </nav>
     </div>

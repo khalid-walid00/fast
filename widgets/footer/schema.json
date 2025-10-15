@@ -4,7 +4,7 @@
         "company_description": { "type": "textarea", "label": "", "default": "company_description_default_text" },
         "footer_menu": {
           "type": "menu",
-          "label": "القائمة السفلية",
+          "label": "",
           "default": "header"
         },
         "contact_phone": {
@@ -20,74 +20,74 @@
         },
         "policy_links": {
           "type": "array",
-          "label": "روابط السياسات",
+          "label": "",
           "items": {
             "type": "object",
             "properties": {
               "title": {
                 "type": "string",
-                "label": "عنوان الرابط"
+                "label": ""
               },
               "url": {
                 "type": "string",
-                "label": "رابط الرابط"
+                "label": ""
               }
             }
           },
           "default": [
             {
-              "title": "سياسة الخصوصية",
+              "title": "privacy_policy",
               "url": "#"
             },
             {
-              "title": "سياسة الاسترجاع",
+              "title": "return_policy",
               "url": "#"
             },
             {
-              "title": "سياسة الشحن",
+              "title": "shipping_policy",
               "url": "#"
             },
             {
-              "title": "شروط الاستخدام",
+              "title": "terms_of_use",
               "url": "#"
             }
           ]
         },
         "support_links": {
           "type": "array",
-          "label": "روابط الدعم",
+          "label": "",
           "items": {
             "type": "object",
             "properties": {
               "title": {
                 "type": "string",
-                "label": "عنوان الرابط"
+                "label": ""
               },
               "url": {
                 "type": "string",
-                "label": "رابط الرابط"
+                "label": ""
               }
             }
           },
           "default": [
             {
-              "title": "الأسئلة الشائعة",
+              "title": "faq_link",
               "url": "#"
             },
             {
-              "title": "حسابي",
+              "title": "my_account",
               "url": "#"
             },
             {
-              "title": "تتبع طلبي",
+              "title": "track_order",
               "url": "#"
             },
             {
-              "title": "خدمة العملاء",
+              "title": "customer_service",
               "url": "#"
             },
             {
-              "title": "الدعم الفني",
+              "title": "technical_support",
               "url": "#"
             }
           ]

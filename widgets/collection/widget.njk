@@ -1,6 +1,6 @@
 <section>
   {% if context.products | length > 0 %}
-  {%ui "header-page.njk", title=context.collection.title %}
+  {%ui "header-page.njk", title=context.collection.title | default(t('collections_default')) %}
   <div class="container  md:py-[88px] py-6  flex  flex-col md:gap-10 gap-6">
     <div class="flex flex-col md:gap-8 gap-4">
       {%ui "filter.njk" %}
@@ -13,6 +13,6 @@
     {%ui "pagination.njk" %}
   </div>
   {% else %}
-  {%ui "empty.njk", title="لا يوجد منتجات في هذه المجموعة" %}
+  {%ui "empty.njk", title=t('collections_default') %}
   {% endif %}
 </section>

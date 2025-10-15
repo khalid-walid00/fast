@@ -6,16 +6,18 @@
     </div>
     
     {% if widget.blocks.length > 0 %}
+      {% set defaultQuestionKeys = ['how_to_return_product','shipping_duration_question','free_shipping_question'] %}
+      {% set defaultAnswerKeys = ['return_policy_answer','shipping_duration_answer','free_shipping_answer'] %}
       <div class="space-y-4">
         {% for block in widget.blocks %}
         <div class="border rounded-lg bg-white overflow-hidden">
           <details class="faq-item">
             <summary class="font-semibold text-lg cursor-pointer flex justify-between items-center p-4">
-             {{ t(block.data.question | default('question')) }}
+             {{ t(defaultQuestionKeys[loop.index0] or 'question') }}
               <span  
               class="material-symbols-outlined faq-arrow border border-gray-300 rounded-full transform duration-200"  >add</span>
             </summary>
-            <p class="p-4 pt-0 text-gray-600">{{ t(block.data.answer | default('answer')) }}</p>
+            <p class="p-4 pt-0 text-gray-600">{{ t(defaultAnswerKeys[loop.index0] or 'answer') }}</p>
           </details>
         </div>
         {% endfor %}

@@ -13,10 +13,10 @@ class=" md:bg-[length:50%_100%] bg-[length:80%_100%]"
         <div class="flex flex-col md:gap-5 gap-2">
           <h2
             class=" md:font-extrabold md:leading-[60px] font-bold leading-[34px]  text-secondary text-[22px] md:text-[40px] ">
-            {{ widget.data.title | default(t('exclusive_offers')) }}
+            {{ t('exclusive_offers') }}
           </h2>
           <p class=" text-secondary text-xs md:text-2xl md:leading-[36px] leading-[149%] ">
-            {{ widget.data.subtitle | default(t('dont_miss_offer')) | striptags }}
+            {{ t('dont_miss_offer') | striptags }}
           </p>
         </div>
         <div class=" flex items-end count-row gap-1">
@@ -44,7 +44,7 @@ class=" md:bg-[length:50%_100%] bg-[length:80%_100%]"
           <a href="{{ widget.data.button_link | default('/collections') }}"
             class=" md:bg-secondary bg-white flex justify-center items-center md:text-white text-secondary rounded-lg md:font-bold font-semibold text-sm leading-[12px]
              w-full md:text-base py-3 md:py-3.5 px-[37px] md:px-12 transition-opacity hover:opacity-95">
-            {{ widget.data.button_text | default(t('get_offer_now')) }}
+            {{ t('get_offer_now') }}
           </a>
       </div>
 

@@ -2,12 +2,12 @@
     <div class="container md:py-[88px] py-6">
         <div class="grid relative grid-cols-1 lg:grid-cols-2 md:gap-[60px] gap-6">
           <component-product-gallery
-          :images="context.product.images"
-          :slides-per-view="{{ widget.data.slides_per_view | default(3) | dump | safe }}"
-          :loop="{{ widget.data.loop | default(true) | dump | safe }}"
-          :space-between="{{ widget.data.space_between | default(10) | dump | safe }}"
-          :autoplay-delay="{{ widget.data.autoplay_delay | default(0) | dump | safe }}"
-          :speed="{{ widget.data.speed | default(400) | dump | safe }}">
+         :images="context.product.images"
+         :slides-per-view="{{ widget.data.slides_per_view | default(3) | dump | safe }}"
+         :loop="{{ widget.data.loop | default(true) | dump | safe }}"
+         :space-between="{{ widget.data.space_between | default(10) | dump | safe }}"
+         :autoplay-delay="{{ widget.data.autoplay_delay | default(0) | dump | safe }}"
+         :speed="{{ widget.data.speed | default(400) | dump | safe }}">
         </component-product-gallery>
             <div class="flex flex-col gap-5">
             <component-product-details>
@@ -16,12 +16,12 @@
                 </template>
                 <template #description>
                     <p class="text-secondary ">
-                        {{ context.product.description | default('لا يوجد وصف للمنتج') | safe }}
+                        {{t( context.product.description) | default(t('no_product_description')) | safe }}
                     </p>
                 </template>
                 <template #shipping_settings>
                     <p class="text-sm font-medium text-secondary">
-                    {{widget.data.shipping_settings | default(t('shipping_settings_default')) | safe}}
+                    {{t( widget.data.shipping_settings) | default(t('shipping_settings_default')) | safe }}
                 </p>
             </template>
             </component-product-details>
@@ -30,7 +30,7 @@
                 <!-- بند 1 -->
                 <details class="group py-4" open>
                   <summary class="flex justify-between items-center cursor-pointer  text-secondary">
-                    <span class="font-semibold">{{widget.data.return_policy_question}}</span>
+                    <span class="font-semibold">{{ t(widget.data.return_policy_question | default('return_policy_question_default')) }}</span>
                     <span class="transition-transform group-open:rotate-180">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -38,12 +38,12 @@
                     </span>
                   </summary>
                   <div class="mt-3 px-4 text-gray-600 leading-relaxed text-xs md:text-sm">
-                    {{widget.data.return_policy_asnwer | safe}}   
+                    {{ t(widget.data.return_policy_answer | default('return_policy_answer_default')) | safe }}   
                   </div>
                 </details>
                 <details class="group py-4">
                   <summary class="flex justify-between items-center cursor-pointer text-secondary">
-                    <span class="font-semibold">{{widget.data.shipping_info_question}}</span>
+                    <span class="font-semibold">{{ t(widget.data.shipping_info_question | default('shipping_info_question_default')) }}</span>
                     <span class="transition-transform group-open:rotate-180">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -51,13 +51,13 @@
                     </span>
                   </summary>
                   <div class="mt-3 px-4 text-gray-600 leading-relaxed text-xs md:text-sm">
-                    {{widget.data.shipping_info_answer | safe}}
+                    {{ t(widget.data.shipping_info_answer | default('shipping_info_answer_default')) | safe }}
                   </div>
                 </details>
               
                 <details class="group py-4">
                   <summary class="flex justify-between items-center cursor-pointer   text-secondary">
-                    <span class="font-semibold">{{widget.data.product_info_question}}</span>
+                    <span class="font-semibold">{{ t(widget.data.product_info_question | default('product_info_question_default')) }}</span>
                     <span class="transition-transform group-open:rotate-180">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -65,7 +65,7 @@
                     </span>
                   </summary>
                   <div class="mt-3 px-4 text-gray-600 leading-relaxed text-xs md:text-sm">
-                    {{widget.data.product_info_answer | safe}}
+                    {{ t(widget.data.product_info_answer | default('product_info_answer_default')) | safe }}
                   </div>
                 </details>
               

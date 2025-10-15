@@ -5,37 +5,37 @@
     "shipping_settings": {
       "type": "text",
       "label": "إعدادات الشحن",
-      "default": "يتم التوصيل في فترة تتراوح بين 5 أيام لـ أسبوع"
+      "default": "shipping_settings_default"
     },
     "return_policy_question": {
       "type": "string",
       "label": "سؤال سياسة الإرجاع",
-      "default": "ما هي سياسة الإرجاع الخاصة بكم؟"
+      "default": "return_policy_question_default"
     },
     "return_policy_answer": {
       "type": "text",
       "label": "إجابة سياسة الإرجاع",
-      "default": "يمكنك إرجاع المنتجات خلال 30 يومًا من الشراء."
+      "default": "return_policy_answer_default"
     },
     "shipping_info_question": {
       "type": "string",
       "label": "سؤال معلومات الشحن",
-      "default": "كم من الوقت يستغرق الشحن؟"
+      "default": "shipping_info_question_default"
     },
     "shipping_info_answer": {
       "type": "text",
       "label": "إجابة معلومات الشحن",
-      "default": "عادةً ما يستغرق الشحن من 5 إلى 7 أيام عمل."
+      "default": "shipping_info_answer_default"
     },
     "product_info_question": {
       "type": "string",
       "label": "سؤال معلومات المنتج",
-      "default": "هل يأتي المنتج مع ضمان؟"
+      "default": "product_info_question_default"
     },
     "product_info_answer": {
       "type": "text",
       "label": "إجابة معلومات المنتج",
-      "default": "نعم، جميع منتجاتنا تأتي مع ضمان لمدة سنة واحدة."
+      "default": "product_info_answer_default"
     },
     "slides_per_view": {
       "type": "number",

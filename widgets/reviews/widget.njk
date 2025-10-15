@@ -8,10 +8,12 @@
     </style>
 
     <div class="section-title-container md:mb-10 mb-4">
-      <h2 class="section-title">{{ t(widget.data.title | default('customer_reviews')) }}</h2>
+      <h2 class="section-title">{{ t('customer_reviews') }}</h2>
     </div>
    {# <span class=" text-4xl text-red-600">{{ t(widget.data.test) }}</span> #}
     {% if widget.blocks.length > 0 %}
+      {% set reviewNameKeys = ['ahmed_karam','sara_mohammed','khaled_abdullah'] %}
+      {% set reviewTextKeys = ['excellent_experience_review','fast_shipping_review','reasonable_prices_review'] %}
       <!-- Mobile Swiper -->
       <div class="md:hidden swiper reviews-swiper relative">
         <div class="swiper-wrapper">
@@ -19,14 +21,14 @@
           <div class="swiper-slide">
             <div class="review-card">
               <span class="material-symbols-outlined review-quote">format_quote</span>
-              <p class="review-text">{{ t(block.data.text | default('default_review_text')) }}</p>
+              <p class="review-text">{{ t(reviewTextKeys[loop.index0] or 'default_review_text') }}</p>
               <div class="review-footer">
                 {% if block.data.image and block.data.image.fileUrl %}
-                  <img src="{{ block.data.image.fileUrl }}" alt="{{ t(block.data.alt | default('customer_image')) }}" class="review-avatar">
+                  <img src="{{ block.data.image.fileUrl }}" alt="{{ t('customer_image') }}" class="review-avatar">
                 {% else %}
-                  <img src="https://i.pravatar.cc/48?u={{ block.data.name | urlencode }}" alt="{{ t(block.data.alt | default('customer_image')) }}" class="review-avatar">
+                  <img src="https://i.pravatar.cc/48?u={{ block.data.name | urlencode }}" alt="{{ t('customer_image') }}" class="review-avatar">
                 {% endif %}
-                <span class="review-name">{{ t(block.data.name | default('default_customer_name')) }}</span>
+                <span class="review-name">{{ t(reviewNameKeys[loop.index0] or 'default_customer_name') }}</span>
               </div>
             </div>
           </div>
@@ -86,14 +88,14 @@
         {% for block in widget.blocks %}
         <div class="review-card">
           <span class="material-symbols-outlined review-quote">format_quote</span>
-          <p class="review-text">{{ t(block.data.text | default('default_review_text')) }}</p>
+          <p class="review-text">{{ t(reviewTextKeys[loop.index0] or 'default_review_text') }}</p>
           <div class="review-footer">
             {% if block.data.image and block.data.image.fileUrl %}
-              <img src="{{ block.data.image.fileUrl }}" alt="{{ t(block.data.alt | default('customer_image')) }}" class="review-avatar">
+              <img src="{{ block.data.image.fileUrl }}" alt="{{ t('customer_image') }}" class="review-avatar">
             {% else %}
-              <img src="https://i.pravatar.cc/48?u={{ block.data.name | urlencode }}" alt="{{ t(block.data.alt | default('customer_image')) }}" class="review-avatar">
+              <img src="https://i.pravatar.cc/48?u={{ block.data.name | urlencode }}" alt="{{ t('customer_image') }}" class="review-avatar">
             {% endif %}
-            <span class="review-name">{{ t(block.data.name | default('default_customer_name')) }}</span>
+            <span class="review-name">{{ t(reviewNameKeys[loop.index0] or 'default_customer_name') }}</span>
           </div>
         </div>
         {% endfor %}

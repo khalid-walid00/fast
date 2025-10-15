@@ -26,7 +26,7 @@
               <div class="flex items-center justify-start w-full text-xs md:text-sm text-gray-700 text-right">
                 <span class="font-bold">
                   {% set thr = settings.free_shipping_threshold or 800 %}
-                  أضف <span class="text-primary">{{ thr }} {{ globals.currency.currencySymbol }}</span> إلى مشترياتك لتحصل على الشحن مجانًا!
+                  {{ t('add_150_for_free_shipping') }}
                 </span>
               </div>
               <div class="relative w-full">
@@ -105,14 +105,14 @@
                   <span class="font-semibold text-black">{{t('order_total')}}</span>
                 </div>
                 <div class="flex justify-between">
-                  <span>المجموع الفرعي:</span>
+                  <span>{{ t('subtotal') }}</span>
                   <div class="flex items-center gap-0.5">
                     <span v-text="globals?.cart?.totalPrice || 0"></span>
                     <span v-text="globals?.currency?.currencySymbol"></span>
                   </div>
                 </div>
                 <div class="flex justify-between">
-                  <span>الخصم:</span>
+                  <span>{{ t('discount') }}</span>
                   <div class="flex items-center gap-1">
                     <template v-if="globals?.cart?.totalSavings > 0">
                       <span
@@ -125,14 +125,14 @@
                 </div>
 
                 <div class="flex justify-between">
-                  <span>الضريبة:</span>
+                  <span>{{ t('tax') }}</span>
                   <div class="flex items-center gap-0.5">
                     <span v-text="globals?.cart?.shippingPrice || 0"></span>
                     <span v-text="globals?.currency?.currencySymbol"></span>
                   </div>
                 </div>
                 <div class="flex justify-between text-xl font-semibold text-gray-900 pt-3 border-t border-strok">
-                  <span>الإجمالي</span>
+                  <span>{{ t('order_total') }}</span>
                   <div class="flex items-center gap-0.5">
                     <span v-text="(globals?.cart?.totalPrice ?? 0)"></span>
                     <span v-text="globals?.currency?.currencySymbol"></span>
@@ -170,7 +170,7 @@
         </div>
         <a aria-label="showproduct" href="/collection/all"
           class="hover:scale-[1.02] h-[50px] md:min-w-[502px] text-sm font-medium transition-all duration-300 flex justify-center items-center py-3 px-8 bg-primary text-white rounded-lg">
-          متابعة التسوق
+          {{ t('continue_shopping') }}
         </a>
       </div>
     </div>

@@ -3,6 +3,8 @@
 
     <div class="hero-swiper swiper relative  max-md:min-h-[282px]" data-bg="{{ widget.blocks[0].data.text_section_background_color | default('#B9C1B6') }}">
       <div class="swiper-wrapper">
+        {% set heroTitleKeys = ['elegant_furniture_title','exclusive_offers_title','guaranteed_quality_title'] %}
+        {% set heroSubtitleKeys = ['discover_collection_subtitle','discounts_subtitle','high_quality_subtitle'] %}
         {% for block in widget.blocks %}
         <div class="swiper-slide" data-slide-index="{{ loop.index }}" data-bg="{{ block.data.text_section_background_color | default('#B9C1B6') }}">
           <div class="hero-split-container flex" data-slide="{{ loop.index }}">
@@ -12,14 +14,14 @@
                 <div class="text-right max-w-[500px] w-full flex flex-col md:gap-12 gap-6">
                  <div class="flex flex-col md:gap-5 gap-3">
                   <h1 class="md:text-[40px] text-[22px] font-bold md:font-extrabold text-secondary leading-[34px] md:leading-[60px] text-right block">
-                    {{ (block.data.title ? t(block.data.title) : t('hero_title_default')) | safe }}
+                    {{ t(heroTitleKeys[loop.index0] or 'hero_title_default') | safe }}
                   </h1>
                   <p class="md:text-2xl text-sm md:leading-[36px] leading-[20px] text-secondary text-right">
-                    {{ (block.data.subtitle ? t(block.data.subtitle) : t('hero_subtitle_default')) | safe }}
+                    {{ t(heroSubtitleKeys[loop.index0] or 'hero_subtitle_default') | safe }}
                   </p>
                 </div>
                   <a href="{{ block.data.link | default('/collections') }}" class="flex items-center justify-center h-[52px] bg-white rounded-lg text-secondary md:max-w-[438px] max-w-[300px] w-full md:text-base text-sm text-center md:font-bold font-semibold hover:bg-gray-50 transition-colors duration-200">
-                    {{ block.data.button_text ? t(block.data.button_text) : t('hero_button_text_default') }}
+                    {{ t('shop_now') }}
                   </a>
                 </div>
               </div>

@@ -5,7 +5,7 @@
     "title": { 
       "type": "string", 
       "label": "العنوان", 
-      "default": "آراء عملائنا" 
+      "default": "customer_reviews" 
     }
   },
   "blocks": {
@@ -15,12 +15,12 @@
         "name": {
           "type": "string",
           "label": "اسم العميل",
-          "default": "عبدالرحمن محمد"
+          "default": "default_customer_name"
         },
         "text": {
           "type": "text",
           "label": "نص الرأي",
-          "default": "تجربة تسوق سلسة وسهلة من البداية للنهاية. أعجبتني سرعة التوصيل والتغليف الآمن"
+          "default": "default_review_text"
         },
         "image": {
           "type": "media",
@@ -37,7 +37,7 @@
         "alt": {
           "type": "string",
           "label": "النص البديل للصورة",
-          "default": "صورة العميل"
+          "default": "customer_image"
         }
       }
     }

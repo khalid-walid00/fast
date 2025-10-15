@@ -1,6 +1,6 @@
 {
-  "name": "قسم المميزات",
-  "description": "قسم المميزات مع الأيقونات والنصوص",
+  "name": "features_section",
+  "description": "features_section_description",
   "settings": {
     "section_title": {
       "type": "string",
@@ -10,7 +10,7 @@
   },
   "blocks": {
     "featureItem": {
-      "name": "ميزة",
+      "name": "feature",
       "settings": {
         "title": { "type": "string", "label": "", "default": "feature_title" },
         "description": { "type": "string", "label": "", "default": "feature_description" },
@@ -34,8 +34,8 @@
   },
   "presets": [
     {
-      "category": "الصفحة الرئيسية",
-      "name": "⭐ لماذا تختارنا",
+      "category": "home",
+      "name": "why_choose_us",
       "blocks": [
         { "block": "featureItem", "name": "guaranteed_quality", "settings": { "title": "guaranteed_quality", "description": "guaranteed_quality_description", "icon_name": "verified", "icon": "", "alt": "quality_alt" } },
         { "block": "featureItem", "name": "free_shipping_feature", "settings": { "title": "free_shipping_feature", "description": "free_shipping_feature_description", "icon_name": "local_shipping", "icon": "", "alt": "shipping_alt" } },
