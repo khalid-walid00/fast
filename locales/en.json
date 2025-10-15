@@ -271,8 +271,5 @@
   "metadata_list": "Metadata List",
   "products_list": "Products List",
   "footer_title": "Footer Title",
-  "footer_description": "Footer Description",
-  "feature_title": "Feature Title",
-  "feature_description": "Feature Description",
-  "shipping_settings_default": "Delivery takes between 5 days to a week"
+  "footer_description": "Footer Description"
 }

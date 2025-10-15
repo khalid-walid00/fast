@@ -6,6 +6,11 @@
       "type": "string", 
       "label": "العنوان", 
       "default": "آراء عملائنا" 
+    },
+    "test": { 
+      "type": "string", 
+      "label": "العنوان", 
+      "default": "testtt"
     }
   },
   "blocks": {
