@@ -30,7 +30,7 @@
     "image": {
       "type": "media",
       "label": "صورة البانر",
-      "default": ""
+      "default": "qumra://banner-default.png"
     },
     "alt": {
       "type": "string",
