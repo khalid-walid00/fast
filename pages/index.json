@@ -142,7 +142,7 @@
       "name": "Special Offers Section",
       "widget": "offers-banner",
       "settings": {
-        "image": "qumra://Hero.webp"
+        "image": "qumra://banner-default.png"
       }
     },
     {
