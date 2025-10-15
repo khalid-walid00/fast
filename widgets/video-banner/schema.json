@@ -4,23 +4,23 @@
   "settings": {
     "video_url": {
       "type": "media",
-      "label": "ملف الفيديو",
+      "label": "",
       "default": "qumra://a608fda95ffd4e489765a194c7d84c14.HD-720p-2.1Mbps-31583796_v=0.mp4",
       "accept": "media"
     },
     "default_title": {
       "type": "string",
-      "label": "العنوان الافتراضي",
-      "default": "اكتشف افضل الخصومات والعروض الحصريه"
+      "label": "",
+      "default": "default_title_text"
     },
     "default_button_text": {
       "type": "string",
-      "label": "نص الزر الافتراضي",
-      "default": "تسوق الآن"
+      "label": "",
+      "default": "default_button_text_value"
     },
     "default_button_link": {
       "type": "string",
-      "label": "رابط الزر الافتراضي",
+      "label": "",
       "default": "/collections"
     }
   },

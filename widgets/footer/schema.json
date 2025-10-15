@@ -1,11 +1,7 @@
 {
     "name": "Footer",
     "settings": {
-        "company_description": {
-          "type": "textarea",
-          "label": "وصف الشركة",
-          "default": "نحن شركة متخصصة في [مجال الشركة]، نقدم لك أفضل المنتجات والخدمات بجودة عالية."
-        },
+        "company_description": { "type": "textarea", "label": "", "default": "company_description_default_text" },
         "footer_menu": {
           "type": "menu",
           "label": "القائمة السفلية",
@@ -16,11 +12,7 @@
           "label": "رقم الهاتف",
           "default": "01093106133"
         },
-        "contact_location": {
-          "type": "string",
-          "label": "العنوان",
-          "default": "القاهرة، مصر"
-        },
+        "contact_location": { "type": "string", "label": "", "default": "contact_location_default" },
         "contact_email": {
           "type": "string",
           "label": "البريد الإلكتروني",
@@ -120,11 +112,7 @@
           "label": "رابط P",
           "default": "#"
         },
-        "powered_text": {
-          "type": "string",
-          "label": "نص المشغل",
-          "default": "مشغل بواسطة قمره"
-        },
+        "powered_text": { "type": "string", "label": "", "default": "powered_by_qumra" },
         "powered_logo": {
           "type": "image",
           "label": "لوجو المشغل",

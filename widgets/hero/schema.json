@@ -36,24 +36,24 @@
         "alt": {
           "type": "string",
           "label": "النص البديل للصورة",
-          "default": "صورة الهيرو"
+          "default": "hero_image_alt"
         },
         "title": {
           "type": "text",
           "label": "العنوان الرئيسي",
-          "default": "عنوان الهيرو",
+          "default": "hero_title_default",
           "info": "يمكن استخدام <br> لتقسيم النص على أسطر"
         },
         "subtitle": {
           "type": "text",
           "label": "النص الفرعي",
-          "default": "وصف الهيرو",
+          "default": "hero_subtitle_default",
           "info": "يمكن استخدام <br> لتقسيم النص على أسطر"
         },
         "button_text": {
           "type": "string",
           "label": "نص الزر",
-          "default": "تسوق الآن"
+          "default": "hero_button_text_default"
         },
         "link": {
           "type": "url",

@@ -9,7 +9,7 @@
     "section_title": {
       "type": "string",
       "label": "عنوان القسم",
-      "default": "المجموعات"
+      "default": "categories"
     },
     "view_all_link": {
       "type": "string",

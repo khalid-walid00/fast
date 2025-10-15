@@ -5,17 +5,17 @@
     "title": {
       "type": "string",
       "label": "العنوان الرئيسي",
-      "default": "عروض حصرية لفترة محدودة!"
+      "default": "offers_banner_preset"
     },
     "subtitle": {
       "type": "text",
       "label": "النص الفرعي",
-      "default": "لا تفوّت الفرصة! استمتع بخصومات تصل إلى 40% على منتجات مختارة قبل انتهاء الوقت"
+      "default": "subtitle_default"
     },
     "button_text": {
       "type": "string",
       "label": "نص الزر",
-      "default": "الحق العرض الآن"
+      "default": "get_offer_now"
     },
     "button_link": {
       "type": "string",
@@ -35,7 +35,7 @@
     "alt": {
       "type": "string",
       "label": "النص البديل للصورة",
-      "default": "صورة البانر"
+      "default": "banner_image_alt"
     }
   },
   "presets": [

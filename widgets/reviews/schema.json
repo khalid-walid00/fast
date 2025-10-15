@@ -5,27 +5,19 @@
     "title": { 
       "type": "string", 
       "label": "العنوان", 
-      "default": "آراء عملائنا" 
+      "default": "customer_reviews" 
     },
-    "test": { 
-      "type": "string", 
-      "label": "العنوان", 
-      "default": "testtt"
-    }
+    "test": { "type": "string", "label": "", "default": "test" }
   },
   "blocks": {
     "reviewItem": {
       "name": "رأي عميل",
       "settings": {
-        "name": {
-          "type": "string",
-          "label": "اسم العميل",
-          "default": "عبدالرحمن محمد"
-        },
+        "name": { "type": "string", "label": "", "default": "default_customer_name" },
         "text": {
           "type": "text",
-          "label": "نص الرأي",
-          "default": "تجربة تسوق سلسة وسهلة من البداية للنهاية. أعجبتني سرعة التوصيل والتغليف الآمن"
+          "label": "",
+          "default": "default_review_text"
         },
         "image": {
           "type": "media",
@@ -39,11 +31,7 @@
           "min": 1,
           "max": 5
         },
-        "alt": {
-          "type": "string",
-          "label": "النص البديل للصورة",
-          "default": "صورة العميل"
-        }
+        "alt": { "type": "string", "label": "", "default": "customer_image" }
       }
     }
   },
