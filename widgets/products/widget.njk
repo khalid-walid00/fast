@@ -1,9 +1,9 @@
-<section class="product-listing sticky top-10">
+<section class="product-listing">
   {% if context.products | length > 0 %}
-  {%ui "header-page.njk",bg_color="bg-hero1", title=context.page.title %}
-  <div class="container flex  flex-col gap-10 md:py-[88px] py-6">
+  {%ui "header-page.njk",bg_color="bg-white", title=context.page.title %}
+  <div class="container flex  flex-col gap-10 pt-4">
     <div class="flex  flex-col md:gap-8 gap-4 ">
-      {%ui "filter.njk" %}
+      <!-- {%ui "filter.njk" %} -->
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4  md:gap-x-6 md:gap-y-7 gap-x-[9px] gap-y-2 ">
         {% for product in context.products %}
         {%ui "product-card.njk" ,product=product %}

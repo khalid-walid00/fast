@@ -43,53 +43,55 @@
             <div class="rounded-lg  border-strok border-[1.5px] bg-white">
               <template v-for="(item, i) in globals?.cart?.items" :key="item._id">
                 <div>
-                  <div class="md:p-4 p-3 max-md:pr-2.5 flex md:items-center gap-4">
-                    <img :src="item?.productData?.image?.fileUrl" :alt="item?.productData?.title"
-                      class="w-[70px] h-[70px] object-cover rounded-lg">
-                    <div class="flex flex-col md:flex-row md:items-center items-start md:gap-[30px] gap-2 flex-1 ">
-                      <div
-                        class="flex flex-col md:flex-row md:items-center max-md:gap-1 justify-between flex-1 min-w-max">
-                        <h3 class="font-medium text-secondary truncate text-sm" v-text="item?.productData?.title"></h3>
+                  <div class="md:p-4 p-3 max-md:pr-2.5 flex md:items-start gap-4 border-b border-strok pb-4">
+                    <div class="flex gap-4 flex-1 flex-col md:flex-row">
+                      <img :src="item?.productData?.image?.fileUrl" :alt="item?.productData?.title"
+                        class="w-[100px] h-[100px] object-cover rounded-lg">
+                      <div class="flex flex-col gap-2 flex-1">
+                        <div class="flex items-start justify-between">
+                          <h3 class="font-medium text-secondary text-base" v-text="item?.productData?.title"></h3>
+                          <button class="text-gray-400 hover:text-red-500" @click="clearCartItem(item._id)">
+                            <span class="material-symbols-outlined text-[24px]">delete</span>
+                          </button>
+                        </div>
                         <template v-if="item?.variantData?.options?.length">
-                          <div class="flex flex-col gap-1  ">
+                          <div class="flex flex-col gap-1">
                             <template v-for="(option, idx) in item?.variantData?.options" :key="idx">
                               <div class="flex items-center gap-0.5">
-                                <span class="text-[#7C7C7C] text-xs" v-text="option?.option?.name"></span>
-                                <span class="text-xs">:</span>
-                                <span class="text-[#7C7C7C] text-xs" v-text="option?.label"></span>
+                                <span class="text-[#7C7C7C] text-sm" v-text="option?.option?.name"></span>
+                                <span class="text-sm">:</span>
+                                <span class="text-[#7C7C7C] text-sm" v-text="option?.label"></span>
                               </div>
                             </template>
                           </div>
                         </template>
-
-                        <div class="font-bold min-w-max w-24 text-center  flex items-center gap-2">
-                          <div v-show="item.totalPrice > 0" class="flex text-secondary   text-sm items-center gap-1">
-                            <span v-text="item.totalPrice" class=" font-semibold"></span>
-                            <span v-text="globals?.currency?.currencySymbol"></span>
+                        <div class="flex flex-col gap-2 mt-2">
+                          <div class="flex items-center gap-2">
+                            <div v-show="item.totalPrice > 0" class="flex text-secondary text-lg items-center gap-1">
+                              <span v-text="item.totalPrice" class="font-semibold"></span>
+                              <span v-text="globals?.currency?.currencySymbol"></span>
+                            </div>
+                            <div v-show="item.totalSavings > 0"
+                              class="flex items-center line-through text-sm gap-1 text-[#7C7C7C]">
+                              <span class="font-semibold" v-text="item.totalCompareAtPrice"></span>
+                              <span v-text="globals?.currency?.currencySymbol"></span>
+                            </div>
                           </div>
-                          <div v-show="item.totalSavings > 0"
-                            class="flex items-center line-through text-sm gap-1 text-[#7C7C7C]">
-                            <span class=" text-xs font-semibold " v-text="item.totalCompareAtPrice"></span>
-                            <span v-text="globals?.currency?.currencySymbol"></span>
+                          <div class="flex items-center justify-end gap-2 mt-2">
+                            <button
+                              class="w-8 h-8 text-base text-gray-600 hover:bg-gray-50 material-symbols-outlined border border-gray-300 rounded flex items-center justify-center"
+                              @click="decreaseCartItem(item._id, item.quantity)">remove</button>
+                            <span class="px-3 text-secondary text-base font-semibold select-none"
+                              v-text="item.quantity"></span>
+                            <button
+                              class="w-8 h-8 text-gray-600 text-base hover:bg-gray-50 material-symbols-outlined border border-gray-300 rounded flex items-center justify-center"
+                              @click="increaseCartItem(item._id, item.quantity)">add</button>
                           </div>
                         </div>
                       </div>
-                      <div class="flex items-center gap-1.5">
-                        <button
-                          class="w-6 h-6 text-base text-gray-600 hover:bg-gray-50 material-symbols-outlined border border-gray-300 rounded flex items-center justify-center"
-                          @click="decreaseCartItem(item._id, item.quantity)">remove</button>
-                        <span class="px-2  text-secondary text-sm font-semibold select-none"
-                          v-text="item.quantity"></span>
-                        <button
-                          class="w-6 h-6 text-gray-600 text-base hover:bg-gray-50 material-symbols-outlined border border-gray-300 rounded flex items-center justify-center"
-                          @click="increaseCartItem(item._id, item.quantity)">add</button>
-                      </div>
                     </div>
-                    <button class="text-gray-400 hover:text-red-500 self-start" @click="clearCartItem(item._id)">
-                      <span class="material-symbols-outlined md:text-[22px]">delete</span>
-                    </button>
                   </div>
-                  <div :class="i !== globals?.cart?.items?.length - 1 ? 'border-b border-strok py-4' : 'hidden'"
+                  <div :class="i !== globals?.cart?.items?.length - 1 ? 'hidden' : 'hidden'"
                     class="w-full flex "></div>
                 </div>
               </template>
@@ -99,7 +101,7 @@
           <!-- ملخص السعر - قسم أكبر وأجمل -->
           <div class="lg:col-span-1 ">
             <div
-              class="bg-white md:py-6 py-5 md:px-4 px-[10px]  flex flex-col  sticky top-20 gap-6 rounded-lg  border-[1.5px] border-primary">
+              class="bg-white md:py-6 py-5 md:px-4 px-[10px]  flex flex-col  sticky top-20 gap-6 rounded-lg  border-[1.5px] border-strok">
               <div class="flex flex-col gap-4 text-gray-700">
                 <div class="flex justify-between pb-4 border-b border-strok">
                   <span class="font-semibold text-black">{{t('order_total')}}</span>
