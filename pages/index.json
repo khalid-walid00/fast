@@ -14,48 +14,48 @@
       "blocks": [
         {
           "block": "slideItem",
-          "name": "الهيرو الأول",
+          "name": "hero_slide_1",
           "settings": {
             "image": {
               "type": "media",
               "fileUrl": "https://i.ibb.co/8XQhJ2K/sofa-hero.png"
             },
-            "alt": "راحة وأناقة",
-            "title": "راحة وأناقة في<br>كل تفصيلة",
-            "subtitle": "اختاري من تشكيلاتنا المميزة لتجدي الأثاث المثالي<br>الذي يجمع بين التصميم العصري والراحة اليومية",
-            "button_text": "تسوق الآن",
+            "alt": "hero_slide_1_alt",
+            "title": "hero_slide_1_title",
+            "subtitle": "hero_slide_1_subtitle",
+            "button_text": "shop_now",
             "link": "/latest",
             "text_section_background_color": "#B9C1B6"
           }
         },
         {
           "block": "slideItem",
-          "name": "الهيرو الثاني",
+          "name": "hero_slide_2",
           "settings": {
             "image": {
               "type": "media",
               "fileUrl": "https://i.ibb.co/8XQhJ2K/sofa-hero.png"
             },
-            "alt": "راحة وأناقة",
-            "title": "راحة وأناقة في<br>كل تفصيلة",
-            "subtitle": "اختاري من تشكيلاتنا المميزة لتجدي الأثاث المثالي<br>الذي يجمع بين التصميم العصري والراحة اليومية",
-            "button_text": "تسوق الآن",
+            "alt": "hero_slide_1_alt",
+            "title": "hero_slide_1_title",
+            "subtitle": "hero_slide_1_subtitle",
+            "button_text": "shop_now",
             "link": "/latest",
             "text_section_background_color": "#E8B4A0"
           }
         },
         {
           "block": "slideItem",
-          "name": "الهيرو الثالث",
+          "name": "hero_slide_3",
           "settings": {
             "image": {
               "type": "media",
               "fileUrl": "https://i.ibb.co/9YhK3mL/table-hero.png"
             },
-            "alt": "خصومات حصرية",
-            "title": "خصومات تصل<br>40% إلى",
-            "subtitle": "تسوق الآن من مجموعتنا المختارة من الأثاث العصري<br>بأسعار لا تقاوم لفترة محدودة",
-            "button_text": "تسوق عروضنا",
+            "alt": "hero_slide_3_alt",
+            "title": "hero_slide_3_title",
+            "subtitle": "hero_slide_3_subtitle",
+            "button_text": "shop_our_offers",
             "link": "/collections",
             "text_section_background_color": "#B9C4CB"
           }
@@ -89,51 +89,51 @@
       "name": "Features Section",
       "widget": "why-choose-us",
       "settings": {
-        "section_title": "مميزاتنا"
+        "section_title": "why_choose_us"
       },
       "blocks": [
         {
           "block": "featureItem",
-          "name": "سهولة الاستخدام",
+          "name": "ease_of_use",
           "settings": {
-            "title": "سهولة الاستخدام",
-            "description": "تجربة شراء بسيطة وسريعة من أول دخول العميل لحد إتمام الطلب.",
+            "title": "ease_of_use_title",
+            "description": "ease_of_use_description",
             "icon_name": "touch_app",
             "icon": "",
-            "alt": "أيقونة واجهة سهلة"
+            "alt": "ease_of_use_alt"
           }
         },
         {
           "block": "featureItem",
-          "name": "الأمان والثقة",
+          "name": "security_trust",
           "settings": {
-            "title": "الأمان والثقة",
-            "description": "حماية كاملة لبيانات العملاء والدفع الإلكتروني الموثوق.",
+            "title": "security_trust_title",
+            "description": "security_trust_description",
             "icon_name": "security",
             "icon": "",
-            "alt": "أيقونة الأمان"
+            "alt": "security_alt"
           }
         },
         {
           "block": "featureItem",
-          "name": "السرعة والأداء",
+          "name": "speed_performance",
           "settings": {
-            "title": "السرعة والأداء",
-            "description": "صفحات سريعة التحميل ومتجر شغال 24/7 بدون أعطال.",
+            "title": "speed_performance_title",
+            "description": "speed_performance_description",
             "icon_name": "speed",
             "icon": "",
-            "alt": "أيقونة السرعة"
+            "alt": "speed_alt"
           }
         },
         {
           "block": "featureItem",
-          "name": "دعم مستمر",
+          "name": "continuous_support",
           "settings": {
-            "title": "دعم مستمر",
-            "description": "خدمة عملاء سريعة ومتاحة لحل أي مشكلة أو استفسار.",
+            "title": "continuous_support_title",
+            "description": "continuous_support_description",
             "icon_name": "support_agent",
             "icon": "",
-            "alt": "أيقونة الدعم"
+            "alt": "support_alt"
           }
         }
       ]

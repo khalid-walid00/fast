@@ -2,7 +2,7 @@
 <section class="pt-0 md:pt-0 pb-12 md:pb-16 bg-white">
   <div class="container flex flex-col md:gap-10 gap-4">
     <div class="section-title-container">
-      <h2 class="section-title">{{ t('why_choose_us') }}</h2>
+      <h2 class="section-title">{{ t(widget.data.section_title or 'why_choose_us') }}</h2>
     </div>
 
     {% if widget.blocks.length > 0 %}
@@ -25,12 +25,10 @@
             </div>
             {% endif %}
             {% set featureTitle = block.data.title or '' %}
-            {% if not featureTitle %}{% set featureTitle = t(featureTitleKeys[loop.index0] or 'feature_title') %}{% endif %}
-            <h3 class="md:text-[32px] text-[10px] md:leading-[52px] leading-[12px] font-medium  text-secondary">{{ featureTitle | safe }}</h3>
+            <h3 class="md:text-[32px] text-[10px] md:leading-[52px] leading-[12px] font-medium text-secondary">{{ t(featureTitle) if featureTitle else t(featureTitleKeys[loop.index0] or 'feature_title') }}</h3>
           </div>
           {% set featureDesc = block.data.description or '' %}
-          {% if not featureDesc %}{% set featureDesc = t(featureDescKeys[loop.index0] or 'feature_description') %}{% endif %}
-          <p class="text-gray md:text-base text-[10px] leading-[12px] text-gray md:leading-relaxed">{{ featureDesc | safe }}</p>
+          <p class="text-gray md:text-base text-[10px] leading-[12px] text-gray md:leading-relaxed">{{ t(featureDesc) if featureDesc else t(featureDescKeys[loop.index0] or 'feature_description') }}</p>
         </div> 
       </div>
       {% endfor %}

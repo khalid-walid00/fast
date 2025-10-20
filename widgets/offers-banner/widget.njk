@@ -1,21 +1,19 @@
 <section style="background-image: url({{ widget.data.image.fileUrl}}); 
-background-size: cover; background-position: top left;
+background-size: cover; background-position: {% if t('dir') == 'rtl' %}top left{% else %}top right{% endif %};
  background-repeat: no-repeat;
- /* background-size: 50% 100%; */
- background-attachment: fixed;
-"
-class=" md:bg-[length:50%_100%] bg-[length:80%_100%]"
+ background-attachment: fixed;"
+class="md:bg-[length:50%_100%] bg-[length:80%_100%] offers-banner-section"
 >
   <div style="background-image: url({{'banner-fram.png' | assets }})" class=" bg-[length:100%_100%] bg-center bg-no-repeat
   ">
     <div class="grid grid-cols-2 items-center justify-between ">
-      <div class=" container py-4 lg:py-[30px] flex flex-col md:gap-7 gap-4">
-        <div class="flex flex-col md:gap-5 gap-2">
+      <div class="container py-4 lg:py-[30px] flex flex-col md:gap-7 gap-4">
+        <div class="flex flex-col md:gap-5 gap-2 {% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %}">
           <h2
-            class=" md:font-extrabold md:leading-[60px] font-bold leading-[34px]  text-secondary text-[22px] md:text-[40px] ">
+            class="md:font-extrabold md:leading-[60px] font-bold leading-[34px] text-secondary text-[22px] md:text-[40px] {% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %}">
             {{ t('exclusive_offers') }}
           </h2>
-          <p class=" text-secondary text-xs md:text-2xl md:leading-[36px] leading-[149%] ">
+          <p class="text-secondary text-xs md:text-2xl md:leading-[36px] leading-[149%] {% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %}">
             {{ t('dont_miss_offer') | striptags }}
           </p>
         </div>

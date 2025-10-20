@@ -14,30 +14,28 @@
         <div class="swiper-slide" data-slide-index="{{ loop.index }}" data-bg="{{ block.data.text_section_background_color | default('#B9C1B6') }}">
           <div class="hero-split-container flex" data-slide="{{ loop.index }}">
             <!-- {% if t('dir') == 'rtl' %}Left{% else %}Right{% endif %} side - Text content section with colored background -->
-            <div class="hero-text-section flex-1 flex flex-col justify-center relative order-1 md:order-1">
+            <div class="hero-text-section flex-1 flex flex-col justify-center relative {% if t('dir') == 'rtl' %}order-2 md:order-2{% else %}order-1 md:order-1{% endif %}">
               <div class="container mx-auto px-4 md:px-8 lg:px-16">
                 <div class="{% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} max-w-[500px] md:max-w-[760px] w-full flex flex-col md:gap-12 gap-6">
                  <div class="flex flex-col md:gap-5 gap-3">
                   {% set titleText = block.data.title %}
-                  {% if not titleText %}{% set titleText = 'اثاث انيق لمنزلك العصري' %}{% endif %}
                   {% set subtitleText = block.data.subtitle %}
-                  {% if not subtitleText %}{% set subtitleText = 'اكتشف تشكيلتنا الواسعة من الأثاث بتصاميم عصرية وجودة عالية' %}{% endif %}
                   <h1 class="md:text-[40px] md:leading-[60px] font-bold md:font-extrabold text-secondary {% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} block hero-title-main">
-                    {{ titleText | safe }}
+                    {{ t(titleText) if titleText else t(heroTitleKeys[loop.index0] or 'hero_title_default') }}
                   </h1>
                   <div class="md:text-[24px] text-sm md:leading-[36px] leading-[20px] text-secondary {% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} whitespace-normal hero-balance">
-                    {{ subtitleText | safe }}
+                    {{ t(subtitleText) if subtitleText else t(heroSubtitleKeys[loop.index0] or 'hero_subtitle_default') }}
                   </div>
                 </div>
                   <a href="{{ block.data.link | default('/collections') }}" class="flex items-center justify-center h-[52px] bg-white rounded-lg text-secondary md:max-w-[438px] max-w-[300px] w-full md:text-base text-sm text-center md:font-bold font-semibold hover:bg-gray-50 transition-colors duration-200">
-                    {{ t('shop_now') }}
+                    {{ t(block.data.button_text or 'shop_now') }}
                   </a>
                 </div>
               </div>
             </div>
             
             <!-- {% if t('dir') == 'rtl' %}Right{% else %}Left{% endif %} side - Image section -->
-            <div class="hero-image-section flex-1 relative order-2 md:order-2" style="background: transparent; padding: 0; margin: 0;">
+            <div class="hero-image-section flex-1 relative {% if t('dir') == 'rtl' %}order-1 md:order-1{% else %}order-2 md:order-2{% endif %}" style="background: transparent; padding: 0; margin: 0;">
               {% set imageUrl = defaultHeroImages[loop.index0] %}
               {% if block.data.image %}
                 {% if block.data.image.fileUrl %}
@@ -83,8 +81,9 @@
         width: auto !important;
       }
       .hero-title-main {
-        width: 481px;
-        height: 72px;
+        width: auto;
+        max-width: 100%;
+        height: auto;
         transform: rotate(0deg);
         opacity: 1;
       }
@@ -136,7 +135,7 @@
     <!-- Hero Default (Fallback) -->
     <div class="hero-split-container flex" data-slide="1">
       <!-- {% if t('dir') == 'rtl' %}Left{% else %}Right{% endif %} side - Text content section with colored background -->
-      <div class="hero-text-section flex-1 flex flex-col justify-center relative" style="background-color: #B9C1B6;">
+      <div class="hero-text-section flex-1 flex flex-col justify-center relative {% if t('dir') == 'rtl' %}order-2{% else %}order-1{% endif %}" style="background-color: #B9C1B6;">
         <div class="container mx-auto px-4 md:px-8 lg:px-16">
           <div class="{% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} max-w-[500px] w-full flex flex-col md:gap-12 gap-6">
             <div class="flex flex-col md:gap-5 gap-3">
@@ -155,10 +154,9 @@
       </div>
       
       <!-- {% if t('dir') == 'rtl' %}Right{% else %}Left{% endif %} side - Image section -->
-      <div class="hero-image-section flex-1 relative" style="background: transparent; padding: 0; margin: 0;">
+      <div class="hero-image-section flex-1 relative {% if t('dir') == 'rtl' %}order-1{% else %}order-2{% endif %}" style="background: transparent; padding: 0; margin: 0;">
         <img src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=1600&q=80" alt="[كرسي مع وسادة وخلفية أنيقة]" class="hero-split-image" style="width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; padding: 0;">
       </div>
     </div>
   {% endif %}
 </section>
-
