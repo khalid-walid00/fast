@@ -1,6 +1,6 @@
 <div class="bg-white rounded-xl border-[1.5px]  border-Strok overflow-hidden h-full flex flex-col">
     <div class="relative">
-        <a href="/product/{{ data.product.slug }}" class="block">
+        <a :href="handleRedirect('product/{{ data.product.slug }}')" class="block">
             <img alt="{{ data.product.title }}"
                 src="{{ data.product.images[0].fileUrl | default('https://placehold.co/600x400/orange/white') }}"
                 alt="{{ product.title }}" class="w-full h-40 object-cover">
@@ -17,7 +17,7 @@
         <div class="flex flex-col gap-4 flex-1">
           <div class="flex flex-col md:gap-2 gap-1 flex-1">
             <div class="flex flex-row md:flex-col justify-between gap-2 ">
-                <a class="font-medium md:text-xl text-sm max-h-[104px] overflow-y-hidden line-clamp-3" href="/product/{{ data.product.slug }}">{{ data.product.title}}</a>
+                <a class="font-medium md:text-xl text-sm max-h-[104px] overflow-y-hidden line-clamp-3" :href="handleRedirect('product/{{ data.product.slug }}')">{{ data.product.title}}</a>
                 <div class="flex md:items-center items-start gap-3">
                     <div class="flex md:items-center items-start gap-0.5">
                         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +63,7 @@
         </div>
 
         {% if data.product.variantsCount > 0 %}
-        <a href="/product/{{ data.product.slug }}"
+        <a :href="handleRedirect('product/{{ data.product.slug }}')"
             class="w-full bg-primary text-white md:py-3 py-2 h-11 md:h-[52px]  rounded-lg flex items-center justify-center  hover:opacity-95 ">
             <span class=" text-nowrap font-medium">{{t('view_details')}}</span>
         </a>

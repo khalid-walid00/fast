@@ -2,14 +2,14 @@
 <div class="sticky top-0 left-0 right-0 z-50 bg-white border-b border-[#E9E9E9] w-full">
     <header class="container py-1.5 md:py-4 flex items-center gap-8 justify-between">
         <div class="flex items-center gap-8">
-            <a href="/">
+            <a :href="handleRedirect('')">
                 <img src="{{ globals.app.logo.fileUrl }}" alt="logo" class="md:w-[50px] md:h-[43px] w-11  "></a>
                 <div class="relative hidden md:flex items-center w-full min-w-0">
                     <nav class="flex items-center justify-center gap-x-5  w-max">
                         {% set items = widget.data.header_menu or [] %}
                         {% for item in items %}
                             {% if loop.index0 < 6 %}
-                                <a href="{{ item.url | default('#') }}" class="text-secondary hover:text-primary whitespace-nowrap transition-colors duration-200 {% if item.url == globals.currentUrl %}active font-bold text-primary{% else %}font-normal{% endif %}">
+                                <a :href="handleRedirect('{{ item.url }}')" class="text-secondary hover:text-primary whitespace-nowrap transition-colors duration-200 {% if item.url == globals.currentUrl %}active font-bold text-primary{% else %}font-normal{% endif %}">
                                     {{ item.title | default(t('no_title')) }}</a>
                             {% endif %}
                         {% endfor %}
@@ -27,7 +27,7 @@
                                         opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                                     {% for item in items %}
                                         {% if loop.index0 >= 6 %}
-                                            <a href="{{ item.url | default('#') }}" class="block px-4 py-2  text-gray-600 hover:text-primary hover:bg-gray-50 whitespace-nowrap {% if item.url == globals.currentUrl %}active font-bold text-primary{% else %}font-normal{% endif %}">{{ item.title | default(t('no_title')) }}</a>
+                                            <a :href="handleRedirect('{{ item.url }}')" class="block px-4 py-2  text-gray-600 hover:text-primary hover:bg-gray-50 whitespace-nowrap {% if item.url == globals.currentUrl %}active font-bold text-primary{% else %}font-normal{% endif %}">{{ item.title | default(t('no_title')) }}</a>
                                         {% endif %}
                                     {% endfor %}
                                 </div>
@@ -91,16 +91,16 @@
                             class="flex items-center rounded-lg xl:min-h-9 xl:bg-[#424242] gap-1.5  xl:py-1.5  xl:px-2.5 hover:bg-[#505050] transition-all
                                 duration-200"
                             aria-label="تغيير اللغة">
-                            <img class="w-4 h-4 object-contain" src="{{ 'ar.png' | assets }}"/>
-                            <span class="text-sm max-xl:hidden text-white font-semibold flex items-center justify-center">
-                                العربية
+                            <img class="w-4 h-4 object-contain" :src="currentLanguage === 'ar' ? '{{ 'ar.png' | assets }}' : '{{ 'en.png' | assets }}'"/>
+                            <span class="text-sm max-xl:hidden text-white font-semibold flex items-center justify-center" v-text="currentLanguage === 'ar' ? 'العربية' : 'English'">
                             </span>
                         </button>
                         <div class="absolute top-full mt-2 right-0 bg-white border border-gray-200 rounded-lg border-stoke overflow-hidden z-50
                                 min-w-[150px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                             <button
                                 onclick="switchLang('ar')"
-                                class=" w-full flex items-center gap-1.5 px-4 py-2 text-sm text-gray-700 hover:text-white hover:bg-primary">
+                                :class="currentLanguage === 'ar' ? 'bg-primary text-white' : 'text-gray-700 hover:text-white hover:bg-primary'"
+                                class="w-full flex items-center gap-1.5 px-4 py-2 text-sm">
                                 <img class="w-4 h-4 object-contain" src="{{ 'ar.png' | assets }}"/>
                                 <span class="text-sm flex items-center justify-center">
                                     العربية
@@ -108,9 +108,10 @@
                             </button>
                             <button
                                 onclick="switchLang('en')"
-                                class=" w-full flex items-center gap-1.5 px-4 py-2 text-sm text-gray-700 hover:text-white   hover:bg-primary">
+                                :class="currentLanguage === 'en' ? 'bg-primary text-white' : 'text-gray-700 hover:text-white hover:bg-primary'"
+                                class="w-full flex items-center gap-1.5 px-4 py-2 text-sm">
                                 <img class="w-4 h-4 object-contain" src="{{ 'en.png' | assets }}"/>
-                                <span class="text-sm flex items-center  justify-center">
+                                <span class="text-sm flex items-center justify-center">
                                     English
                                 </span>
                             </button>

@@ -15,7 +15,7 @@ const app = createApp({
       product: __qumra__?.context?.product ?? null,
       productQuantity: 1,
       selectedOptions: {},
-      currentLanguage:'ar',
+      currentLanguage: this.getCurrentLanguage(),
       spinnerVisible: true,
       message: "مرحباً بك في متجرنا!",
       search: __qumra__?.context?.query?.q ?? "",
@@ -30,7 +30,35 @@ const app = createApp({
     };
   },
   methods: {
+    getCurrentLanguage() {
+      const storedLang = localStorage.getItem('currentLanguage');
+      if (storedLang === 'ar' || storedLang === 'en') {
+        return storedLang;
+      }
+      const pathParts = window.location.pathname.split('/');
+      const lang = pathParts[1];
+      if (lang === 'ar' || lang === 'en') {
+        localStorage.setItem('currentLanguage', lang);
+        return lang;
+      }
+      
+      return 'ar';
+    },
+    handleRedirect(url) {
+      if(url?.startsWith('/')){
+        return `/${this.currentLanguage}${url}`
+      } else {
+        return `/${this.currentLanguage}/${url}`
+      }
+    },
     switchLang(newLang) {
+      if (this.currentLanguage === newLang) {
+        showToast(`اللغة ${newLang === 'ar' ? 'العربية' : 'English'} مفعلة بالفعل`);
+        return;
+      }
+      
+      localStorage.setItem('currentLanguage', newLang);
+      
       const pathParts = window.location.pathname.split('/');
       if (pathParts[1] === 'ar' || pathParts[1] === 'en') {
         pathParts[1] = newLang; 
@@ -62,7 +90,7 @@ const app = createApp({
     setSearch(q) {
       this.globalLoading.page = true;
       this.search = q;
-      window.location.href = `/search?q=${encodeURIComponent(q)}`;
+      window.location.href = this.handleRedirect(`search?q=${encodeURIComponent(q)}`);
     },
     toggleModal(type, open) {
       this.modal.open = open !== undefined ? open : !this.modal.open;
@@ -74,9 +102,21 @@ const app = createApp({
     logout() {
       window.qumra?.logout?.();
     },
+    ensureLanguageInUrl() {
+      const pathParts = window.location.pathname.split('/');
+      const currentLang = pathParts[1];
+      if (currentLang !== 'ar' && currentLang !== 'en') {
+        const newPath = `/${this.currentLanguage}${window.location.pathname}`;
+        const newUrl = newPath + window.location.search + window.location.hash;
+        window.history.replaceState({}, '', newUrl);
+      }
+    },
   },
   mounted() {
     this.spinnerVisible = false;
+    this.currentLanguage = this.getCurrentLanguage();
+    this.ensureLanguageInUrl();
+    
     console.log("Mounted ✅ binding methods to window");
 
     Object.keys(this.$options.methods).forEach((key) => {
