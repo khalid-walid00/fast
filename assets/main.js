@@ -15,7 +15,7 @@ const app = createApp({
       product: __qumra__?.context?.product ?? null,
       productQuantity: 1,
       selectedOptions: {},
-
+      currentLanguage:'ar',
       spinnerVisible: true,
       message: "مرحباً بك في متجرنا!",
       search: __qumra__?.context?.query?.q ?? "",
