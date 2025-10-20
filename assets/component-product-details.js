@@ -6,6 +6,19 @@ export default {
   name: "component-product-details",
   emits: ["update:quantity"],
   mixins: [productLogic],
+  props: {
+    translations: {
+      type: Object,
+      default: () => ({
+        add_to_cart: 'Add to cart',
+        buy_now: 'Buy now',
+        select_all_options: 'Please select all options',
+        no_quantity: 'No quantity available',
+        updating: 'Updating...',
+        please_select_all_options:'please select all options'
+      })
+    },
+  },
   data() {
     return {
       currentProduct: __qumra__?.context?.product || {},
@@ -23,32 +36,32 @@ export default {
     addToCartTooltip() {
       if ((this.currentProduct.options?.length ?? 0) > 0 &&
         Object.keys(this.selectedOptions).length < this.currentProduct.options.length) {
-        return 'يرجى اختيار كل الخيارات';
+        return this.translations.select_all_options;
       } else if (this.loading.addToCart) {
-        return 'جاري إضافة المنتج...';
+        return this.translations.updating;
       } else if (this.productQuantity == 0) {
-        return 'لا توجد كمية متاحة';
+        return this.translations.no_quantity;
       }
       return '';
     },
     buyNowTooltip() {
       if ((this.currentProduct.options?.length ?? 0) > 0 &&
         Object.keys(this.selectedOptions).length < this.currentProduct.options.length) {
-        return 'يرجى اختيار كل الخيارات';
+        return this.translations.select_all_options;
       } else if (this.loading.buyNow) {
-        return 'جاري المعالجة...';
+        return this.translations.updating;
       } else if (this.productQuantity == 0) {
-        return 'لا توجد كمية متاحة';
+        return this.translations.no_quantity;
       }
       return '';
     },
     quantityTooltip() {
       if ((this.currentProduct.options?.length ?? 0) > 0 &&
         Object.keys(this.selectedOptions).length < this.currentProduct.options.length) {
-        return 'اختر الخيارات';
+        return this.translations.select_all_options;
       }
       if (this.allOptionsSelected && this.productQuantity == 0) {
-        return 'لا يوجد كمية';
+        return this.translations.no_quantity;
       }
       return '';
     }
@@ -60,7 +73,7 @@ export default {
         (opt) => Boolean(this.selectedOptions[opt._id])
       );
       if (!allSelected) {
-        showToast("يرجى تحديد الخيارات", "success");
+        showToast(this.translations.please_select_all_options, "success");
       }
     }
   },
@@ -87,8 +100,10 @@ export default {
       const optionsArray = Object.values(this.selectedOptions).filter(id => id);
 
       if (btn?.name === "addToCart") {
+        showToast(this.translations.add_to_cart);
         this.addProductToCart(productId, quantity, optionsArray);
       } else if (btn?.name === "buyNow") {
+        showToast(this.translations.buy_now);
         this.buyNowProduct({
           data: { productId, quantity, options: optionsArray },
         });
@@ -116,7 +131,7 @@ export default {
             this.currentProduct.pricing = res.variantByOptions.data.pricing;
             this.currentProduct.quantity = res.variantByOptions.data.quantity;
             this.productQuantity = 1;
-            showToast("تم تحديث السعر والكمية بنجاح", "success");
+            showToast(this.translations.updating, "success");
           }
         })
         .finally(() => {
@@ -172,7 +187,7 @@ export default {
 
           <!-- Show message when options exist but not all are selected -->
           <div v-if="currentProduct?.options?.length > 0 && !allOptionsSelected " class="flex items-center gap-0.5">
-              <span class="text-lg text-orange-500 font-medium">يرجى اختيار جميع الخيارات</span>
+              <span class="text-lg text-orange-500 font-medium">{{ translations.select_all_options }}</span>
           </div>
           <!-- Description -->
           <div v-if="currentProduct?.description">
@@ -205,7 +220,7 @@ export default {
                       <component-loading v-if="loading.addToCart"></component-loading>
                       <div v-else class=" flex items-center justify-center gap-2 ">
                           <span class="material-symbols-outlined">shopping_cart</span>
-                          <span>إضافة للسلة</span>
+                          <span>{{ translations.add_to_cart }}</span>
                       </div>
                   </button>
               </component-tooltip>
@@ -234,7 +249,7 @@ export default {
                   :disabled="!allOptionsSelected || productQuantity == 0 || loading.buyNow"
                   class="w-full min-h-[52px]  border border-primary font-medium py-[11.5px] px-6 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed">
                   <component-loading v-if="loading.buyNow"></component-loading>
-                  <span class="text-primary" v-else>إشتري الآن</span>
+                  <span class="text-primary" v-else>{{ translations.buy_now }}</span>
               </button>
           </component-tooltip>
           </div>

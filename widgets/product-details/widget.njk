@@ -10,7 +10,15 @@
          :speed="{{ widget.data.speed | default(400) | dump | safe }}">
         </component-product-gallery>
             <div class="flex flex-col gap-5">
-            <component-product-details>
+            <component-product-details
+               :translations="{
+                    add_to_cart: '{{ t('add_to_cart') }}',
+                    buy_now: '{{ t('buy_now') }}',
+                    select_all_options: '{{ t('select_all_options') }}',
+                    no_quantity: '{{ t('no_quantity') }}',
+                    updating: '{{ t('updating') }}',
+                    please_select_all_options:'{{ t('please_select_all_options') }}'
+                }">
                 <template #title>
                     <h1 class="text-2xl  font-medium text-secondary">{{ context.product.title }}</h1>
                 </template>

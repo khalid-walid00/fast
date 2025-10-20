@@ -1,4 +1,5 @@
 {
+  "dir": "ltr",
   "home": "Home",
   "search_here": "Search here",
   "cart": "Cart",
@@ -32,12 +33,8 @@
   "add_150_for_free_shipping": "Add 150 EGP to your purchase to get free shipping!",
   "quick_links": "Quick Links",
   "categories": "Categories",
-  "reviews": "Reviews",
   "reviews_count": "3 Reviews",
   "add_review": "Add your review",
-  "add_to_cart": "Add to Cart",
-  "buy_now": "Buy Now",
-  "please_select_all_options": "Please select all options",
   "continue_shopping": "Continue Shopping",
   "view_cart": "View Cart",
   "subtotal": "Subtotal",
@@ -166,12 +163,9 @@
   "hero_banner": "Hero Banner",
   "hero_banner_description": "Main banner section containing title, image and button",
   "main_title": "Main Title",
-  "main_title_default": "Welcome to our store",
   "subtitle": "Subtitle",
-  "subtitle_default": "Best products in one place",
   "banner_image": "Banner Image",
   "button_text": "Button Text",
-  "button_text_default": "Shop Now",
   "button_link": "Button Link",
   "main_hero_section": "Main Hero Section",
   "main_hero_description": "Main hero section with split layout (text and image)",
@@ -286,5 +280,6 @@
   "reviews": "Reviews",
   "adding_product": "Adding product...",
   "processing": "Processing...",
-  "no_quantity_available": "No quantity available"
+  "no_quantity_available": "No quantity available",
+  "select_all_options":"select all options"
 }

@@ -30,6 +30,17 @@ const app = createApp({
     };
   },
   methods: {
+    switchLang(newLang) {
+      const pathParts = window.location.pathname.split('/');
+      if (pathParts[1] === 'ar' || pathParts[1] === 'en') {
+        pathParts[1] = newLang; 
+      } else {
+        pathParts.splice(1, 0, newLang);
+      }
+      window.location.pathname = pathParts.join('/');
+      this.currentLanguage = newLang;
+      showToast(`تم تغيير اللغة إلى ${newLang === 'ar' ? 'العربية' : 'English'}`);
+    },
     updateLoading(type, value) {
       this.globalLoading[type] = value;
     },
