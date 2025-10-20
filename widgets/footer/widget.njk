@@ -34,7 +34,7 @@
       {% set xlink = widget.data.x_link %}
       {% if (facebook and facebook != '#') or (instagram and instagram != '#') or (youtube and youtube != '#') or (xlink and xlink != '#') %}
       <div class="flex items-center gap-3 mt-3">
-        <span class="text-sm whitespace-nowrap">تابعنا على</span>
+        <span class="text-sm whitespace-nowrap">{% if t('dir') == 'rtl' %}تابعنا على{% else %}Follow us on{% endif %}</span>
         <div class="flex items-center gap-2">
           {% if facebook and facebook != '#' %}
           <a href="{{ facebook }}" target="_blank" rel="noopener" class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 transition-colors">

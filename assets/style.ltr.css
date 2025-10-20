@@ -1,0 +1,118 @@
+
+/* LTR (Left-to-Right) Styles for English Language */
+
+/* Override text alignment for LTR */
+html[dir="ltr"] .hero-split-container h1 {
+  text-align: left !important;
+}
+
+html[dir="ltr"] .hero-split-container p {
+  text-align: left !important;
+}
+
+html[dir="ltr"] .hero-split-subtitle {
+  text-align: left;
+}
+
+html[dir="ltr"] .video-title {
+  text-align: left;
+}
+
+/* Override font for English */
+html[dir="ltr"] * {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Override padding/margin for LTR */
+html[dir="ltr"] .container {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* sm */
+@media (min-width: 640px) {
+  html[dir="ltr"] .container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+/* md */
+@media (min-width: 768px) {
+  html[dir="ltr"] .container {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+  html[dir="ltr"] .container {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}
+
+/* xl */
+@media (min-width: 1280px) {
+  html[dir="ltr"] .container {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}
+
+/* 2xl */
+@media (min-width: 1440px) {
+  html[dir="ltr"] .container {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}
+
+/* Override hero text styles for LTR */
+html[dir="ltr"] .hero-title {
+  letter-spacing: -0.02em;
+}
+
+/* Override mobile hero text styling for LTR */
+@media (max-width: 767px) {
+  html[dir="ltr"] .hero-split-container h1 {
+    text-align: left !important;
+  }
+
+  html[dir="ltr"] .hero-split-container p {
+    text-align: left !important;
+  }
+}
+
+/* Override hero split layout for LTR */
+html[dir="ltr"] .hero-split-container {
+  flex-direction: row;
+}
+
+html[dir="ltr"] .hero-text-section {
+  order: 1;
+}
+
+html[dir="ltr"] .hero-image-section {
+  order: 2;
+}
+
+/* Override play icon direction for LTR */
+html[dir="ltr"] .play-icon {
+  border-left: none;
+  border-right: 20px solid #F59A57;
+  margin-right: 4px;
+  margin-left: 0;
+}
+
+/* Swiper navigation for LTR */
+html[dir="ltr"] .swiper-button-prev {
+  right: auto;
+  left: 10px;
+}
+
+html[dir="ltr"] .swiper-button-next {
+  left: auto;
+  right: 10px;
+}

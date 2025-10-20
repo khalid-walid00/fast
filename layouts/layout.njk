@@ -1,5 +1,10 @@
+{% if locale == "en" %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+{% else %}
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+{% endif %}
 
 <head>
   {# <meta charset="UTF-8" /> #}
@@ -21,14 +26,22 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Fonts - Cairo Only -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  {% if locale == "en" %}
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  {% else %}
   <link href="https://fonts.googleapis.com/css2?family=Changa:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
+  {% endif %}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <link rel="stylesheet" href="{{ 'style.global.css' | assets }}" />
+  {% if locale == "en" %}
+  <link rel="stylesheet" href="{{ 'style.ltr.css' | assets }}" />
+  {% endif %}
 
   <script>
     tailwind.config = {

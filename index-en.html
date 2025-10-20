@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9FAFB; /* A light gray background similar to the image */
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        .progress-bar {
+            background-color: #e0e0e0;
+            border-radius: 9999px;
+            height: 10px;
+            width: 100%;
+            overflow: hidden;
+        }
+        .progress {
+            background-color: #F59A57;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Breadcrumbs -->
+        <nav class="text-sm text-gray-500 mb-8" aria-label="Breadcrumb">
+            <ol class="list-none p-0 inline-flex">
+                <li class="flex items-center">
+                    <a href="#" class="hover:text-gray-700">Home</a>
+                    <span class="material-symbols-outlined mx-2 text-lg">chevron_right</span>
+                </li>
+                <li class="flex items-center">
+                    <span class="text-gray-800 font-semibold">Chairs</span>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- Cart Items (Left Side on LTR) -->
+            <div class="lg:col-span-2 space-y-6">
+
+                <!-- Free Shipping Banner -->
+                <div class="bg-white border border-gray-200 px-4 py-3 rounded-lg relative shadow-sm" role="alert">
+                    <strong class="font-bold text-gray-800">Add 800 EGP to your order to get free shipping</strong>
+                    <div class="progress-bar mt-2">
+                        <div class="progress" style="width: 20%;"></div>
+                    </div>
+                </div>
+
+                <!-- Cart Item 1 -->
+                <div class="bg-white p-4 rounded-lg shadow-sm flex items-center gap-4">
+                    <img src="https://placehold.co/80x80/E2E8F0/A0AEC0?text=Chair" alt="Classic Set" class="w-20 h-20 object-cover rounded-md">
+                    <div class="flex-grow">
+                        <h3 class="font-semibold text-gray-800">Classic Set</h3>
+                        <p class="text-sm text-gray-500">Size: Small</p>
+                    </div>
+                    <p class="font-bold text-lg text-[#F59A57] w-24 text-center">300.00 EGP</p>
+                    <div class="flex items-center border border-gray-200 rounded-md">
+                        <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded-l-md">-</button>
+                        <span class="px-4 py-1 text-gray-800 font-semibold">1</span>
+                        <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded-r-md">+</button>
+                    </div>
+                    <button class="text-gray-400 hover:text-red-500">
+                        <span class="material-symbols-outlined">delete</span>
+                    </button>
+                </div>
+
+                <!-- Cart Item 2 -->
+                <div class="bg-white p-4 rounded-lg shadow-sm flex items-center gap-4">
+                    <img src="https://placehold.co/80x80/E2E8F0/A0AEC0?text=Chair" alt="Classic Set" class="w-20 h-20 object-cover rounded-md">
+                    <div class="flex-grow">
+                        <h3 class="font-semibold text-gray-800">Classic Set</h3>
+                        <p class="text-sm text-gray-500">Size: Small</p>
+                    </div>
+                    <p class="font-bold text-lg text-[#F59A57] w-24 text-center">300.00 EGP</p>
+                    <div class="flex items-center border border-gray-200 rounded-md">
+                        <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded-l-md">-</button>
+                        <span class="px-4 py-1 text-gray-800 font-semibold">1</span>
+                        <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded-r-md">+</button>
+                    </div>
+                    <button class="text-gray-400 hover:text-red-500">
+                        <span class="material-symbols-outlined">delete</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Order Summary (Right Side on LTR) -->
+            <div class="lg:col-span-1">
+                <div class="bg-white p-6 rounded-lg shadow-sm sticky top-8 border-t-4 border-[#F59A57]">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Order Summary</h2>
+                    <div class="space-y-4 text-gray-700">
+                        <div class="flex justify-between">
+                            <span>Subtotal:</span>
+                            <span class="font-semibold">250 EGP</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <span>Shipping:</span>
+                                <a href="#" class="text-sm text-[#F59A57] hover:underline block">Change shipping address</a>
+                            </div>
+                            <span class="font-semibold">60 EGP</span>
+                        </div>
+                        <div class="border-t border-gray-200 my-4"></div>
+                        <div class="flex justify-between text-xl font-bold text-gray-900">
+                            <span>Total</span>
+                            <span>310 EGP</span>
+                        </div>
+                    </div>
+                    <button class="w-full mt-6 bg-[#F59A57] text-white font-bold py-3 rounded-lg hover:bg-orange-500 transition-colors duration-300">
+                        Complete Order
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- "You May Also Like" Section -->
+        <div class="mt-16">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Products You May Like</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Product Card 1 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden text-center group">
+                    <div class="relative">
+                        <img src="https://placehold.co/300x300/E2E8F0/A0AEC0?text=Chair" alt="Chair 1" class="w-full h-56 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">-10%</span>
+                    </div>
+                    <div class="p-4">
+                         <div class="flex justify-center items-center mb-2">
+                            <span class="text-yellow-400 material-symbols-outlined text-lg">star</span>
+                            <span class="mr-1 text-gray-600 font-bold">5</span>
+                        </div>
+                        <h3 class="font-semibold text-lg text-gray-800">Chair 1</h3>
+                        <p class="text-sm text-gray-500 mb-2">Chairs</p>
+                        <div class="flex justify-center items-baseline gap-2 mb-4">
+                            <span class="text-xl font-bold text-[#F59A57]">200 EGP</span>
+                            <span class="text-sm text-gray-400 line-through">300 EGP</span>
+                        </div>
+                        <button class="w-full bg-[#F59A57] text-white font-bold py-2 rounded-lg hover:bg-orange-500 transition-colors duration-300">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <!-- Product Card 2 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden text-center group">
+                     <div class="relative">
+                        <img src="https://placehold.co/300x300/E2E8F0/A0AEC0?text=Chair" alt="Chair 2" class="w-full h-56 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">-10%</span>
+                    </div>
+                    <div class="p-4">
+                         <div class="flex justify-center items-center mb-2">
+                            <span class="text-yellow-400 material-symbols-outlined text-lg">star</span>
+                            <span class="mr-1 text-gray-600 font-bold">5</span>
+                        </div>
+                        <h3 class="font-semibold text-lg text-gray-800">Chair 2</h3>
+                        <p class="text-sm text-gray-500 mb-2">Chairs</p>
+                        <div class="flex justify-center items-baseline gap-2 mb-4">
+                            <span class="text-xl font-bold text-[#F59A57]">200 EGP</span>
+                            <span class="text-sm text-gray-400 line-through">300 EGP</span>
+                        </div>
+                        <button class="w-full bg-[#F59A57] text-white font-bold py-2 rounded-lg hover:bg-orange-500 transition-colors duration-300">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <!-- Product Card 3 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden text-center group">
+                     <div class="relative">
+                        <img src="https://placehold.co/300x300/E2E8F0/A0AEC0?text=Chair" alt="Chair 3" class="w-full h-56 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">-10%</span>
+                    </div>
+                    <div class="p-4">
+                         <div class="flex justify-center items-center mb-2">
+                            <span class="text-yellow-400 material-symbols-outlined text-lg">star</span>
+                            <span class="mr-1 text-gray-600 font-bold">5</span>
+                        </div>
+                        <h3 class="font-semibold text-lg text-gray-800">Chair 3</h3>
+                        <p class="text-sm text-gray-500 mb-2">Chairs</p>
+                        <div class="flex justify-center items-baseline gap-2 mb-4">
+                            <span class="text-xl font-bold text-[#F59A57]">200 EGP</span>
+                            <span class="text-sm text-gray-400 line-through">300 EGP</span>
+                        </div>
+                        <button class="w-full bg-[#F59A57] text-white font-bold py-2 rounded-lg hover:bg-orange-500 transition-colors duration-300">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <!-- Product Card 4 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden text-center group">
+                     <div class="relative">
+                        <img src="https://placehold.co/300x300/E2E8F0/A0AEC0?text=Chair" alt="Chair 4" class="w-full h-56 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">-10%</span>
+                    </div>
+                    <div class="p-4">
+                         <div class="flex justify-center items-center mb-2">
+                            <span class="text-yellow-400 material-symbols-outlined text-lg">star</span>
+                            <span class="mr-1 text-gray-600 font-bold">5</span>
+                        </div>
+                        <h3 class="font-semibold text-lg text-gray-800">Chair 4</h3>
+                        <p class="text-sm text-gray-500 mb-2">Chairs</p>
+                        <div class="flex justify-center items-baseline gap-2 mb-4">
+                            <span class="text-xl font-bold text-[#F59A57]">200 EGP</span>
+                            <span class="text-sm text-gray-400 line-through">300 EGP</span>
+                        </div>
+                        <button class="w-full bg-[#F59A57] text-white font-bold py-2 rounded-lg hover:bg-orange-500 transition-colors duration-300">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
