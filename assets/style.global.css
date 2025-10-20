@@ -462,8 +462,28 @@ a.text-gray-600.active {
 .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
 .section-title-container { display: flex; justify-content: flex-start; align-items: center;  width: 100%; }
 .section-title { font-size: 2rem; font-weight: 700; color: #333; text-align: right; position: relative; padding-bottom: 8px; }
-.section-title::before { content: ''; position: absolute; bottom: 0; right: 0; width: 380px; height: 1.5px; background-color: #D9D9D9; opacity: 1; z-index: 0; }
-.section-title::after { content: ''; position: absolute; bottom: 0; right: 0; width: 220px; height: 1.5px; background-color: #F59A57; z-index: 1; }
+/* Use logical properties so underline follows writing direction (LTR/RTL) */
+.section-title::before {
+  content: '';
+  position: absolute;
+  inset-block-end: 0; /* bottom: 0 */
+  inset-inline-end: 0; /* aligns to end edge (right in LTR, left in RTL) */
+  width: 380px;
+  height: 1.5px;
+  background-color: #D9D9D9;
+  opacity: 1;
+  z-index: 0;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  inset-block-end: 0; /* bottom: 0 */
+  inset-inline-end: 0; /* aligns to end edge */
+  width: 220px;
+  height: 1.5px;
+  background-color: #F59A57;
+  z-index: 1;
+}
 .tabs-underline { position: relative; padding-bottom: .5rem; }
 /* Show underline only under active tab, not the whole row */
 .tabs-underline::before, .tabs-underline::after { display: none; }

@@ -12,7 +12,7 @@
         {% for block in widget.blocks %}
         <div class="border rounded-lg bg-white overflow-hidden">
           <details class="faq-item">
-            <summary class="font-normal text-lg cursor-pointer flex justify-between items-center p-4">
+            <summary class="font-normal text-lg cursor-pointer flex {% if t('dir') == 'rtl' %}justify-between{% else %}justify-between{% endif %} items-center p-4">
              {{ t(defaultQuestionKeys[loop.index0] or 'question') }}
               <span  
               class="material-symbols-outlined faq-arrow border border-gray-300 rounded-full transform duration-200 flex items-center justify-center w-7 h-7 md:w-8 md:h-8 text-sm md:text-base p-1 md:p-1.5">add</span>

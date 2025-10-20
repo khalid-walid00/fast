@@ -7,7 +7,7 @@
       </div>
       <a href="/collections" class="flex items-center md:hidden gap-1 text-xs font-medium cursor-pointer">
         <span class="text-primary">{{t('view_all')}} </span>
-        <span class="material-symbols-outlined text-base text-primary">arrow_back</span>
+        <span class="material-symbols-outlined text-base text-primary">{% if t('dir') == 'rtl' %}arrow_back{% else %}arrow_forward{% endif %}</span>
       </a>
     </div>
   </div>
@@ -84,7 +84,7 @@
           <div
             class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center flex-col">
             <span class="bg-white px-3 rounded-full font-medium text-xl min-w-[98px]">{{ collection.title }}</span>
-            <span class="text-white font-bold">{{ collection.productCount | default(0) }} منتج</span>
+            <span class="text-white font-bold">{{ collection.productCount | default(0) }} {% if t('dir') == 'rtl' %}منتج{% else %}product{% if collection.productCount != 1 %}s{% endif %}{% endif %}</span>
           </div>
         </div>
       </a>

@@ -32,7 +32,7 @@
     <a class=" flex items-center gap-3 bg-secondary text-white py-3 md:px-[76px] px-[29px] rounded-lg" href="/collections">
       <span class=" text-xs font-semibold">{{t('view_more')}}</span>
       <span class="material-symbols-outlined text-xl">
-        arrow_left_alt
+        {% if t('dir') == 'rtl' %}arrow_left_alt{% else %}arrow_right_alt{% endif %}
         </span>
     </a>
   </div>

@@ -22,7 +22,7 @@
             <div class="review-card">
               <span class="material-symbols-outlined review-quote">format_quote</span>
               {% set rating = block.data.stars or 4 %}
-              <div class="review-score absolute top-3 left-4 flex items-center gap-1">
+              <div class="review-score absolute top-3 {% if t('dir') == 'rtl' %}left-4{% else %}right-4{% endif %} flex items-center gap-1">
                 <span class="star">★</span>
                 <span class="text-gray-700 text-sm">{{ rating }}</span>
               </div>

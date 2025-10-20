@@ -74,6 +74,34 @@ html[dir="ltr"] .hero-title {
   letter-spacing: -0.02em;
 }
 
+/* Override section title underline for LTR */
+html[dir="ltr"] .section-title {
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+/* Prefer logical properties so the same rules can be reused if dir changes dynamically. */
+html[dir="ltr"] .section-title::after {
+  content: "";
+  position: absolute;
+  inset-block-end: 0; /* bottom: 0 */
+  inset-inline-start: 0; /* left: 0 in LTR */
+  width: 60px;
+  height: 3px;
+  background-color: #F59A57;
+}
+
+/* Ensure a sensible default for RTL (if needed) — this will be overridden by html[dir="ltr"] rule when LTR */
+html[dir="rtl"] .section-title::after {
+  content: "";
+  position: absolute;
+  inset-block-end: 0; /* bottom: 0 */
+  inset-inline-end: 0; /* aligns to end in RTL (left) */
+  width: 60px;
+  height: 3px;
+  background-color: #F59A57;
+}
+
 /* Override mobile hero text styling for LTR */
 @media (max-width: 767px) {
   html[dir="ltr"] .hero-split-container h1 {

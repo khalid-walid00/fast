@@ -1,0 +1,224 @@
+{
+  "layout": "layout",
+  "title": "Home Page",
+  "widgets": [
+    {
+      "name": "Hero Section",
+      "widget": "hero",
+      "settings": {
+        "enable_swiper": true,
+        "autoplay_delay": 5,
+        "show_navigation": false,
+        "show_pagination": true
+      },
+      "blocks": [
+        {
+          "block": "slideItem",
+          "name": "First Hero",
+          "settings": {
+            "image": {
+              "type": "media",
+              "fileUrl": "https://i.ibb.co/8XQhJ2K/sofa-hero.png"
+            },
+            "alt": "Comfort and Style",
+            "title": "Comfort and Style in<br>Every Detail",
+            "subtitle": "Choose from our distinguished collections to find the perfect furniture<br>that combines modern design with everyday comfort",
+            "button_text": "Shop Now",
+            "link": "/latest",
+            "text_section_background_color": "#B9C1B6"
+          }
+        },
+        {
+          "block": "slideItem",
+          "name": "Second Hero",
+          "settings": {
+            "image": {
+              "type": "media",
+              "fileUrl": "https://i.ibb.co/8XQhJ2K/sofa-hero.png"
+            },
+            "alt": "Comfort and Style",
+            "title": "Comfort and Style in<br>Every Detail",
+            "subtitle": "Choose from our distinguished collections to find the perfect furniture<br>that combines modern design with everyday comfort",
+            "button_text": "Shop Now",
+            "link": "/latest",
+            "text_section_background_color": "#E8B4A0"
+          }
+        },
+        {
+          "block": "slideItem",
+          "name": "Third Hero",
+          "settings": {
+            "image": {
+              "type": "media",
+              "fileUrl": "https://i.ibb.co/9YhK3mL/table-hero.png"
+            },
+            "alt": "Exclusive Discounts",
+            "title": "Up to<br>40% Off",
+            "subtitle": "Shop now from our selected collection of modern furniture<br>at unbeatable prices for a limited time",
+            "button_text": "Shop Our Offers",
+            "link": "/collections",
+            "text_section_background_color": "#B9C4CB"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categories Section",
+      "widget": "categories",
+      "settings": {}
+    },
+    {
+      "name": "Video Section",
+      "widget": "video-banner",
+      "settings": {
+        "default_title": "Discover the Best Discounts",
+        "default_subtitle": "And Exclusive Offers",
+        "default_button_text": "Shop Now",
+        "default_button_link": "/collections"
+      }
+    },
+    {
+      "name": "products section",
+      "widget": "best-sellers",
+      "settings": {
+        "section_title": "Featured Products ⭐",
+        "view_all_link": "#"
+      }
+    },
+    {
+      "name": "Features Section",
+      "widget": "why-choose-us",
+      "settings": {
+        "section_title": "Our Features"
+      },
+      "blocks": [
+        {
+          "block": "featureItem",
+          "name": "Ease of Use",
+          "settings": {
+            "title": "Ease of Use",
+            "description": "Simple and fast shopping experience from the customer's first entry to completing the order.",
+            "icon_name": "touch_app",
+            "icon": "",
+            "alt": "Easy Interface Icon"
+          }
+        },
+        {
+          "block": "featureItem",
+          "name": "Security and Trust",
+          "settings": {
+            "title": "Security and Trust",
+            "description": "Complete protection for customer data and trusted electronic payment.",
+            "icon_name": "security",
+            "icon": "",
+            "alt": "Security Icon"
+          }
+        },
+        {
+          "block": "featureItem",
+          "name": "Speed and Performance",
+          "settings": {
+            "title": "Speed and Performance",
+            "description": "Fast loading pages and a store operating 24/7 without downtime.",
+            "icon_name": "speed",
+            "icon": "",
+            "alt": "Speed Icon"
+          }
+        },
+        {
+          "block": "featureItem",
+          "name": "Continuous Support",
+          "settings": {
+            "title": "Continuous Support",
+            "description": "Fast and available customer service to solve any problem or inquiry.",
+            "icon_name": "support_agent",
+            "icon": "",
+            "alt": "Support Icon"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Special Offers Section",
+      "widget": "offers-banner",
+      "settings": {
+        "image": "qumra://banner-default.png"
+      }
+    },
+    {
+      "name": "Customer Reviews Section",
+      "widget": "reviews",
+      "settings": {
+        "title": "Customer Reviews"
+      },
+      "blocks": [
+        {
+          "block": "reviewItem",
+          "name": "First Review",
+          "settings": {
+            "name": "Ahmed Karam",
+            "text": "Excellent experience and professional customer service. Products arrived on time and with high quality.",
+            "image": "",
+            "stars": 5,
+            "alt": "Customer Image"
+          }
+        },
+        {
+          "block": "reviewItem",
+          "name": "Second Review",
+          "settings": {
+            "name": "Sara Mohammed",
+            "text": "Fast shipping and high quality. I recommend everyone to deal with this store.",
+            "image": "",
+            "stars": 4,
+            "alt": "Customer Image"
+          }
+        },
+        {
+          "block": "reviewItem",
+          "name": "Third Review",
+          "settings": {
+            "name": "Khaled Abdullah",
+            "text": "Reasonable prices and special offers. Excellent and fast customer service response.",
+            "image": "",
+            "stars": 5,
+            "alt": "Customer Image"
+          }
+        }
+      ]
+    },
+    {
+      "name": "FAQ Section",
+      "widget": "faq",
+      "settings": {
+        "title": "Frequently Asked Questions"
+      },
+      "blocks": [
+        {
+          "block": "faqItem",
+          "name": "First Question",
+          "settings": {
+            "question": "How can I return a product?",
+            "answer": "You can return the product within 14 days of purchase while maintaining the original condition of the product."
+          }
+        },
+        {
+          "block": "faqItem",
+          "name": "Second Question",
+          "settings": {
+            "question": "What is the shipping duration?",
+            "answer": "Shipping duration ranges from 2-5 business days within Cairo and 3-7 days for other governorates."
+          }
+        },
+        {
+          "block": "faqItem",
+          "name": "Third Question",
+          "settings": {
+            "question": "Is shipping free?",
+            "answer": "Yes, shipping is free for orders over 500 EGP within Cairo and 800 EGP for other governorates."
+          }
+        }
+      ]
+    }
+  ]
+}
