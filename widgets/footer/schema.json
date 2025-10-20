@@ -107,6 +107,11 @@
           "label": "رابط انستجرام",
           "default": "#"
         },
+        "youtube_link": {
+          "type": "string",
+          "label": "رابط يوتيوب",
+          "default": "#"
+        },
         "p_link": {
           "type": "string",
           "label": "رابط P",

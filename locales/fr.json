@@ -22,4 +22,6 @@
     "bank_offer_sub_title_multiple": "Payez vos achats avec l'une des cartes bancaires suivantes et obtenez la réduction spécifiée",
     "bank_offer_sub_title_single": "Payez vos achats avec la carte bancaire :bank_name et obtenez une réduction"
   }
+  ,
+  "login": "Connexion"
 }

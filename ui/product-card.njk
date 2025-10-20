@@ -17,7 +17,7 @@
         <div class="flex flex-col gap-4 flex-1">
           <div class="flex flex-col md:gap-2 gap-1 flex-1">
             <div class="flex flex-row md:flex-col justify-between gap-2 ">
-                <a class="font-medium md:text-xl text-sm max-h-[104px] overflow-y-hidden" href="/product/{{ data.product.slug }}">{{ data.product.title}}</a>
+                <a class="font-medium md:text-xl text-sm max-h-[104px] overflow-y-hidden line-clamp-3" href="/product/{{ data.product.slug }}">{{ data.product.title}}</a>
                 <div class="flex md:items-center items-start gap-3">
                     <div class="flex md:items-center items-start gap-0.5">
                         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,7 +54,7 @@
                 </p>
                 {% if data.product.pricing.compareAtPrice and data.product.pricing.compareAtPrice >
                 data.product.pricing.price %}
-                <p class=" text-gray text-xs line-through">
+                <p class=" text-gray text-sm md:text-base line-through">
                     {{ data.product.pricing.compareAtPrice | money }}
                 </p>
                 {% endif %}

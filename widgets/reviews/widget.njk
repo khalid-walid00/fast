@@ -1,4 +1,4 @@
-<section class="py-16">
+<section class="py-16 bg-white">
   <div class="container ">
     <style>
       /* Mobile reviews slider paddings and arrow layering */
@@ -21,6 +21,11 @@
           <div class="swiper-slide">
             <div class="review-card">
               <span class="material-symbols-outlined review-quote">format_quote</span>
+              {% set rating = block.data.stars or 4 %}
+              <div class="review-score absolute top-3 left-4 flex items-center gap-1">
+                <span class="star">★</span>
+                <span class="text-gray-700 text-sm">{{ rating }}</span>
+              </div>
               <p class="review-text">{{ t(reviewTextKeys[loop.index0] or 'default_review_text') }}</p>
               <div class="review-footer">
                 {% if block.data.image and block.data.image.fileUrl %}
@@ -84,10 +89,15 @@
       </script>
 
       <!-- Desktop Grid -->
-      <div class="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+      <div class="hidden md:grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-5">
         {% for block in widget.blocks %}
         <div class="review-card">
           <span class="material-symbols-outlined review-quote">format_quote</span>
+          {% set rating = block.data.stars or 4 %}
+          <div class="review-score absolute top-3 left-4 flex items-center gap-1">
+            <span class="star">★</span>
+            <span class="text-gray-700 text-sm">{{ rating }}</span>
+          </div>
           <p class="review-text">{{ t(reviewTextKeys[loop.index0] or 'default_review_text') }}</p>
           <div class="review-footer">
             {% if block.data.image and block.data.image.fileUrl %}

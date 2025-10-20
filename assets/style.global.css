@@ -365,6 +365,11 @@
   text-align: right;
 }
 
+/* Balance line breaks for hero subtitle to avoid lonely last words */
+.hero-balance {
+  text-wrap: balance;
+}
+
 .video-play-container {
   position: absolute;
   top: 50%;
@@ -428,6 +433,31 @@
 }
 .dot-muted { background-color: rgba(0,0,0,.15); }
 .dot-active { background-color: #2d2d2d; }
+
+/* Header menu styling - active page bold, others normal, remove orange hover */
+nav a.text-secondary {
+  font-weight: 400;
+  transition: none;
+}
+nav a.text-secondary:hover {
+  color: #333333 !important;
+}
+nav a.text-secondary.active {
+  font-weight: 700;
+}
+
+/* Dropdown menu styling */
+a.text-gray-600 {
+  font-weight: 400;
+  transition: none;
+}
+a.text-gray-600:hover {
+  color: #333333 !important;
+  background-color: transparent !important;
+}
+a.text-gray-600.active {
+  font-weight: 700;
+}
 .banner-bg { background-color: #B9C4CB; }
 .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
 .section-title-container { display: flex; justify-content: flex-start; align-items: center;  width: 100%; }
@@ -486,13 +516,19 @@ details[open] .faq-arrow { transform: rotate(45deg); }
 .faq-item[open] .faq-arrow { border-color:#333333;color: #333333; }
 /* When the FAQ accordion is open, turn the card border black */
 div.border.rounded-lg:has(> details.faq-item[open]) { border-color: #000000; }
+/* FAQ arrow default and active colors */
+.faq-arrow { color: #C5C5C7; border-color: #C5C5C7; }
+.faq-item[open] .faq-arrow { color: #333333 !important; border-color: #333333 !important; }
 .cta-offer { display: inline-flex; align-items: center; justify-content: center; background: #fff; color: #2D2D2D; font-weight: 800; font-size: 18px; width: 520px; height: 60px; padding: 16px 44px; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,.08); opacity: 1; white-space: nowrap; }
-.review-card { position: relative; background: #fff; border: 1px solid #E5E7EB; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 20px; min-height: 180px; display: flex; flex-direction: column; }
-.review-quote { position: absolute; top: 12px; right: 16px; font-size: 28px; color: #D1D5DB; }
+.review-card { position: relative; background: #fff; border: 1px solid #E5E7EB; border-radius: 8px; box-shadow: none !important; padding: 20px; min-height: 180px; display: flex; flex-direction: column; }
+.review-quote { position: absolute; top: 12px; right: 16px; font-size: 28px; width: 28px; height: 28px; line-height: 28px; color: #D1D5DB; }
 .review-text { text-align: center; color: #374151; line-height: 1.6; margin: 32px 0 20px; font-size: 14px; flex-grow: 1; }
 .review-footer { display: flex; align-items: center; justify-content: flex-start; gap: 8px; margin-top: auto; }
 .review-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
 .review-name { font-weight: 600; color: #111827; font-size: 14px; }
+
+/* Review card star styling */
+.review-card .star { color: #F59A57; font-size: 20px; width: 20px; height: 20px; line-height: 20px; display: inline-block; }
 
 /* Mobile tweaks */
 @media (max-width: 360px) {

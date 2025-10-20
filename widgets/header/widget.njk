@@ -2,13 +2,15 @@
 <div class="sticky top-0 left-0 right-0 z-50 bg-white border-b border-[#E9E9E9] w-full">
     <header class="container py-1.5 md:py-4 flex items-center gap-8 justify-between">
         <div class="flex items-center gap-8">
-            <img src="{{ globals.app.logo.fileUrl }}" alt="logo" class="md:w-[50px] md:h-[43px] w-11  ">
+            <a href="/">
+            	<img src="{{ globals.app.logo.fileUrl }}" alt="logo" class="md:w-[50px] md:h-[43px] w-11  ">
+            </a>
             <div class="relative hidden md:flex items-center w-full min-w-0">
                 <nav class="flex items-center justify-center gap-x-5  w-max">
                     {% set items = widget.data.header_menu or [] %}
                     {% for item in items %}
                     {% if loop.index0 < 6 %} <a href="{{ item.url | default('#') }}"
-                        class="text-secondary hover:text-primary font-semibold whitespace-nowrap transition-colors duration-200">
+                        class="text-secondary hover:text-primary whitespace-nowrap transition-colors duration-200 {% if item.url == globals.currentUrl %}active font-bold text-primary{% else %}font-normal{% endif %}">
                         {{ item.title | default(t('no_title')) }}</a>
                         {% endif %}
                         {% endfor %}
@@ -29,7 +31,7 @@
                                 {% for item in items %}
                                 {% if loop.index0 >= 6 %}
                                 <a href="{{ item.url | default('#') }}"
-                                    class="block font-semibold px-4 py-2  text-gray-600 hover:text-primary hover:bg-gray-50 whitespace-nowrap">{{
+                                    class="block px-4 py-2  text-gray-600 hover:text-primary hover:bg-gray-50 whitespace-nowrap {% if item.url == globals.currentUrl %}active font-bold text-primary{% else %}font-normal{% endif %}">{{
                                     item.title | default(t('no_title')) }}</a>
                                 {% endif %}
                                 {% endfor %}
@@ -46,11 +48,11 @@
                     search
                 </button>
                 <input v-model="search" ref="search" type="text" placeholder="{{t('search_here')}}"
-                    class="placeholder-white py-[2px] flex-1 focus:outline-none rounded-lg bg-white text-primary">
+                    class="placeholder-[#9CA3AF] placeholder-opacity-100 py-[2px] flex-1 focus:outline-none rounded-lg bg-white text-primary" style="font-family: Changa; font-weight: 400; font-style: normal; font-size: 14px; line-height: 100%; text-align: right; letter-spacing: 0;">
             </form>
         </div>
         <div class=" items-center hidden xl:flex gap-4 ">
-            <button @click="toggleModal('cart')" class="flex items-center rounded-lg bg-primary min-w-[106px] gap-1.5 py-2 px-4">
+            <button @click="toggleModal('cart')" class="flex items-center rounded-lg bg-primary gap-1.5 py-2 px-4">
                 <div class="relative flex items-center">
                     <span
                     v-text="globals?.cart?.items?.length || 0"
@@ -66,18 +68,18 @@
                 </div>
             </button>
             {% if globals.customer._id %}
-            <button @click="logout()" class="flex items-center rounded-lg bg-[#CCCCCC] gap-2 py-2 px-2">
+            <button @click="logout()" class="flex items-center rounded-lg bg-[#E6E6E6] gap-1.5 py-2 px-4">
                 <span class="material-symbols-outlined text-xl text-secondary flex items-center justify-center w-5 h-5">
                     person
                 </span>
-                <span class="font-semibold text-secondary text-nowrap text-xs">{{t('login_register')}}</span>
+                <span class="font-semibold text-secondary text-nowrap text-xs" style="font-family: Changa; font-weight: 600; font-style: normal; font-size: 12px; line-height: 100%; letter-spacing: 0; text-align: right;">{{t('login')}}</span>
             </button>
             {% else %}
-            <button @click="login()" class="flex items-center rounded-lg bg-[#CCCCCC] gap-2 py-2 px-2">
+            <button @click="login()" class="flex items-center rounded-lg bg-[#E6E6E6] gap-1.5 py-2 px-4">
                 <span class="material-symbols-outlined text-xl text-secondary flex items-center justify-center w-5 h-5">
                     person
                 </span>
-                <span class="font-semibold text-secondary text-nowrap text-xs">{{t('login_register')}}</span>
+                <span class="font-semibold text-secondary text-nowrap text-xs" style="font-family: Changa; font-weight: 600; font-style: normal; font-size: 12px; line-height: 100%; letter-spacing: 0; text-align: right;">{{t('login')}}</span>
             </button>
             {% endif %}
         </div>
