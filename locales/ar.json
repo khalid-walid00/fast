@@ -1,5 +1,6 @@
 {
-  "home": "الرئيسية",
+    "dir": "rtl",
+    "home": "الرئيسية",
   "search_here": "البحث هنا",
   "cart": "السلة",
   "login_register": "التسجيل/ تسجيل الدخول",
@@ -32,12 +33,8 @@
   "add_150_for_free_shipping": "أضف 150 ج.م إلى مشترياتك لتحصل على الشحن مجانًا!",
   "quick_links": "روابط سريعة",
   "categories": "الأقسام",
-  "reviews": "تقييمات",
   "reviews_count": "3 تقييمات",
   "add_review": "اضف تقييمك",
-  "add_to_cart": "إضافة للسلة",
-  "buy_now": "اشتري الآن",
-  "please_select_all_options": "يرجى اختيار جميع الخيارات",
   "continue_shopping": "متابعة التسوق",
   "view_cart": "عرض السلة",
   "subtotal": "المجموع الفرعي",
@@ -167,12 +164,9 @@
   "hero_banner": "قسم البانر الرئيسي",
   "hero_banner_description": "قسم البانر الرئيسي الذي يحتوي على عنوان وصورة وزر",
   "main_title": "العنوان الرئيسي",
-  "main_title_default": "مرحبًا بك في متجرنا",
   "subtitle": "الوصف الفرعي",
-  "subtitle_default": "أفضل المنتجات في مكان واحد",
   "banner_image": "صورة البانر",
   "button_text": "نص الزر",
-  "button_text_default": "تسوق الآن",
   "button_link": "رابط الزر",
   "main_hero_section": "قسم الهيرو الرئيسي",
   "main_hero_description": "قسم الهيرو الرئيسي مع التخطيط المقسم (نص وصورة)",
@@ -288,5 +282,6 @@
   "reviews": "تقييمات",
   "adding_product": "جاري إضافة المنتج...",
   "processing": "جاري المعالجة...",
-  "no_quantity_available": "لا توجد كمية متاحة"
+  "no_quantity_available": "لا توجد كمية متاحة",
+  "select_all_options":"اختر جميع الخيارات"
 }
