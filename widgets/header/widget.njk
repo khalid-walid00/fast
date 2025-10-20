@@ -46,11 +46,6 @@
                     </button>
                     
                     <input v-model="search" ref="search" type="text" placeholder="{{ t('search_here') }}" class="placeholder-[#9CA3AF] placeholder-opacity-100 py-[2px] flex-1 focus:outline-none rounded-lg bg-white text-primary" style="font-family: {% if t('dir') == 'rtl' %}Changa{% else %}Inter{% endif %}; font-weight: 400; font-style: normal; font-size: 14px; line-height: 100%; text-align: {% if t('dir') == 'rtl' %}right{% else %}left{% endif %}; letter-spacing: 0;"></form>
-                        class=" pl-[18px] cursor-pointer transform {% if t('dir') == 'rtl' %}-scale-x-100{% endif %} material-symbols-outlined
-                            text-xl text-strok flex items-center justify-center w-5 h-5">
-                        search
-                    </button>
-                    <input v-model="search" ref="search" type="text" placeholder="{{ t('search_here') }}" class="placeholder-[#9CA3AF] placeholder-opacity-100 py-[2px] flex-1 focus:outline-none rounded-lg bg-white text-primary" style="font-family: Changa; font-weight: 400; font-style: normal; font-size: 14px; line-height: 100%; text-align: right; letter-spacing: 0;"></form>
                 </div>
                 <div class=" items-center hidden xl:flex gap-[14px] ">
                     <button @click="toggleModal('cart')" class="flex items-center rounded-lg bg-primary gap-1.5 py-2 px-4">
