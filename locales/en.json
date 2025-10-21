@@ -320,5 +320,6 @@
   "language_changed_to_arabic": "تم تغيير اللغة إلى العربية",
   "language_changed_to_english": "Language changed to English",
   "product_added_to_cart": "Product ({productId}) added with quantity {quantity}",
-  "buy_now_message": "Buy now: {productId} with quantity {quantity}"
+  "buy_now_message": "Buy now: {productId} with quantity {quantity}",
+  "latest":"latest"
 }

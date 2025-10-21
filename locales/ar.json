@@ -318,5 +318,6 @@
   "language_changed_to_arabic": "تم تغيير اللغة إلى العربية",
   "language_changed_to_english": "Language changed to English",
   "product_added_to_cart": "تمت إضافة المنتج ({productId}) بعدد {quantity}",
-  "buy_now_message": "شراء مباشر: {productId} بعدد {quantity}"
+  "buy_now_message": "شراء مباشر: {productId} بعدد {quantity}",
+  "latest":"احدث المنتجات"
 }
