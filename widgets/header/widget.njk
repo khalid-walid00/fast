@@ -2,7 +2,7 @@
 <div class="sticky top-0 left-0 right-0 z-50 bg-white border-b border-[#E9E9E9] w-full">
     <header class="container py-1.5 md:py-4 flex items-center gap-8 justify-between">
         <div class="flex items-center gap-8">
-            <a :href="handleRedirect('')">
+            <a href="/{{t('lang')}}">
                 <img src="{{ globals.app.logo.fileUrl }}" alt="logo" class="md:w-[50px] md:h-[43px] w-11  "></a>
                 <div class="relative hidden md:flex items-center w-full min-w-0">
                     <nav class="flex items-center justify-center gap-x-5  w-max">
@@ -10,7 +10,7 @@
                         {% for item in items %}
                             {% if loop.index0 < 6 %}
                                 <a
-                                    :href="handleRedirect('{{ item.url }}')"
+                                    href="/{{t('lang')}}/{{ item.url }}"
                                     class="text-secondary hover:text-primary whitespace-nowrap transition-colors duration-200 {% if item.url ==
                                         globals.currentUrl %}active font-bold text-primary{% else %}font-normal{% endif %}">
                                     {{ item.title | default(t('no_title')) }}</a>
@@ -32,7 +32,7 @@
                                     {% for item in items %}
                                         {% if loop.index0 >= 6 %}
                                             <a
-                                                :href="handleRedirect('{{ item.url }}')"
+                                                href="/{{t('lang')}}/{{ item.url }}"
                                                 class="block px-4 py-2 text-gray-600 hover:text-primary hover:bg-gray-50 whitespace-nowrap {% if item.url ==
                                                     globals.currentUrl %}active font-bold text-primary{% else %}font-normal{% endif %}">{{ item.title | default(t('no_title')) }}</a>
                                         {% endif %}

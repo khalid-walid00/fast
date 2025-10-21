@@ -6,7 +6,7 @@
       <nav class="text-base md:text-lg text-gray-600" aria-label="Breadcrumb">
         <ol class="list-none p-0 inline-flex">
           <li class="flex items-center">
-            <a :href="handleRedirect('')" class="hover:text-gray-700 text-xl font-light">{{t("home")}}</a>
+            <a  href="/{{t('lang')}}" class="hover:text-gray-700 text-xl font-light">{{t("home")}}</a>
             <span class="material-symbols-outlined mx-1 text-xl ">/</span>
           </li>
           <li class="flex items-center">
@@ -160,7 +160,7 @@
       class="mx-auto text-center">
       <div class="flex items-center justify-center flex-col md:gap-14 gap-10">
         <div class="flex flex-col items-center md:gap-10 gap-6">
-          <a aria-label="latestproduct" :href="handleRedirect('collection/all')">
+          <a aria-label="latestproduct"  href="/{{t('lang')}}/collection/all">
             <span  class="material-symbols-outlined text-gray  md:text-[200px] text-[116px] ">
               shopping_cart_off
             </span>
@@ -170,7 +170,7 @@
             <p class="text-gray">{{t('add_products_message')}}</p>
           </div>
         </div>
-        <a aria-label="showproduct" :href="handleRedirect('collection/all')"
+        <a aria-label="showproduct" href="/{{t('lang')}}/collection/all"
           class="hover:scale-[1.02] h-[50px] md:min-w-[502px] text-sm font-medium transition-all duration-300 flex justify-center items-center py-3 px-8 bg-primary text-white rounded-lg">
           {{ t('continue_shopping') }}
         </a>

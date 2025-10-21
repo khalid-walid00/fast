@@ -1,5 +1,6 @@
 {
   "dir": "ltr",
+  "lang": "en",
   "home": "Home",
   "search_here": "Search here",
   "cart": "Cart",
@@ -300,7 +301,7 @@
   "adding_product": "Adding product...",
   "processing": "Processing...",
   "no_quantity_available": "No quantity available",
-  "select_all_options":"select all options",
+  "select_all_options": "select all options",
   "language_changed_to_arabic": "تم تغيير اللغة إلى العربية",
   "language_changed_to_english": "Language changed to English",
   "product_added_to_cart": "Product ({productId}) added with quantity {quantity}",

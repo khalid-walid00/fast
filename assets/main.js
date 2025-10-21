@@ -82,7 +82,7 @@ const app = createApp({
     setSearch(q) {
       this.globalLoading.page = true;
       this.search = q;
-      window.location.href = this.handleRedirect(`search?q=${encodeURIComponent(q)}`);
+      window.location.href = `/search?q=${encodeURIComponent(q)}`
     },
     toggleModal(type, open) {
       this.modal.open = open !== undefined ? open : !this.modal.open;
