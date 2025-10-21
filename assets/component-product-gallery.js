@@ -129,9 +129,8 @@ export default {
       });
     },
   },
-
   template: `
-    <div class="flex flex-col md:sticky top-0">
+    <div class="flex flex-col lg:sticky top-0">
       <!-- الصورة الرئيسية -->
       <div 
         id="imageZoom"
