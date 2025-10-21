@@ -1,56 +1,39 @@
-<section style="background-image: url({{ widget.data.image.fileUrl}}); 
-background-size: cover; background-position: top left;
- background-repeat: no-repeat;
- /* background-size: 50% 100%; */
- background-attachment: fixed;
-"
-class=" md:bg-[length:50%_100%] bg-[length:80%_100%]"
->
-  <div style="background-image: url({{'banner-fram.png' | assets }})" class=" bg-[length:100%_100%] bg-center bg-no-repeat
-  ">
-    <div class="grid grid-cols-2 items-center justify-between ">
-      <div class=" container py-4 lg:py-[30px] flex flex-col md:gap-7 gap-4">
+<section
+  style="background-image: url({{ widget.data.image.fileUrl }}); background-size: cover; background-position: top left;
+    background-repeat: no-repeat; background-attachment: fixed;"
+  class="md:bg-[length:50%_100%] bg-[length:80%_100%] relative overflow-hidden">
+  <!-- الخلفية المعكوسة -->
+  <div
+    class="absolute inset-0 bg-no-repeat bg-center bg-[length:100%_100%] {% if t('dir') =="ltr" %} scale-x-[-1] {% endif %} "
+    style="background-image: url({{ 'banner-fram.png' | assets }});"></div>
+  <!-- المحتوى فوق الخلفية -->
+  <div class="relative z-10">
+    <div class="grid grid-cols-2 items-center justify-between">
+      <div class="container py-4 lg:py-[30px] flex flex-col md:gap-7 gap-4">
         <div class="flex flex-col md:gap-5 gap-2">
-          <h2
-            class=" md:font-extrabold md:leading-[60px] font-bold leading-[34px]  text-secondary text-[22px] md:text-[40px] ">
+          <h2 class="md:font-extrabold md:leading-[60px] font-bold leading-[34px] text-secondary text-[22px] md:text-[40px]">
             {{ t('exclusive_offers') }}
           </h2>
-          <p class=" text-secondary text-xs md:text-2xl md:leading-[36px] leading-[149%] ">
+          <p class="text-secondary text-xs md:text-2xl md:leading-[36px] leading-[149%]">
             {{ t('dont_miss_offer') | striptags }}
           </p>
         </div>
-        <div class=" inline-flex flex-col items-start gap-3 w-max">
-        <div class="flex items-end count-row gap-1 w-max">
-          <div class="flex flex-col gap-1 items-center">
-            <div class="md:w-[100px] md:h-[100px] w-10 h-10 flex justify-center items-center bg-white rounded-lg">
-              <span id="dVal2" class="text-primary font-normal md:font-normal md:text-[42px] text-2xl">01</span>
-            </div><span class="font-medium md:text-base text-[10px]">{{t('days')}}</span>
-          </div>
-          <div class="flex flex-col gap-1 items-center">
-            <div class="md:w-[100px] md:h-[100px] w-10 h-10 flex justify-center items-center bg-white rounded-lg">
-              <span id="hVal2" class="text-primary font-normal md:font-normal md:text-[42px] text-2xl">50</span>
-            </div><span class="font-medium md:text-base text-[10px]">{{t('hours')}}</span>
-          </div>
-          <div class="flex flex-col gap-1 items-center">
-            <div class="md:w-[100px] md:h-[100px] w-10 h-10 flex justify-center items-center bg-white rounded-lg">
-              <span id="mVal2" class="text-primary font-normal md:font-normal md:text-[42px] text-2xl">03</span>
-            </div><span class="font-medium md:text-base text-[10px]">{{t('minutes')}}</span>
-          </div>
-          <div class="flex flex-col gap-1 items-center">
-            <div class="md:w-[100px] md:h-[100px] w-10 h-10 flex justify-center items-center bg-white rounded-lg">
-              <span id="sVal2" class="text-primary font-normal md:font-normal md:text-[42px] text-2xl">56</span>
-            </div><span class="font-medium md:text-base text-[10px]">{{t('seconds')}}</span>
-          </div>
-        </div>
-          <a href="{{ widget.data.button_link | default('/collections') }}"
-            class=" md:bg-secondary bg-white flex justify-center items-center md:text-white text-secondary rounded-lg md:font-bold font-semibold text-sm leading-[12px]
-             w-full md:text-base py-3 md:py-3.5 px-[37px] md:px-12 transition-opacity hover:opacity-95 w-full">
+        <div
+          class="inline-flex flex-col items-start gap-3 w-max">
+          {% if  widget.data.hasTimer %}
+          <component-baner-date :days="{{ widget.data.timer }}" :translations="{
+                                                        days:'{{ t('days') }}',
+                                                        hours: '{{ t('hours') }}',
+                                                        minutes:'{{ t('minutes') }}',
+                                                        seconds: '{{ t('seconds') }}'
+                                                      }"></component-baner-date>
+          {% endif %}
+          <a href="{{ widget.data.button_link | default('/collections') }}" class="md:bg-secondary bg-white flex justify-center items-center md:text-white text-secondary rounded-lg md:font-bold font-semibold text-sm leading-[12px]
+                                                                                   w-full md:text-base py-3 md:py-3.5 px-[37px] md:px-12 transition-opacity hover:opacity-95">
             {{ t('get_offer_now') }}
           </a>
         </div>
       </div>
-
     </div>
-  </div>
   </div>
 </section>

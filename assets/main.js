@@ -31,17 +31,11 @@ const app = createApp({
   },
   methods: {
     getCurrentLanguage() {
-      const storedLang = localStorage.getItem('currentLanguage');
-      if (storedLang === 'ar' || storedLang === 'en') {
-        return storedLang;
-      }
       const pathParts = window.location.pathname.split('/');
       const lang = pathParts[1];
       if (lang === 'ar' || lang === 'en') {
-        localStorage.setItem('currentLanguage', lang);
         return lang;
       }
-      
       return 'ar';
     },
     handleRedirect(url) {
@@ -56,9 +50,7 @@ const app = createApp({
         showToast(`اللغة ${newLang === 'ar' ? 'العربية' : 'English'} مفعلة بالفعل`);
         return;
       }
-      
-      localStorage.setItem('currentLanguage', newLang);
-      
+
       const pathParts = window.location.pathname.split('/');
       if (pathParts[1] === 'ar' || pathParts[1] === 'en') {
         pathParts[1] = newLang; 

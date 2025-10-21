@@ -32,6 +32,16 @@
       "label": "صورة البانر",
       "default": "qumra://banner-default.png"
     },
+    "hasTimer": {
+      "type": "boolean",
+      "label": "تفعيل مدة العرض",
+      "default": true
+    },
+    "timer": {
+      "type": "number",
+      "label": "مدة العرض (ثواني)",
+      "default": "5"
+    },
     "alt": {
       "type": "string",
       "label": "النص البديل للصورة",
@@ -49,6 +59,8 @@
         "button_link": "/collections",
         "background_color": "#B9C4CB",
         "image": "",
+        "hasTimer": true,
+        "timer": 5,
         "alt": "صورة البانر"
       }
     }

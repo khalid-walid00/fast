@@ -4,6 +4,7 @@ import componentProductDetails from "./component-product-details.js";
 import componentTooltip from "./component-tooltip.js";
 import componentLoading from "./component-loading.js";
 import componentStarsRate from "./component-stars-rate.js";
+import componentBanerDate from "./component-baner-date.js";
 
 export function registerComponents(app) {
   app.component("component-product-gallery", componentProductGallery)
@@ -11,4 +12,5 @@ export function registerComponents(app) {
   app.component("component-tooltip", componentTooltip)
   app.component("component-loading", componentLoading)
   app.component("component-stars-rate", componentStarsRate)
+  app.component("component-baner-date", componentBanerDate)
 }
