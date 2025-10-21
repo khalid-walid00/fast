@@ -8,9 +8,9 @@
     <!-- Overlay داكن -->
     <div class="video-overlay"></div>
     
-    <!-- {% if t('dir') == 'rtl' %}النص في الزاوية العلوية اليمنى{% else %}Text in the top right corner{% endif %} -->
+    <!-- {% if t('dir') == 'rtl' %}النص في الزاوية العلوية اليمنى{% else %}Text in the top left corner{% endif %} -->
     <div class="video-text-banner">
-      <h2 class="video-title">
+      <h2 class="video-title {% if t('dir') == 'ltr' %}text-left{% else %}text-right{% endif %}">
         {{ t('default_title_text') }}
       </h2>
     </div>
