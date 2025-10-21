@@ -179,20 +179,18 @@
 /* Mobile specific adjustments */
 @media (max-width: 767px) {
   .hero-split-container {
-    flex-direction: row;
+    flex-direction: column;
     min-height: 25vh;
   }
   
   .hero-text-section {
     min-height: 25vh;
     padding: 1rem 0;
-    order: 1;
   }
   
   .hero-image-section {
     min-height: 25vh;
     height: 55vh;
-    order: 2;
   }
   
   .hero-split-image {
@@ -467,7 +465,7 @@ a.text-gray-600.active {
   content: '';
   position: absolute;
   inset-block-end: 0; /* bottom: 0 */
-  inset-inline-end: 0; /* aligns to end edge (right in LTR, left in RTL) */
+  inset-inline-start: 0; /* aligns to start edge (left in LTR, right in RTL) */
   width: 380px;
   height: 1.5px;
   background-color: #D9D9D9;
@@ -478,7 +476,7 @@ a.text-gray-600.active {
   content: '';
   position: absolute;
   inset-block-end: 0; /* bottom: 0 */
-  inset-inline-end: 0; /* aligns to end edge */
+  inset-inline-start: 0; /* aligns to start edge */
   width: 220px;
   height: 1.5px;
   background-color: #F59A57;
@@ -668,5 +666,14 @@ div.border.rounded-lg:has(> details.faq-item[open]) { border-color: #000000; }
   left: 0;
   pointer-events: none;
   transition: background-position 0.05s linear;
+}
+
+/* ============================= */
+/* RTL STYLES FOR ARABIC */
+/* ============================= */
+
+/* Offers Banner - Background position for RTL (image on left) */
+html[dir="rtl"] .offers-banner-section {
+  background-position: top left !important;
 }
 

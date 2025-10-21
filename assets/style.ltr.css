@@ -1,20 +1,11 @@
-
 /* LTR (Left-to-Right) Styles for English Language */
 
 /* Override text alignment for LTR */
-html[dir="ltr"] .hero-split-container h1 {
-  text-align: left !important;
-}
-
-html[dir="ltr"] .hero-split-container p {
-  text-align: left !important;
-}
-
-html[dir="ltr"] .hero-split-subtitle {
-  text-align: left;
-}
-
-html[dir="ltr"] .video-title {
+html[dir="ltr"] .hero-split-container h1,
+html[dir="ltr"] .hero-split-container p,
+html[dir="ltr"] .hero-split-subtitle,
+html[dir="ltr"] .video-title,
+html[dir="ltr"] .section-title {
   text-align: left;
 }
 
@@ -74,57 +65,69 @@ html[dir="ltr"] .hero-title {
   letter-spacing: -0.02em;
 }
 
-/* Override section title underline for LTR */
-html[dir="ltr"] .section-title {
-  position: relative;
-  padding-bottom: 0.5rem;
+/* Desktop and tablet adjustments for LTR */
+@media (min-width: 768px) {
+  html[dir="ltr"] .hero-split-container h1 {
+    text-align: left !important;
+    font-size: 40px !important;
+    line-height: 60px !important;
+  }
+  
+  html[dir="ltr"] .hero-split-container .hero-balance {
+    text-align: left !important;
+    font-size: 24px !important;
+    line-height: 36px !important;
+  }
+  
+  html[dir="ltr"] .hero-text-section .container {
+    padding-left: 2rem !important;
+  }
+  
+  /* Ensure proper width for text content */
+  html[dir="ltr"] .hero-split-container .max-w-\[760px\] {
+    max-width: 650px !important;
+  }
 }
 
-/* Prefer logical properties so the same rules can be reused if dir changes dynamically. */
-html[dir="ltr"] .section-title::after {
-  content: "";
-  position: absolute;
-  inset-block-end: 0; /* bottom: 0 */
-  inset-inline-start: 0; /* left: 0 in LTR */
-  width: 60px;
-  height: 3px;
-  background-color: #F59A57;
-}
-
-/* Ensure a sensible default for RTL (if needed) — this will be overridden by html[dir="ltr"] rule when LTR */
-html[dir="rtl"] .section-title::after {
-  content: "";
-  position: absolute;
-  inset-block-end: 0; /* bottom: 0 */
-  inset-inline-end: 0; /* aligns to end in RTL (left) */
-  width: 60px;
-  height: 3px;
-  background-color: #F59A57;
+/* Large screen specific adjustments */
+@media (min-width: 1024px) {
+  html[dir="ltr"] .hero-text-section .container {
+    padding-left: 4rem !important;
+  }
 }
 
 /* Override mobile hero text styling for LTR */
 @media (max-width: 767px) {
   html[dir="ltr"] .hero-split-container h1 {
     text-align: left !important;
+    font-size: 22px !important;
+    line-height: 34px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.8rem !important;
   }
 
   html[dir="ltr"] .hero-split-container p {
     text-align: left !important;
+    font-size: 0.8rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  html[dir="ltr"] .hero-split-container a {
+    margin-top: 0 !important;
+  }
+  
+  html[dir="ltr"] .hero-split-container .hero-balance {
+    text-align: left !important;
+  }
+  
+  /* Adjust text container width for mobile LTR */
+  html[dir="ltr"] .hero-text-section .max-w-\[500px\] {
+    max-width: 100% !important;
   }
 }
 
-/* Override hero split layout for LTR */
-html[dir="ltr"] .hero-split-container {
-  flex-direction: row;
-}
 
-html[dir="ltr"] .hero-text-section {
-  order: 1;
-}
-
-html[dir="ltr"] .hero-image-section {
-  order: 2;
-}
 
 /* Override play icon direction for LTR */
 html[dir="ltr"] .play-icon {
@@ -143,4 +146,89 @@ html[dir="ltr"] .swiper-button-prev {
 html[dir="ltr"] .swiper-button-next {
   left: auto;
   right: 10px;
+}
+
+/* LTR Hero Title Width Adjustments */
+html[dir="ltr"] .hero-title-main {
+  max-width: 100% !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* LTR Hero Text Section Spacing */
+html[dir="ltr"] .hero-text-section {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  html[dir="ltr"] .hero-text-section {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  html[dir="ltr"] .hero-text-section {
+    padding-left: 3rem;
+    padding-right: 1rem;
+  }
+  
+  html[dir="ltr"] .hero-split-container .max-w-\[500px\] {
+    max-width: 600px !important;
+  }
+  
+  html[dir="ltr"] .hero-split-container .max-w-\[760px\] {
+    max-width: 760px !important;
+  }
+}
+
+/* ============================= */
+/* OFFERS BANNER LTR STYLES */
+/* ============================= */
+
+/* Offers Banner - Background position for LTR (image on right) */
+html[dir="ltr"] .offers-banner-section {
+  background-position: top right !important;
+}
+
+/* Offers Banner - General text alignment for LTR */
+html[dir="ltr"] section h2,
+html[dir="ltr"] section p {
+  text-align: left !important;
+}
+
+/* Offers Banner - Align countdown and button containers */
+html[dir="ltr"] .inline-flex.flex-col.items-start {
+  align-items: flex-start !important;
+}
+
+/* Mobile adjustments for offers banner */
+@media (max-width: 767px) {
+  html[dir="ltr"] .offers-banner-section {
+    background-position: top right !important;
+  }
+  
+  html[dir="ltr"] section h2 {
+    text-align: left !important;
+  }
+  
+  html[dir="ltr"] section p {
+    text-align: left !important;
+  }
+}
+
+/* Desktop adjustments for offers banner */
+@media (min-width: 768px) {
+  html[dir="ltr"] .offers-banner-section {
+    background-position: top right !important;
+  }
+  
+  html[dir="ltr"] section h2 {
+    text-align: left !important;
+  }
+  
+  html[dir="ltr"] section p {
+    text-align: left !important;
+  }
 }
