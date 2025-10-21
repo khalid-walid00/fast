@@ -93,9 +93,8 @@ export default {
 
     submitForm(e) {
       const form = e.target;
-      const formData = new FormData(form);
       const productId = this.currentProduct._id;
-      const quantity = +formData.get("quantity");
+      const quantity = this.productQuantity;
       const btn = e.submitter;
       const optionsArray = Object.values(this.selectedOptions).filter(id => id);
 
