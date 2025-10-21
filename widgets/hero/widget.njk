@@ -1,7 +1,6 @@
 <section class="hero-bg overflow-hidden">
   {% if widget.blocks.length > 0 %}
-
-    <div class="hero-swiper swiper relative  max-md:min-h-[282px]" data-bg="{{ widget.blocks[0].data.text_section_background_color | default('#B9C1B6') }}">
+    <div class="hero-swiper swiper relative max-md:min-h-[282px]" data-bg="{{ widget.blocks[0].data.text_section_background_color | default('#B9C1B6') }}">
       <div class="swiper-wrapper">
         {% set heroTitleKeys = ['elegant_furniture_title','exclusive_offers_title','guaranteed_quality_title'] %}
         {% set heroSubtitleKeys = ['discover_collection_subtitle','discounts_subtitle','high_quality_subtitle'] %}
@@ -10,32 +9,37 @@
           'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=80',
           'https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?auto=format&fit=crop&w=1600&q=80'
         ] %}
+
         {% for block in widget.blocks %}
         <div class="swiper-slide" data-slide-index="{{ loop.index }}" data-bg="{{ block.data.text_section_background_color | default('#B9C1B6') }}">
-          <div class="hero-split-container flex" data-slide="{{ loop.index }}">
-            <!-- {% if t('dir') == 'rtl' %}Left{% else %}Right{% endif %} side - Text content section with colored background -->
-            <div class="hero-text-section flex-1 flex flex-col justify-center relative {% if t('dir') == 'rtl' %}order-2 md:order-2{% else %}order-1 md:order-1{% endif %}">
-              <div class="container mx-auto px-4 md:px-8 lg:px-16">
-                <div class="{% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} max-w-[500px] md:max-w-[760px] w-full flex flex-col md:gap-12 gap-6">
-                 <div class="flex flex-col md:gap-5 gap-3">
-                  {% set titleText = block.data.title %}
-                  {% set subtitleText = block.data.subtitle %}
-                  <h1 class="md:text-[40px] md:leading-[60px] font-bold md:font-extrabold text-secondary {% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} block hero-title-main">
-                    {{ t(titleText) if titleText else t(heroTitleKeys[loop.index0] or 'hero_title_default') }}
-                  </h1>
-                  <div class="md:text-[24px] text-sm md:leading-[36px] leading-[20px] text-secondary {% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} whitespace-normal hero-balance">
-                    {{ t(subtitleText) if subtitleText else t(heroSubtitleKeys[loop.index0] or 'hero_subtitle_default') }}
+          <div class="hero-split-container flex flex-col md:flex-row" data-slide="{{ loop.index }}">
+            
+            <!-- النص -->
+            <div class="hero-text-section w-full md:flex-1 flex flex-col justify-center items-center md:items-start relative order-2 {% if t('dir') == 'rtl' %}md:order-2{% else %}md:order-1{% endif %}" 
+              style="background-color: {{ block.data.text_section_background_color | default('#B9C1B6') }};">
+              <div class="container mx-auto px-4 md:px-8 lg:px-16 py-8 md:py-0">
+                <div class="text-center md:{% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} max-w-[500px] md:max-w-[760px] w-full flex flex-col md:gap-12 gap-8 mx-auto md:mx-0">
+                  <div class="flex flex-col md:gap-5 gap-3">
+                    {% set titleText = block.data.title %}
+                    {% set subtitleText = block.data.subtitle %}
+                    <h1 class="md:text-[40px] md:leading-[60px] text-[24px] leading-[32px] font-bold md:font-extrabold text-secondary text-center md:{% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} block hero-title-main">
+                      {{ t(titleText) if titleText else t(heroTitleKeys[loop.index0] or 'hero_title_default') }}
+                    </h1>
+                    <div class="md:text-[24px] text-sm md:leading-[36px] leading-[20px] text-secondary text-center md:{% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} whitespace-normal hero-balance">
+                      {{ t(subtitleText) if subtitleText else t(heroSubtitleKeys[loop.index0] or 'hero_subtitle_default') }}
+                    </div>
                   </div>
-                </div>
-                  <a href="{{ block.data.link | default('/collections') }}" class="flex items-center justify-center h-[52px] bg-white rounded-lg text-secondary md:max-w-[438px] max-w-[300px] w-full md:text-base text-sm text-center md:font-bold font-semibold hover:bg-gray-50 transition-colors duration-200">
+                  <a href="{{ block.data.link | default('/collections') }}" 
+                    class="flex items-center justify-center h-[52px] bg-white rounded-lg text-secondary md:max-w-[438px] max-w-[200px] w-full md:text-base text-sm text-center md:font-bold font-semibold hover:bg-gray-50 transition-colors duration-200 mx-auto md:mx-0">
                     {{ t(block.data.button_text or 'shop_now') }}
                   </a>
                 </div>
               </div>
             </div>
             
-            <!-- {% if t('dir') == 'rtl' %}Right{% else %}Left{% endif %} side - Image section -->
-            <div class="hero-image-section flex-1 relative {% if t('dir') == 'rtl' %}order-1 md:order-1{% else %}order-2 md:order-2{% endif %}" style="background: transparent; padding: 0; margin: 0;">
+            <!-- الصورة -->
+            <div class="hero-image-section w-full md:flex-1 relative order-1 {% if t('dir') == 'rtl' %}md:order-1{% else %}md:order-2{% endif %}" 
+              style="background: transparent; padding: 0; margin: 0; display: block; z-index: 1;">
               {% set imageUrl = defaultHeroImages[loop.index0] %}
               {% if block.data.image %}
                 {% if block.data.image.fileUrl %}
@@ -44,19 +48,23 @@
                   {% set imageUrl = block.data.image %}
                 {% endif %}
               {% endif %}
-              <img src="{{ imageUrl }}" alt="{{ t(block.data.alt | default('hero_image_alt')) }}" class="hero-split-image" style="width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; padding: 0;">
+              <img src="{{ imageUrl }}" 
+                alt="{{ t(block.data.alt | default('hero_image_alt')) }}" 
+                class="hero-split-image w-full h-full block" 
+                style="width: 100% !important; height: 100% !important; min-height: 300px; object-fit: cover; margin: 0; padding: 0; display: block !important; visibility: visible !important; opacity: 1 !important;">
             </div>
           </div>
         </div>
         {% endfor %}
       </div>
-      
+
       {% if widget.data.show_pagination %}
-        <div class="swiper-pagination max-md:-right-[5.5rem]"></div>
+        <div class="swiper-pagination"></div>
       {% endif %}
     </div>
-    
+
     <style>
+      /* ===== نقاط السلايدر ===== */
       .hero-swiper .swiper-pagination .swiper-pagination-bullet {
         width: 12px !important;
         height: 12px !important;
@@ -75,87 +83,146 @@
       }
       .hero-swiper .swiper-pagination {
         bottom: 20px !important;
-        transform: none !important;
         position: absolute !important;
         z-index: 10 !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
         width: auto !important;
       }
-      .hero-title-main {
-        width: auto;
-        max-width: 100%;
-        height: auto;
-        transform: rotate(0deg);
-        opacity: 1;
+
+      /* ===== تحسين الموبايل ===== */
+      @media (max-width: 767px) {
+        .hero-split-container {
+          flex-direction: column !important;
+          background: transparent !important;
+        }
+
+        .hero-image-section {
+          order: 1 !important;
+          width: 100% !important;
+          height: 50vh !important;
+          min-height: 250px !important;
+          background: transparent !important;
+          z-index: 10 !important;
+        }
+
+        .hero-image-section img {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover !important;
+          opacity: 1 !important;
+          visibility: visible !important;
+          display: block !important;
+          position: relative !important;
+        }
+
+        .hero-text-section {
+          order: 2 !important;
+          position: relative !important;
+          z-index: 5 !important;
+          background-color: var(--mobile-bg, #B9C1B6) !important;
+          padding: 25px 20px !important;
+          min-height: auto !important;
+          text-align: center !important; /* النص في المنتصف */
+        }
+
+        .hero-title-main {
+          text-align: center !important;
+        }
+
+        .hero-balance {
+          text-align: center !important;
+        }
+
+        .hero-text-section a {
+          width: 90% !important; /* عرض الزرار كبير */
+          max-width: 500px !important; /* حد أقصى للزر */
+          margin: 20px auto 0 auto !important; /* وسط الصفحة */
+          font-size: 16px !important;
+          height: 56px !important;
+        }
+
+        .swiper-slide {
+          display: block !important;
+          opacity: 1 !important;
+          visibility: visible !important;
+        }
+
+        .hero-swiper {
+          background: none !important;
+          background-color: transparent !important;
+        }
       }
     </style>
-    
-    
+
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        // التأكد من وجود السلايدر قبل تهيئته
-        const swiperContainer = document.querySelector('.hero-swiper');
-        if (!swiperContainer) return;
-        
         const heroSwiper = new Swiper('.hero-swiper', {
           loop: true,
-          // autoplay: {
-          //   delay: 5000,
-          //   disableOnInteraction: false,
-          //   pauseOnMouseEnter: true,
-          // },
-          speed: 1000,
-          allowTouchMove: true,
-          grabCursor: true,
+          speed: 900,
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
           },
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+          },
           on: {
             init: function() {
-              const container = this.el;
-              const initialSlide = this.slides[this.activeIndex];
-              const initialBg = (initialSlide && initialSlide.dataset && initialSlide.dataset.bg) || container.dataset.bg;
-              if (initialBg) {
-                container.style.backgroundColor = initialBg;
-              }
+              const slides = document.querySelectorAll('.hero-split-image');
+              slides.forEach(img => {
+                if (img.complete) {
+                  img.style.opacity = '1';
+                } else {
+                  img.addEventListener('load', () => {
+                    img.style.opacity = '1';
+                  });
+                }
+              });
             },
-            slideChange: function() {
-              const container = this.el;
-              const activeSlide = this.slides[this.activeIndex];
-              const bg = activeSlide && activeSlide.dataset ? activeSlide.dataset.bg : null;
-              if (bg) {
-                container.style.backgroundColor = bg;
-              }
-            }
+          }
+        });
+
+        // تأكيد ظهور الصور في الموبايل دائمًا
+        const imgs = document.querySelectorAll('.hero-split-image');
+        imgs.forEach(img => {
+          if (img.complete) {
+            img.style.opacity = '1';
+            img.style.visibility = 'visible';
+          } else {
+            img.addEventListener('load', () => {
+              img.style.opacity = '1';
+              img.style.visibility = 'visible';
+            });
+          }
+        });
+
+        // تثبيت الصور عند تغيير المقاس
+        window.addEventListener('resize', () => {
+          if (window.innerWidth <= 767) {
+            imgs.forEach(img => {
+              img.style.opacity = '1';
+              img.style.visibility = 'visible';
+              img.parentElement.style.display = 'block';
+            });
           }
         });
       });
     </script>
+
   {% else %}
-    <!-- Hero Default (Fallback) -->
-    <div class="hero-split-container flex" data-slide="1">
-      <!-- {% if t('dir') == 'rtl' %}Left{% else %}Right{% endif %} side - Text content section with colored background -->
-      <div class="hero-text-section flex-1 flex flex-col justify-center relative {% if t('dir') == 'rtl' %}order-2{% else %}order-1{% endif %}" style="background-color: #B9C1B6;">
-        <div class="container mx-auto px-4 md:px-8 lg:px-16">
-          <div class="{% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} max-w-[500px] w-full flex flex-col md:gap-12 gap-6">
-            <div class="flex flex-col md:gap-5 gap-3">
-              <h1 class="md:text-[40px] md:leading-[60px] text-[34px] leading-[42px] font-bold md:font-extrabold text-secondary {% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} block">
-                اثاث انيق لمنزلك العصري
-              </h1>
-              <p class="md:text-[24px] text-sm md:leading-[36px] leading-[20px] text-secondary {% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %}">
-                اكتشف تشكيلتنا الواسعة من الأثاث بتصاميم عصرية وجودة عالية
-              </p>
-            </div>
-            <a :href="handleRedirect('collections')" class="flex items-center justify-center h-[52px] bg-white rounded-lg text-secondary md:max-w-[438px] max-w-[300px] w-full md:text-base text-sm text-center md:font-bold font-semibold hover:bg-gray-50 transition-colors duration-200">
-              {{t('shop_now')}}
-            </a>
-          </div>
+    <!-- Fallback -->
+    <div class="hero-split-container flex flex-col md:flex-row" data-slide="1">
+      <div class="hero-text-section w-full md:flex-1 flex flex-col justify-center relative order-2" style="background-color: #B9C1B6;">
+        <div class="container mx-auto px-4 md:px-8 lg:px-16 py-8 md:py-0 text-center">
+          <h1 class="text-[34px] md:text-[40px] font-bold text-secondary">أثاث أنيق لمنزلك العصري</h1>
+          <p class="text-sm md:text-[24px] text-secondary">اكتشف تشكيلتنا الواسعة من الأثاث بتصاميم عصرية وجودة عالية</p>
+          <a href="/collections" class="flex items-center justify-center h-[56px] bg-white rounded-lg text-secondary w-[90%] md:max-w-[438px] mx-auto md:font-bold font-semibold hover:bg-gray-50 transition-colors duration-200 mt-4">تسوق الآن</a>
         </div>
       </div>
-      
-      <!-- {% if t('dir') == 'rtl' %}Right{% else %}Left{% endif %} side - Image section -->
-      <div class="hero-image-section flex-1 relative {% if t('dir') == 'rtl' %}order-1{% else %}order-2{% endif %}" style="background: transparent; padding: 0; margin: 0;">
-        <img src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=1600&q=80" alt="[كرسي مع وسادة وخلفية أنيقة]" class="hero-split-image" style="width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; padding: 0;">
+      <div class="hero-image-section w-full md:flex-1 relative order-1" style="background: transparent;">
+        <img src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=1600&q=80" alt="كرسي مع وسادة وخلفية أنيقة" class="hero-split-image w-full h-full" style="object-fit: cover;">
       </div>
     </div>
   {% endif %}

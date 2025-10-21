@@ -9,26 +9,26 @@
     {% set featureTitleKeys = ['guaranteed_quality','free_shipping_feature','premium_customer_support'] %}
     {% set featureDescKeys = ['guaranteed_quality_description','free_shipping_feature_description','customer_support_description'] %}
     {% set featureAltKeys = ['quality_alt','shipping_alt','support_alt'] %}
-    <div class="grid grid-cols-3 md:gap-5 gap-2">
+    <div class="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-3">
       {% for block in widget.blocks %}
-      <div class="reason-card border rounded-xl md:py-[60px] p-1.5 md:px-9 {% if t('dir') == 'rtl' %}text-center{% else %}text-center{% endif %} shadow-sm border-stok">
+      <div class="reason-card border rounded-xl md:py-[60px] py-4 md:px-9 px-4 {% if t('dir') == 'rtl' %}text-center{% else %}text-center{% endif %} shadow-sm border-stok">
         <div class="flex flex-col items-center justify-center md:gap-3 gap-1">
-          <div class="flex flex-col items-center justify-center gap-1">
+          <div class="flex flex-col items-center justify-center md:gap-3 gap-2">
             {% if block.data.icon and block.data.icon.fileUrl %}
             <img src="{{ block.data.icon.fileUrl }}" alt="{{ t(featureAltKeys[loop.index0] or 'icon_alt_text') }}"
-              class="md:w-8 md:h-8 w-4 h-4 object-contain" />
+              class="md:w-8 md:h-8 w-6 h-6 object-contain" />
             {% elif block.data.icon_name %}
-            <span class="material-symbols-outlined md:text-[32px] text-base primary-orange-text">{{ block.data.icon_name }}</span>
+            <span class="material-symbols-outlined md:text-[32px] text-[24px] primary-orange-text">{{ block.data.icon_name }}</span>
             {% else %}
-            <div class="md:w-8 md:h-8 w-4 h-4 bg-gray-200 rounded-full flex items-center justify-center">
+            <div class="md:w-8 md:h-8 w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
               <span class="text-2xl text-gray-400">⭐</span>
             </div>
             {% endif %}
             {% set featureTitle = block.data.title or '' %}
-            <h3 class="md:text-[32px] text-[10px] md:leading-[52px] leading-[12px] font-medium text-secondary">{{ t(featureTitle) if featureTitle else t(featureTitleKeys[loop.index0] or 'feature_title') }}</h3>
+            <h3 class="md:text-[32px] text-[18px] md:leading-[52px] leading-[24px] font-medium text-secondary">{{ t(featureTitle) if featureTitle else t(featureTitleKeys[loop.index0] or 'feature_title') }}</h3>
           </div>
           {% set featureDesc = block.data.description or '' %}
-          <p class="text-gray md:text-base text-[10px] leading-[12px] text-gray md:leading-relaxed">{{ t(featureDesc) if featureDesc else t(featureDescKeys[loop.index0] or 'feature_description') }}</p>
+          <p class="text-gray md:text-base text-[14px] leading-[20px] md:leading-relaxed">{{ t(featureDesc) if featureDesc else t(featureDescKeys[loop.index0] or 'feature_description') }}</p>
         </div> 
       </div>
       {% endfor %}

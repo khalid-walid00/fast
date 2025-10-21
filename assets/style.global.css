@@ -150,7 +150,6 @@
 }
 
 .hero-text-section {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -158,8 +157,13 @@
   min-height: 50vh;
 }
 
+@media (max-width: 767px) {
+  .hero-text-section {
+    min-height: auto;
+  }
+}
+
 .hero-image-section {
-  flex: 1;
   background: transparent;
   display: flex;
   align-items: center;
@@ -167,6 +171,12 @@
   position: relative;
   overflow: hidden;
   min-height: 50vh;
+}
+
+@media (max-width: 767px) {
+  .hero-image-section {
+    min-height: auto;
+  }
 }
 
 .hero-split-image {
@@ -179,26 +189,35 @@
 /* Mobile specific adjustments */
 @media (max-width: 767px) {
   .hero-split-container {
-    flex-direction: column;
-    min-height: 25vh;
-  }
-  
-  .hero-text-section {
-    min-height: 25vh;
-    padding: 1rem 0;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: auto;
   }
   
   .hero-image-section {
-    min-height: 25vh;
-    height: 55vh;
+    width: 100% !important;
+    height: 50vh !important;
+    min-height: 50vh !important;
+    display: block !important;
+    order: 1 !important;
+  }
+  
+  .hero-text-section {
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 2rem 0 !important;
+    order: 2 !important;
   }
   
   .hero-split-image {
-    width: 100%;
-    height: 100%;
-    min-height: 55vh;
-    object-fit: cover;
-    object-position: center;
+    width: 100% !important;
+    height: 50vh !important;
+    min-height: 50vh !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
   
   /* Ensure image section takes full space without gaps */
@@ -208,10 +227,11 @@
     overflow: hidden !important;
   }
   
-  /* Remove any background colors or spacing from image container */
-  .hero-image-section * {
+  /* Remove any padding from image container but keep image visible */
+  .hero-image-section img {
     margin: 0 !important;
     padding: 0 !important;
+    display: block !important;
   }
 }
 
@@ -227,23 +247,6 @@
   
   .hero-image-section {
     min-height: 80vh;
-  }
-  
-  /* Force image to take full height in mobile */
-  .hero-image-section {
-    height: 25vh !important;
-    min-height: 25vh !important;
-    max-height: 25vh !important;
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-  }
-  
-  .hero-split-image {
-    height: 25vh !important;
-    min-height: 25vh !important;
-    max-height: 25vh !important;
-    margin-top: 0 !important;
-    padding-top: 0 !important;
   }
 }
 
@@ -594,23 +597,6 @@ div.border.rounded-lg:has(> details.faq-item[open]) { border-color: #000000; }
   .hero-bg .hero-text-col .hero-subtext { text-align: right; }
   .hero-bg .hero-image-col { order: 2; display: flex; width: 50%; justify-content: center; }
   .hero-bg .hero-image-container { width: 220px; height: 300px; }
-  
-  /* Mobile responsive styles for split layout */
-  .hero-split-container {
-    flex-direction: row !important;
-  }
-  
-  .hero-text-section {
-    order: 1 !important;
-    min-height: 25vh !important;
-    padding: 1rem 0 !important;
-  }
-  
-  .hero-image-section {
-    order: 2 !important;
-    min-height: 25vh !important;
-    flex: 1 !important;
-  }
 
   .hero-split-subtitle {
     font-size: 1rem;
