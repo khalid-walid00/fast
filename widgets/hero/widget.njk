@@ -23,11 +23,11 @@
                     {% set titleText = block.data.title %}
                     {% set subtitleText = block.data.subtitle %}
                     <h1 class="md:text-[40px] md:leading-[60px] text-[24px] leading-[32px] font-bold md:font-extrabold text-secondary text-center md:{% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} w-full hero-title-main">
-                      {{ t(titleText) if titleText else t(heroTitleKeys[loop.index0] or 'hero_title_default') }}
+                      {{ t(block.data.title |safe | default('hero_title_default')) }} 
                     </h1>
-                    <p class="md:text-[24px] text-sm md:leading-[36px] leading-[20px] text-secondary text-center md:{% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} w-full hero-balance">
-                      {{ t(subtitleText) if subtitleText else t(heroSubtitleKeys[loop.index0] or 'hero_subtitle_default') }}
-                    </p>
+                    <div class="md:text-[24px] text-sm md:leading-[36px] leading-[20px] text-secondary text-center md:{% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} w-full hero-balance">
+                      {{ t(block.data.subtitle | safe  | default('hero_subtitle_default')) }}
+                    </div>
                   </div>
                   <a href="{{ block.data.link | default('/collections') }}" 
                     class="flex items-center justify-center h-[52px] bg-white rounded-lg text-secondary w-full md:text-base text-sm text-center md:font-bold font-semibold hover:bg-gray-50 transition-colors duration-200">

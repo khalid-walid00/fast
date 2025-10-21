@@ -2,17 +2,17 @@
 {% set total = context.pagination.totalPages|default(1) %}
 {% set maxPages = 4 %} 
 
-<div dir="rtl" class=" flex justify-center">
+<div class="flex justify-center" dir="{% if t('dir') == 'rtl' %}rtl{% else %}ltr{% endif %}">
   <nav class="flex items-center gap-2">
     {# Previous button #}
     {% if current > 1 %}
       <a href="?page={{ current - 1 }}"
          class="h-10 w-10 flex items-center justify-center border border-gray2 rounded-lg hover:bg-gray-100 transition">
-         <span class="material-symbols-outlined text-xl">arrow_right_alt</span>
+         <span class="material-symbols-outlined text-xl">{% if t('dir') == 'rtl' %}arrow_right_alt{% else %}arrow_left_alt{% endif %}</span>
       </a>
     {% else %}
       <span class="h-10 w-10 flex items-center justify-center border border-gray-200 text-gray-400 rounded-lg cursor-not-allowed">
-        <span class="material-symbols-outlined text-xl">arrow_right_alt</span>
+        <span class="material-symbols-outlined text-xl">{% if t('dir') == 'rtl' %}arrow_right_alt{% else %}arrow_left_alt{% endif %}</span>
       </span>
     {% endif %}
 
@@ -48,11 +48,11 @@
     {% if current < total %}
       <a href="?page={{ current + 1 }}"
          class="h-10 w-10 flex items-center justify-center border border-gray2 rounded-lg hover:bg-gray-100 transition">
-         <span class="material-symbols-outlined text-xl">arrow_left_alt</span>
+         <span class="material-symbols-outlined text-xl">{% if t('dir') == 'rtl' %}arrow_left_alt{% else %}arrow_right_alt{% endif %}</span>
       </a>
     {% else %}
       <span class="h-10 w-10 flex items-center justify-center border border-gray-200 text-gray-400 rounded-lg cursor-not-allowed">
-        <span class="material-symbols-outlined text-xl">arrow_left_alt</span>
+        <span class="material-symbols-outlined text-xl">{% if t('dir') == 'rtl' %}arrow_left_alt{% else %}arrow_right_alt{% endif %}</span>
       </span>
     {% endif %}
   </nav>

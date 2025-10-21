@@ -11,8 +11,8 @@
     {% set featureAltKeys = ['quality_alt','shipping_alt','support_alt'] %}
     <div class="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-3">
       {% for block in widget.blocks %}
-      <div class="reason-card border rounded-xl md:py-[60px] py-8 md:px-9 px-6 {% if t('dir') == 'rtl' %}text-center{% else %}text-center{% endif %} shadow-sm border-stok">
-        <div class="flex flex-col items-center justify-center md:gap-3 gap-3">
+      <div class="reason-card border rounded-xl md:py-[60px] py-8 md:px-9 px-6 {% if t('dir') == 'rtl' %}text-center{% else %}text-center{% endif %} shadow-sm border-stok h-full flex flex-col">
+        <div class="flex flex-col items-center justify-center md:gap-3 gap-3 flex-1">
           <div class="flex flex-col items-center justify-center md:gap-3 gap-3">
             {% if block.data.icon and block.data.icon.fileUrl %}
             <img src="{{ block.data.icon.fileUrl }}" alt="{{ t(featureAltKeys[loop.index0] or 'icon_alt_text') }}"
@@ -25,10 +25,10 @@
             </div>
             {% endif %}
             {% set featureTitle = block.data.title or '' %}
-            <h3 class="md:text-[32px] text-[18px] md:leading-[52px] leading-[24px] font-medium text-secondary">{{ t(featureTitle) if featureTitle else t(featureTitleKeys[loop.index0] or 'feature_title') }}</h3>
+            <h3 class="md:text-[24px] text-[16px] md:leading-[36px] leading-[20px] font-medium text-secondary text-center min-h-[36px] flex items-center justify-center">{{ t(featureTitle) if featureTitle else t(featureTitleKeys[loop.index0] or 'feature_title') }}</h3>
           </div>
           {% set featureDesc = block.data.description or '' %}
-          <p class="text-gray md:text-base text-[14px] leading-[20px] md:leading-relaxed">{{ t(featureDesc) if featureDesc else t(featureDescKeys[loop.index0] or 'feature_description') }}</p>
+          <p class="text-gray md:text-sm text-[12px] leading-[16px] md:leading-normal text-center flex-1 flex items-center justify-center">{{ t(featureDesc) if featureDesc else t(featureDescKeys[loop.index0] or 'feature_description') }}</p>
         </div> 
       </div>
       {% endfor %}
