@@ -1,7 +1,7 @@
 <section
   style="background-image: url({{ widget.data.image.fileUrl }}); background-size: cover; background-position: top left;
     background-repeat: no-repeat; background-attachment: fixed;"
-  class="md:bg-[length:50%_100%] bg-[length:80%_100%] relative overflow-hidden">
+  class="md:bg-[length:50%_100%] bg-[length:80%_100%] relative overflow-hidden py-8">
   <!-- الخلفية المعكوسة -->
   <div
     class="absolute inset-0 bg-no-repeat bg-center bg-[length:100%_100%] {% if t('dir') =="
@@ -30,8 +30,7 @@
                                                                                         }"></component-baner-date>
             {% endif %}
               </div>
-            <a href="{{ widget.data.button_link | default('/collections') }}" class=" w-full md:bg-secondary bg-white flex justify-center items-center md:text-white text-secondary rounded-lg md:font-bold font-semibold text-sm leading-[12px]
-                                                                                                                   md:text-base py-3 md:py-3.5 px-[37px] md:px-12 transition-opacity hover:opacity-95">
+            <a href="{{ widget.data.button_link | default('/collections') }}" class="w-fit md:w-full md:bg-secondary bg-white flex justify-center items-center md:text-white text-secondary rounded-lg md:font-bold font-semibold text-xs md:text-base py-2 md:py-3.5 px-4 md:px-12 transition-opacity hover:opacity-95 whitespace-nowrap">
               {{ t('get_offer_now') }}
             </a>
           </div>

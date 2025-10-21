@@ -1,40 +1,41 @@
-<section class="pt-0 md:pt-0 pb-12 md:pb-16 bg-white">
-  <div class="container flex flex-col md:gap-9 gap-5">
-    
-    <div class="flex flex-col md:gap-5 gap-3">
-      <div class="section-title-container">
-        <h2 class="font-bold text-[32px] text-secondary {% if t('dir') == 'ltr' %}text-left{% else %}text-right{% endif %}">
-          {{ t('best_sellers') }}
-        </h2>
+<section class="py-8 bg-white">
+  <div class="container">
+    <div class="flex items-center justify-between md:mb-8 mb-4">
+      <div class="flex flex-col gap-0.5">
+        <h2 class="section-title md:text-[32px] text-[24px] font-bold">{{ t('best_sellers') }}</h2>
       </div>
+      <a href="/{{t('lang')}}/collections" class="flex items-center md:hidden gap-1 text-xs font-medium cursor-pointer">
+        <span class="text-primary">{{t('view_all')}} </span>
+        <span class="material-symbols-outlined text-base text-primary">{% if t('dir') == 'rtl' %}arrow_back{% else %}arrow_forward{% endif %}</span>
+      </a>
+    </div>
 
-<div class="flex items-center md:gap-10 gap-3 overflow-x-auto scrollbar-hide">
-          <!-- Categories Buttons -->
-      {# {% for cat in [t('all'), t('books'), t('chairs'), t('beds'), t('tables'), t('armchairs'), t('decor')] %} #}
-          <div class=" py-1">
-            <button
-              class="py-1 px-1 md:text-xl text-sm font-semibold border-b border-primary  transition 
-                     min-w-[54px] text-secondary/50 max-w-[111px] truncate text-center">
-              {{ cat }}
-            </button>
-          </div>
-          {# {% endfor %} #}
+    <!-- Categories Buttons -->
+    {# <div class="flex items-center md:gap-10 gap-3 overflow-x-auto scrollbar-hide mb-4">
+      {% for cat in [t('all'), t('books'), t('chairs'), t('beds'), t('tables'), t('armchairs'), t('decor')] %}
+      <div class="py-1">
+        <button
+          class="py-1 px-1 md:text-xl text-sm font-semibold border-b border-primary transition 
+                 min-w-[54px] text-secondary/50 max-w-[111px] truncate text-center">
+          {{ cat }}
+        </button>
       </div>
-    </div>   
+      {% endfor %}
+    </div> #}
 
     <!-- Products Grid -->
-     <div class="flex flex-col gap-5 md:gap-12 items-center justify-center">
-    <div class="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 md:gap-x-6 md:gap-y-7 gap-x-[9px] gap-y-2">
-      {% for product in widget.data.products_collection or [] %}
-        {% ui "product-card.njk", product=product %}
-      {% endfor %}
-    </div>
-    <a class=" flex items-center gap-3 bg-secondary text-white py-3 md:px-[76px] px-[29px] rounded-lg"  href="/{{t('lang')}}/collections">
-      <span class=" text-xs font-semibold">{{t('view_more')}}</span>
-      <span class="material-symbols-outlined text-xl">
-        {% if t('dir') == 'rtl' %}arrow_left_alt{% else %}arrow_right_alt{% endif %}
+    <div class="flex flex-col gap-5 md:gap-12 items-center justify-center">
+      <div class="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 md:gap-x-6 md:gap-y-7 gap-x-[9px] gap-y-2">
+        {% for product in widget.data.products_collection or [] %}
+          {% ui "product-card.njk", product=product %}
+        {% endfor %}
+      </div>
+      <a class="flex items-center gap-3 bg-secondary text-white py-3 md:px-[76px] px-[29px] rounded-lg" href="/{{t('lang')}}/collections">
+        <span class="text-xs font-semibold">{{t('view_more')}}</span>
+        <span class="material-symbols-outlined text-xl">
+          {% if t('dir') == 'rtl' %}arrow_left_alt{% else %}arrow_right_alt{% endif %}
         </span>
-    </a>
-  </div>
+      </a>
+    </div>
   </div>
 </section>

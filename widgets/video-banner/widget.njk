@@ -1,4 +1,4 @@
-<section class="video-banner-full">
+<section class="video-banner-full py-8">
   <div class="video-container">
     <!-- الفيديو كخلفية -->
     <video class="video-background" preload="auto" autoplay muted playsinline loop>
@@ -36,19 +36,36 @@ document.addEventListener('DOMContentLoaded', function() {
     playButton.addEventListener('click', function() {
       if (isPlaying) {
         video.pause();
-        playIcon.style.borderLeft = '20px solid #F59A57';
-        playIcon.style.borderTop = '12px solid transparent';
-        playIcon.style.borderBottom = '12px solid transparent';
+        // أيقونة الإيقاف (خطين عموديين)
+        playIcon.style.border = 'none';
+        playIcon.style.width = '20px';
+        playIcon.style.height = '20px';
+        playIcon.style.position = 'relative';
+        playIcon.style.display = 'flex';
+        playIcon.style.alignItems = 'center';
+        playIcon.style.justifyContent = 'center';
+        playIcon.innerHTML = '';
+        playIcon.style.backgroundImage = 'linear-gradient(to right, #F59A57 0%, #F59A57 30%, transparent 30%, transparent 70%, #F59A57 70%, #F59A57 100%)';
+        playIcon.style.backgroundSize = '100% 16px';
+        playIcon.style.backgroundRepeat = 'no-repeat';
+        playIcon.style.backgroundPosition = 'center';
+        playIcon.style.marginLeft = '0';
         isPlaying = false;
       } else {
         video.play();
-        playIcon.style.borderLeft = '0';
-        playIcon.style.borderTop = '0';
-        playIcon.style.borderBottom = '0';
-        playIcon.style.border = '2px solid #F59A57';
-        playIcon.style.width = '20px';
-        playIcon.style.height = '20px';
-        playIcon.style.borderRadius = '2px';
+        // أيقونة التشغيل (مثلث)
+        playIcon.style.border = 'none';
+        playIcon.style.width = '0';
+        playIcon.style.height = '0';
+        playIcon.style.borderLeft = '20px solid #F59A57';
+        playIcon.style.borderTop = '12px solid transparent';
+        playIcon.style.borderBottom = '12px solid transparent';
+        playIcon.style.marginLeft = '4px';
+        playIcon.style.backgroundImage = 'none';
+        playIcon.style.backgroundSize = 'none';
+        playIcon.style.backgroundRepeat = 'none';
+        playIcon.style.backgroundPosition = 'none';
+        playIcon.innerHTML = '';
         isPlaying = true;
       }
     });

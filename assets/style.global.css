@@ -377,6 +377,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .video-play-button {
@@ -391,6 +394,7 @@
   cursor: pointer;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
+  position: relative;
 }
 
 .video-play-button:hover {
@@ -587,8 +591,8 @@ div.border.rounded-lg:has(> details.faq-item[open]) { border-color: #000000; }
   .video-banner .text-center { padding-top: 28px; padding-bottom: 28px; }
   .video-banner h2 { font-size: 26px; }
   .video-banner button { width: 68px; height: 68px; }
-  .section-title::before { width: 100%; }
-  .section-title::after { width: 120px; }
+  .section-title::before { width: 100%; height: 1.5px; background-color: #D9D9D9; }
+  .section-title::after { width: 220px; height: 1.5px; background-color: #F59A57; }
 }
 @media (max-width: 767px) {
   .hero-bg .container { display: flex; flex-direction: row; align-items: center; gap: 12px; }
@@ -661,5 +665,30 @@ div.border.rounded-lg:has(> details.faq-item[open]) { border-color: #000000; }
 /* Offers Banner - Background position for RTL (image on left) */
 html[dir="rtl"] .offers-banner-section {
   background-position: top left !important;
+}
+
+/* Mobile section title underlines - ensure both lines show */
+@media (max-width: 768px) {
+  .section-title::before { 
+    content: '' !important;
+    position: absolute !important;
+    inset-block-end: 0 !important;
+    inset-inline-start: 0 !important;
+    width: 100% !important; 
+    height: 1.5px !important; 
+    background-color: #D9D9D9 !important; 
+    opacity: 1 !important;
+    z-index: 0 !important;
+  }
+  .section-title::after { 
+    content: '' !important;
+    position: absolute !important;
+    inset-block-end: 0 !important;
+    inset-inline-start: 0 !important;
+    width: 220px !important; 
+    height: 1.5px !important; 
+    background-color: #F59A57 !important; 
+    z-index: 1 !important;
+  }
 }
 

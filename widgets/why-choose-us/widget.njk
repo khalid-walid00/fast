@@ -1,5 +1,5 @@
 <!-- Features Section -->
-<section class="pt-0 md:pt-0 pb-12 md:pb-16 bg-white">
+<section class="pt-4 pb-8 bg-white">
   <div class="container flex flex-col md:gap-10 gap-4">
     <div class="section-title-container">
       <h2 class="section-title">{{ t(widget.data.section_title or 'why_choose_us') }}</h2>
@@ -11,9 +11,9 @@
     {% set featureAltKeys = ['quality_alt','shipping_alt','support_alt'] %}
     <div class="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-3">
       {% for block in widget.blocks %}
-      <div class="reason-card border rounded-xl md:py-[60px] py-4 md:px-9 px-4 {% if t('dir') == 'rtl' %}text-center{% else %}text-center{% endif %} shadow-sm border-stok">
-        <div class="flex flex-col items-center justify-center md:gap-3 gap-1">
-          <div class="flex flex-col items-center justify-center md:gap-3 gap-2">
+      <div class="reason-card border rounded-xl md:py-[60px] py-8 md:px-9 px-6 {% if t('dir') == 'rtl' %}text-center{% else %}text-center{% endif %} shadow-sm border-stok">
+        <div class="flex flex-col items-center justify-center md:gap-3 gap-3">
+          <div class="flex flex-col items-center justify-center md:gap-3 gap-3">
             {% if block.data.icon and block.data.icon.fileUrl %}
             <img src="{{ block.data.icon.fileUrl }}" alt="{{ t(featureAltKeys[loop.index0] or 'icon_alt_text') }}"
               class="md:w-8 md:h-8 w-6 h-6 object-contain" />
