@@ -15,22 +15,22 @@
           <div class="hero-split-container flex flex-col md:flex-row" data-slide="{{ loop.index }}">
             
             <!-- النص -->
-            <div class="hero-text-section w-full md:flex-1 flex flex-col justify-center items-center md:items-start relative order-2 {% if t('dir') == 'rtl' %}md:order-2{% else %}md:order-1{% endif %}" 
+            <div class="hero-text-section w-full md:flex-1 flex flex-col justify-center items-center md:items-start relative order-2 {% if t('dir') == 'rtl' %}md:order-1{% else %}md:order-1{% endif %}" 
               style="background-color: {{ block.data.text_section_background_color | default('#B9C1B6') }};">
               <div class="container mx-auto px-4 md:px-8 lg:px-16 py-8 md:py-0">
-                <div class="text-center md:{% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} max-w-[500px] md:max-w-[760px] w-full flex flex-col md:gap-12 gap-8 mx-auto md:mx-0">
+                <div class="text-center md:{% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} w-full flex flex-col md:gap-12 gap-8">
                   <div class="flex flex-col md:gap-5 gap-3">
                     {% set titleText = block.data.title %}
                     {% set subtitleText = block.data.subtitle %}
-                    <h1 class="md:text-[40px] md:leading-[60px] text-[24px] leading-[32px] font-bold md:font-extrabold text-secondary text-center md:{% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} block hero-title-main">
+                    <h1 class="md:text-[40px] md:leading-[60px] text-[24px] leading-[32px] font-bold md:font-extrabold text-secondary text-center md:{% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} w-full hero-title-main">
                       {{ t(titleText) if titleText else t(heroTitleKeys[loop.index0] or 'hero_title_default') }}
                     </h1>
-                    <div class="md:text-[24px] text-sm md:leading-[36px] leading-[20px] text-secondary text-center md:{% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} whitespace-normal hero-balance">
+                    <p class="md:text-[24px] text-sm md:leading-[36px] leading-[20px] text-secondary text-center md:{% if t('dir') == 'rtl' %}text-right{% else %}text-left{% endif %} w-full hero-balance">
                       {{ t(subtitleText) if subtitleText else t(heroSubtitleKeys[loop.index0] or 'hero_subtitle_default') }}
-                    </div>
+                    </p>
                   </div>
                   <a href="{{ block.data.link | default('/collections') }}" 
-                    class="flex items-center justify-center h-[52px] bg-white rounded-lg text-secondary md:max-w-[438px] max-w-[200px] w-full md:text-base text-sm text-center md:font-bold font-semibold hover:bg-gray-50 transition-colors duration-200 mx-auto md:mx-0">
+                    class="flex items-center justify-center h-[52px] bg-white rounded-lg text-secondary w-full md:text-base text-sm text-center md:font-bold font-semibold hover:bg-gray-50 transition-colors duration-200">
                     {{ t(block.data.button_text or 'shop_now') }}
                   </a>
                 </div>
@@ -38,7 +38,7 @@
             </div>
             
             <!-- الصورة -->
-            <div class="hero-image-section w-full md:flex-1 relative order-1 {% if t('dir') == 'rtl' %}md:order-1{% else %}md:order-2{% endif %}" 
+            <div class="hero-image-section w-full md:flex-1 relative order-1 {% if t('dir') == 'rtl' %}md:order-2{% else %}md:order-2{% endif %}" 
               style="background: transparent; padding: 0; margin: 0; display: block; z-index: 1;">
               {% set imageUrl = defaultHeroImages[loop.index0] %}
               {% if block.data.image %}
@@ -102,6 +102,7 @@
           width: 100% !important;
           height: 50vh !important;
           min-height: 250px !important;
+          max-height: 50vh !important;
           background: transparent !important;
           z-index: 10 !important;
         }
@@ -121,25 +122,46 @@
           position: relative !important;
           z-index: 5 !important;
           background-color: var(--mobile-bg, #B9C1B6) !important;
-          padding: 25px 20px !important;
-          min-height: auto !important;
-          text-align: center !important; /* النص في المنتصف */
+          padding: 20px 16px !important;
+          min-height: 200px !important;
+          max-height: 200px !important;
+          height: 200px !important;
+          text-align: center !important;
+        }
+
+        .hero-text-section .container {
+          height: 100% !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+
+        .hero-text-section > div > div {
+          width: 100% !important;
+          max-width: 100% !important;
         }
 
         .hero-title-main {
           text-align: center !important;
+          font-size: 18px !important;
+          line-height: 24px !important;
+          margin-bottom: 8px !important;
         }
 
         .hero-balance {
           text-align: center !important;
+          font-size: 13px !important;
+          line-height: 18px !important;
+          margin-bottom: 12px !important;
         }
 
         .hero-text-section a {
-          width: 90% !important; /* عرض الزرار كبير */
-          max-width: 500px !important; /* حد أقصى للزر */
-          margin: 20px auto 0 auto !important; /* وسط الصفحة */
-          font-size: 16px !important;
-          height: 56px !important;
+          width: 85% !important;
+          max-width: 85% !important;
+          margin: 0 auto !important;
+          font-size: 15px !important;
+          height: 50px !important;
+          font-weight: bold !important;
         }
 
         .swiper-slide {
