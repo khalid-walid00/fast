@@ -1,6 +1,6 @@
 <section class="product-listing">
   {% if context.products | length > 0 %}
-  {%ui "header-page.njk",bg_color="bg-white", title=context.collection.title | default(t('collections_default')) %}
+  {%ui "header-page.njk",bg_color="bg-white", title=t(context.collection.title) | default(t('collections')) %}
   <div class="container flex flex-col gap-10 pt-4">
     <div class="flex flex-col md:gap-8 gap-4">
       <!-- {%ui "filter.njk" %} -->
@@ -13,6 +13,6 @@
     {%ui "pagination.njk" %}
   </div>
   {% else %}
-  {%ui "empty.njk", title=t('collections_default') %}
+  {%ui "empty.njk", title=t('collections') %}
   {% endif %}
 </section>

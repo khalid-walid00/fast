@@ -1,6 +1,6 @@
 <section class="product-listing py-8">
     <div class="container flex flex-col gap-4 pt-4">
-    {%ui "header-page.njk",bg_color="bg-white", title=widget.data.section_title | default('أقسامنا') %}
+    {%ui "header-page.njk",bg_color="bg-white", title=widget.data.section_title | default(t('our_sections')) %}
     <div class="flex flex-col items-center gap-10">
         <div class="grid grid-cols-2 md:grid-cols-5 md:gap-6 gap-y-[14px] gap-x-4 text-center">
         {% for collection in context.collections %}
