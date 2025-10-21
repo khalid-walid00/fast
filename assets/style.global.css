@@ -473,7 +473,7 @@ a.text-gray-600.active {
   position: absolute;
   inset-block-end: 0; /* bottom: 0 */
   inset-inline-start: 0; /* aligns to start edge (left in LTR, right in RTL) */
-  width: 100%;
+  width: 422px;
   height: 1.5px;
   background-color: #C5C5C7;
   opacity: 1;
@@ -484,7 +484,7 @@ a.text-gray-600.active {
   position: absolute;
   inset-block-end: 0; /* bottom: 0 */
   inset-inline-start: 0; /* aligns to start edge */
-  width: 50%;
+  width: 211px;
   height: 1.5px;
   background-color: #F59A57;
   z-index: 1;
@@ -680,14 +680,14 @@ html[dir="rtl"] .offers-banner-section {
   }
 }
 
-/* Mobile section title underlines - 105px orange + 105px gray */
+/* Mobile section title underlines - 210px total (105px orange + 105px gray) */
 @media (max-width: 768px) {
   .section-title::before { 
     content: '' !important;
     position: absolute !important;
     inset-block-end: 0 !important;
     inset-inline-start: 0 !important;
-    width: 100% !important; 
+    width: 210px !important; 
     height: 1.5px !important; 
     background-color: #C5C5C7 !important; 
     opacity: 1 !important;
@@ -716,7 +716,7 @@ html[dir="rtl"] .offers-banner-section {
   }
   
   .faq-section .section-title::before {
-    width: 100% !important;
+    width: 210px !important;
     background-color: #C5C5C7 !important;
     opacity: 1 !important;
   }
