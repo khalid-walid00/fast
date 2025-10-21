@@ -40,7 +40,7 @@
     "timer": {
       "type": "number",
       "label": "مدة العرض (ايام)",
-      "default": "5"
+      "default": 5
     },
     "alt": {
       "type": "string",
