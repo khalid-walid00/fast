@@ -1,15 +1,22 @@
-<section
-  style="background-image: url({{ widget.data.image.fileUrl }}); background-size: cover; background-position: top left;
-    background-repeat: no-repeat; background-attachment: fixed;"
-  class="md:bg-[length:50%_100%] bg-[length:80%_100%] relative overflow-hidden py-8">
-  <!-- الخلفية المعكوسة -->
-  <div
-    class="absolute inset-0 bg-no-repeat bg-center bg-[length:100%_100%] {% if t('dir') =="ltr" %} scale-x-[-1] {% endif %} "
-    style="background-image: url({{ 'banner-fram.png' | assets }});"></div>
-  <!-- المحتوى فوق الخلفية -->
-  <div class="relative z-10">
+
+<div class="relative w-full overflow-hidden flex items-center justify-center">
+  <!-- SVG الخلفية -->
+  <svg 
+    class="relative inset-0 w-full md:h-[405px] h-[300px] z-10"
+    viewBox="0 0 1366 504"
+    preserveAspectRatio="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path 
+      d="M1366 504H0V350.174C34.0001 353.561 69.3002 355.818 99.8701 365.696C156.916 384.13 129.716 444.112 197.463 455.483C265.21 466.855 138.686 285.841 370.996 384.156C608.904 463.194 273.034 239.574 480.154 254.996C746.051 254.996 429.773 132.889 429.773 103.973C431.224 52.3423 647.689 45.6388 600.188 8.60742C595.959 5.31041 591.443 2.46367 586.679 0H1366V504ZM17.875 0C11.8063 1.94055 5.81427 3.90664 0 5.92969V0H17.875Z"
+      fill="#D8E0E5"
+    />
+  </svg>
+
+  <!-- المحتوى فوق الـ SVG -->
+  <div class="absolute inset-0 z-20 md:h-[405px] h-[300px] flex items-center justify-center">
     <div class="grid grid-cols-2 items-center justify-between">
-      <div class="container py-4 lg:py-[30px] flex flex-col md:gap-7 gap-4">
+      <div class="container flex flex-col justify-center items-center md:gap-7 gap-4">
         <div class="flex flex-col md:gap-5 gap-2">
           <h2 class="md:font-extrabold md:leading-[60px] font-bold leading-[34px] text-secondary text-[22px] md:text-[40px]">
             {{ t('exclusive_offers') }}
@@ -18,22 +25,44 @@
             {{ t('dont_miss_offer') | striptags }}
           </p>
         </div>
-          <div class="min-h-[128px] w-full flex-col flex gap-3">
-              <div class="w-full">
-            {% if  widget.data.hasTimer %}
-                <component-baner-date :days="{{ widget.data.timer }}" :translations="{
-                                                                                          days:'{{ t('days') }}',
-                                                                                          hours: '{{ t('hours') }}',
-                                                                                          minutes:'{{ t('minutes') }}',
-                                                                                          seconds: '{{ t('seconds') }}'
-                                                                                        }"></component-baner-date>
-            {% endif %}
+
+        <div class="w-full flex-col flex gap-3">
+          <div class="w-full">
+            {% if widget.data.hasTimer %}
+              <div class="w-full min-h-[128px]">
+                <component-baner-date
+                  :days="{{ widget.data.timer }}"
+                  :translations="{
+                    days:'{{ t('days') }}',
+                    hours: '{{ t('hours') }}',
+                    minutes:'{{ t('minutes') }}',
+                    seconds: '{{ t('seconds') }}'
+                  }"
+                ></component-baner-date>
               </div>
-            <a href="{{ widget.data.button_link | default('/collections') }}" class="w-fit md:w-full md:bg-secondary bg-white flex justify-center items-center md:text-white text-secondary rounded-lg md:font-bold font-semibold text-xs md:text-base py-2 md:py-3.5 px-4 md:px-12 transition-opacity hover:opacity-95 whitespace-nowrap">
-              {{ t('get_offer_now') }}
-            </a>
+            {% endif %}
           </div>
+
+          <a 
+            href="{{ widget.data.button_link | default('/collections') }}"
+            class="w-fit md:w-full md:bg-secondary bg-white flex justify-center items-center md:text-white text-secondary rounded-lg md:font-bold font-semibold text-xs md:text-base py-2 md:py-3.5 px-4 md:px-12 transition-opacity hover:opacity-95 whitespace-nowrap"
+          >
+            {{ t('get_offer_now') }}
+          </a>
+        </div>
       </div>
     </div>
   </div>
-</section>
+
+  <!-- الخلفية الصورة -->
+  <div 
+    class="absolute inset-0 z-0 text-white text-center overflow-hidden flex items-center"
+    style="
+      background-image: url({{ widget.data.image.fileUrl }});
+      background-size: cover;
+      background-position: top left;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    "
+  ></div>
+</div>
